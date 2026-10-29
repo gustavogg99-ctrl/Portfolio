@@ -1,0 +1,38 @@
+name: CI
+
+# Every push and pull request must pass lint, typecheck, content rules,
+# tests and a production build before it can be merged (docs/ARCHITECTURE.md#quality-gates).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Tests (content rules + claims guard)
+        run: npm test
+      - name: Content report
+        run: npm run content:check
+      - name: Build
+        run: npm run build

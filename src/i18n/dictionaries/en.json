@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "description": "Gustavo Rodrigues — I build AI-powered products that are secure, tested and auditable."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience",
+    "certifications": "Certifications",
+    "writing": "Writing",
+    "contact": "Contact"
+  },
+  "actions": {
+    "projects": "See projects",
+    "resume": "Resume",
+    "contact": "Contact",
+    "switchLanguage": "Ler em português",
+    "toggleTheme": "Toggle theme"
+  },
+  "sections": {
+    "about": ["ABOUT", "ME"],
+    "skills": ["SKILLS &", "TOOLS"],
+    "projects": ["SELECTED", "PROJECTS"],
+    "experience": ["WORK", "EXPERIENCE"],
+    "certifications": ["CERTIFICATIONS", "& STUDIES"],
+    "now": ["WHAT I'M", "DOING NOW"],
+    "writing": ["LATEST", "WRITING"],
+    "contact": ["LET'S", "TALK"]
+  },
+  "labels": {
+    "present": "Present",
+    "expected": "Expected",
+    "inProgress": "In progress",
+    "verify": "Verify credential",
+    "repository": "Repository",
+    "liveSite": "Live site",
+    "privateRepo": "Private repository — described here",
+    "limitations": "Known limitations",
+    "guardrails": "Guardrails",
+    "updated": "Updated"
+  }
+}
