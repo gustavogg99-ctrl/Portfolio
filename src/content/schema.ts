@@ -43,6 +43,8 @@ export const Profile = z.object({
     linkedin: z.url(),
     github: z.url(),
     blog: z.url(),
+    /** This site's own repository (footer link). */
+    source: z.url(),
   }),
   resumeUrl: z.string().nullable(),
   languages: z.array(z.object({ name: Localized, level: Localized })),

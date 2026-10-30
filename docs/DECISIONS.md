@@ -99,3 +99,51 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Decision.** Rotate SECURE, TESTED, AUDITABLE — each backed by a project on the site.
 
 **Consequences.** The hero matches the headline: "I build AI-powered products that are secure, tested and auditable."
+
+---
+
+## ADR-009 — Theme stored in localStorage, applied by an inline script
+
+**Date:** 2026-10-29
+
+**Context.** Dark is the default; visitors can switch to light. Reading a cookie on the server would make every page dynamic (Cache Components) and lose static prerendering. Applying the theme after hydration causes a visible flash.
+
+**Decision.** Follow the Next.js 16 "preventing flash before hydration" guide: an inline script in `<head>` reads `localStorage.theme` (only `light`/`dark` accepted) and sets `data-theme` before the first paint. `<html suppressHydrationWarning>`. The toggle syncs via `useSyncExternalStore`.
+
+**Consequences.** Pages stay static. One inline script must be allowed by the CSP in Part 7 (by hash, not `unsafe-inline`).
+
+---
+
+## ADR-010 — Profile photo handling
+
+**Date:** 2026-10-29
+
+**Context.** Owner provided a 1086×1448 PNG, suit, grey background, and asked to keep it in color.
+
+**Decision.** Crop to 4:5 around head and shoulders, resize to 640×800, save as progressive JPEG (q85, 56 KB) **without EXIF metadata** (privacy: no device/location data). Imported statically so `next/image` generates responsive sizes and a blur placeholder. Displayed at ~176 px wide on mobile and ~288 px on desktop.
+
+**Consequences.** The original upload is not committed. To replace the photo, overwrite `src/assets/profile.jpg` with the same aspect ratio.
+
+---
+
+## ADR-011 — Icons: lucide-react + hand-made brand marks
+
+**Date:** 2026-10-29
+
+**Context.** lucide-react removed brand logos; Simple Icons removed LinkedIn.
+
+**Decision.** lucide-react for UI icons; GitHub mark copied from Simple Icons (CC0); LinkedIn shown as a plain "in" monogram drawn in `icons.tsx`.
+
+**Consequences.** No extra icon dependency for two logos; all icons are inline SVG (no external requests).
+
+---
+
+## ADR-012 — Sticky header with icon nav, language and theme
+
+**Date:** 2026-10-29
+
+**Context.** The reference site's nav scrolls away. Visitors need to jump between sections from anywhere.
+
+**Decision.** One sticky header on all screen sizes: icon nav (with tooltips and accessible labels) in the center; EN/PT and theme buttons on the right. The section in view is highlighted (IntersectionObserver).
+
+**Consequences.** Always-available navigation; the header uses a translucent background with blur so content behind it stays legible.

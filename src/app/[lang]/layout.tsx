@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { htmlLang, locales } from "@/i18n/config";
 import { content } from "@/content";
+import { THEME_SCRIPT } from "@/components/theme";
 import "../globals.css";
 
 /** Prerender /en and /pt at build time (required by Cache Components). */
@@ -26,8 +27,13 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
   return (
     <html
       lang={htmlLang[locale]}
+      // The theme script may set data-theme before hydration (ADR-009).
+      suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="min-h-full">{children}</body>
     </html>
   );

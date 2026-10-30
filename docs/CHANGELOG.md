@@ -2,6 +2,24 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 2 — Visual skeleton · 2026-10-29
+
+**Added**
+- Two-column layout: sticky profile card (≥1024px) + content column; single column on mobile.
+- Profile card: photo (color, 4:5, EXIF stripped), name, title, tagline, Contact button (Resume button appears automatically when `resumeUrl` is set), LinkedIn / GitHub / Blog / Email links.
+- Sticky header: icon navigation with tooltips and active-section highlight; EN ⇄ PT switch that keeps the current `#section` and remembers the choice; light/dark toggle without flash.
+- Two-tone section titles; skeleton sections (`#home`, `#about`, `#projects`, `#experience`, `#certifications`, `#writing`, `#contact`) with "under construction" placeholders for the next parts.
+- Footer with credits ("built with Next.js and the help of Claude") and a link to the source code.
+- Accessibility baseline: skip link, labelled icon buttons, `aria-current`, focus outline, reduced motion.
+- `profile.links.source` in content; new UI strings in both dictionaries.
+- Tests: `swapLocale` (6 cases). Total: 31.
+- Docs: layout, theme and accessibility sections in ARCHITECTURE; ADR-009 to 012.
+
+**Verified (Playwright, production build)**
+- Desktop 1440×900 and mobile 390×844, dark and light; no console errors; no horizontal overflow.
+- Theme persists after reload; language switch `/en#projects` → `/pt#projects` and sets the `locale` cookie; first Tab focuses the skip link.
+
+
 ## Part 1 — Foundation · 2026-10-29
 
 **Added**

@@ -59,6 +59,7 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/gustavo99rodrigues",
     github: "https://github.com/gustavogg99-ctrl",
     blog: "https://ggblog99.wordpress.com",
+    source: "https://github.com/gustavogg99-ctrl/Portfolio",
   },
   // Hidden until the final resume PDF is ready (it will live in /public).
   resumeUrl: null,
