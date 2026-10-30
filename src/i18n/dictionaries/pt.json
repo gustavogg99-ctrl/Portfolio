@@ -71,7 +71,20 @@
     "building": "Em construção — Parte",
     "basedIn": "Onde estou",
     "openTo": "Disponibilidade",
-    "languages": "Idiomas"
+    "languages": "Idiomas",
+    "readCase": "Ler o estudo de caso",
+    "backToProjects": "Todos os projetos",
+    "problem": "Problema",
+    "built": "O que construí",
+    "architecture": "Arquitetura",
+    "outputs": "Saídas",
+    "evidence": "Evidências",
+    "codeExcerpts": "Trechos de código",
+    "codeNote": "O repositório é privado. Estes trechos foram selecionados e higienizados para esta página — sem segredos, referências internas nem conteúdo de TCC real.",
+    "fidelity": "Diferenças em relação ao código real",
+    "details": "Detalhes",
+    "stack": "Stack",
+    "scope": "Escopo"
   },
   "a11y": {
     "skip": "Pular para o conteúdo",
@@ -80,5 +93,19 @@
   "footer": {
     "madeBy": "Feito por Gustavo Rodrigues com Next.js e apoio do Claude.",
     "source": "Código-fonte"
+  },
+  "status": {
+    "live": "No ar",
+    "paused": "Pausado",
+    "prototype": "Protótipo",
+    "in_development": "Em desenvolvimento",
+    "template": "Modelo"
+  },
+  "diagram": {
+    "io": "Entrada",
+    "ai": "IA",
+    "code": "Código",
+    "guard": "Controle",
+    "human": "Humano"
   }
 }

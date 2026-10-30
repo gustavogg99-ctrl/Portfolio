@@ -8,6 +8,7 @@ import {
   Profile,
   Project,
   SkillGroup,
+  Snippet,
 } from "./schema";
 
 export const PLACEHOLDER = "[CONFIRMAR";
@@ -21,6 +22,7 @@ export const ContentBundle = z.object({
   skills: z.array(SkillGroup),
   now: Now,
   posts: z.array(Post),
+  snippets: z.array(Snippet),
 });
 export type ContentBundle = z.infer<typeof ContentBundle>;
 
@@ -47,6 +49,7 @@ function rendered(content: ContentBundle) {
     skills: content.skills,
     now: content.now.items.filter((i) => i.visible),
     posts: content.posts.filter((p) => p.visible),
+    snippets: content.snippets,
   };
 }
 
@@ -72,6 +75,11 @@ export function validateContent(input: unknown): ContentBundle {
   const slugs = content.projects.map((p) => p.slug);
   const dupes = slugs.filter((s, i) => slugs.indexOf(s) !== i);
   for (const d of dupes) problems.push(`projects: duplicate slug "${d}"`);
+
+  const snippetIds = new Set(content.snippets.map((s) => s.id));
+  for (const p of content.projects)
+    for (const id of p.page?.snippetIds ?? [])
+      if (!snippetIds.has(id)) problems.push(`projects.${p.slug}: unknown snippet "${id}"`);
 
   if (content.projects.filter((p) => p.visible && p.featured).length > 1)
     problems.push("projects: only one visible project can be featured");

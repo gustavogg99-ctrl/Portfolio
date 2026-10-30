@@ -19,10 +19,24 @@ export type NavSectionId = (typeof NAV_SECTIONS)[number]["id"];
  * Sticky icon navigation. Highlights the section currently in view
  * (IntersectionObserver) and exposes it with aria-current for screen readers.
  */
-export function SiteNav({ labels, ariaLabel }: { labels: Record<NavSectionId, string>; ariaLabel: string }) {
-  const [active, setActive] = useState<NavSectionId>("home");
+export function SiteNav({
+  labels,
+  ariaLabel,
+  hrefBase = "",
+  fixedActive,
+}: {
+  labels: Record<NavSectionId, string>;
+  ariaLabel: string;
+  /** "" on the home page (in-page anchors); "/en" or "/pt" on other pages. */
+  hrefBase?: string;
+  /** On pages other than home, the highlighted item doesn't follow scrolling. */
+  fixedActive?: NavSectionId;
+}) {
+  const [observed, setActive] = useState<NavSectionId>("home");
+  const active = fixedActive ?? observed;
 
   useEffect(() => {
+    if (fixedActive) return;
     const elements = NAV_SECTIONS.map((s) => document.getElementById(s.id)).filter(
       (el): el is HTMLElement => el !== null,
     );
@@ -36,7 +50,7 @@ export function SiteNav({ labels, ariaLabel }: { labels: Record<NavSectionId, st
     );
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [fixedActive]);
 
   return (
     <nav aria-label={ariaLabel}>
@@ -46,7 +60,7 @@ export function SiteNav({ labels, ariaLabel }: { labels: Record<NavSectionId, st
           return (
             <li key={id} className="group relative">
               <a
-                href={`#${id}`}
+                href={`${hrefBase}#${id}`}
                 aria-current={isActive ? "location" : undefined}
                 aria-label={labels[id]}
                 className={`grid size-9 place-items-center rounded-full transition-colors sm:size-10 ${

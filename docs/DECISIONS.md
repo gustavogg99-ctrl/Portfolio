@@ -171,3 +171,27 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Decision.** `SkillItem = string | { en, pt }`. Use a plain string only for proper names.
 
 **Consequences.** The PT page is fully in Portuguese; adding a tool stays a one-word edit.
+
+---
+
+## ADR-015 — Autoria em Forma: corrected numbers and status
+
+**Date:** 2026-10-29
+
+**Context.** The Autoria em Forma project audit (29/10/2026) checked the published numbers against its private repository and documentation. Three were wrong: "5 blocking checks" (really 4 blocking + 1 manual triage), "14 errors, each with a test" (14 rules, 4 with automated tests), and "3 free pilot deliveries, paused after validation" (1 complete job; paused after a demand test without organic traction).
+
+**Decision.** Publish the corrected facts, including the less flattering status. Add the old phrasings to the claims guard so they can't come back. Record the audit as source #6 in SOURCES.md.
+
+**Consequences.** The case study survives an interviewer asking "validated what?". Honest status is consistent with the site's thesis (know the limits of your own work).
+
+---
+
+## ADR-016 — Case-study page with data-driven diagram and sanitized code
+
+**Date:** 2026-10-29
+
+**Context.** The briefing asks for a dedicated Autoria em Forma page with architecture and security controls. The repository is private (its history contains an old password hash and references to the real job).
+
+**Decision.** A generic `/[lang]/projects/[slug]` route enabled per project by a `page` field. The diagram is HTML generated from content (accessible, themed, editable without a drawing tool). Code appears only as excerpts sanitized at the source, each with a fidelity note; comments translated to English are disclosed. A test blocks secrets/internal terms in excerpts.
+
+**Consequences.** Adding another case study = add `page` data to a project. Nothing from the private repository's history or config is ever copied.

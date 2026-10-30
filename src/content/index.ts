@@ -5,6 +5,7 @@ import { now } from "./now";
 import { profile } from "./profile";
 import { projects } from "./projects";
 import { skills } from "./skills";
+import { snippets } from "./snippets";
 import { validateContent } from "./validate";
 import { posts } from "./writing";
 
@@ -21,6 +22,7 @@ export const content = validateContent({
   skills,
   now,
   posts,
+  snippets,
 });
 
 export type { Localized } from "./schema";

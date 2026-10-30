@@ -27,6 +27,7 @@ src/
     [lang]/            ← every page lives under /en or /pt
       layout.tsx       ← root layout: <html lang>, fonts, metadata
       page.tsx         ← home page
+      projects/[slug]/page.tsx ← case-study page (only projects with `page` in content)
     globals.css        ← design tokens (colors, fonts) + Tailwind
   content/             ← EVERYTHING about Gustavo. Edit here, not in components.
     schema.ts          ← Zod schemas = the rules content must follow
@@ -34,6 +35,7 @@ src/
     index.ts           ← validated `content` export (the only import for components)
     profile.ts  experience.ts  education.ts  certifications.ts
     projects.ts  skills.ts  now.ts  writing.ts
+    snippets.ts        ← sanitized code excerpts from private repos
   i18n/
     config.ts          ← locales, default locale, cookie name
     dictionaries.ts    ← loads UI strings for the current locale
@@ -44,6 +46,10 @@ src/
     theme.tsx          ← theme toggle + no-flash inline script (client)
     language-switch.tsx← EN ⇄ PT link, keeps #section, saves cookie (client)
     section.tsx        ← <Section> + two-tone <SectionTitle> (h2 or h3)
+    site-shell.tsx     ← header + profile card column + footer, shared by all pages
+    projects.tsx       ← featured card, project cards (native <details>), status/stack/links
+    architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
+    code-block.tsx     ← code excerpt + explanation + fidelity note
     hero.tsx           ← hero: typewriter title, headline, CTAs, counters
     typewriter.tsx     ← rotating words (client, reduced-motion aware)
     about.tsx          ← about text, quick facts, skills groups
@@ -125,6 +131,15 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **About:** paragraphs from `profile.about` + facts card (location, availability, languages).
 - **Skills** (`#skills`, a sub-section of About, not in the nav): groups from `skills.ts` rendered as tags, no levels or percentages. Items are either a plain name (same in both languages, e.g. "ISO/IEC 27001") or `{ en, pt }` for descriptions.
 
+## Projects
+
+- **Home (`#projects`):** the featured project (one at most) gets a large card with status, status note, summary, scope, up to 4 highlights, stack and a "Read the case study" button. Other projects get cards whose details (problem, what I built, evidence, guardrails, limitations) open with a native `<details>` — no JavaScript.
+- **Case-study page `/[lang]/projects/[slug]`:** only for projects that define `page` in content. Sections: scope, problem, what I built, architecture diagram, evidence, guardrails, code excerpts, limitations. Prerendered for both languages via `generateStaticParams`.
+- **Architecture diagram** is data (`page.architecture`): ordered steps with a `kind` (`io`, `ai`, `code`, `guard`, `human`) that sets the visual style; AI steps are inverted so the reader sees where the LLM sits between controls.
+- **Code excerpts** (`snippets.ts`) come from private repositories, sanitized at the source and re-checked here. Each has a `fidelity` note saying how it differs from the real code. A test scans all excerpts for secrets and internal terms.
+- **Shared shell:** `SiteShell` renders the header, profile card and footer for every page. Off the home page, nav and "Contact" link back to `/{lang}#section`.
+- **Known behavior (Next 16 + Cache Components):** `dynamicParams` is not available, so unknown slugs are rejected with `notFound()`. The first request to an unknown slug may return HTTP 200 with the not-found UI and `noindex`; later requests return 404. Acceptable: no content leaks and search engines don't index it.
+
 ## Theme
 
 - Server always renders dark (`<html>` without `data-theme`).
@@ -168,6 +183,6 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 4–6 | Sections: projects (+ Autoria em Forma page), experience, certifications, now, writing, contact (Formspree) |
+| 5–6 | Sections: experience, certifications, now, writing, contact (Formspree) |
 | 7 | Security headers (CSP, HSTS, etc.), Open Graph, sitemap, accessibility pass |
 | 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site |
