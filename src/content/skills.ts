@@ -10,12 +10,12 @@ export const skills = [
     name: { en: "Applied AI", pt: "IA aplicada" },
     items: [
       "LLMs (Claude)",
-      "Prompt engineering",
-      "Agents",
+      { en: "Prompt engineering", pt: "Engenharia de prompt" },
+      { en: "Agents", pt: "Agentes" },
       "Copilot Studio",
       "Power Automate",
       "n8n / Make",
-      "AI-assisted development",
+      { en: "AI-assisted development", pt: "Desenvolvimento assistido por IA" },
     ],
   },
   {
@@ -24,10 +24,10 @@ export const skills = [
     items: [
       "Python",
       "Cloudflare Workers / D1",
-      "Regression testing",
+      { en: "Regression testing", pt: "Testes de regressão" },
       "Next.js / Vercel",
       "SQL",
-      "ServiceNow App Engine Studio (learning)",
+      { en: "ServiceNow App Engine Studio (learning)", pt: "ServiceNow App Engine Studio (aprendendo)" },
     ],
   },
   {
@@ -38,21 +38,28 @@ export const skills = [
       "LGPD",
       "ISO/IEC 42001",
       "NIST AI RMF",
-      "EU AI Act (conceptual)",
-      "COBIT (conceptual)",
+      { en: "EU AI Act (conceptual)", pt: "EU AI Act (conceitual)" },
+      { en: "COBIT (conceptual)", pt: "COBIT (conceitual)" },
       "ITIL 4",
-      "Web application security",
-      "Prompt-injection defense",
+      { en: "Web application security", pt: "Segurança de aplicações web" },
+      { en: "Prompt-injection defense", pt: "Defesa contra prompt injection" },
     ],
   },
   {
     id: "operations",
     name: { en: "Operations & Leadership", pt: "Operações e liderança" },
-    items: ["Incident management at scale", "Technical team leadership", "Documentation & training"],
+    items: [
+      { en: "Incident management at scale", pt: "Gestão de incidentes em escala" },
+      { en: "Technical team leadership", pt: "Liderança de equipe técnica" },
+      { en: "Documentation & training", pt: "Documentação e treinamento" },
+    ],
   },
   {
     id: "communication",
     name: { en: "Communication", pt: "Comunicação" },
-    items: ["Journalism background", "Bilingual technical writing (EN/PT)"],
+    items: [
+      { en: "Journalism background", pt: "Formação em Jornalismo" },
+      { en: "Bilingual technical writing (EN/PT)", pt: "Escrita técnica bilíngue (PT/EN)" },
+    ],
   },
 ] satisfies SkillGroup[];

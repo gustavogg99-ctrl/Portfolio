@@ -143,10 +143,13 @@ export type Project = z.infer<typeof Project>;
 
 /* ---------- skills ---------- */
 
+/** A tool/standard name (same in both languages) or a localized description. */
+export const SkillItem = z.union([z.string().min(1), Localized]);
+
 export const SkillGroup = z.object({
   id: z.string(),
   name: Localized,
-  items: z.array(z.string()).min(1),
+  items: z.array(SkillItem).min(1),
 });
 export type SkillGroup = z.infer<typeof SkillGroup>;
 
