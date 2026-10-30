@@ -2,6 +2,28 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 4 — Projects and Autoria em Forma case study · 2026-10-29
+
+**Added**
+- Projects section: featured card for Autoria em Forma; cards for the support-agent prototype and the AI use policy with expandable details (native `<details>`).
+- Case-study page `/en|pt/projects/autoria-em-forma`: scope, problem, what I built, architecture diagram (7 steps + outputs + parallel site), evidence, guardrails, 3 sanitized code excerpts with fidelity notes, limitations, "built with Claude".
+- `SiteShell` (shared header, profile card, footer); nav and Contact link back to the home sections from sub-pages.
+- Content: `snippets.ts`; `page.architecture` / `page.snippetIds` in the project schema; snippet references validated.
+- Tests: snippet secret/internal-term scan; unknown snippet reference; claims guard for the superseded Autoria phrasings. Total: 50.
+- UI strings for project labels, statuses and diagram kinds (EN, PT).
+
+**Changed (facts — ADR-015)**
+- Autoria em Forma status: launched Oct 2026, paused after a demand test without organic traction, 1 complete job delivered (was "paused after validation · 3 free pilot deliveries").
+- 4 blocking checks + 1 manual triage check (was "5 blocking checks").
+- 14 real errors → rules; 4 with automated tests (was "each turned into a rule and a test").
+- 10 manuals from 8 institutions; infrastructure cost note says the AI subscription is not included.
+
+**Verified (Playwright + curl, production build)**
+- Home `#projects`, details expanded, case page in PT (top, architecture, code) and mobile — no console errors, no horizontal overflow.
+- On the case page: nav "Projects" → `/pt#projects`, Contact → `/pt#contact`, language switch → `/en/projects/autoria-em-forma`.
+- `/en/projects/support-agent-governance-prototype` (no `page`) → 404. No occurrence of "painel" in the rendered HTML.
+
+
 ## Part 3 — Hero, About and Skills · 2026-10-29
 
 **Added**

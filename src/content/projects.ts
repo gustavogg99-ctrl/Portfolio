@@ -6,8 +6,9 @@ import type { Project } from "./schema";
  * Rules (docs/SOURCES.md):
  * - Only things that exist and can be checked. No idea/deck-only projects.
  * - Every project lists its limitations.
- * - Autoria em Forma: "launched, paused after validation". No clients, sales
- *   or revenue. Never link /painel. No real TCC content anywhere.
+ * - Autoria em Forma: launched Oct/2026, paused after a demand test without
+ *   organic traction; 1 complete job delivered. No clients, sales or revenue.
+ *   Never link /painel. No real TCC content anywhere (see SOURCES.md).
  * - Support agent: rule-based prototype. No LLM, no automated tests yet.
  */
 export const projects = [
@@ -17,12 +18,12 @@ export const projects = [
     featured: true,
     status: "paused",
     statusNote: {
-      en: "Launched, paused after validation · 3 free pilot deliveries",
-      pt: "Lançado e pausado após validação · 3 entregas piloto gratuitas",
+      en: "Launched Oct 2026 · paused after a demand test without organic traction · 1 complete job delivered",
+      pt: "Lançado em out/2026 · pausado após teste de demanda sem tração orgânica · 1 trabalho completo entregue",
     },
     summary: {
-      en: "ABNT formatting and text revision service for undergraduate theses, with an AI pipeline whose every delivery is gated by automated tests.",
-      pt: "Serviço de formatação ABNT e revisão textual de TCC, com um pipeline de IA em que toda entrega passa por testes automáticos.",
+      en: "ABNT formatting and text revision service for undergraduate theses, with an AI pipeline whose deliveries are gated by automated checks.",
+      pt: "Serviço de formatação ABNT e revisão textual de TCC, com um pipeline de IA em que as entregas passam por verificações automáticas.",
     },
     scope: {
       en: "Formatting and revision only — requests to write content are refused. Every delivery ships with tracked changes and comments, so the text provably remains the author's.",
@@ -39,26 +40,29 @@ export const projects = [
     stack: ["Python", "Claude", "Cloudflare Workers", "Cloudflare D1", "OOXML (.docx)"],
     highlights: [
       {
-        en: "Regression suite with 20 tests, each reproducing a real error (20/20 passing).",
-        pt: "Suíte de regressão com 20 testes, cada um reproduzindo um erro real (20/20 passando).",
+        en: "Regression suite with 20 tests on fictional documents generated at every run (20/20 passing).",
+        pt: "Suíte de regressão com 20 testes sobre documentos fictícios gerados a cada execução (20/20 passando).",
       },
       {
-        en: "5 automated checks that block a delivery if they fail.",
-        pt: "5 verificações automáticas que bloqueiam a entrega se falharem.",
+        en: "4 automated checks that block a delivery if they fail (pagination, quotation integrity, clean version, tracked-changes version), plus 1 triage check reviewed by hand (quotation × reference cross-check).",
+        pt: "4 verificações automáticas que bloqueiam a entrega se falharem (paginação, integridade das citações, versão limpa, versão marcada), mais 1 de triagem conferida à mão (cruzamento citação × referência).",
       },
       {
-        en: "14 real errors documented with root cause, each turned into a permanent rule and a test.",
-        pt: "14 erros reais documentados com causa, cada um convertido em regra permanente e teste.",
+        en: "14 real errors documented with root cause and turned into permanent rules; 4 of them also have automated tests, the rest are in the manual checklist.",
+        pt: "14 erros reais documentados com causa e convertidos em regras permanentes; 4 deles também têm teste automático, os demais estão no checklist manual.",
       },
       {
-        en: "Manual QA checklist with 111 items in 12 stages; manuals from 8 institutions in the Federal District mapped.",
-        pt: "Checklist de QA manual com 111 itens em 12 etapas; manuais de 8 instituições do DF mapeados.",
+        en: "Manual QA checklist with 111 items in 12 stages; 10 formatting manuals from 8 institutions in the Federal District mapped.",
+        pt: "Checklist de QA manual com 111 itens em 12 etapas; 10 manuais de formatação de 8 instituições do DF mapeados.",
       },
       {
         en: "Mozilla HTTP Observatory: from C (50/100) to A+ (125/100).",
         pt: "Mozilla HTTP Observatory: de C (50/100) para A+ (125/100).",
       },
-      { en: "R$0/month infrastructure cost.", pt: "Custo de infraestrutura de R$ 0 por mês." },
+      {
+        en: "R$0/month infrastructure (Cloudflare free tier; the AI subscription is not included).",
+        pt: "R$ 0 por mês de infraestrutura (plano gratuito da Cloudflare; a assinatura de IA não está incluída).",
+      },
     ],
     guardrails: [
       {
@@ -99,6 +103,75 @@ export const projects = [
     builtWith: {
       en: "Developed with the help of Claude.",
       pt: "Desenvolvido com apoio do Claude.",
+    },
+    page: {
+      architecture: {
+        main: [
+          {
+            kind: "io",
+            title: { en: "Student sends the .docx", pt: "Aluno envia o .docx" },
+            detail: { en: "Via WhatsApp — the website has no upload.", pt: "Pelo WhatsApp — o site não tem upload." },
+          },
+          {
+            kind: "guard",
+            title: { en: "Safe reading", pt: "Leitura segura" },
+            detail: {
+              en: "Size and compression limits, macro rejection, XML parser without DTD/entities.",
+              pt: "Limites de tamanho e compressão, recusa de macro, parser XML sem DTD/entidades.",
+            },
+          },
+          {
+            kind: "guard",
+            title: { en: "Protect quotations", pt: "Proteger citações" },
+            detail: {
+              en: "Direct quotations and data tables are extracted and fingerprinted before any change.",
+              pt: "Citações diretas e tabelas de dados são extraídas e registradas antes de qualquer alteração.",
+            },
+          },
+          {
+            kind: "ai",
+            title: { en: "Claude interprets the manual", pt: "Claude interpreta o manual" },
+            detail: {
+              en: "The LLM reads the course's formatting manual and points out corrections. The thesis text is data, never instructions.",
+              pt: "O LLM lê o manual de formatação do curso e aponta correções. O texto do TCC é dado, nunca instrução.",
+            },
+          },
+          {
+            kind: "code",
+            title: { en: "Code applies the formatting", pt: "Código aplica a formatação" },
+            detail: {
+              en: "Deterministic Python edits the .docx XML, adjusted per document.",
+              pt: "Python determinístico edita o XML do .docx, com ajustes por documento.",
+            },
+          },
+          {
+            kind: "guard",
+            title: { en: "Blocking checks", pt: "Verificações bloqueantes" },
+            detail: {
+              en: "4 automated checks; any failure blocks the delivery.",
+              pt: "4 verificações automáticas; qualquer falha bloqueia a entrega.",
+            },
+          },
+          {
+            kind: "human",
+            title: { en: "Human review", pt: "Revisão humana" },
+            detail: {
+              en: "Triage check and 111-item QA checklist, by hand.",
+              pt: "Verificação de triagem e checklist de QA de 111 itens, à mão.",
+            },
+          },
+        ],
+        outputs: [
+          { en: "Clean version", pt: "Versão limpa" },
+          { en: "Tracked-changes version with comments", pt: "Versão com controle de alterações e comentários" },
+          { en: "PDF", pt: "PDF" },
+        ],
+        parallel: {
+          en: "In parallel: a static page on Cloudflare Workers with first-party analytics (Worker + D1) — no login, no upload, no third-party trackers.",
+          pt: "Em paralelo: página estática em Cloudflare Workers com analytics próprio (Worker + D1) — sem login, sem upload, sem rastreadores de terceiros.",
+        },
+      },
+      snippetIds: ["aef-safe-docx", "aef-quote-integrity", "aef-regression"],
     },
     visible: true,
   },

@@ -114,6 +114,28 @@ export type Certification = z.infer<typeof Certification>;
 
 /* ---------- projects ---------- */
 
+/** One step of an architecture flow, rendered as a box in the diagram. */
+export const ArchitectureStep = z.object({
+  title: Localized,
+  detail: Localized,
+  /** "ai" = LLM step, "guard" = deterministic control/test, "human" = manual review. */
+  kind: z.enum(["io", "ai", "code", "guard", "human"]),
+});
+
+/** A sanitized code excerpt shown on a project page (see docs/SOURCES.md). */
+export const Snippet = z.object({
+  id: z.string(),
+  title: Localized,
+  language: z.string(),
+  /** Generic source path inside the project, never an absolute path. */
+  file: z.string().regex(/^[\w./+ -]+$/, "Generic relative path only"),
+  code: z.string().min(1),
+  explanation: Localized,
+  /** How this excerpt differs from the real code (honesty note). */
+  fidelity: Localized,
+});
+export type Snippet = z.infer<typeof Snippet>;
+
 export const ProjectStatus = z.enum(["live", "paused", "prototype", "in_development", "template"]);
 
 export const Project = z.object({
@@ -137,6 +159,17 @@ export const Project = z.object({
     repoPrivate: z.boolean().default(false),
   }),
   builtWith: Localized.optional(),
+  /** Projects with a dedicated page at /[lang]/projects/[slug]. */
+  page: z
+    .object({
+      architecture: z.object({
+        main: z.array(ArchitectureStep).min(2),
+        outputs: z.array(Localized).default([]),
+        parallel: Localized.optional(),
+      }),
+      snippetIds: z.array(z.string()).default([]),
+    })
+    .optional(),
   visible,
 });
 export type Project = z.infer<typeof Project>;

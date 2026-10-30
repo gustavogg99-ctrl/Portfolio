@@ -11,7 +11,16 @@ import { GitHubIcon, LinkedInIcon } from "./icons";
  * The "who am I" card. Sticky on large screens so it stays visible
  * while the content scrolls (pattern from the reference site, ADR-001).
  */
-export function ProfileCard({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export function ProfileCard({
+  locale,
+  dict,
+  hrefBase = "",
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  /** "" on the home page; "/en" or "/pt" elsewhere, so #contact points home. */
+  hrefBase?: string;
+}) {
   const { profile } = content;
 
   const socials = [
@@ -53,7 +62,7 @@ export function ProfileCard({ locale, dict }: { locale: Locale; dict: Dictionary
           </a>
         )}
         <a
-          href="#contact"
+          href={`${hrefBase}#contact`}
           className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
             profile.resumeUrl
               ? "border border-border hover:bg-surface-2"

@@ -71,7 +71,20 @@
     "building": "Under construction — Part",
     "basedIn": "Based in",
     "openTo": "Open to",
-    "languages": "Languages"
+    "languages": "Languages",
+    "readCase": "Read the case study",
+    "backToProjects": "All projects",
+    "problem": "Problem",
+    "built": "What I built",
+    "architecture": "Architecture",
+    "outputs": "Outputs",
+    "evidence": "Evidence",
+    "codeExcerpts": "Code excerpts",
+    "codeNote": "The repository is private. These excerpts were selected and sanitized for this page — no secrets, internal references or real thesis content.",
+    "fidelity": "How this differs from the real code",
+    "details": "Details",
+    "stack": "Stack",
+    "scope": "Scope"
   },
   "a11y": {
     "skip": "Skip to content",
@@ -80,5 +93,19 @@
   "footer": {
     "madeBy": "Built by Gustavo Rodrigues with Next.js and the help of Claude.",
     "source": "Source code"
+  },
+  "status": {
+    "live": "Live",
+    "paused": "Paused",
+    "prototype": "Prototype",
+    "in_development": "In development",
+    "template": "Template"
+  },
+  "diagram": {
+    "io": "Input",
+    "ai": "AI",
+    "code": "Code",
+    "guard": "Control",
+    "human": "Human"
   }
 }

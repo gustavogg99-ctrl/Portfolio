@@ -48,6 +48,23 @@ describe("content rules", () => {
   });
 });
 
+describe("code snippets (sanitized excerpts from private repos)", () => {
+  const code = content.snippets.map((s) => s.code).join("\n").toLowerCase();
+
+  it.each(["painel", "wrangler", "password", "senha", "secret", "token", "api_key", "apikey", "http://", "https://", "/home/", "c:\\"])(
+    "never contains %s",
+    (term) => {
+      expect(code).not.toContain(term);
+    },
+  );
+
+  it("rejects a project page that points to a missing snippet", () => {
+    const c = fresh();
+    c.projects[0].page!.snippetIds.push("does-not-exist");
+    expect(() => validateContent(c)).toThrow(/unknown snippet/);
+  });
+});
+
 describe("claims guard (docs/SOURCES.md)", () => {
   const all = JSON.stringify(content);
 
@@ -63,6 +80,12 @@ describe("claims guard (docs/SOURCES.md)", () => {
     "Digital Maturity",
     "BIRD",
     "/painel",
+    "3 free pilot",
+    "3 entregas piloto",
+    "after validation",
+    "após validação",
+    "5 automated checks",
+    "5 verificações",
   ])("never contains %s", (term) => {
     expect(all).not.toContain(term);
   });
