@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "description": "Gustavo Rodrigues — Construo produtos com IA que são seguros, testados e auditáveis."
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "projects": "Projetos",
+    "experience": "Experiência",
+    "certifications": "Certificações",
+    "writing": "Escrita",
+    "contact": "Contato"
+  },
+  "actions": {
+    "projects": "Ver projetos",
+    "resume": "Currículo",
+    "contact": "Contato",
+    "switchLanguage": "Read in English",
+    "toggleTheme": "Alternar tema"
+  },
+  "sections": {
+    "about": ["SOBRE", "MIM"],
+    "skills": ["COMPETÊNCIAS", "E FERRAMENTAS"],
+    "projects": ["PROJETOS", "SELECIONADOS"],
+    "experience": ["EXPERIÊNCIA", "PROFISSIONAL"],
+    "certifications": ["CERTIFICAÇÕES", "E ESTUDOS"],
+    "now": ["O QUE ESTOU", "FAZENDO AGORA"],
+    "writing": ["ESCRITA", "RECENTE"],
+    "contact": ["VAMOS", "CONVERSAR"]
+  },
+  "labels": {
+    "present": "Atual",
+    "expected": "Previsão",
+    "inProgress": "Em andamento",
+    "verify": "Verificar credencial",
+    "repository": "Repositório",
+    "liveSite": "Site no ar",
+    "privateRepo": "Repositório privado — descrito aqui",
+    "limitations": "Limitações conhecidas",
+    "guardrails": "Guardrails",
+    "updated": "Atualizado em"
+  }
+}
