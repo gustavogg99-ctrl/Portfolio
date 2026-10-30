@@ -52,6 +52,11 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem; /* keeps section titles clear of the sticky nav */
+  }
+
   body {
     background: var(--background);
     color: var(--foreground);
@@ -69,6 +74,11 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+}
+
+/* Soft silver halo around the profile card (token-based, works in both themes). */
+@utility profile-glow {
+  box-shadow: 0 0 80px -30px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

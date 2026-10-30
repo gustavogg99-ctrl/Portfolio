@@ -16,17 +16,43 @@
     "resume": "Currículo",
     "contact": "Contato",
     "switchLanguage": "Read in English",
-    "toggleTheme": "Alternar tema"
+    "toLight": "Mudar para o tema claro",
+    "toDark": "Mudar para o tema escuro",
+    "switchLanguageShort": "EN"
   },
   "sections": {
-    "about": ["SOBRE", "MIM"],
-    "skills": ["COMPETÊNCIAS", "E FERRAMENTAS"],
-    "projects": ["PROJETOS", "SELECIONADOS"],
-    "experience": ["EXPERIÊNCIA", "PROFISSIONAL"],
-    "certifications": ["CERTIFICAÇÕES", "E ESTUDOS"],
-    "now": ["O QUE ESTOU", "FAZENDO AGORA"],
-    "writing": ["ESCRITA", "RECENTE"],
-    "contact": ["VAMOS", "CONVERSAR"]
+    "about": [
+      "SOBRE",
+      "MIM"
+    ],
+    "skills": [
+      "COMPETÊNCIAS",
+      "E FERRAMENTAS"
+    ],
+    "projects": [
+      "PROJETOS",
+      "SELECIONADOS"
+    ],
+    "experience": [
+      "EXPERIÊNCIA",
+      "PROFISSIONAL"
+    ],
+    "certifications": [
+      "CERTIFICAÇÕES",
+      "E ESTUDOS"
+    ],
+    "now": [
+      "O QUE ESTOU",
+      "FAZENDO AGORA"
+    ],
+    "writing": [
+      "ESCRITA",
+      "RECENTE"
+    ],
+    "contact": [
+      "VAMOS",
+      "CONVERSAR"
+    ]
   },
   "labels": {
     "present": "Atual",
@@ -38,6 +64,18 @@
     "privateRepo": "Repositório privado — descrito aqui",
     "limitations": "Limitações conhecidas",
     "guardrails": "Guardrails",
-    "updated": "Atualizado em"
+    "updated": "Atualizado em",
+    "blog": "Blog",
+    "email": "E-mail",
+    "photoAlt": "Retrato de Gustavo Rodrigues de terno escuro",
+    "building": "Em construção — Parte"
+  },
+  "a11y": {
+    "skip": "Pular para o conteúdo",
+    "nav": "Seções"
+  },
+  "footer": {
+    "madeBy": "Feito por Gustavo Rodrigues com Next.js e apoio do Claude.",
+    "source": "Código-fonte"
   }
 }

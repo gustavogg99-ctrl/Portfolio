@@ -16,17 +16,43 @@
     "resume": "Resume",
     "contact": "Contact",
     "switchLanguage": "Ler em português",
-    "toggleTheme": "Toggle theme"
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme",
+    "switchLanguageShort": "PT"
   },
   "sections": {
-    "about": ["ABOUT", "ME"],
-    "skills": ["SKILLS &", "TOOLS"],
-    "projects": ["SELECTED", "PROJECTS"],
-    "experience": ["WORK", "EXPERIENCE"],
-    "certifications": ["CERTIFICATIONS", "& STUDIES"],
-    "now": ["WHAT I'M", "DOING NOW"],
-    "writing": ["LATEST", "WRITING"],
-    "contact": ["LET'S", "TALK"]
+    "about": [
+      "ABOUT",
+      "ME"
+    ],
+    "skills": [
+      "SKILLS &",
+      "TOOLS"
+    ],
+    "projects": [
+      "SELECTED",
+      "PROJECTS"
+    ],
+    "experience": [
+      "WORK",
+      "EXPERIENCE"
+    ],
+    "certifications": [
+      "CERTIFICATIONS",
+      "& STUDIES"
+    ],
+    "now": [
+      "WHAT I'M",
+      "DOING NOW"
+    ],
+    "writing": [
+      "LATEST",
+      "WRITING"
+    ],
+    "contact": [
+      "LET'S",
+      "TALK"
+    ]
   },
   "labels": {
     "present": "Present",
@@ -38,6 +64,18 @@
     "privateRepo": "Private repository — described here",
     "limitations": "Known limitations",
     "guardrails": "Guardrails",
-    "updated": "Updated"
+    "updated": "Updated",
+    "blog": "Blog",
+    "email": "Email",
+    "photoAlt": "Portrait of Gustavo Rodrigues in a dark suit",
+    "building": "Under construction — Part"
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "nav": "Sections"
+  },
+  "footer": {
+    "madeBy": "Built by Gustavo Rodrigues with Next.js and the help of Claude.",
+    "source": "Source code"
   }
 }

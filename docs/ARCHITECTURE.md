@@ -12,6 +12,7 @@ Personal portfolio of Gustavo Rodrigues. This document describes how the site is
 | Styling | Tailwind CSS (CSS-first config) | 4 |
 | Content validation | Zod | 4 |
 | Font | Geist Sans / Geist Mono, self-hosted (`geist` package) | — |
+| Icons | lucide-react (+ GitHub mark from Simple Icons, CC0) | — |
 | Tests | Vitest | 5 |
 | Hosting | Vercel (planned, Part 8) | — |
 | CI | GitHub Actions | — |
@@ -37,11 +38,22 @@ src/
     config.ts          ← locales, default locale, cookie name
     dictionaries.ts    ← loads UI strings for the current locale
     dictionaries/en.json, pt.json   ← UI strings (buttons, section titles)
+  components/
+    profile-card.tsx   ← sticky "who am I" card (photo, title, CTA, socials)
+    site-nav.tsx       ← sticky icon nav, highlights the section in view (client)
+    theme.tsx          ← theme toggle + no-flash inline script (client)
+    language-switch.tsx← EN ⇄ PT link, keeps #section, saves cookie (client)
+    section.tsx        ← <Section> + two-tone <SectionTitle>
+    icons.tsx          ← GitHub / LinkedIn icons
+  assets/
+    profile.jpg        ← profile photo (cropped 4:5, 640×800, EXIF stripped)
   lib/
     localize.ts        ← l(text, locale), date formatting
+    locale-path.ts     ← swapLocale(path, locale)
   proxy.ts             ← redirects "/" and unprefixed paths to /en or /pt
 scripts/check-content.ts   ← `npm run content:check`
 tests/content.test.ts      ← content rules + claims guard
+tests/locale-path.test.ts  ← language switch path logic
 docs/                      ← this documentation
 ```
 
@@ -80,6 +92,42 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - `prefers-reduced-motion` disables animations globally.
 - The profile photo stays in color (owner's choice), even though the palette is neutral.
 
+## Page layout
+
+```
+┌──────────────── sticky header: icon nav (center) · EN/PT · theme (right) ────────────────┐
+│                                                                                          │
+│  ┌──────────────┐   #home        hero (I BUILD AI / SECURE_)                             │
+│  │ profile card │   #about       ABOUT / ME                                              │
+│  │ (sticky ≥lg) │   #projects    SELECTED / PROJECTS                                     │
+│  │ photo, name  │   #experience  WORK / EXPERIENCE                                       │
+│  │ title, CTA   │   #certifications                                                      │
+│  │ socials      │   #writing                                                             │
+│  └──────────────┘   #contact                                                             │
+│                                                                                          │
+└──────────────────────────── footer (credits + source code link) ─────────────────────────┘
+```
+
+- **≥ 1024px (lg):** two columns; the card is `position: sticky` and stays visible while the content scrolls.
+- **< 1024px:** single column, card on top with a smaller photo, then the content.
+- The header is sticky on every size, with a translucent blurred background; `scroll-padding-top` keeps section titles clear of it.
+- Server Components by default. Only the nav, theme toggle and language switch are Client Components (they need the browser).
+
+## Theme
+
+- Server always renders dark (`<html>` without `data-theme`).
+- `THEME_SCRIPT` (inline, in `<head>`) reads `localStorage.theme` and sets `data-theme="light"` **before the first paint** — no flash. Only `"light"`/`"dark"` are accepted.
+- The toggle reads the attribute via `useSyncExternalStore` + `MutationObserver`, so its icon always matches the screen.
+- Pages stay statically prerendered (a cookie read on the server would make them dynamic). See ADR-009.
+- Part 7: the inline script's SHA-256 hash goes into the CSP.
+
+## Accessibility (baseline)
+
+- "Skip to content" link is the first focusable element.
+- Nav links have `aria-label` and `aria-current="location"` for the section in view; tooltips are visual only.
+- Icon-only buttons have labels in both languages; language links carry `hreflang`/`lang`.
+- Visible `:focus-visible` outline using the accent token; `prefers-reduced-motion` respected.
+
 ## Content rules (enforced by code)
 
 | Rule | Where |
@@ -108,7 +156,6 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 2 | Sidebar card, fixed navigation, theme and language switchers, responsive layout |
 | 3–6 | Sections: hero, about, skills, projects (+ Autoria em Forma page), experience, certifications, now, writing, contact (Formspree) |
 | 7 | Security headers (CSP, HSTS, etc.), Open Graph, sitemap, accessibility pass |
 | 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site |
