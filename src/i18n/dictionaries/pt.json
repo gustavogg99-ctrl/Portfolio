@@ -68,7 +68,10 @@
     "blog": "Blog",
     "email": "E-mail",
     "photoAlt": "Retrato de Gustavo Rodrigues de terno escuro",
-    "building": "Em construção — Parte"
+    "building": "Em construção — Parte",
+    "basedIn": "Onde estou",
+    "openTo": "Disponibilidade",
+    "languages": "Idiomas"
   },
   "a11y": {
     "skip": "Pular para o conteúdo",

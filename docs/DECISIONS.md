@@ -147,3 +147,27 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Decision.** One sticky header on all screen sizes: icon nav (with tooltips and accessible labels) in the center; EN/PT and theme buttons on the right. The section in view is highlighted (IntersectionObserver).
 
 **Consequences.** Always-available navigation; the header uses a translucent background with blur so content behind it stays legible.
+
+---
+
+## ADR-013 — Typewriter without an animation library
+
+**Date:** 2026-10-29
+
+**Context.** The reference site uses Framer Motion. The briefing asks for discreet animations that don't hurt reading or performance.
+
+**Decision.** A ~60-line client component with `setTimeout` and a CSS caret blink. No Framer Motion. Server renders the first word; reduced motion keeps it static; screen readers get a fixed sentence.
+
+**Consequences.** No animation dependency (smaller bundle, no extra CSP concerns). If richer motion is needed later, revisit with an ADR.
+
+---
+
+## ADR-014 — Skills: plain names or localized descriptions
+
+**Date:** 2026-10-29
+
+**Context.** Tool and standard names ("Python", "ISO/IEC 27001") are the same in both languages, but descriptions ("Regression testing", "(conceptual)") are not — the Portuguese page was showing English.
+
+**Decision.** `SkillItem = string | { en, pt }`. Use a plain string only for proper names.
+
+**Consequences.** The PT page is fully in Portuguese; adding a tool stays a one-word edit.

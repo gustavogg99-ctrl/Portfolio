@@ -68,7 +68,10 @@
     "blog": "Blog",
     "email": "Email",
     "photoAlt": "Portrait of Gustavo Rodrigues in a dark suit",
-    "building": "Under construction — Part"
+    "building": "Under construction — Part",
+    "basedIn": "Based in",
+    "openTo": "Open to",
+    "languages": "Languages"
   },
   "a11y": {
     "skip": "Skip to content",

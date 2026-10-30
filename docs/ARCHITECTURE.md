@@ -43,7 +43,10 @@ src/
     site-nav.tsx       ← sticky icon nav, highlights the section in view (client)
     theme.tsx          ← theme toggle + no-flash inline script (client)
     language-switch.tsx← EN ⇄ PT link, keeps #section, saves cookie (client)
-    section.tsx        ← <Section> + two-tone <SectionTitle>
+    section.tsx        ← <Section> + two-tone <SectionTitle> (h2 or h3)
+    hero.tsx           ← hero: typewriter title, headline, CTAs, counters
+    typewriter.tsx     ← rotating words (client, reduced-motion aware)
+    about.tsx          ← about text, quick facts, skills groups
     icons.tsx          ← GitHub / LinkedIn icons
   assets/
     profile.jpg        ← profile photo (cropped 4:5, 640×800, EXIF stripped)
@@ -113,6 +116,15 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - The header is sticky on every size, with a translucent blurred background; `scroll-padding-top` keeps section titles clear of it.
 - Server Components by default. Only the nav, theme toggle and language switch are Client Components (they need the browser).
 
+## Hero and About
+
+- **Hero title** = static line + rotating word (`profile.hero`). The server renders the first word complete, so the page works without JavaScript and doesn't jump. The `Typewriter` client component then types/erases each word (≈90 ms per letter, 1.8 s hold).
+- **Accessibility:** the visual title is `aria-hidden`; screen readers read one stable sentence ("I BUILD AI: SECURE, TESTED, AUDITABLE."). With `prefers-reduced-motion`, the first word stays still.
+- **CTAs:** See projects (primary), Resume (only when `resumeUrl` is set), Contact.
+- **Counters** come from `profile.stats`; each has an internal `evidence` note (ADR-007).
+- **About:** paragraphs from `profile.about` + facts card (location, availability, languages).
+- **Skills** (`#skills`, a sub-section of About, not in the nav): groups from `skills.ts` rendered as tags, no levels or percentages. Items are either a plain name (same in both languages, e.g. "ISO/IEC 27001") or `{ en, pt }` for descriptions.
+
 ## Theme
 
 - Server always renders dark (`<html>` without `data-theme`).
@@ -156,6 +168,6 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 3–6 | Sections: hero, about, skills, projects (+ Autoria em Forma page), experience, certifications, now, writing, contact (Formspree) |
+| 4–6 | Sections: projects (+ Autoria em Forma page), experience, certifications, now, writing, contact (Formspree) |
 | 7 | Security headers (CSP, HSTS, etc.), Open Graph, sitemap, accessibility pass |
 | 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site |

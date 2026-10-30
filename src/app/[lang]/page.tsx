@@ -1,6 +1,7 @@
 import { content } from "@/content";
+import { About } from "@/components/about";
+import { Hero } from "@/components/hero";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { l } from "@/lib/localize";
 import { LanguageSwitch } from "@/components/language-switch";
 import { ProfileCard } from "@/components/profile-card";
 import { Section } from "@/components/section";
@@ -53,17 +54,11 @@ export default async function Home() {
         {/* Right column: content */}
         <main id="main" className="flex w-full min-w-0 flex-col gap-28">
           <Section id="home">
-            <h1 className="text-5xl leading-[0.95] font-bold tracking-tight md:text-7xl xl:text-8xl">
-              {l(profile.hero.static, locale)}
-              <br />
-              <span className="text-silver">{l(profile.hero.rotating[0], locale)}_</span>
-            </h1>
-            <p className="max-w-xl text-lg text-muted">{l(profile.headline, locale)}</p>
-            <Building part={3} label={dict.labels.building} />
+            <Hero locale={locale} dict={dict} />
           </Section>
 
           <Section id="about" title={dict.sections.about}>
-            <Building part={3} label={dict.labels.building} />
+            <About locale={locale} dict={dict} />
           </Section>
 
           <Section id="projects" title={dict.sections.projects}>

@@ -2,6 +2,25 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 3 — Hero, About and Skills · 2026-10-29
+
+**Added**
+- Hero: "I BUILD AI" / "CONSTRUO IA" with typewriter rotating SECURE → TESTED → AUDITABLE; headline; subtitle; buttons (See projects, Resume when available, Contact); three counters from `profile.stats`.
+- About: three paragraphs, facts card (location, availability, languages).
+- Skills: five groups as tags (no levels), sub-section `#skills`.
+- `SectionTitle` supports h3 for sub-sections; caret blink CSS.
+- UI strings: basedIn / openTo / languages (EN, PT).
+
+**Changed**
+- Skills items can be localized (`string | { en, pt }`, ADR-014) — descriptions now appear in Portuguese on `/pt`.
+- `profile.openTo` shortened to fit the facts card; language levels lowercase ("advanced", "avançado").
+- Placeholders removed from `#home` and `#about`.
+
+**Verified (Playwright, production build)**
+- Typewriter cycles through all three words; screen-reader text is a single stable sentence; with reduced motion the word stays "SECURE".
+- Desktop dark (EN), PT about/skills, mobile light — no console errors, no horizontal overflow.
+
+
 ## Part 2 — Visual skeleton · 2026-10-29
 
 **Added**

@@ -4,10 +4,21 @@ import type { ReactNode } from "react";
  * Two-tone section title: first line in the text color, second in silver.
  * `lines` comes from the dictionary, e.g. ["SELECTED", "PROJECTS"].
  */
-export function SectionTitle({ lines, id }: { lines: readonly string[]; id: string }) {
+export function SectionTitle({
+  lines,
+  id,
+  level = 2,
+}: {
+  lines: readonly string[];
+  id: string;
+  /** 2 for sections, 3 for sub-sections (smaller). */
+  level?: 2 | 3;
+}) {
   const [first, ...rest] = lines;
+  const Tag = level === 2 ? "h2" : "h3";
+  const size = level === 2 ? "text-4xl md:text-6xl" : "text-3xl md:text-4xl";
   return (
-    <h2 id={id} className="text-4xl leading-[0.95] font-bold tracking-tight md:text-6xl">
+    <Tag id={id} className={`${size} leading-[0.95] font-bold tracking-tight`}>
       {first}
       {rest.length > 0 && (
         <>
@@ -15,7 +26,7 @@ export function SectionTitle({ lines, id }: { lines: readonly string[]; id: stri
           <span className="text-silver">{rest.join(" ")}</span>
         </>
       )}
-    </h2>
+    </Tag>
   );
 }
 

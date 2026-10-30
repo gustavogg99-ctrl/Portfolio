@@ -37,8 +37,8 @@ export const profile = {
   },
   location: { en: "Brasília, Brazil", pt: "Brasília/DF, Brasil" },
   openTo: {
-    en: "Open to São Paulo, remote and international relocation.",
-    pt: "Aberto a São Paulo, remoto e relocação internacional.",
+    en: "São Paulo, remote or international relocation",
+    pt: "São Paulo, remoto ou relocação internacional",
   },
   about: [
     {
@@ -64,9 +64,9 @@ export const profile = {
   // Hidden until the final resume PDF is ready (it will live in /public).
   resumeUrl: null,
   languages: [
-    { name: { en: "Portuguese", pt: "Português" }, level: { en: "Native", pt: "Nativo" } },
-    { name: { en: "English", pt: "Inglês" }, level: { en: "Advanced", pt: "Avançado" } },
-    { name: { en: "Spanish", pt: "Espanhol" }, level: { en: "Intermediate", pt: "Intermediário" } },
+    { name: { en: "Portuguese", pt: "Português" }, level: { en: "native", pt: "nativo" } },
+    { name: { en: "English", pt: "Inglês" }, level: { en: "advanced", pt: "avançado" } },
+    { name: { en: "Spanish", pt: "Espanhol" }, level: { en: "intermediate", pt: "intermediário" } },
   ],
   stats: [
     {
