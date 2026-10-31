@@ -13,7 +13,17 @@ _Last updated: 2026-10-30 (after Part 4)._
 - Gustavo reviews and merges with **"Create a merge commit"**, then deletes the branch. Never merge without his go-ahead.
 - When information from Gustavo is needed, ask for **one item at a time**.
 - If a claim isn't backed by `docs/SOURCES.md`, don't publish it.
+- **Chat rotation:** Gustavo starts a new chat every **3 parts** (always right after a merge). See "Handoff" below.
 - Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-08`.
+
+## Handoff (every 3 parts)
+
+Count the parts finished in the current chat. When the **3rd** one is merged (or earlier if Gustavo asks, or if the chat shows signs of losing context: re-asking answered questions, contradicting a decision, skipping a rule):
+
+1. Tell Gustavo it's time to switch, before starting the next part.
+2. Open a small docs PR updating this file: move finished parts to "Done", refresh "Next" and items waiting on him, update "Last updated", and record any new agreement made in chat.
+3. After he merges it, give him the ready-to-paste prompt for the new chat (the standard one at the end of this file).
+4. Don't start new work in the old chat after that.
 
 ## Done
 
@@ -71,3 +81,20 @@ Recommended: yes. Connect the repository to Vercel so every PR gets a preview UR
 
 - First request to an unknown project slug may return HTTP 200 with the not-found page (`noindex`); later requests return 404 (Next 16 + Cache Components). See ARCHITECTURE.md.
 - Code excerpts on the Autoria em Forma page have comments translated to English (disclosed in each fidelity note).
+
+## Prompt for a new chat
+
+```
+Vamos continuar a construção do meu portfólio (Gustavo Rodrigues).
+Repositório: github.com/gustavogg99-ctrl/Portfolio.
+
+Clone o repositório e leia, nesta ordem: AGENTS.md, docs/ROADMAP.md,
+docs/SOURCES.md, docs/DECISIONS.md, docs/ARCHITECTURE.md.
+O ROADMAP tem o estado atual, as pendências e a forma de trabalho combinada;
+siga-o à risca, incluindo a seção "Handoff" (troca de chat a cada 3 partes).
+O projeto no Notion é "Portfólio pessoal (site)" (PORTFOLIO) na minha
+GG — Central de Projetos.
+
+Confirme que leu, resuma o estado em 5 linhas e me pergunte o primeiro
+item pendente do ROADMAP.
+```
