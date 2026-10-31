@@ -19,6 +19,7 @@ Requires Node.js 22+.
 
 | Document | What's in it |
 |---|---|
+| [docs/ROADMAP.md](docs/ROADMAP.md) | Status, working agreement and next steps |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Stack, folders, i18n, design tokens, quality gates |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Why each choice was made (ADRs) |
 | [docs/CHANGELOG.md](docs/CHANGELOG.md) | What changed in each part of the build |

@@ -2,6 +2,11 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Roadmap · 2026-10-30
+
+- Added `docs/ROADMAP.md`: done/next/later, items waiting on Gustavo, working agreement. Linked from `AGENTS.md` and `README.md` so a new session starts from it.
+
+
 ## Part 4 — Projects and Autoria em Forma case study · 2026-10-29
 
 **Added**

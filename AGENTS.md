@@ -12,6 +12,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Read these before changing anything:
 
+- `docs/ROADMAP.md` — current status, how we work, and what's next. **Start here.**
 - `docs/SOURCES.md` — what may and may NOT be claimed. If a claim isn't backed there, don't add it.
 - `docs/ARCHITECTURE.md` — structure, i18n, design tokens, quality gates. Update it in the same PR when you change any of them.
 - `docs/DECISIONS.md` — add an ADR for every non-trivial decision.
