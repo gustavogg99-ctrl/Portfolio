@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 7 · 2026-11-05
+
+- ROADMAP: next chat starts at "Final adjustments — pre-launch"; production URL decision added; working agreements from this chat recorded (previews, blog allow list, deferred content review, decision notes for the blog).
+
 ## Part 7 — Security headers, SEO and accessibility · 2026-11-05
 
 **Added**

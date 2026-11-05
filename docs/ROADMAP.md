@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 (Part 7 in review)._
+_Last updated: 2026-11-05 (handoff after Part 7; next chat starts at "Final adjustments")._
 
 ## How we work
 
@@ -14,7 +14,11 @@ _Last updated: 2026-11-05 (Part 7 in review)._
 - When information from Gustavo is needed, ask for **one item at a time**.
 - If a claim isn't backed by `docs/SOURCES.md`, don't publish it.
 - **Chat rotation:** Gustavo starts a new chat every **3 parts** (always right after a merge). See "Handoff" below.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-09`.
+- **Previews:** every PR has a Vercel preview behind Vercel Authentication. Gustavo opens it logged in before merging; when a change touches the contact form, he sends one real message from the preview (automated tests mock Formspree).
+- **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
+- **Content polish is deferred** to the pre-launch phase: build every feature first, then one full content review (Gustavo's choice, 05/11/2026).
+- **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-09` (01–07 done; 09 = pre-launch adjustments, due 2026-11-10 for the ServiceNow certificate; 08 = publish, blocked by 09).
 - Vercel: project `portfolio`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
 ## Handoff (every 3 parts)
@@ -41,18 +45,17 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-### 1. Part 7 — merge PR #8, then chat handoff
-Chat count: Parts 5, 6 and 7 done in the current chat → after #8 merges, open the handoff docs PR and switch chats (see "Handoff").
-
-### 2. Final adjustments — pre-launch (before Part 8)
+### 1. Final adjustments — pre-launch (before Part 8)
+Chat count: new chat starts at 0. Every section of the site is built; this phase is content, not features.
 - **Shark in ServiceNow #14 (Aoop):** certificate expected by **2026-11-10**. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
 - **"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.
 - **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
+- **Production URL — waiting on Gustavo:** today it is `portfolio-kappa-black-12.vercel.app` (random suffix). Decide before publishing: rename the Vercel project for a clean `*.vercel.app` name, or a custom domain. Canonicals, sitemap and Open Graph follow `VERCEL_PROJECT_PRODUCTION_URL` automatically.
 
-### 3. Part 8 — Publish
+### 2. Part 8 — Publish
 - Switch Vercel Authentication from "All Deployments" back to **Standard** so the production domain is public (ADR-019).
 - Production deploy on `*.vercel.app` after Gustavo approves.
-- Cookie-less analytics (Vercel Web Analytics).
+- Cookie-less analytics (Vercel Web Analytics). Its script is served from the same origin (`/_vercel/insights`), so the CSP needs no change — confirm on the preview.
 - Re-measure **on the live sites** before citing: Mozilla Observatory for Autoria em Forma (A+ is from 22/10/2026) and for this portfolio (expected below A+ because of `'unsafe-inline'`, ADR-022); Lighthouse. Record results in docs.
 - Submit `sitemap.xml` to Google Search Console (optional).
 
