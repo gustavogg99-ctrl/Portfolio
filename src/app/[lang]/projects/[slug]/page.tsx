@@ -64,7 +64,7 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
             {dict.labels.backToProjects}
           </Link>
           <StatusBadge project={project} dict={dict} />
-          <SectionTitle lines={[project.name]} id="project-title" />
+          <SectionTitle lines={[project.name]} id="project-title" level={1} />
           <p className="text-xs text-muted">{l(project.statusNote, locale)}</p>
           <p className="max-w-2xl text-lg text-foreground/90 md:text-xl">{l(project.summary, locale)}</p>
           {project.scope && (

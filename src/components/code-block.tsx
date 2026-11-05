@@ -8,7 +8,7 @@ export function CodeBlock({ snippet, locale, dict }: { snippet: Snippet; locale:
   return (
     <figure className="flex flex-col gap-4">
       <figcaption className="flex flex-col gap-2">
-        <h4 className="text-lg font-semibold">{l(snippet.title, locale)}</h4>
+        <h3 className="text-lg font-semibold">{l(snippet.title, locale)}</h3>
         <p className="text-sm text-foreground/90">{l(snippet.explanation, locale)}</p>
       </figcaption>
       <div className="overflow-hidden rounded-2xl border border-border bg-surface">

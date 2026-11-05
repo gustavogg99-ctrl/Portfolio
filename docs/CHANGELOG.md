@@ -2,6 +2,24 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 7 — Security headers, SEO and accessibility · 2026-11-05
+
+**Added**
+- Security headers on every route: CSP, HSTS (2 years, preload), `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, COOP; `X-Powered-By` removed. CSP keeps the site static with `'unsafe-inline'` scripts and is otherwise strict (ADR-022).
+- Canonical URLs and `hreflang` alternates (en, pt-BR, x-default) on all pages; Open Graph + Twitter metadata per locale.
+- Open Graph image per locale (prerendered), `sitemap.xml`, `robots.txt`.
+- Tests for the security headers. Total: 64.
+
+**Fixed (axe-core, WCAG 2.2 AA)**
+- About facts list: valid `<dl>` structure.
+- Language switch: visible "EN/PT" is part of the accessible name.
+- Case-study page: project name is the page's `h1`; code excerpt titles are `h3` (no skipped levels).
+
+**Verified**
+- `npm run check`, `npm run build`; headers, canonical/hreflang, OG tags, sitemap, robots and OG image checked with curl.
+- Strict hash-only CSP simulated in Playwright: 36 violations, theme toggle broken — the measurement behind ADR-022.
+- axe-core: 0 violations on `/en` and `/pt/projects/autoria-em-forma`, dark and light.
+
 ## Part 6 — Writing and Contact · 2026-11-05
 
 **Added**

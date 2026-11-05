@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 (Part 6 in review)._
+_Last updated: 2026-11-05 (Part 7 in review)._
 
 ## How we work
 
@@ -37,27 +37,24 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | — | Vercel connected: PR previews, all deployments behind Vercel Authentication (ADR-019) | — |
 | 5 | Experience, Education & courses, Certifications, Now | #6 |
 | 6 | Writing (blog RSS, newest 3 per language) and Contact (Formspree) | #7 |
+| 7 | Security headers (CSP per ADR-022), hreflang, Open Graph, sitemap, robots, accessibility fixes | #8 |
 
 ## Next (in order)
 
-### 1. Part 6 — merge PR #7
-Chat count: Part 5 and Part 6 done in the current chat; **Part 7 is the 3rd** → after it merges, switch chats (see "Handoff").
+### 1. Part 7 — merge PR #8, then chat handoff
+Chat count: Parts 5, 6 and 7 done in the current chat → after #8 merges, open the handoff docs PR and switch chats (see "Handoff").
 
-### 2. Part 7 — Security and SEO
-- CSP without `unsafe-inline` (hash of `THEME_SCRIPT`); `connect-src`/`form-action` allow `https://formspree.io` (ADR-021); HSTS, X-Frame-Options/frame-ancestors, nosniff, Referrer-Policy, Permissions-Policy, COOP — consistent with Autoria em Forma.
-- Open Graph image and metadata per locale, `hreflang` alternates, sitemap, robots.
-- Accessibility pass.
-
-### 3. Final adjustments — pre-launch (before Part 8)
+### 2. Final adjustments — pre-launch (before Part 8)
 - **Shark in ServiceNow #14 (Aoop):** certificate expected by **2026-11-10**. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
 - **"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.
 - **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
 
-### 4. Part 8 — Publish
+### 3. Part 8 — Publish
 - Switch Vercel Authentication from "All Deployments" back to **Standard** so the production domain is public (ADR-019).
 - Production deploy on `*.vercel.app` after Gustavo approves.
 - Cookie-less analytics (Vercel Web Analytics).
-- Re-measure **on the live sites** before citing: Mozilla Observatory for Autoria em Forma (A+ is from 22/10/2026) and for this portfolio; Lighthouse. Record results in docs.
+- Re-measure **on the live sites** before citing: Mozilla Observatory for Autoria em Forma (A+ is from 22/10/2026) and for this portfolio (expected below A+ because of `'unsafe-inline'`, ADR-022); Lighthouse. Record results in docs.
+- Submit `sitemap.xml` to Google Search Console (optional).
 
 ## Later
 

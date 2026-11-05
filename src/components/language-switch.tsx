@@ -26,7 +26,6 @@ export function LanguageSwitch({
       href={href}
       hrefLang={target === "pt" ? "pt-BR" : "en"}
       lang={target === "pt" ? "pt-BR" : "en"}
-      aria-label={label}
       title={label}
       onClick={(event) => {
         document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=31536000; SameSite=Lax`;
@@ -37,7 +36,9 @@ export function LanguageSwitch({
       }}
       className="grid h-10 min-w-10 place-items-center rounded-full border border-border bg-surface px-3 font-mono text-xs font-medium text-foreground transition-colors hover:bg-surface-2"
     >
+      {/* Visible text stays part of the accessible name (WCAG 2.5.3). */}
       {short}
+      <span className="sr-only"> — {label}</span>
     </a>
   );
 }

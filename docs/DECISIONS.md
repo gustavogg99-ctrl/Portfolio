@@ -261,3 +261,17 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** Server Action relaying to Formspree (hides nothing — the form ID is public by design — and moves submissions to Vercel's IPs, which hurts spam scoring); `mailto:` only (no form).
 
 **Consequences.** Part 7's CSP needs `connect-src https://formspree.io` and `form-action https://formspree.io`. Domain restriction is a paid Formspree feature; not used. Tests mock Formspree, so no test email reaches the inbox.
+
+---
+
+## ADR-022 — CSP keeps the site static: `'unsafe-inline'` for scripts, everything else strict
+
+**Date:** 2026-11-05
+
+**Context.** The plan (ARCHITECTURE, ADR-009) was a CSP without `'unsafe-inline'`, allowing only the theme script by hash. Measured on the build: every page has **36 inline scripts** — the theme script plus Next.js's RSC payload (`self.__next_f.push(...)`), whose content changes with every build and every blog refresh, so hashes can't be listed. A strict hash-only CSP simulated in the browser produced 36 violations and broke the theme toggle and the contact form. Next.js 16's documented alternative is a per-request nonce, which requires dynamic rendering of every page and is incompatible with the Partial Prerendering this site uses.
+
+**Decision.** Stay static. `script-src 'self' 'unsafe-inline'` and `style-src 'self' 'unsafe-inline'`; every other directive strict: `default-src 'self'`, `object-src 'none'`, `frame-ancestors 'none'`, `base-uri 'self'`, `connect-src`/`form-action` limited to self + Formspree, `upgrade-insecure-requests`. Plus HSTS (2 years, preload), `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`, COOP `same-origin`; `X-Powered-By` removed. Headers live in `security-headers.ts` and are tested.
+
+**Why the risk is acceptable (threat model).** `'unsafe-inline'` matters when an attacker can inject markup into the page. Here there is no injection path: no visitor content is ever rendered (contact messages go to Formspree and email, never back to the page), there are no third-party scripts, and the only external text — blog titles — is rendered by React, which escapes it.
+
+**Consequences.** Mozilla Observatory deducts 20 points for `'unsafe-inline'`, so this site will likely not reach A+ (Autoria em Forma, a different architecture, does). The grade is measured and recorded on the live site in Part 8, as for every number. Revisit if the site ever renders user content, adds third-party scripts, or Next.js ships hash support for its inline payload.
