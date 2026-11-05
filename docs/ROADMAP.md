@@ -51,9 +51,10 @@ Chat count: Part 5 is the **1st** part of the current chat.
 - Open Graph image and metadata per locale, `hreflang` alternates, sitemap, robots.
 - Accessibility pass.
 
-### 4. Final adjustments (before Part 8)
+### 4. Final adjustments — pre-launch (before Part 8)
 - **Shark in ServiceNow #14 (Aoop):** Aoop is still issuing certificates to everyone approved. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
-- General review of copy and visuals.
+- **"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.
+- **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
 
 ### 5. Part 8 — Publish
 - Switch Vercel Authentication from "All Deployments" back to **Standard** so the production domain is public (ADR-019).
