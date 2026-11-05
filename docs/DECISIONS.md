@@ -195,3 +195,41 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Decision.** A generic `/[lang]/projects/[slug]` route enabled per project by a `page` field. The diagram is HTML generated from content (accessible, themed, editable without a drawing tool). Code appears only as excerpts sanitized at the source, each with a fidelity note; comments translated to English are disclosed. A test blocks secrets/internal terms in excerpts.
 
 **Consequences.** Adding another case study = add `page` data to a project. Nothing from the private repository's history or config is ever copied.
+
+---
+
+## ADR-017 — Certifications verifiable by certificate number (PeopleCert)
+
+**Date:** 2026-11-05
+
+**Context.** ADR-002 shows a certification only with a verification URL. PeopleCert (ITIL 4 Foundation) gives no free per-certificate link: digital badges need a paid PeopleCert Plus membership. It does run a free public Certificate Verification Service where anyone types the certificate number.
+
+**Decision.** A `verified` certification may add `lookupId`: the certificate number exactly as printed (format-checked). `credentialUrl` then points to the issuer's verification portal, and the card shows "Verify at {issuer} · Certificate no. {lookupId}". The candidate/customer number is never stored or shown.
+
+**Alternatives considered.** Hide ITIL until a badge exists (loses the strongest service-management credential); pay for PeopleCert Plus; host the certificate image (shows the full legal name and staff signatures, and an image proves nothing).
+
+**Consequences.** The rule "every shown certification can be checked by a stranger" still holds. Used only where the issuer has no per-certificate page; SkillFront and Microsoft Learn have one and use plain links.
+
+---
+
+## ADR-018 — A language-school certificate of completion is education, not a certification
+
+**Date:** 2026-11-05
+
+**Context.** The English certificate from Casa Thomas Jefferson is a certificate of completion of a school course (Dec 2021), received by email, with no verification link and no external exam. The claims guard bans the word "expert", which is part of the course's name.
+
+**Decision.** Move it from certifications to education as "English — Language course · Casa Thomas Jefferson · Completed Dec 2021". Education entries now take exactly one of `expectedEnd` or `completed`. The course name stays only in a code comment. The English level ("advanced") stays in About.
+
+**Consequences.** No unverifiable item in the certifications list, and no implied proficiency exam. A test blocks English/Casa Thomas Jefferson from coming back as a certification.
+
+---
+
+## ADR-019 — Vercel connected with Vercel Authentication on all deployments
+
+**Date:** 2026-11-05
+
+**Context.** ROADMAP item 1: connect the repo to Vercel for PR previews while the site stays private until Part 8. Importing deploys `main` to production, and the default Standard Protection leaves the production `*.vercel.app` domain public — confirmed: it served the site to an anonymous request.
+
+**Decision.** Project `portfolio` (Hobby, personal account) with Vercel Authentication set to **All Deployments** (`ssoProtection.deploymentType = "all"`). Node.js 22.x, same as CI. All four generated domains were checked to redirect anonymous requests to `vercel.com/login`.
+
+**Consequences.** Every PR gets a preview that only Gustavo (logged in to Vercel) can open. The production URL was public for about 4 minutes on 2026-11-05 (same content as the public repository). Part 8 must switch protection back to Standard so the production domain becomes public.

@@ -17,7 +17,8 @@ If a claim isn't supported by these: **don't publish it.**
 - Never: "specialist", "expert", "senior", "senior consultant", "passionate about".
 - English level: **advanced** (not fluent/native).
 - Graduation: **July 2027** for both degrees (ADS — FACINT; Journalism — IESB). No start dates.
-- Certifications issued: ITIL 4 Foundation, ISO/IEC 27001, ISO/IEC 20000, ISO 9001, Microsoft AB-731, English (Casa Thomas Jefferson). Shown only with a verification link. ServiceNow only after issuance. Other Microsoft certs and Scrum: in progress.
+- Certifications issued (checked against the certificates on 05/11/2026): Microsoft Certified: AI Transformation Leader (AB-731, Jul 2026); ITIL 4 Foundation (PeopleCert, Dec 2024); ISO/IEC 27001:2022 Information Security Associate™, ISO/IEC 20000 IT Service Management Associate™, ISO 9001 Quality Management Systems Associate™ (all SkillFront — "Associate", never "Foundation"). Shown only with a way to verify them (ADR-017). ServiceNow only after issuance. Other Microsoft certs and Scrum: in progress.
+- English (Casa Thomas Jefferson): a course completed in Dec 2021, **not a certification** — shown under education (ADR-018).
 - **Not** certifications: COBIT 2019, EXIN AI Essentials (COBIT appears only as "conceptual" knowledge).
 - Teledata (service provider to CAIXA): technician from late Oct/2024, promoted to supervisor early Oct/2025 (11 months). **Co-led** a team of 16 with another shift supervisor.
 - MerkurIA: co-founder, no formal title (project management, security/governance). **No numbers** — not R$100K, 1,500+ users, 10+ projects, 100K+ users, "trained 3+".

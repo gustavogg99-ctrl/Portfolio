@@ -2,6 +2,30 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 5 — Experience, Certifications and Now · 2026-11-05
+
+**Added**
+- Experience section: timeline (Teledata, MerkurIA) with roles, periods and highlights; Education & courses sub-section.
+- Certifications section: 5 verified certifications, each with a way to check it; "In progress" chips; "Now" sub-section.
+- Schema: `lookupId` for certifications verified by number on the issuer's portal (ADR-017); education `completed` (exactly one of `expectedEnd`/`completed`, ADR-018); certification names may be `{ en, pt }`.
+- Tests: lookup-id format, education dates, English never as a certification. Total: 53.
+- UI strings (EN, PT): education title, completed, planned, issued, verify at, certificate no., opens in a new tab.
+
+**Changed (facts — checked against the certificates, 05/11/2026)**
+- AB-731: verified, Microsoft Learn link (en-us), issued Jul 2026.
+- ITIL 4 Foundation: PeopleCert, Dec 2024, verified by certificate number.
+- ISO certifications: issuer SkillFront; names corrected to the official "…Associate™" titles (were "…Foundation"); per-certificate badge pages; Nov/Dec 2024.
+- English (Casa Thomas Jefferson): moved from certifications to education — course completed Dec 2021 (ADR-018).
+- "Now": the Microsoft Learn and Scrum items are hidden there (already shown as certifications in progress); `updated` → 2026-11.
+- Vercel connected with all deployments protected (ADR-019).
+
+**Pending**
+- Shark in ServiceNow #14: hidden until Aoop issues it (Notion `PORTFOLIO-09`, before Part 8).
+
+**Verified**
+- `npm run check`, `npm run build`. Playwright: desktop 1440×900 and mobile 390×844, dark and light, EN and PT — no console errors; role dates stack on mobile.
+- The SkillFront badge pages and the Microsoft Learn link show the holder's name and the certification title.
+
 ## Docs — Roadmap · 2026-10-30
 
 - Added `docs/ROADMAP.md`: done/next/later, items waiting on Gustavo, working agreement. Linked from `AGENTS.md` and `README.md` so a new session starts from it.

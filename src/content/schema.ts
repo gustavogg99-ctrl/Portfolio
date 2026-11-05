@@ -86,8 +86,12 @@ export const Education = z.object({
   course: Localized,
   institution: z.string(),
   degree: Localized,
-  expectedEnd: YearMonth,
+  /** Exactly one: `expectedEnd` (in progress) or `completed`. */
+  expectedEnd: YearMonth.optional(),
+  completed: YearMonth.optional(),
   visible,
+}).refine((e) => Boolean(e.expectedEnd) !== Boolean(e.completed), {
+  message: "Education needs exactly one of expectedEnd or completed",
 });
 export type Education = z.infer<typeof Education>;
 
@@ -95,18 +99,29 @@ export type Education = z.infer<typeof Education>;
 
 const certBase = {
   id: z.string(),
-  name: z.string(),
+  /** Plain string for official names (same in both languages); `{ en, pt }` for descriptions (ADR-014). */
+  name: z.union([z.string(), Localized]),
   issuer: z.string(),
 };
 
 /**
  * Discriminated by status:
- * - verified: rendered, MUST have a credential URL.
+ * - verified: rendered, MUST have a credential URL. Usually a page for this
+ *   credential (Microsoft Learn, Credly). When the issuer only offers a lookup
+ *   portal (e.g. PeopleCert), `credentialUrl` is the portal and `lookupId` is the
+ *   public certificate number the visitor types there (ADR-017). Never a
+ *   candidate/customer number.
  * - pending_link: issued, but we don't have the verification link yet → NOT rendered.
  * - in_progress: rendered under "in progress", no URL.
  */
 export const Certification = z.discriminatedUnion("status", [
-  z.object({ ...certBase, status: z.literal("verified"), credentialUrl: z.url(), issued: YearMonth.optional() }),
+  z.object({
+    ...certBase,
+    status: z.literal("verified"),
+    credentialUrl: z.url(),
+    lookupId: z.string().regex(/^[A-Z0-9-]{6,40}$/, "Certificate number as printed, e.g. GR123456789AB").optional(),
+    issued: YearMonth.optional(),
+  }),
   z.object({ ...certBase, status: z.literal("pending_link") }),
   z.object({ ...certBase, issuer: z.string().optional(), status: z.literal("in_progress") }),
 ]);

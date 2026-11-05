@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-10-30 (after Part 4)._
+_Last updated: 2026-11-05 (Part 5 in review)._
 
 ## How we work
 
@@ -14,7 +14,8 @@ _Last updated: 2026-10-30 (after Part 4)._
 - When information from Gustavo is needed, ask for **one item at a time**.
 - If a claim isn't backed by `docs/SOURCES.md`, don't publish it.
 - **Chat rotation:** Gustavo starts a new chat every **3 parts** (always right after a merge). See "Handoff" below.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-08`.
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-09`.
+- Vercel: project `portfolio`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
 ## Handoff (every 3 parts)
 
@@ -33,39 +34,30 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 2 | Visual skeleton: profile card, sticky nav, theme, language switch | #2 |
 | 3 | Hero (typewriter), About, Skills | #3 |
 | 4 | Projects section + Autoria em Forma case study (diagram, sanitized code) | #4 |
+| — | Vercel connected: PR previews, all deployments behind Vercel Authentication (ADR-019) | — |
+| 5 | Experience, Education & courses, Certifications, Now | #6 |
 
 ## Next (in order)
 
-### 1. Decide: connect Vercel now for PR previews
-Recommended: yes. Connect the repository to Vercel so every PR gets a preview URL Gustavo can open before merging. The project stays private until he approves going public (Part 8). Security headers and measurements remain in Parts 7–8.
+### 1. Part 5 — merge PR #6
+Chat count: Part 5 is the **1st** part of the current chat.
 
-### 2. Part 5 — Experience, Certifications, Now
-- Experience timeline and education from `src/content/experience.ts` / `education.ts` (already filled).
-- Certifications — **waiting on Gustavo**, one at a time: verification link + month issued.
-
-  | Certification | Status in content | Needed |
-  |---|---|---|
-  | Microsoft AB-731 (AI Transformation Leader) | `pending_link` | Microsoft Learn share link, month |
-  | ITIL 4 Foundation | `pending_link` | link, month, issuer |
-  | ISO/IEC 27001 Foundation | `pending_link` | link, month, issuer |
-  | ISO/IEC 20000 Foundation | `pending_link` | link, month, issuer |
-  | ISO 9001 Foundation | `pending_link` | link, month, issuer |
-  | English — Casa Thomas Jefferson | `pending_link` | exact certificate name, link (or decide how to show without one), month |
-  | Shark in ServiceNow #14 (Aoop) | `pending_link` | only after it's issued |
-
-  Without a link a certification stays hidden (schema rule). In progress (shown as such): Microsoft Learn track, Scrum Master.
-- "Now" section from `src/content/now.ts` (PORT-AUTO hidden until work starts).
-
-### 3. Part 6 — Writing and Contact
+### 2. Part 6 — Writing and Contact
 - **Waiting on Gustavo:** EN and PT URLs of the latest blog post (about the thesis-formatting site) → `src/content/writing.ts`.
 - Contact form via Formspree — **waiting on Gustavo** to create the account and send the form ID. Email shown: gustavohfr2003@gmail.com. No phone, no WhatsApp.
 
-### 4. Part 7 — Security and SEO
+### 3. Part 7 — Security and SEO
 - CSP without `unsafe-inline` (hash of `THEME_SCRIPT`), HSTS, X-Frame-Options/frame-ancestors, nosniff, Referrer-Policy, Permissions-Policy, COOP — consistent with Autoria em Forma.
 - Open Graph image and metadata per locale, `hreflang` alternates, sitemap, robots.
 - Accessibility pass.
 
+### 4. Final adjustments — pre-launch (before Part 8)
+- **Shark in ServiceNow #14 (Aoop):** Aoop is still issuing certificates to everyone approved. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
+- **"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.
+- **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
+
 ### 5. Part 8 — Publish
+- Switch Vercel Authentication from "All Deployments" back to **Standard** so the production domain is public (ADR-019).
 - Production deploy on `*.vercel.app` after Gustavo approves.
 - Cookie-less analytics (Vercel Web Analytics).
 - Re-measure **on the live sites** before citing: Mozilla Observatory for Autoria em Forma (A+ is from 22/10/2026) and for this portfolio; Lighthouse. Record results in docs.
