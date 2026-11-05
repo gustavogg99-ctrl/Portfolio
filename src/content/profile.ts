@@ -55,6 +55,8 @@ export const profile = {
     },
   ],
   email: "gustavohfr2003@gmail.com",
+  // Formspree form "Portfolio" → gustavohfr2003@gmail.com. CAPTCHA off (AJAX), Formshield on.
+  contactForm: "https://formspree.io/f/mvkkyvdv",
   links: {
     linkedin: "https://www.linkedin.com/in/gustavo99rodrigues",
     github: "https://github.com/gustavogg99-ctrl",

@@ -4,7 +4,7 @@ import {
   Education,
   Experience,
   Now,
-  Post,
+  Blog,
   Profile,
   Project,
   SkillGroup,
@@ -21,7 +21,7 @@ export const ContentBundle = z.object({
   projects: z.array(Project),
   skills: z.array(SkillGroup),
   now: Now,
-  posts: z.array(Post),
+  blog: Blog,
   snippets: z.array(Snippet),
 });
 export type ContentBundle = z.infer<typeof ContentBundle>;
@@ -48,7 +48,7 @@ function rendered(content: ContentBundle) {
     projects: content.projects.filter((p) => p.visible),
     skills: content.skills,
     now: content.now.items.filter((i) => i.visible),
-    posts: content.posts.filter((p) => p.visible),
+    blog: content.blog,
     snippets: content.snippets,
   };
 }

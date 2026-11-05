@@ -233,3 +233,31 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Decision.** Project `portfolio` (Hobby, personal account) with Vercel Authentication set to **All Deployments** (`ssoProtection.deploymentType = "all"`). Node.js 22.x, same as CI. All four generated domains were checked to redirect anonymous requests to `vercel.com/login`.
 
 **Consequences.** Every PR gets a preview that only Gustavo (logged in to Vercel) can open. The production URL was public for about 4 minutes on 2026-11-05 (same content as the public repository). Part 8 must switch protection back to Standard so the production domain becomes public.
+
+---
+
+## ADR-020 — Writing section reads the blog's RSS feed (newest 3, title + date)
+
+**Date:** 2026-11-05
+
+**Context.** The plan was one hand-picked post in `writing.ts`. Gustavo wants the section to follow the blog without editing the site. ggblog99.wordpress.com publishes every post in EN/PT pairs, marked by the categories "English" and "Português", and exposes a public RSS feed.
+
+**Decision.** The server fetches `/feed/` inside a `"use cache"` function with `cacheLife("hours")` (background refresh about hourly; `"minutes"` after a failure) and shows the **3 newest posts in the page's language**, **title and date only**, plus a link to the blog. Titles pass through the claims guard (`src/content/claims.ts`, now shared with the tests); a post whose title hits it is skipped. `blog.hidden` lists post URLs to suppress by hand. A small dependency-free parser reads the feed; any error yields an empty list and the section shows only "Read the blog".
+
+**Alternatives considered.** Link to the blog only (no evidence of writing on the portfolio); hand-picked posts (goes stale); WordPress REST API (no advantage over RSS here); showing excerpts (more unreviewed text on the site).
+
+**Consequences.** New posts appear within about an hour with no deploy. Blog text reaches the site without a per-post review, limited to titles and filtered by the guard. The fetch is server-side, so Part 7's CSP needs no `connect-src` for WordPress. `blog.allowed` lists posts Gustavo reviewed that may show even if the title trips the guard: the ServiceNow bootcamp posts name "Aoop and NTT DATA" as the bootcamp's organizers, not as an employer (SOURCES.md forbids NTT DATA only as employer). The guard keeps blocking the term everywhere else.
+
+---
+
+## ADR-021 — Contact form via Formspree (AJAX with native fallback)
+
+**Date:** 2026-11-05
+
+**Context.** The site is static and has no backend. The briefing asks for a contact form; no phone or WhatsApp. Gustavo created the Formspree form "Portfolio" (free plan), delivering to gustavohfr2003@gmail.com.
+
+**Decision.** A client component posts to `https://formspree.io/f/mvkkyvdv` with `fetch` and `Accept: application/json`, showing the result inline (`role="status"`). The `<form>` also has `action`/`method`, so it still works without JavaScript. Spam: Formspree's honeypot field `_gotcha` + Formshield (on). CAPTCHA stays off because Formspree's CAPTCHA doesn't work with AJAX submissions. A one-line notice says what is collected and why (LGPD). The endpoint lives in `profile.contactForm` and is format-checked.
+
+**Alternatives considered.** Server Action relaying to Formspree (hides nothing — the form ID is public by design — and moves submissions to Vercel's IPs, which hurts spam scoring); `mailto:` only (no form).
+
+**Consequences.** Part 7's CSP needs `connect-src https://formspree.io` and `form-action https://formspree.io`. Domain restriction is a paid Formspree feature; not used. Tests mock Formspree, so no test email reaches the inbox.

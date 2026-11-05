@@ -34,7 +34,8 @@ src/
     validate.ts        ← extra rules (placeholders, duplicates, featured)
     index.ts           ← validated `content` export (the only import for components)
     profile.ts  experience.ts  education.ts  certifications.ts
-    projects.ts  skills.ts  now.ts  writing.ts
+    projects.ts  skills.ts  now.ts  writing.ts (blog feed config)
+    claims.ts          ← banned terms/words (claims guard), shared by tests and the blog filter
     snippets.ts        ← sanitized code excerpts from private repos
   i18n/
     config.ts          ← locales, default locale, cookie name
@@ -52,6 +53,9 @@ src/
     code-block.tsx     ← code excerpt + explanation + fidelity note
     experience.tsx     ← work timeline + education and courses
     certifications.tsx ← verified certifications, in progress, and "Now"
+    writing.tsx        ← newest blog posts (RSS) + link to the blog
+    contact.tsx        ← contact intro, form and direct channels
+    contact-form.tsx   ← Formspree form (client, AJAX + native fallback)
     hero.tsx           ← hero: typewriter title, headline, CTAs, counters
     typewriter.tsx     ← rotating words (client, reduced-motion aware)
     about.tsx          ← about text, quick facts, skills groups
@@ -60,6 +64,8 @@ src/
     profile.jpg        ← profile photo (cropped 4:5, 640×800, EXIF stripped)
   lib/
     localize.ts        ← l(text, locale), date formatting
+    rss.ts             ← RSS parser + post selection (pure, tested)
+    blog.ts            ← cached fetch of the blog feed ("use cache", hourly)
     locale-path.ts     ← swapLocale(path, locale)
   proxy.ts             ← redirects "/" and unprefixed paths to /en or /pt
 scripts/check-content.ts   ← `npm run content:check`
@@ -149,6 +155,12 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Now (`#now`, sub-section of Certifications):** visible items from `now.ts` with an "In progress"/"Planned" tag and the `updated` month. Items already shown as certifications in progress are hidden there to avoid duplicates.
 - Certification names are a plain string for official names or `{ en, pt }` for descriptions (same pattern as skills, ADR-014).
 
+## Writing and Contact
+
+- **Writing (`#writing`):** the server fetches the blog's RSS feed inside a `"use cache"` function (`cacheLife("hours")`; `"minutes"` after a failure) and shows the 3 newest posts in the page's language (category "English"/"Português"), title and date only. Titles that hit the claims guard are skipped unless their URL is in `blog.allowed`; `blog.hidden` suppresses a post. On any error only the "Read the blog" link renders (ADR-020).
+- **Contact (`#contact`):** Formspree form posted with `fetch` (inline status, `aria-live`), native POST without JS, honeypot `_gotcha`, privacy notice; email and LinkedIn alongside. No phone (ADR-021).
+- **CSP for Part 7:** `connect-src` and `form-action` must allow `https://formspree.io`. The blog fetch is server-side, so it needs nothing in the CSP.
+
 ## Theme
 
 - Server always renders dark (`<html>` without `data-theme`).
@@ -194,6 +206,5 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 6 | Sections: writing, contact (Formspree) |
 | 7 | Security headers (CSP, HSTS, etc.), Open Graph, sitemap, accessibility pass |
 | 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site |

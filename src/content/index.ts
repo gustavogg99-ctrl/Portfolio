@@ -7,7 +7,7 @@ import { projects } from "./projects";
 import { skills } from "./skills";
 import { snippets } from "./snippets";
 import { validateContent } from "./validate";
-import { posts } from "./writing";
+import { blog } from "./writing";
 
 /**
  * The only entry point components should import content from.
@@ -21,7 +21,7 @@ export const content = validateContent({
   projects,
   skills,
   now,
-  posts,
+  blog,
   snippets,
 });
 

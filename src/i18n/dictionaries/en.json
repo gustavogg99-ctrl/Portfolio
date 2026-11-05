@@ -72,7 +72,6 @@
     "blog": "Blog",
     "email": "Email",
     "photoAlt": "Portrait of Gustavo Rodrigues in a dark suit",
-    "building": "Under construction — Part",
     "basedIn": "Based in",
     "openTo": "Open to",
     "languages": "Languages",
@@ -94,7 +93,9 @@
     "issued": "Issued",
     "verifyAt": "Verify at",
     "certificateNo": "Certificate no.",
-    "opensInNewTab": "opens in a new tab"
+    "opensInNewTab": "opens in a new tab",
+    "allPosts": "All posts on the blog",
+    "readBlog": "Read the blog"
   },
   "a11y": {
     "skip": "Skip to content",
@@ -117,5 +118,18 @@
     "code": "Code",
     "guard": "Control",
     "human": "Human"
+  },
+  "contact": {
+    "intro": "Questions about a project, an opportunity or something I wrote? Send a message — I reply by email.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks — your message was sent. I'll reply by email.",
+    "error": "The message couldn't be sent. Please write to me directly at",
+    "privacy": "Your name, email and message are sent through Formspree to my inbox and used only to reply to you.",
+    "subject": "Portfolio contact (EN)",
+    "direct": "Or write directly"
   }
 }
