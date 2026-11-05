@@ -37,6 +37,10 @@
       "WORK",
       "EXPERIENCE"
     ],
+    "education": [
+      "EDUCATION",
+      "& COURSES"
+    ],
     "certifications": [
       "CERTIFICATIONS",
       "& STUDIES"
@@ -84,7 +88,13 @@
     "fidelity": "How this differs from the real code",
     "details": "Details",
     "stack": "Stack",
-    "scope": "Scope"
+    "scope": "Scope",
+    "completed": "Completed",
+    "planned": "Planned",
+    "issued": "Issued",
+    "verifyAt": "Verify at",
+    "certificateNo": "Certificate no.",
+    "opensInNewTab": "opens in a new tab"
   },
   "a11y": {
     "skip": "Skip to content",

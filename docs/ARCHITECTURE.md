@@ -14,7 +14,7 @@ Personal portfolio of Gustavo Rodrigues. This document describes how the site is
 | Font | Geist Sans / Geist Mono, self-hosted (`geist` package) | — |
 | Icons | lucide-react (+ GitHub mark from Simple Icons, CC0) | — |
 | Tests | Vitest | 5 |
-| Hosting | Vercel (planned, Part 8) | — |
+| Hosting | Vercel — connected, all deployments behind Vercel Authentication until Part 8 (ADR-019) | — |
 | CI | GitHub Actions | — |
 
 Runtime: Node.js 22+.
@@ -50,6 +50,8 @@ src/
     projects.tsx       ← featured card, project cards (native <details>), status/stack/links
     architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
     code-block.tsx     ← code excerpt + explanation + fidelity note
+    experience.tsx     ← work timeline + education and courses
+    certifications.tsx ← verified certifications, in progress, and "Now"
     hero.tsx           ← hero: typewriter title, headline, CTAs, counters
     typewriter.tsx     ← rotating words (client, reduced-motion aware)
     about.tsx          ← about text, quick facts, skills groups
@@ -140,6 +142,13 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Shared shell:** `SiteShell` renders the header, profile card and footer for every page. Off the home page, nav and "Contact" link back to `/{lang}#section`.
 - **Known behavior (Next 16 + Cache Components):** `dynamicParams` is not available, so unknown slugs are rejected with `notFound()`. The first request to an unknown slug may return HTTP 200 with the not-found UI and `noindex`; later requests return 404. Acceptable: no content leaks and search engines don't index it.
 
+## Experience, Certifications and Now
+
+- **Experience (`#experience`):** vertical timeline, newest first; each company lists its roles with periods (`Present` when `end` is null) and highlights. Then **Education & courses** (`#education`, sub-section): degrees show "Expected", completed courses show "Completed".
+- **Certifications (`#certifications`):** cards for `verified` items, newest first, each with a way to check it — a link to the credential page, or the issuer's portal plus the certificate number (`lookupId`, ADR-017). `pending_link` items are never rendered. `in_progress` items appear as chips.
+- **Now (`#now`, sub-section of Certifications):** visible items from `now.ts` with an "In progress"/"Planned" tag and the `updated` month. Items already shown as certifications in progress are hidden there to avoid duplicates.
+- Certification names are a plain string for official names or `{ en, pt }` for descriptions (same pattern as skills, ADR-014).
+
 ## Theme
 
 - Server always renders dark (`<html>` without `data-theme`).
@@ -159,7 +168,9 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 | Rule | Where |
 |---|---|
-| A certification is shown only with a verification URL (`status: "verified"` requires `credentialUrl`) | `schema.ts` |
+| A certification is shown only with a verification URL (`status: "verified"` requires `credentialUrl`); `lookupId` must look like a printed certificate number (ADR-017) | `schema.ts` |
+| Education has exactly one of `expectedEnd` / `completed` | `schema.ts` |
+| A language-school course is never listed as a certification (ADR-018) | `tests/content.test.ts` |
 | Hidden items (`visible: false`) stay in the repo but are never rendered | `validate.ts` |
 | A visible item cannot contain a `[CONFIRMAR …]` placeholder | `validate.ts` |
 | Every project must list at least one limitation | `schema.ts` |
@@ -183,6 +194,6 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 5–6 | Sections: experience, certifications, now, writing, contact (Formspree) |
+| 6 | Sections: writing, contact (Formspree) |
 | 7 | Security headers (CSP, HSTS, etc.), Open Graph, sitemap, accessibility pass |
 | 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site |

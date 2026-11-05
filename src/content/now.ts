@@ -6,7 +6,7 @@ import type { Now } from "./schema";
  * ServiceNow is intentionally not here (it goes to certifications once issued).
  */
 export const now = {
-  updated: "2026-10",
+  updated: "2026-11",
   items: [
     {
       id: "microsoft-learn",
@@ -15,13 +15,15 @@ export const now = {
         pt: "Estudando a trilha Microsoft Learn em IA, segurança e dados.",
       },
       status: "in_progress",
-      visible: true,
+      // Hidden: already shown under Certifications → In progress (no duplicates).
+      visible: false,
     },
     {
       id: "scrum",
       text: { en: "Preparing for the Scrum Master certification.", pt: "Me preparando para a certificação Scrum Master." },
       status: "in_progress",
-      visible: true,
+      // Hidden: already shown under Certifications → In progress (no duplicates).
+      visible: false,
     },
     {
       id: "agent-v2",

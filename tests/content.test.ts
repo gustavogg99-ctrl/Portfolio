@@ -16,6 +16,29 @@ describe("content rules", () => {
     expect(() => validateContent(c)).toThrow(/credentialUrl/);
   });
 
+  it("rejects a lookup id that is not a printed certificate number", () => {
+    const c = fresh();
+    c.certifications.push({
+      id: "x", name: "Fake", issuer: "X", status: "verified",
+      credentialUrl: "https://example.com/verify", lookupId: "not a number!",
+    } as never);
+    expect(() => validateContent(c)).toThrow(/Certificate number/);
+  });
+
+  it("requires exactly one of expectedEnd or completed in education", () => {
+    const both = fresh();
+    Object.assign(both.education[0], { completed: "2020-01" });
+    expect(() => validateContent(both)).toThrow(/exactly one/);
+    const none = fresh();
+    delete (none.education[0] as { expectedEnd?: string }).expectedEnd;
+    expect(() => validateContent(none)).toThrow(/exactly one/);
+  });
+
+  it("never shows a language-school course as a certification", () => {
+    const names = fresh().certifications.map((c) => JSON.stringify(c.name).toLowerCase());
+    expect(names.some((n) => n.includes("english") || n.includes("thomas jefferson"))).toBe(false);
+  });
+
   it("rejects a placeholder in a visible item", () => {
     const c = fresh();
     c.projects[0].summary.en = "[CONFIRMAR: something]";

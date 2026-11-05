@@ -1,5 +1,7 @@
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { About } from "@/components/about";
+import { Certifications } from "@/components/certifications";
+import { Experience } from "@/components/experience";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { Section } from "@/components/section";
@@ -33,11 +35,11 @@ export default async function Home() {
       </Section>
 
       <Section id="experience" title={dict.sections.experience}>
-        <Building part={5} label={dict.labels.building} />
+        <Experience locale={locale} dict={dict} />
       </Section>
 
       <Section id="certifications" title={dict.sections.certifications}>
-        <Building part={5} label={dict.labels.building} />
+        <Certifications locale={locale} dict={dict} />
       </Section>
 
       <Section id="writing" title={dict.sections.writing}>

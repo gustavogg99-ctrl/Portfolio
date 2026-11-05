@@ -16,5 +16,5 @@ if (pending.length) {
 const hiddenCerts = content.certifications.filter((c) => c.status === "pending_link");
 if (hiddenCerts.length) {
   console.log(`\n${hiddenCerts.length} certification(s) hidden until a verification URL is added:`);
-  for (const c of hiddenCerts) console.log(`  · ${c.name}`);
+  for (const c of hiddenCerts) console.log(`  · ${typeof c.name === "string" ? c.name : c.name.en}`);
 }

@@ -37,6 +37,10 @@
       "EXPERIÊNCIA",
       "PROFISSIONAL"
     ],
+    "education": [
+      "FORMAÇÃO",
+      "E CURSOS"
+    ],
     "certifications": [
       "CERTIFICAÇÕES",
       "E ESTUDOS"
@@ -84,7 +88,13 @@
     "fidelity": "Diferenças em relação ao código real",
     "details": "Detalhes",
     "stack": "Stack",
-    "scope": "Escopo"
+    "scope": "Escopo",
+    "completed": "Concluído",
+    "planned": "Planejado",
+    "issued": "Emitida em",
+    "verifyAt": "Verificar na",
+    "certificateNo": "Nº do certificado",
+    "opensInNewTab": "abre em nova aba"
   },
   "a11y": {
     "skip": "Pular para o conteúdo",
