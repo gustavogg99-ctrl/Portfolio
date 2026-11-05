@@ -232,5 +232,10 @@ export const Blog = z.object({
   max: z.number().int().min(1).max(6),
   /** Post URLs never shown, even if newest. */
   hidden: z.array(z.url()),
+  /**
+   * Post URLs reviewed by Gustavo that may show even if the title trips the
+   * claims guard (e.g. naming a company in a non-employer context). Keep short.
+   */
+  allowed: z.array(z.url()),
 });
 export type Blog = z.infer<typeof Blog>;

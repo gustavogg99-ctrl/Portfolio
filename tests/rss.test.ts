@@ -61,6 +61,20 @@ describe("blog feed", () => {
     expect(en.map((p) => p.url)).toEqual(["https://ggblog99.wordpress.com/2026/10/20/en/"]);
   });
 
+  it("shows a post on the allow list even if its title trips the guard", () => {
+    const en = selectPosts(items, {
+      category: "English",
+      hidden: [],
+      allowed: ["https://ggblog99.wordpress.com/2026/11/04/en/"],
+      max: 3,
+    });
+    expect(en.map((p) => p.url)).toEqual([
+      "https://ggblog99.wordpress.com/2026/11/04/en/",
+      "https://ggblog99.wordpress.com/2026/10/26/en/",
+      "https://ggblog99.wordpress.com/2026/10/20/en/",
+    ]);
+  });
+
   it("never exposes the excerpt", () => {
     const [post] = selectPosts(items, { category: "English", hidden: [], max: 1 });
     expect(Object.keys(post).sort()).toEqual(["date", "title", "url"]);

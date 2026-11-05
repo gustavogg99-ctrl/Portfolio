@@ -8,6 +8,8 @@ import type { Blog } from "./schema";
  * - Only title and date are shown. Titles that hit the claims guard
  *   (src/content/claims.ts) are skipped automatically.
  * - To hide a specific post, add its URL to `hidden`.
+ * - `allowed`: posts reviewed by Gustavo that may show even if the title trips
+ *   the guard. Only for wording that is not a claim (ADR-020).
  */
 export const blog = {
   feedUrl: "https://ggblog99.wordpress.com/feed/",
@@ -18,4 +20,10 @@ export const blog = {
   category: { en: "English", pt: "Português" },
   max: 3,
   hidden: [],
+  allowed: [
+    // ServiceNow bootcamp (Aoop / NTT DATA): about the bootcamp, not employment.
+    // Reviewed by Gustavo on 05/11/2026.
+    "https://ggblog99.wordpress.com/2026/11/04/servicenow-bootcamp-all-nighter/",
+    "https://ggblog99.wordpress.com/2026/11/04/bootcamp-servicenow-madrugada/",
+  ],
 } satisfies Blog;

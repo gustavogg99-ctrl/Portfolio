@@ -21,6 +21,7 @@ export async function getLatestPosts(locale: Locale): Promise<BlogPost[]> {
     const posts = selectPosts(parseFeed(await res.text()), {
       category: blog.category[locale],
       hidden: blog.hidden,
+      allowed: blog.allowed,
       max: blog.max,
     });
     cacheLife("hours");

@@ -51,16 +51,21 @@ export function parseFeed(xml: string): FeedItem[] {
 
 /**
  * Newest posts in one language: right category, not hidden, title passes the
- * claims guard. Newest first, at most `max`.
+ * claims guard (unless explicitly allowed). Newest first, at most `max`.
  */
 export function selectPosts(
   items: FeedItem[],
-  { category, hidden, max }: { category: string; hidden: readonly string[]; max: number },
+  {
+    category,
+    hidden,
+    allowed = [],
+    max,
+  }: { category: string; hidden: readonly string[]; allowed?: readonly string[]; max: number },
 ): BlogPost[] {
   return items
     .filter((i) => i.categories.includes(category))
     .filter((i) => !hidden.includes(i.url))
-    .filter((i) => findBannedClaim(i.title) === null)
+    .filter((i) => allowed.includes(i.url) || findBannedClaim(i.title) === null)
     .toSorted((a, b) => b.date.localeCompare(a.date))
     .slice(0, max)
     .map(({ title, url, date }) => ({ title, url, date }));
