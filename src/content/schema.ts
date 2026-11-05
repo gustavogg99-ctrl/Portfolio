@@ -39,6 +39,8 @@ export const Profile = z.object({
   openTo: Localized,
   about: z.array(Localized).min(1),
   email: z.email(),
+  /** Formspree endpoint for the contact form (ADR-021). The form ID is public by design. */
+  contactForm: z.string().regex(/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/, "Formspree endpoint: https://formspree.io/f/<id>"),
   links: z.object({
     linkedin: z.url(),
     github: z.url(),

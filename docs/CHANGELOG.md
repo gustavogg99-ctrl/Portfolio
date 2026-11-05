@@ -2,6 +2,22 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 6 — Writing and Contact · 2026-11-05
+
+**Added**
+- Writing section: 3 newest posts in the page's language, read from the blog's RSS feed and cached about an hour (ADR-020); title + date only; link to the blog. Falls back to the link alone if the feed fails.
+- `src/content/claims.ts`: the claims guard lists, now shared by the tests and the blog filter. `blog.allowed` for posts Gustavo reviewed (the ServiceNow bootcamp posts); `blog.hidden` to suppress one.
+- Contact section: Formspree form (AJAX + native fallback, honeypot, privacy notice), email and LinkedIn (ADR-021). `profile.contactForm` with format check.
+- Tests: RSS parsing, entities, language filter, guard, allow/hide lists, no excerpt. Total: 60.
+
+**Removed**
+- `Post` schema and the "Under construction" placeholder (every section is now built).
+
+**Verified**
+- Vercel preview: `/en` shows the 3 EN posts, `/pt` the PT ones.
+- Playwright with Formspree mocked: success and error states, honeypot and subject sent; desktop/mobile, dark/light, EN/PT screenshots; no console errors.
+- Formspree form settings checked in the dashboard (destination email, CAPTCHA off, Formshield on) — nothing changed.
+
 ## Part 5 — Experience, Certifications and Now · 2026-11-05
 
 **Added**

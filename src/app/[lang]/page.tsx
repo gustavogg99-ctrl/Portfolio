@@ -1,21 +1,13 @@
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { About } from "@/components/about";
 import { Certifications } from "@/components/certifications";
+import { Contact } from "@/components/contact";
 import { Experience } from "@/components/experience";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { Section } from "@/components/section";
 import { SiteShell } from "@/components/site-shell";
 import { Writing } from "@/components/writing";
-
-/** Temporary placeholder for sections built in later parts. Removed as each part lands. */
-function Building({ part, label }: { part: number; label: string }) {
-  return (
-    <div className="rounded-2xl border border-dashed border-border p-8 font-mono text-sm text-muted">
-      {label} {part}
-    </div>
-  );
-}
 
 export default async function Home() {
   const locale = await getLocale();
@@ -48,7 +40,7 @@ export default async function Home() {
       </Section>
 
       <Section id="contact" title={dict.sections.contact}>
-        <Building part={6} label={dict.labels.building} />
+        <Contact dict={dict} />
       </Section>
     </SiteShell>
   );

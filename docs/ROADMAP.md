@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 (Part 5 in review)._
+_Last updated: 2026-11-05 (Part 6 in review)._
 
 ## How we work
 
@@ -36,27 +36,24 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 4 | Projects section + Autoria em Forma case study (diagram, sanitized code) | #4 |
 | — | Vercel connected: PR previews, all deployments behind Vercel Authentication (ADR-019) | — |
 | 5 | Experience, Education & courses, Certifications, Now | #6 |
+| 6 | Writing (blog RSS, newest 3 per language) and Contact (Formspree) | #7 |
 
 ## Next (in order)
 
-### 1. Part 5 — merge PR #6
-Chat count: Part 5 is the **1st** part of the current chat.
+### 1. Part 6 — merge PR #7
+Chat count: Part 5 and Part 6 done in the current chat; **Part 7 is the 3rd** → after it merges, switch chats (see "Handoff").
 
-### 2. Part 6 — Writing and Contact
-- **Waiting on Gustavo:** EN and PT URLs of the latest blog post (about the thesis-formatting site) → `src/content/writing.ts`.
-- Contact form via Formspree — **waiting on Gustavo** to create the account and send the form ID. Email shown: gustavohfr2003@gmail.com. No phone, no WhatsApp.
-
-### 3. Part 7 — Security and SEO
-- CSP without `unsafe-inline` (hash of `THEME_SCRIPT`), HSTS, X-Frame-Options/frame-ancestors, nosniff, Referrer-Policy, Permissions-Policy, COOP — consistent with Autoria em Forma.
+### 2. Part 7 — Security and SEO
+- CSP without `unsafe-inline` (hash of `THEME_SCRIPT`); `connect-src`/`form-action` allow `https://formspree.io` (ADR-021); HSTS, X-Frame-Options/frame-ancestors, nosniff, Referrer-Policy, Permissions-Policy, COOP — consistent with Autoria em Forma.
 - Open Graph image and metadata per locale, `hreflang` alternates, sitemap, robots.
 - Accessibility pass.
 
-### 4. Final adjustments — pre-launch (before Part 8)
-- **Shark in ServiceNow #14 (Aoop):** Aoop is still issuing certificates to everyone approved. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
+### 3. Final adjustments — pre-launch (before Part 8)
+- **Shark in ServiceNow #14 (Aoop):** certificate expected by **2026-11-10**. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
 - **"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.
 - **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
 
-### 5. Part 8 — Publish
+### 4. Part 8 — Publish
 - Switch Vercel Authentication from "All Deployments" back to **Standard** so the production domain is public (ADR-019).
 - Production deploy on `*.vercel.app` after Gustavo approves.
 - Cookie-less analytics (Vercel Web Analytics).
