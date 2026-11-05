@@ -6,6 +6,7 @@ import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { Section } from "@/components/section";
 import { SiteShell } from "@/components/site-shell";
+import { Writing } from "@/components/writing";
 
 /** Temporary placeholder for sections built in later parts. Removed as each part lands. */
 function Building({ part, label }: { part: number; label: string }) {
@@ -43,7 +44,7 @@ export default async function Home() {
       </Section>
 
       <Section id="writing" title={dict.sections.writing}>
-        <Building part={6} label={dict.labels.building} />
+        <Writing locale={locale} dict={dict} />
       </Section>
 
       <Section id="contact" title={dict.sections.contact}>

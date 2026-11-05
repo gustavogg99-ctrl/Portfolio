@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { content } from "@/content";
 import { validateContent } from "@/content/validate";
+import { BANNED_TERMS, BANNED_WORDS } from "@/content/claims";
 
 /** Deep copy so each test mutates its own version of the real content. */
 const fresh = () => structuredClone(content);
@@ -91,29 +92,11 @@ describe("code snippets (sanitized excerpts from private repos)", () => {
 describe("claims guard (docs/SOURCES.md)", () => {
   const all = JSON.stringify(content);
 
-  it.each([
-    "Gustavo Henrique",
-    "COBIT 2019",
-    "EXIN",
-    "100K",
-    "1.500+",
-    "1,500+",
-    "NTT DATA",
-    "Maturidade Digital",
-    "Digital Maturity",
-    "BIRD",
-    "/painel",
-    "3 free pilot",
-    "3 entregas piloto",
-    "after validation",
-    "após validação",
-    "5 automated checks",
-    "5 verificações",
-  ])("never contains %s", (term) => {
+  it.each(BANNED_TERMS)("never contains %s", (term) => {
     expect(all).not.toContain(term);
   });
 
-  it.each(["specialist", "especialista", "expert", "senior", "sênior", "passionate", "apaixonado"])(
+  it.each(BANNED_WORDS)(
     "never uses the word %s",
     (word) => {
       expect(all.toLowerCase()).not.toContain(word);

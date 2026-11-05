@@ -94,7 +94,9 @@
     "issued": "Issued",
     "verifyAt": "Verify at",
     "certificateNo": "Certificate no.",
-    "opensInNewTab": "opens in a new tab"
+    "opensInNewTab": "opens in a new tab",
+    "allPosts": "All posts on the blog",
+    "readBlog": "Read the blog"
   },
   "a11y": {
     "skip": "Skip to content",

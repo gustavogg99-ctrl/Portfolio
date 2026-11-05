@@ -94,7 +94,9 @@
     "issued": "Emitida em",
     "verifyAt": "Verificar na",
     "certificateNo": "Nº do certificado",
-    "opensInNewTab": "abre em nova aba"
+    "opensInNewTab": "abre em nova aba",
+    "allPosts": "Todos os posts no blog",
+    "readBlog": "Ler o blog"
   },
   "a11y": {
     "skip": "Pular para o conteúdo",

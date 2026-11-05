@@ -218,12 +218,19 @@ export type Now = z.infer<typeof Now>;
 
 /* ---------- writing ---------- */
 
-export const Post = z.object({
-  id: z.string(),
-  title: Localized,
-  summary: Localized,
-  published: YearMonth,
-  url: z.object({ en: z.url(), pt: z.url() }),
-  visible,
+/**
+ * Blog (Writing section). Posts are read from the blog's RSS feed at render
+ * time and cached (ADR-020) — they are not stored here. Only titles and dates
+ * are shown, and titles pass through the claims guard.
+ */
+export const Blog = z.object({
+  feedUrl: z.url(),
+  /** "See all posts" link per locale. */
+  home: z.object({ en: z.url(), pt: z.url() }),
+  /** WordPress category that marks each language. */
+  category: z.object({ en: z.string().min(1), pt: z.string().min(1) }),
+  max: z.number().int().min(1).max(6),
+  /** Post URLs never shown, even if newest. */
+  hidden: z.array(z.url()),
 });
-export type Post = z.infer<typeof Post>;
+export type Blog = z.infer<typeof Blog>;

@@ -1,17 +1,21 @@
-import type { Post } from "./schema";
+import type { Blog } from "./schema";
 
 /**
- * Latest blog post(s) from ggblog99.wordpress.com, linked in both languages.
- * Empty until Part 6 (needs the EN and PT URLs of the TCC-site post).
+ * Writing section: the newest posts of ggblog99.wordpress.com in the page's
+ * language, read from the RSS feed and refreshed about every hour (ADR-020).
  *
- * Template:
- * {
- *   id: "slug",
- *   title: { en: "", pt: "" },
- *   summary: { en: "", pt: "" },
- *   published: "2026-10",
- *   url: { en: "https://…", pt: "https://…" },
- *   visible: true,
- * }
+ * - Each post on the blog is in the "English" or "Português" category.
+ * - Only title and date are shown. Titles that hit the claims guard
+ *   (src/content/claims.ts) are skipped automatically.
+ * - To hide a specific post, add its URL to `hidden`.
  */
-export const posts = [] satisfies Post[];
+export const blog = {
+  feedUrl: "https://ggblog99.wordpress.com/feed/",
+  home: {
+    en: "https://ggblog99.wordpress.com/category/english/",
+    pt: "https://ggblog99.wordpress.com/",
+  },
+  category: { en: "English", pt: "Português" },
+  max: 3,
+  hidden: [],
+} satisfies Blog;

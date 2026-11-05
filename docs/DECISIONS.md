@@ -233,3 +233,17 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Decision.** Project `portfolio` (Hobby, personal account) with Vercel Authentication set to **All Deployments** (`ssoProtection.deploymentType = "all"`). Node.js 22.x, same as CI. All four generated domains were checked to redirect anonymous requests to `vercel.com/login`.
 
 **Consequences.** Every PR gets a preview that only Gustavo (logged in to Vercel) can open. The production URL was public for about 4 minutes on 2026-11-05 (same content as the public repository). Part 8 must switch protection back to Standard so the production domain becomes public.
+
+---
+
+## ADR-020 — Writing section reads the blog's RSS feed (newest 3, title + date)
+
+**Date:** 2026-11-05
+
+**Context.** The plan was one hand-picked post in `writing.ts`. Gustavo wants the section to follow the blog without editing the site. ggblog99.wordpress.com publishes every post in EN/PT pairs, marked by the categories "English" and "Português", and exposes a public RSS feed.
+
+**Decision.** The server fetches `/feed/` inside a `"use cache"` function with `cacheLife("hours")` (background refresh about hourly; `"minutes"` after a failure) and shows the **3 newest posts in the page's language**, **title and date only**, plus a link to the blog. Titles pass through the claims guard (`src/content/claims.ts`, now shared with the tests); a post whose title hits it is skipped. `blog.hidden` lists post URLs to suppress by hand. A small dependency-free parser reads the feed; any error yields an empty list and the section shows only "Read the blog".
+
+**Alternatives considered.** Link to the blog only (no evidence of writing on the portfolio); hand-picked posts (goes stale); WordPress REST API (no advantage over RSS here); showing excerpts (more unreviewed text on the site).
+
+**Consequences.** New posts appear within about an hour with no deploy. Blog text reaches the site without a per-post review, limited to titles and filtered by the guard. The fetch is server-side, so Part 7's CSP needs no `connect-src` for WordPress. As of today the guard drops the ServiceNow bootcamp posts (title contains "NTT DATA", banned by SOURCES.md), so each language shows 2 posts.
