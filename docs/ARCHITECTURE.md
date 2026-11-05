@@ -167,7 +167,15 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - `THEME_SCRIPT` (inline, in `<head>`) reads `localStorage.theme` and sets `data-theme="light"` **before the first paint** — no flash. Only `"light"`/`"dark"` are accepted.
 - The toggle reads the attribute via `useSyncExternalStore` + `MutationObserver`, so its icon always matches the screen.
 - Pages stay statically prerendered (a cookie read on the server would make them dynamic). See ADR-009.
-- Part 7: the inline script's SHA-256 hash goes into the CSP.
+- The CSP allows inline scripts, so this script needs no hash (ADR-022).
+
+## Security headers and SEO
+
+- **Headers** (`security-headers.ts`, applied to every route in `next.config.ts`, tested in `tests/security-headers.test.ts`): CSP with `'unsafe-inline'` scripts/styles and everything else strict (ADR-022), HSTS 2 years + preload, `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, COOP. `poweredByHeader: false`.
+- **Base URL** (`src/lib/site-url.ts`): `VERCEL_PROJECT_PRODUCTION_URL` on Vercel, localhost otherwise. Previews point canonicals to production.
+- **Metadata:** canonical + `hreflang` (en, pt-BR, x-default → en) on every page via `alternatesFor()`; Open Graph and Twitter card per locale.
+- **Open Graph image:** `src/app/[lang]/opengraph-image.tsx`, 1200×630, prerendered per locale. Repeats the dark-theme hex values (ImageResponse can't read CSS variables) — the one exception to the tokens rule.
+- **`/sitemap.xml`** (home + case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link).
 
 ## Accessibility (baseline)
 
@@ -175,6 +183,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - Nav links have `aria-label` and `aria-current="location"` for the section in view; tooltips are visual only.
 - Icon-only buttons have labels in both languages; language links carry `hreflang`/`lang`.
 - Visible `:focus-visible` outline using the accent token; `prefers-reduced-motion` respected.
+- Checked with axe-core (WCAG 2.2 AA + best practices) on the home page and the case study, dark and light: 0 violations (Part 7). Visible text is part of every accessible name (language switch); each page has one `h1`; heading levels don't skip.
 
 ## Content rules (enforced by code)
 
@@ -206,5 +215,4 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 7 | Security headers (CSP, HSTS, etc.), Open Graph, sitemap, accessibility pass |
 | 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site |

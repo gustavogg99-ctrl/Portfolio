@@ -30,12 +30,13 @@ export function About({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
         <dl className="flex flex-col gap-5 self-start rounded-2xl border border-border bg-surface p-5 text-sm">
           {facts.map(({ icon: Icon, label, value }) => (
-            <div key={label} className="flex gap-3">
-              <Icon className="mt-0.5 size-4 shrink-0 text-muted" aria-hidden />
-              <div className="flex flex-col gap-0.5">
-                <dt className="text-muted">{label}</dt>
-                <dd>{value}</dd>
-              </div>
+            // dl > div > dt + dd only (valid HTML); the icon lives inside <dt>.
+            <div key={label} className="flex flex-col gap-0.5">
+              <dt className="flex items-center gap-3 text-muted">
+                <Icon className="size-4 shrink-0" aria-hidden />
+                {label}
+              </dt>
+              <dd className="pl-7">{value}</dd>
             </div>
           ))}
         </dl>

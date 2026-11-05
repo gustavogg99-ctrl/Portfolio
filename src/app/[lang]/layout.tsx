@@ -4,6 +4,8 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { htmlLang, locales } from "@/i18n/config";
+import { alternatesFor } from "@/lib/alternates";
+import { SITE_URL } from "@/lib/site-url";
 import { content } from "@/content";
 import { THEME_SCRIPT } from "@/components/theme";
 import "../globals.css";
@@ -16,9 +18,24 @@ export async function generateStaticParams() {
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
   const locale = await getLocale();
+  const title = `${content.profile.name} — ${content.profile.title[locale]}`;
+  const other = locales.filter((l) => l !== locale);
   return {
-    title: `${content.profile.name} — ${content.profile.title[locale]}`,
+    metadataBase: SITE_URL,
+    title,
     description: dict.meta.description,
+    alternates: alternatesFor(locale),
+    openGraph: {
+      type: "website",
+      siteName: content.profile.name,
+      title,
+      description: dict.meta.description,
+      url: `/${locale}`,
+      locale: htmlLang[locale].replace("-", "_"),
+      alternateLocale: other.map((l) => htmlLang[l].replace("-", "_")),
+    },
+    twitter: { card: "summary_large_image", title, description: dict.meta.description },
+    robots: { index: true, follow: true },
   };
 }
 

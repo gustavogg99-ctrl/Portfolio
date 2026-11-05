@@ -11,12 +11,12 @@ export function SectionTitle({
 }: {
   lines: readonly string[];
   id: string;
-  /** 2 for sections, 3 for sub-sections (smaller). */
-  level?: 2 | 3;
+  /** 1 for a page title, 2 for sections, 3 for sub-sections (smaller). */
+  level?: 1 | 2 | 3;
 }) {
   const [first, ...rest] = lines;
-  const Tag = level === 2 ? "h2" : "h3";
-  const size = level === 2 ? "text-4xl md:text-6xl" : "text-3xl md:text-4xl";
+  const Tag = (["h1", "h2", "h3"] as const)[level - 1];
+  const size = level === 3 ? "text-3xl md:text-4xl" : "text-4xl md:text-6xl";
   return (
     <Tag id={id} className={`${size} leading-[0.95] font-bold tracking-tight`}>
       {first}

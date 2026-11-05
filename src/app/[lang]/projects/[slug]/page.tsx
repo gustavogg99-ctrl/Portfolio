@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { content } from "@/content";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { l } from "@/lib/localize";
+import { alternatesFor } from "@/lib/alternates";
 import { ArchitectureDiagram } from "@/components/architecture-diagram";
 import { CodeBlock } from "@/components/code-block";
 import { ProjectLinks, StackTags, StatusBadge } from "@/components/projects";
@@ -28,9 +29,14 @@ async function findProject(params: PageProps<"/[lang]/projects/[slug]">["params"
 export async function generateMetadata(props: PageProps<"/[lang]/projects/[slug]">): Promise<Metadata> {
   const project = await findProject(props.params);
   const locale = await getLocale();
+  const title = `${project.name} — ${content.profile.name}`;
+  const description = l(project.summary, locale);
   return {
-    title: `${project.name} — ${content.profile.name}`,
-    description: l(project.summary, locale),
+    title,
+    description,
+    alternates: alternatesFor(locale, `/projects/${project.slug}`),
+    openGraph: { type: "article", title, description, url: `/${locale}/projects/${project.slug}` },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -58,7 +64,7 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
             {dict.labels.backToProjects}
           </Link>
           <StatusBadge project={project} dict={dict} />
-          <SectionTitle lines={[project.name]} id="project-title" />
+          <SectionTitle lines={[project.name]} id="project-title" level={1} />
           <p className="text-xs text-muted">{l(project.statusNote, locale)}</p>
           <p className="max-w-2xl text-lg text-foreground/90 md:text-xl">{l(project.summary, locale)}</p>
           {project.scope && (
