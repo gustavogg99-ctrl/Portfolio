@@ -14,7 +14,8 @@ Personal portfolio of Gustavo Rodrigues. This document describes how the site is
 | Font | Geist Sans / Geist Mono, self-hosted (`geist` package) | — |
 | Icons | lucide-react (+ GitHub mark from Simple Icons, CC0) | — |
 | Tests | Vitest | 5 |
-| Hosting | Vercel — connected, all deployments behind Vercel Authentication until Part 8 (ADR-019) | — |
+| Hosting | Vercel — `gustavorodrigues.vercel.app`; Standard Protection: production public, previews private (ADR-025) | — |
+| Analytics | Vercel Web Analytics (`@vercel/analytics`), cookie-less, same-origin script | 2 |
 | CI | GitHub Actions | — |
 
 Runtime: Node.js 22+.
@@ -172,7 +173,8 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 ## Security headers and SEO
 
 - **Headers** (`security-headers.ts`, applied to every route in `next.config.ts`, tested in `tests/security-headers.test.ts`): CSP with `'unsafe-inline'` scripts/styles and everything else strict (ADR-022), HSTS 2 years + preload, `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, COOP. `poweredByHeader: false`.
-- **Base URL** (`src/lib/site-url.ts`): `VERCEL_PROJECT_PRODUCTION_URL` on Vercel, localhost otherwise. Previews point canonicals to production.
+- **Base URL** (`src/lib/site-url.ts`): `VERCEL_PROJECT_PRODUCTION_URL` on Vercel (production domain `gustavorodrigues.vercel.app`), localhost otherwise. Previews point canonicals to production.
+- **Analytics:** `<Analytics />` from `@vercel/analytics/next` in the root layout. Script and beacon on `/_vercel/insights/*` (same origin), so the CSP needs no change; no cookies. Enabled per project in the Vercel dashboard (ADR-025).
 - **Metadata:** canonical + `hreflang` (en, pt-BR, x-default → en) on every page via `alternatesFor()`; Open Graph and Twitter card per locale.
 - **Open Graph image:** `src/app/[lang]/opengraph-image.tsx`, 1200×630, prerendered per locale. Repeats the dark-theme hex values (ImageResponse can't read CSS variables) — the one exception to the tokens rule.
 - **`/sitemap.xml`** (home + case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link).
@@ -215,4 +217,4 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site (recorded in docs; the Observatory grade is not shown on the site, ADR-024) |
+| 8 | Production checks on the live domain; Observatory and Lighthouse measured (recorded in docs only, ADR-024) |
