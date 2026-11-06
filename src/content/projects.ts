@@ -56,14 +56,12 @@ export const projects = [
         pt: "Checklist de QA manual com 111 itens em 12 etapas; 10 manuais de formatação de 8 instituições do DF mapeados.",
       },
       {
-        en: "Mozilla HTTP Observatory: from C (50/100) to A+ (125/100).",
-        pt: "Mozilla HTTP Observatory: de C (50/100) para A+ (125/100).",
-      },
-      {
         en: "R$0/month infrastructure (Cloudflare free tier; the AI subscription is not included).",
         pt: "R$ 0 por mês de infraestrutura (plano gratuito da Cloudflare; a assinatura de IA não está incluída).",
       },
     ],
+    // The Observatory grade is not shown (ADR-024): these guardrails already
+    // list the controls behind it.
     guardrails: [
       {
         en: "Thesis text is treated as data, never as instructions (prompt-injection defense).",

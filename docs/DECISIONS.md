@@ -287,3 +287,20 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Decision.** Set the last visible item to `visible: false`. The component already skips the sub-section when no item is visible, and nothing links to `#now`, so no code changes. Items come back only when work has actually started (`in_progress`); a lone `planned` item is not enough to show the sub-section.
 
 **Consequences.** Certifications ends with the "In progress" chips. Bringing "Now" back is a content edit (`visible: true` plus `updated`). The `now` UI strings stay in the dictionaries for that.
+
+---
+
+## ADR-024 — No Observatory grade on the site; the hero keeps two counters (supersedes ADR-007 in part)
+
+**Date:** 2026-11-05
+
+**Context.** ADR-007 put three counters in the hero, the third being "A+ — Mozilla Observatory score on Autoria em Forma (from C)", and the Autoria em Forma highlights repeated it ("from C (50/100) to A+ (125/100)"). Gustavo decided (Notion `PORTFOLIO-10`, same reasoning as the blog task `BLOG-01`) that the HTTP Observatory is a simple configuration check: shown as an achievement, and as one of only three headline numbers, it reads as beginner-level security work. It also backfires here: ADR-022 means this portfolio itself will likely score below A+, so a visitor who runs the Observatory on the site they are reading would see a lower grade than the one the hero advertises.
+
+**Decision.**
+- **Hero:** remove the A+ counter and keep two: 13,000+ service points and ~1,000 incidents/month (both from Teledata/CAIXA, unchanged). The counter grid now follows the number of items.
+- **Autoria em Forma:** remove the Observatory highlight. The project's guardrails already list every control behind the grade (CSP with script hashes and the other headers, constant-time comparison, password hash in a Cloudflare Secret, rate limiting, IP not stored), so no information is lost.
+- The other rules of ADR-007 stand: only verifiable numbers, each with an `evidence` note; no Lighthouse or line/commit counts.
+
+**Alternatives considered.** Replace the counter with another Autoria em Forma number already in SOURCES.md — "20/20 regression tests" or "14 real errors turned into rules" (rejected: small numbers from a solo project have the same problem as headlines; they work in the case study, where they already are). Keep the grade as a neutral one-liner ("headers checked with the Observatory, 12/12 tests") or replace it with the rate-limit details (rejected: same signal, or small numbers again).
+
+**Consequences.** Both hero numbers come from infrastructure operations; AI work is shown by the Projects section, not by a counter. Part 8 still measures this portfolio on the Observatory and Lighthouse, but the results are recorded in docs only. Autoria em Forma no longer needs a re-check before launch. The grade remains in the project's own records (Notion `TCC-23`).

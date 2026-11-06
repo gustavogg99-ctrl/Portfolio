@@ -4,13 +4,13 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 ("Now" sub-section hidden, ADR-023; ServiceNow certificate still pending)._
+_Last updated: 2026-11-05 ("Now" hidden, ADR-023; Observatory grade no longer shown, ADR-024; ServiceNow certificate still pending)._
 
 ## How we work
 
 - One part = one branch + one pull request + entries in `docs/CHANGELOG.md` (and an ADR in `docs/DECISIONS.md` for any non-trivial decision) + the matching task updated in Notion.
 - Before opening a PR: `npm run check`, `npm run build`, and a Playwright pass (desktop 1440×900, mobile 390×844, dark and light). Send screenshots.
-- Gustavo reviews and merges with **"Create a merge commit"**, then deletes the branch. Never merge without his go-ahead.
+- Gustavo reviews and merges with **"Create a merge commit"**, then deletes the branch. Never merge without his go-ahead. **Every time a PR is opened, send him the PR link** (where the merge button is), together with the preview link.
 - When information from Gustavo is needed, ask for **one item at a time**.
 - If a claim isn't backed by `docs/SOURCES.md`, don't publish it.
 - **Chat rotation:** Gustavo starts a new chat every **3 parts** (always right after a merge). See "Handoff" below.
@@ -18,7 +18,7 @@ _Last updated: 2026-11-05 ("Now" sub-section hidden, ADR-023; ServiceNow certifi
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content polish is deferred** to the pre-launch phase: build every feature first, then one full content review (Gustavo's choice, 05/11/2026).
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-09` (01–07 done; 09 = pre-launch adjustments, due 2026-11-10 for the ServiceNow certificate; 08 = publish, blocked by 09).
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-10` (01–07 and 10 done; 09 = pre-launch adjustments, due 2026-11-10 for the ServiceNow certificate; 08 = publish, blocked by 09).
 - Vercel: project `portfolio`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
 ## Handoff (every 3 parts)
@@ -49,6 +49,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 Chat count: new chat starts at 0. Every section of the site is built; this phase is content, not features.
 - **Shark in ServiceNow #14 (Aoop):** certificate expected by **2026-11-10**. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
 - ~~**"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.~~ **Done:** hidden — no work in progress until the site launches (ADR-023). Bring it back only with work that has actually started.
+- ~~**Observatory grade as a highlight (`PORTFOLIO-10`):**~~ **Done:** removed from the hero counters and from the Autoria em Forma highlights (ADR-024). The hero keeps two counters.
 - **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
 - **Production URL — waiting on Gustavo:** today it is `portfolio-kappa-black-12.vercel.app` (random suffix). Decide before publishing: rename the Vercel project for a clean `*.vercel.app` name, or a custom domain. Canonicals, sitemap and Open Graph follow `VERCEL_PROJECT_PRODUCTION_URL` automatically.
 
@@ -56,7 +57,7 @@ Chat count: new chat starts at 0. Every section of the site is built; this phase
 - Switch Vercel Authentication from "All Deployments" back to **Standard** so the production domain is public (ADR-019).
 - Production deploy on `*.vercel.app` after Gustavo approves.
 - Cookie-less analytics (Vercel Web Analytics). Its script is served from the same origin (`/_vercel/insights`), so the CSP needs no change — confirm on the preview.
-- Re-measure **on the live sites** before citing: Mozilla Observatory for Autoria em Forma (A+ is from 22/10/2026) and for this portfolio (expected below A+ because of `'unsafe-inline'`, ADR-022); Lighthouse. Record results in docs.
+- Measure **on the live site**: Mozilla Observatory for this portfolio (expected below A+ because of `'unsafe-inline'`, ADR-022) and Lighthouse. Record results in docs only — no Observatory grade is shown on the site (ADR-024), so Autoria em Forma no longer needs a re-check.
 - Submit `sitemap.xml` to Google Search Console (optional).
 
 ## Later
