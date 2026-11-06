@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 ("Now" hidden, ADR-023; Observatory grade no longer shown, ADR-024; ServiceNow certificate still pending)._
+_Last updated: 2026-11-05 (Part 8 in progress: publish on gustavorodrigues.vercel.app, ADR-025)._
 
 ## How we work
 
@@ -18,8 +18,8 @@ _Last updated: 2026-11-05 ("Now" hidden, ADR-023; Observatory grade no longer sh
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content polish is deferred** to the pre-launch phase: build every feature first, then one full content review (Gustavo's choice, 05/11/2026).
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-10` (01–07 and 10 done; 09 = pre-launch adjustments, due 2026-11-10 for the ServiceNow certificate; 08 = publish, blocked by 09).
-- Vercel: project `portfolio`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-10` (01–07 and 10 done; 08 = publish, in progress; 09 = ServiceNow certificate + content review, moved to after launch).
+- Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
 ## Handoff (every 3 parts)
 
@@ -45,20 +45,23 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-### 1. Final adjustments — pre-launch (before Part 8)
-Chat count: new chat starts at 0. Every section of the site is built; this phase is content, not features.
-- **Shark in ServiceNow #14 (Aoop):** certificate expected by **2026-11-10**. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
-- ~~**"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.~~ **Done:** hidden — no work in progress until the site launches (ADR-023). Bring it back only with work that has actually started.
-- ~~**Observatory grade as a highlight (`PORTFOLIO-10`):**~~ **Done:** removed from the hero counters and from the Autoria em Forma highlights (ADR-024). The hero keeps two counters.
-- **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
-- **Production URL — waiting on Gustavo:** today it is `portfolio-kappa-black-12.vercel.app` (random suffix). Decide before publishing: rename the Vercel project for a clean `*.vercel.app` name, or a custom domain. Canonicals, sitemap and Open Graph follow `VERCEL_PROJECT_PRODUCTION_URL` automatically.
+### 1. Part 8 — Publish (in progress, ADR-025)
+Decided on 2026-11-05: skip the pre-launch content review and the ServiceNow certificate (both move to "After launch"); production domain **gustavorodrigues.vercel.app** (free; no custom domain).
+- [x] `gustavorodrigues.vercel.app` added to the Vercel project.
+- [x] Vercel Web Analytics in code (`<Analytics />`, same-origin script, no CSP change).
+- [ ] Merge the Part 8 PR → production deploy of `main`.
+- [ ] Gustavo enables **Web Analytics** in the Vercel dashboard (Analytics tab → Enable).
+- [ ] Switch Vercel Authentication from "All Deployments" to **Standard** (production domains public, previews private).
+- [ ] Check on the live domain, logged out: `/`, `/en`, `/pt`, case study, `sitemap.xml`, `robots.txt`, canonical/OG pointing at `gustavorodrigues.vercel.app`, security headers, analytics script 200.
+- [ ] Measure Mozilla Observatory and Lighthouse on the live domain; record in docs only (ADR-024).
+- [ ] Optional: submit `sitemap.xml` to Google Search Console.
 
-### 2. Part 8 — Publish
-- Switch Vercel Authentication from "All Deployments" back to **Standard** so the production domain is public (ADR-019).
-- Production deploy on `*.vercel.app` after Gustavo approves.
-- Cookie-less analytics (Vercel Web Analytics). Its script is served from the same origin (`/_vercel/insights`), so the CSP needs no change — confirm on the preview.
-- Measure **on the live site**: Mozilla Observatory for this portfolio (expected below A+ because of `'unsafe-inline'`, ADR-022) and Lighthouse. Record results in docs only — no Observatory grade is shown on the site (ADR-024), so Autoria em Forma no longer needs a re-check.
-- Submit `sitemap.xml` to Google Search Console (optional).
+## After launch (before sharing the link)
+
+The site is public but **not shared** until this is done (ADR-025).
+- **Large review of the live site** by Gustavo with skills and tools (content, accessibility, performance, SEO, security). Fixes go through the normal branch + PR flow.
+- **Full content review** (moved from pre-launch).
+- **Shark in ServiceNow #14 (Aoop):** when the certificate arrives, link (or PDF) + month → `servicenow-shark` in `certifications.ts`.
 
 ## Later
 

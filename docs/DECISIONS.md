@@ -304,3 +304,19 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** Replace the counter with another Autoria em Forma number already in SOURCES.md — "20/20 regression tests" or "14 real errors turned into rules" (rejected: small numbers from a solo project have the same problem as headlines; they work in the case study, where they already are). Keep the grade as a neutral one-liner ("headers checked with the Observatory, 12/12 tests") or replace it with the rate-limit details (rejected: same signal, or small numbers again).
 
 **Consequences.** Both hero numbers come from infrastructure operations; AI work is shown by the Projects section, not by a counter. Part 8 still measures this portfolio on the Observatory and Lighthouse, but the results are recorded in docs only. Autoria em Forma no longer needs a re-check before launch. The grade remains in the project's own records (Notion `TCC-23`).
+
+---
+
+## ADR-025 — Publish on gustavorodrigues.vercel.app; ServiceNow and content review after launch
+
+**Date:** 2026-11-05
+
+**Context.** Part 8 (publish) was blocked by the pre-launch adjustments (`PORTFOLIO-09`): the ServiceNow certificate, a full content review and the production URL. The certificate will take longer than expected. Gustavo prefers to launch first and then run one large review of the live site with skills and tools, **before sharing the link with anyone**, so that everything is analysed in its final, fixed form. A custom domain costs money; a clean `*.vercel.app` name is free.
+
+**Decision.**
+- Production domain: **`gustavorodrigues.vercel.app`** (free, added to the project on 2026-11-05). The old `portfolio-kappa-black-12.vercel.app` keeps serving the same deployment; canonicals, sitemap and Open Graph use `VERCEL_PROJECT_PRODUCTION_URL` and are checked on the live site to point at the new name.
+- The ServiceNow certificate and the full content review move to **after launch**. Launch ≠ sharing: the link is not shared until the post-launch review is done.
+- Cookie-less analytics with **Vercel Web Analytics** (`@vercel/analytics/next`, `<Analytics />` in the root layout). Its script and data endpoint are on the same origin (`/_vercel/insights/*`), so the CSP is unchanged. It must be enabled once in the Vercel dashboard (Analytics tab); until then the script returns 404 and nothing is collected.
+- Vercel Authentication goes back to **Standard Protection** (`prod_deployment_urls_and_all_previews`): the production domains are public, previews and deployment URLs stay private (supersedes the "all deployments" part of ADR-019).
+
+**Consequences.** The site is public but unannounced. Content still follows SOURCES.md; anything found in the post-launch review is fixed through the normal branch + PR flow. Observatory and Lighthouse are measured on the live domain and recorded in docs only (ADR-024).

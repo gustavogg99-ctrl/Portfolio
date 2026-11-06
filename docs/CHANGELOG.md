@@ -2,6 +2,21 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 8 — Publish · 2026-11-05
+
+**Added**
+- Vercel Web Analytics: `@vercel/analytics` 2 and `<Analytics />` in the root layout (cookie-less; same-origin script, CSP unchanged).
+- Production domain `gustavorodrigues.vercel.app` added to the Vercel project.
+- ADR-025: publish now; ServiceNow certificate and full content review move to after launch; the link is not shared until the post-launch review; Standard Protection.
+
+**Changed**
+- ROADMAP: Part 8 checklist and new "After launch" section; ARCHITECTURE: hosting, analytics, base URL.
+
+**Verified**
+- `npm run check`, `npm run build`.
+- Playwright (`next start`): `/en` and `/pt/projects/autoria-em-forma`, desktop/mobile, dark/light: insights script present, no CSP violations. Locally the script returns 404 (it exists only on Vercel once analytics is enabled).
+- Live-domain checks are recorded in the ROADMAP checklist after the deploy.
+
 ## Pre-launch — Observatory grade no longer shown · 2026-11-05
 
 **Changed**

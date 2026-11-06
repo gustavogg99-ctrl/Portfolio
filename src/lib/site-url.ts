@@ -3,7 +3,8 @@
  * On Vercel, VERCEL_PROJECT_PRODUCTION_URL is the production domain (system
  * env var, available at build time) — previews also point their canonical URLs
  * at production, which is what search engines should index. Locally: localhost.
- * Replace with the custom domain when there is one (ROADMAP "Later").
+ * Production domain: gustavorodrigues.vercel.app (ADR-025). Replace with a
+ * custom domain if there is one (ROADMAP "Later").
  */
 export const SITE_URL = new URL(
   process.env.VERCEL_PROJECT_PRODUCTION_URL

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+// Cookie-less page views, script served from this origin (/_vercel/insights) — no CSP change (ADR-025).
+import { Analytics } from "@vercel/analytics/next";
 // Self-hosted Geist (no request to Google Fonts — ADR-005).
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
@@ -51,7 +53,10 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
