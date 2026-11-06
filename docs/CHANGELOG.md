@@ -2,6 +2,15 @@
 
 What changed in each part of the build. Newest first.
 
+## Pre-launch — "Now" sub-section hidden · 2026-11-05
+
+**Changed**
+- `now.ts`: the last visible item (Support Agent v2, *Planned*) set to `visible: false`. It repeated the Support Agent card. With no visible item, the "Now" sub-section is not rendered (ADR-023). No code changes.
+
+**Verified**
+- `npm run check`, `npm run build`.
+- Playwright: Certifications ends at "In progress", no `#now` on `/en` or `/pt`; desktop 1440×900 and mobile 390×844, dark and light.
+
 ## Docs — Handoff after Part 7 · 2026-11-05
 
 - ROADMAP: next chat starts at "Final adjustments — pre-launch"; production URL decision added; working agreements from this chat recorded (previews, blog allow list, deferred content review, decision notes for the blog).

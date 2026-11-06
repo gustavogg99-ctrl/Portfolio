@@ -275,3 +275,15 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Why the risk is acceptable (threat model).** `'unsafe-inline'` matters when an attacker can inject markup into the page. Here there is no injection path: no visitor content is ever rendered (contact messages go to Formspree and email, never back to the page), there are no third-party scripts, and the only external text — blog titles — is rendered by React, which escapes it.
 
 **Consequences.** Mozilla Observatory deducts 20 points for `'unsafe-inline'`, so this site will likely not reach A+ (Autoria em Forma, a different architecture, does). The grade is measured and recorded on the live site in Part 8, as for every number. Revisit if the site ever renders user content, adds third-party scripts, or Next.js ships hash support for its inline payload.
+
+---
+
+## ADR-023 — "Now" sub-section hidden until there is real work in progress
+
+**Date:** 2026-11-05
+
+**Context.** The "Now" sub-section (under Certifications) had one visible item, "Planning v2 of the support-agent prototype", marked *Planned*. It repeats what the Support Agent card already says ("LLM integration on the roadmap"), and a list with one plan looks thinner than no list. The other items are hidden: Microsoft Learn and Scrum are already shown as certifications in progress, and the n8n automation hasn't started. Gustavo has no other work in progress: he finishes this site first and starts the next project after launch.
+
+**Decision.** Set the last visible item to `visible: false`. The component already skips the sub-section when no item is visible, and nothing links to `#now`, so no code changes. Items come back only when work has actually started (`in_progress`); a lone `planned` item is not enough to show the sub-section.
+
+**Consequences.** Certifications ends with the "In progress" chips. Bringing "Now" back is a content edit (`visible: true` plus `updated`). The `now` UI strings stay in the dictionaries for that.

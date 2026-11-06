@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 (handoff after Part 7; next chat starts at "Final adjustments")._
+_Last updated: 2026-11-05 ("Now" sub-section hidden, ADR-023; ServiceNow certificate still pending)._
 
 ## How we work
 
@@ -48,7 +48,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 ### 1. Final adjustments — pre-launch (before Part 8)
 Chat count: new chat starts at 0. Every section of the site is built; this phase is content, not features.
 - **Shark in ServiceNow #14 (Aoop):** certificate expected by **2026-11-10**. When it arrives: link (or PDF) + month → `servicenow-shark` in `certifications.ts`. Notion task `PORTFOLIO-09` (blocks `PORTFOLIO-08`).
-- **"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.
+- ~~**"Now" section:** only one planned item today. Add real in-progress items or remove the sub-section.~~ **Done:** hidden — no work in progress until the site launches (ADR-023). Bring it back only with work that has actually started.
 - **Full content review by Gustavo**, once every section works (pre-launch). Same Notion task `PORTFOLIO-09`.
 - **Production URL — waiting on Gustavo:** today it is `portfolio-kappa-black-12.vercel.app` (random suffix). Decide before publishing: rename the Vercel project for a clean `*.vercel.app` name, or a custom domain. Canonicals, sitemap and Open Graph follow `VERCEL_PROJECT_PRODUCTION_URL` automatically.
 
