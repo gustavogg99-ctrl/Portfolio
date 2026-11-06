@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 (Part 8 in progress: publish on gustavorodrigues.vercel.app, ADR-025)._
+_Last updated: 2026-11-05 (handoff after Part 8 — site live on gustavorodrigues.vercel.app, not shared yet; next chat starts at "After launch")._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-05 (Part 8 in progress: publish on gustavorodrigues.verce
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content polish is deferred** to the pre-launch phase: build every feature first, then one full content review (Gustavo's choice, 05/11/2026).
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-10` (01–07 and 10 done; 08 = publish, in progress; 09 = ServiceNow certificate + content review, moved to after launch).
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-10` (01–08 and 10 done; 09 = ServiceNow certificate + content review, after launch).
 - Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
 ## Handoff (every 3 parts)
@@ -42,26 +42,25 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 5 | Experience, Education & courses, Certifications, Now | #6 |
 | 6 | Writing (blog RSS, newest 3 per language) and Contact (Formspree) | #7 |
 | 7 | Security headers (CSP per ADR-022), hreflang, Open Graph, sitemap, robots, accessibility fixes | #8 |
+| — | Pre-launch: "Now" sub-section hidden (ADR-023) | #10 |
+| — | Pre-launch: Observatory grade no longer shown; hero with two counters (ADR-024) | #11 |
+| 8 | Published on **gustavorodrigues.vercel.app**: Web Analytics, Standard Protection (ADR-025) | #12 |
 
 ## Next (in order)
 
-### 1. Part 8 — Publish (in progress, ADR-025)
-Decided on 2026-11-05: skip the pre-launch content review and the ServiceNow certificate (both move to "After launch"); production domain **gustavorodrigues.vercel.app** (free; no custom domain).
-- [x] `gustavorodrigues.vercel.app` added to the Vercel project.
-- [x] Vercel Web Analytics in code (`<Analytics />`, same-origin script, no CSP change).
-- [ ] Merge the Part 8 PR → production deploy of `main`.
-- [ ] Gustavo enables **Web Analytics** in the Vercel dashboard (Analytics tab → Enable).
-- [ ] Switch Vercel Authentication from "All Deployments" to **Standard** (production domains public, previews private).
-- [ ] Check on the live domain, logged out: `/`, `/en`, `/pt`, case study, `sitemap.xml`, `robots.txt`, canonical/OG pointing at `gustavorodrigues.vercel.app`, security headers, analytics script 200.
-- [ ] Measure Mozilla Observatory and Lighthouse on the live domain; record in docs only (ADR-024).
-- [ ] Optional: submit `sitemap.xml` to Google Search Console.
+The site is **live and public but not shared yet** (ADR-025). New chat starts at 0.
 
-## After launch (before sharing the link)
+### 1. After launch — before sharing the link
+- **Large review of the live site** by Gustavo with skills and tools (content, accessibility, performance, SEO, security). Ask him which tools/skills and the order. Fixes go through the normal branch + PR flow.
+- **Measure on the live domain** and record in docs only (ADR-024): Mozilla Observatory for this portfolio (expected below A+ because of `'unsafe-inline'`, ADR-022) and Lighthouse. Can be part of the review above. The shell here cannot reach `*.vercel.app` (proxy allowlist); use WebFetch, the browser, or ask Gustavo.
+- **Full content review** (moved from pre-launch; `PORTFOLIO-09`).
+- **Shark in ServiceNow #14 (Aoop):** when the certificate arrives, link (or PDF) + month → `servicenow-shark` in `certifications.ts` (`PORTFOLIO-09`).
+- Optional: submit `sitemap.xml` to Google Search Console.
 
-The site is public but **not shared** until this is done (ADR-025).
-- **Large review of the live site** by Gustavo with skills and tools (content, accessibility, performance, SEO, security). Fixes go through the normal branch + PR flow.
-- **Full content review** (moved from pre-launch).
-- **Shark in ServiceNow #14 (Aoop):** when the certificate arrives, link (or PDF) + month → `servicenow-shark` in `certifications.ts`.
+### Part 8 — checks done on 2026-11-05 (logged out)
+- `gustavorodrigues.vercel.app`: `/en`, `/pt/projects/autoria-em-forma` public; `sitemap.xml` and `robots.txt` use the new domain; `/_vercel/insights/script.js` served (Web Analytics enabled by Gustavo).
+- Preview URLs still redirect to `vercel.com/login` (Standard Protection).
+- `portfolio-kappa-black-12.vercel.app` still serves the same deployment; canonicals point to the new domain.
 
 ## Later
 

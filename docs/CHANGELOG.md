@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 8 · 2026-11-05
+
+- ROADMAP: parts #10–#12 moved to "Done"; next chat starts at "After launch" (large review, live measurements, content review, ServiceNow); Part 8 logged-out checks recorded.
+
 ## Part 8 — Publish · 2026-11-05
 
 **Added**
