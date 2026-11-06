@@ -135,7 +135,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Hero title** = static line + rotating word (`profile.hero`). The server renders the first word complete, so the page works without JavaScript and doesn't jump. The `Typewriter` client component then types/erases each word (≈90 ms per letter, 1.8 s hold).
 - **Accessibility:** the visual title is `aria-hidden`; screen readers read one stable sentence ("I BUILD AI: SECURE, TESTED, AUDITABLE."). With `prefers-reduced-motion`, the first word stays still.
 - **CTAs:** See projects (primary), Resume (only when `resumeUrl` is set), Contact.
-- **Counters** come from `profile.stats`; each has an internal `evidence` note (ADR-007).
+- **Counters** come from `profile.stats`; each has an internal `evidence` note (ADR-007). Today there are two, both from infrastructure operations (ADR-024). The grid follows the number of counters (`STAT_COLUMNS` in `hero.tsx`: 2 → two columns, 3 → three, 4 → 2×2 then four on `xl`).
 - **About:** paragraphs from `profile.about` + facts card (location, availability, languages).
 - **Skills** (`#skills`, a sub-section of About, not in the nav): groups from `skills.ts` rendered as tags, no levels or percentages. Items are either a plain name (same in both languages, e.g. "ISO/IEC 27001") or `{ en, pt }` for descriptions.
 
@@ -215,4 +215,4 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site |
+| 8 | Vercel deployment, cookie-less analytics, Observatory and Lighthouse measured on the live site (recorded in docs; the Observatory grade is not shown on the site, ADR-024) |

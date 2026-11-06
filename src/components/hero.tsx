@@ -5,6 +5,14 @@ import type { Locale } from "@/i18n/config";
 import { l } from "@/lib/localize";
 import { Typewriter } from "./typewriter";
 
+/** Counter grid columns by number of stats (full class names so Tailwind sees them). */
+const STAT_COLUMNS: Record<number, string> = {
+  1: "",
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-3",
+  4: "sm:grid-cols-2 xl:grid-cols-4",
+};
+
 export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const { profile } = content;
   const staticLine = l(profile.hero.static, locale);
@@ -52,7 +60,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         </a>
       </div>
 
-      <ul className="grid gap-3 sm:grid-cols-3">
+      <ul className={`grid gap-3 ${STAT_COLUMNS[profile.stats.length] ?? "sm:grid-cols-2"}`}>
         {profile.stats.map((stat) => (
           <li
             key={stat.evidence}

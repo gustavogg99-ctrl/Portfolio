@@ -2,6 +2,17 @@
 
 What changed in each part of the build. Newest first.
 
+## Pre-launch — Observatory grade no longer shown · 2026-11-05
+
+**Changed**
+- Hero: the "A+ Mozilla Observatory" counter removed; two counters remain (13,000+ service points, ~1,000 incidents/month). The counter grid now follows the number of counters (`STAT_COLUMNS` in `hero.tsx`).
+- Autoria em Forma: the "Mozilla HTTP Observatory: from C to A+" highlight removed; the guardrails already list the controls behind it.
+- ADR-024 (supersedes ADR-007 in part); SOURCES.md, ARCHITECTURE.md and ROADMAP updated (Part 8 records Observatory/Lighthouse in docs only; PR link sent with every PR).
+
+**Verified**
+- `npm run check`, `npm run build`; no "Observatory" left in the rendered pages.
+- Playwright: hero with two counters and the case study without the grade; desktop 1440×900 and mobile 390×844, dark and light.
+
 ## Pre-launch — "Now" sub-section hidden · 2026-11-05
 
 **Changed**

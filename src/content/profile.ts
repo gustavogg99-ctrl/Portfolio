@@ -84,13 +84,7 @@ export const profile = {
       label: { en: "incidents handled per month", pt: "incidentes tratados por mês" },
       evidence: "Teledata/CAIXA — briefing §4.",
     },
-    {
-      value: { en: "A+", pt: "A+" },
-      label: {
-        en: "Mozilla Observatory score on Autoria em Forma (from C)",
-        pt: "nota no Mozilla Observatory do Autoria em Forma (antes C)",
-      },
-      evidence: "Autoria em Forma audit (C 50/100 → A+ 125/100). Re-check on the live site before launch.",
-    },
+    // The Mozilla Observatory "A+" counter was removed (ADR-024): a header
+    // configuration check reads as beginner-level when shown as a headline number.
   ],
 } satisfies Profile;
