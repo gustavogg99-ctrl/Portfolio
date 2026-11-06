@@ -4,6 +4,8 @@ import type { Now } from "./schema";
  * "What I'm doing now" — the place for moving work, so the Projects section
  * stays limited to finished, verifiable work. Update `updated` on every edit.
  * ServiceNow is intentionally not here (it goes to certifications once issued).
+ * With no visible item the whole sub-section is not rendered (ADR-023): only
+ * work that has actually started goes here, never "planned" filler.
  */
 export const now = {
   updated: "2026-11",
@@ -32,7 +34,8 @@ export const now = {
         pt: "Planejando a v2 do protótipo de agente de suporte: o LLM classifica, as regras atuais viram guardrail e testes bloqueiam regressões.",
       },
       status: "planned",
-      visible: true,
+      // Hidden (ADR-023): repeats the Support Agent card ("LLM integration on the roadmap").
+      visible: false,
     },
     {
       id: "port-auto",
