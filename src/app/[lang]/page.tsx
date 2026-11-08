@@ -8,6 +8,7 @@ import { Projects } from "@/components/projects";
 import { Section } from "@/components/section";
 import { SiteShell } from "@/components/site-shell";
 import { Writing } from "@/components/writing";
+import { personJsonLd, serializeJsonLd } from "@/lib/json-ld";
 
 export default async function Home() {
   const locale = await getLocale();
@@ -15,6 +16,11 @@ export default async function Home() {
 
   return (
     <SiteShell locale={locale} dict={dict} onHome>
+      {/* Structured data (ADR-026). Not executed by the browser, so the CSP is unaffected. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd(locale)) }}
+      />
       <Section id="home">
         <Hero locale={locale} dict={dict} />
       </Section>

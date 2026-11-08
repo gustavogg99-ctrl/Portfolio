@@ -131,5 +131,14 @@
     "privacy": "Your name, email and message are sent through Formspree to my inbox and used only to reply to you.",
     "subject": "Portfolio contact (EN)",
     "direct": "Or write directly"
+  },
+  "notFound": {
+    "heading": [
+      "PAGE",
+      "NOT FOUND"
+    ],
+    "text": "This address doesn't exist on this site. It may have moved, or the link has a typo.",
+    "home": "Go to the home page",
+    "projects": "See projects"
   }
 }

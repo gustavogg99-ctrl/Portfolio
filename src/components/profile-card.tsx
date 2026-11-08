@@ -45,7 +45,8 @@ export function ProfileCard({
       />
 
       <div className="flex flex-col gap-1">
-        <h2 className="text-2xl font-bold tracking-tight">{profile.name}</h2>
+        {/* Not a heading: the page h1 must come first; the <aside> is already labelled with the name. */}
+        <p className="text-2xl font-bold tracking-tight">{profile.name}</p>
         <p className="text-sm font-medium text-silver">{l(profile.title, locale)}</p>
       </div>
 

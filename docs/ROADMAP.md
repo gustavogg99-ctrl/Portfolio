@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-05 (handoff after Part 8 — site live on gustavorodrigues.vercel.app, not shared yet; next chat starts at "After launch")._
+_Last updated: 2026-11-08 (Part 9 in review; post-launch review plan recorded under "After launch")._
 
 ## How we work
 
@@ -52,7 +52,11 @@ The site is **live and public but not shared yet** (ADR-025). New chat starts at
 
 ### 1. After launch — before sharing the link
 - **Large review of the live site** by Gustavo with skills and tools (content, accessibility, performance, SEO, security). Ask him which tools/skills and the order. Fixes go through the normal branch + PR flow.
-- **Measure on the live domain** and record in docs only (ADR-024): Mozilla Observatory for this portfolio (expected below A+ because of `'unsafe-inline'`, ADR-022) and Lighthouse. Can be part of the review above. The shell here cannot reach `*.vercel.app` (proxy allowlist); use WebFetch, the browser, or ask Gustavo.
+- ~~**Measure on the live domain**~~ done 2026-11-08 (docs only, ADR-024): Observatory **B+ (80/100)**, 11/12 — only `'unsafe-inline'` (ADR-022); PageSpeed `/en` **100/100/100/100** on mobile and desktop. The shell here cannot reach `*.vercel.app`; measured through Gustavo's Chrome.
+- **Review plan agreed on 2026-11-08** (Gustavo chose a single reviewer, area by area; tips from his notes filtered: no parallax/video, no FAQ/breadcrumbs/terms page):
+  - Part 9 (technical): 404, JSON-LD, icons, 320 px header, heading order. **Old domain** `portfolio-kappa-black-12.vercel.app` → 308 redirect to the production domain: **pending, Gustavo** in the Vercel dashboard (Settings → Domains → Edit → Redirect, 308; the MCP can't edit an existing domain).
+  - Part 10 (content): Autoria em Forma status vs. its live page (**still paused**, confirmed 2026-11-08; the service page in `autoria-em-forma-pipeline` must say so), privacy page (Formspree + Vercel Analytics, LGPD), hero/tagline/meta repeating the same sentence, ~30 em dashes, full SOURCES review, governance section in the README.
+  - Part 11 (design): compact profile card on mobile (the hero is below the fold at 390 px), leftovers. Then handoff.
 - **Full content review** (moved from pre-launch; `PORTFOLIO-09`).
 - **Shark in ServiceNow #14 (Aoop):** when the certificate arrives, link (or PDF) + month → `servicenow-shark` in `certifications.ts` (`PORTFOLIO-09`).
 - Optional: submit `sitemap.xml` to Google Search Console.
@@ -72,6 +76,7 @@ The site is **live and public but not shared yet** (ADR-025). New chat starts at
 ## Known caveats
 
 - First request to an unknown project slug may return HTTP 200 with the not-found page (`noindex`); later requests return 404 (Next 16 + Cache Components). See ARCHITECTURE.md.
+- 404 pages use the site title, not "Page not found" (ADR-026).
 - Code excerpts on the Autoria em Forma page have comments translated to English (disclosed in each fidelity note).
 
 ## Prompt for a new chat
