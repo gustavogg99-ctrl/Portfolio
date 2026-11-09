@@ -2,6 +2,21 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 13 — Public repository hygiene before sharing · 2026-11-09
+
+**Changed**
+- Claims guard: specific terms stored as SHA-256 hashes (`findHashedTerm`), generic tone words unchanged; the snippets check does the same for its internal term (ADR-030).
+- `SOURCES.md`, code comments and `ARCHITECTURE.md` state the rules without listing the banned terms; one sentence in ADR-007 and two CHANGELOG lines redacted (marked).
+- README: path to `security-headers.ts` fixed.
+
+**Added**
+- `npm run claims:hash -- "term"` (`scripts/hash-term.ts`).
+- Tests: matcher positive case, hash format, banned word in external text.
+- ADR-030.
+
+**Verified**
+- `npm run check`, `npm run build`; a local one-off check confirmed the 17 original terms are still caught.
+
 ## Docs — Autoria em Forma numbers confirmed · 2026-11-09
 
 - Gustavo confirmed, after the 2nd job, "14 real errors → rules (4 with automated tests)" and "111-item QA checklist in 12 stages". The site already shows them; SOURCES.md records the confirmation and the ROADMAP item is closed (it was the open point in ADR-027's consequences).
@@ -203,7 +218,7 @@ What changed in each part of the build. Newest first.
 **Verified (Playwright + curl, production build)**
 - Home `#projects`, details expanded, case page in PT (top, architecture, code) and mobile — no console errors, no horizontal overflow.
 - On the case page: nav "Projects" → `/pt#projects`, Contact → `/pt#contact`, language switch → `/en/projects/autoria-em-forma`.
-- `/en/projects/support-agent-governance-prototype` (no `page`) → 404. No occurrence of "painel" in the rendered HTML.
+- `/en/projects/support-agent-governance-prototype` (no `page`) → 404. No internal path in the rendered HTML.
 
 
 ## Part 3 — Hero, About and Skills · 2026-10-29
@@ -250,7 +265,7 @@ What changed in each part of the build. Newest first.
 - Design tokens for the dark (default) and light themes; `text-silver` gradient utility; reduced-motion support.
 - Self-hosted Geist Sans/Mono fonts.
 - Internationalized routing: `/en` (default) and `/pt`, `proxy.ts` redirects, cookie to remember the choice, type-checked dictionaries.
-- Content model in `src/content/` with Zod schemas, filled from the briefing and the 29/10 claims audit:
+- Content model in `src/content/` with Zod schemas, filled from the briefing and the 29/10 content audit:
   profile, experience (Teledata, MerkurIA), education, certifications (all hidden until verification links), projects (Autoria em Forma, Support Agent Governance Prototype, Corporate AI Use Policy), skills, now, writing (empty).
 - Build-time content validation and `npm run content:check` report.
 - Vitest suite: 7 content-rule tests + claims guard (banned terms and words).

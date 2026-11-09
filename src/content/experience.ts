@@ -5,8 +5,8 @@ import type { Experience } from "./schema";
  *
  * Rules (docs/SOURCES.md):
  * - Teledata: "co-led", never "led a team of 16" alone.
- * - MerkurIA: no numbers (R$100K, 1,500+ users, etc.) — not provable.
- * - Never mention the Digital Maturity Assessment or NTT DATA as employer.
+ * - MerkurIA: no numbers; none can be checked by a visitor.
+ * - Only the employers listed here; no other engagement is named.
  */
 export const experience = [
   {

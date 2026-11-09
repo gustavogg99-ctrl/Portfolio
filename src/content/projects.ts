@@ -8,7 +8,7 @@ import type { Project } from "./schema";
  * - Every project lists its limitations.
  * - Autoria em Forma: launched Oct/2026, paused after a demand test without
  *   organic traction; 2 complete jobs delivered (Oct and Nov 2026). No clients, sales or revenue.
- *   Never link /painel. No real TCC content anywhere (see SOURCES.md).
+ *   No internal links and no real TCC content anywhere (see SOURCES.md).
  * - Support agent: rule-based prototype. No LLM, no automated tests yet.
  */
 export const projects = [

@@ -41,7 +41,7 @@ src/
     index.ts           ← validated `content` export (the only import for components)
     profile.ts  experience.ts  education.ts  certifications.ts
     projects.ts  skills.ts  now.ts  writing.ts (blog feed config)
-    claims.ts          ← banned terms/words (claims guard), shared by tests and the blog filter
+    claims.ts          ← claims guard: hashed terms + banned words, shared by tests and the blog filter (ADR-030)
     snippets.ts        ← sanitized code excerpts from private repos
   i18n/
     config.ts          ← locales, default locale, cookie name
@@ -76,6 +76,7 @@ src/
     json-ld.ts         ← schema.org Person for the home page (ADR-026)
   proxy.ts             ← redirects "/" and unprefixed paths to /en or /pt
 scripts/check-content.ts   ← `npm run content:check`
+scripts/hash-term.ts       ← `npm run claims:hash -- "term"`: line to add to the claims guard
 tests/content.test.ts      ← content rules + claims guard
 tests/locale-path.test.ts  ← language switch path logic
 tests/json-ld.test.ts      ← structured data uses only content facts
@@ -214,7 +215,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 | Every project must list at least one limitation | `schema.ts` |
 | Every text field needs both `en` and `pt` | `schema.ts` |
 | Unique project slugs; at most one featured project | `validate.ts` |
-| Banned claims/words (e.g. "Gustavo Henrique", COBIT/EXIN as certs, MerkurIA numbers, "specialist", "expert") never appear | `tests/content.test.ts` |
+| Banned terms (stored as SHA-256 hashes, ADR-030) and words ("specialist", "expert", …) never appear | `src/content/claims.ts`, `tests/content.test.ts` |
 
 Validation runs when `src/content/index.ts` is imported, so **invalid content fails the build** — a broken or dishonest claim cannot be deployed.
 

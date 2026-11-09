@@ -21,7 +21,7 @@ export const blog = {
   max: 3,
   hidden: [],
   allowed: [
-    // ServiceNow bootcamp (Aoop / NTT DATA): about the bootcamp, not employment.
+    // ServiceNow bootcamp posts: the title names the organizers, not an employer.
     // Reviewed by Gustavo on 05/11/2026.
     "https://ggblog99.wordpress.com/2026/11/04/servicenow-bootcamp-all-nighter/",
     "https://ggblog99.wordpress.com/2026/11/04/bootcamp-servicenow-madrugada/",

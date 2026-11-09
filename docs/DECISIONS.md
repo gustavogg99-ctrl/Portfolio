@@ -82,7 +82,7 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 
 **Date:** 2026-10-29
 
-**Context.** The reference site uses unverifiable counters. The claims audit (29/10/2026) ruled out every MerkurIA number.
+**Context.** The reference site uses unverifiable counters. The content audit (29/10/2026) ruled out every number a visitor can't check. _(Wording redacted on 2026-11-09, ADR-030.)_
 
 **Decision.** Three counters: 13,000+ service points (Teledata/CAIXA), ~1,000 incidents/month (Teledata/CAIXA), A+ Mozilla Observatory (Autoria em Forma). Each has an internal `evidence` note. The A+ must be re-checked on the live site before launch.
 
@@ -385,3 +385,22 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** Keep it as a certification (rejected: nothing a stranger can check, and no exam); host the certificate image (rejected: legal name, signature, proves nothing).
 
 **Consequences.** `PORTFOLIO-09` is closed. Certifications lists only credentials with an exam and a way to verify them. If ServiceNow itself certifies Gustavo later (e.g. CSA), that goes to Certifications with its own verification link.
+
+---
+
+## ADR-030 — The public repository states the rules, not the banned terms
+
+**Date:** 2026-11-09
+
+**Context.** The repository is public and linked from the footer ("Source code"). The pre-sharing review (Gustavo's request, 09/11/2026) read it as a recruiter would: `docs/SOURCES.md`, the claims guard (`src/content/claims.ts`) and code comments listed, word for word, the numbers, organizations, names and an internal path the site must never show. A reader could take that list as a record of past claims, and it named work Gustavo chose not to present. It also published the path of a private admin page.
+
+**Decision.**
+- The guard keeps every specific term, but only as a SHA-256 hash plus its length. `findHashedTerm` hashes each substring of that length (case-sensitive), so matching is the same as before (`text.includes(term)`). The generic tone words (specialist, expert, senior, passionate) stay in plain text: they describe tone, not facts.
+- The sanitized-snippets check keeps its internal term the same way (`SNIPPET_TERM_HASHES`).
+- `npm run claims:hash -- "term"` prints the line to add. The plain list lives in the private Notion task `PORTFOLIO-15`.
+- `SOURCES.md` and code comments state the rules in neutral terms ("no number a visitor can't check", "only the employers listed"). One sentence in ADR-007 and two lines in the CHANGELOG were redacted and marked; no other old ADR was edited.
+- Tests: the guard over all content and dictionaries, a synthetic positive case for the matcher, and a format check of the hashes. A one-off local check confirmed that all 17 original terms are still caught.
+
+**Alternatives considered.** Make the repository private and remove the "Source code" link (rejected: loses the public evidence of CI, tests and decisions, which supports the site's thesis); drop the specific terms from the guard (rejected: the blog filter and regression protection depend on them); rewrite the git history (rejected: destructive, breaks every existing link to commits, and the history is rarely read).
+
+**Consequences.** Short terms can be found by guessing and hashing, so this hides the list from readers; it is not secrecy. The old wording remains in the git history before this PR. Adding a term needs the script instead of a plain edit.
