@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (Part 9 merged; Part 10 in review; Part 11 next, then handoff)._
+_Last updated: 2026-11-09 (handoff after Part 11 — post-launch review done; next chat starts at "Next")._
 
 ## How we work
 
@@ -18,7 +18,9 @@ _Last updated: 2026-11-09 (Part 9 merged; Part 10 in review; Part 11 next, then 
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content polish is deferred** to the pre-launch phase: build every feature first, then one full content review (Gustavo's choice, 05/11/2026).
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-10` (01–08 and 10 done; 09 = ServiceNow certificate + content review, after launch).
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-13` (all done except 09 = ServiceNow certificate; 11–13 = Parts 9–11). New parts get the next code.
+- **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
+- **Writing rules added on 2026-11-09:** no em dashes in visible text (test enforces it); page titles use `|`; the claims guard also scans the dictionaries; the privacy page must change when a provider or a collected field changes (ADR-027).
 - Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
 ## Handoff (every 3 parts)
@@ -45,26 +47,23 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | — | Pre-launch: "Now" sub-section hidden (ADR-023) | #10 |
 | — | Pre-launch: Observatory grade no longer shown; hero with two counters (ADR-024) | #11 |
 | 8 | Published on **gustavorodrigues.vercel.app**: Web Analytics, Standard Protection (ADR-025) | #12 |
+| — | Live measurements (docs only): Observatory B+ 80/100, PageSpeed 100×4 mobile and desktop, axe 0 (2026-11-08) | #14 |
+| 9 | Post-launch technical fixes: localized 404, Person JSON-LD, own icons, 320 px header, heading order (ADR-026); old domain → 308 | #14 |
+| 10 | Content review: hero/tagline/meta, privacy page (LGPD), no em dashes, Autoria numbers after its 2nd job (ADR-027); Autoria service page "paused" (other repo, PR #1) | #15 |
+| 11 | Compact profile card below 1024 px, hero on a phone's first screen (ADR-028) | #16 |
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). New chat starts at 0.
+The site is **live and public but not shared yet** (ADR-025). The post-launch review (Parts 9–11) is done. New chat starts at 0.
 
-### 1. After launch — before sharing the link
-- **Large review of the live site** by Gustavo with skills and tools (content, accessibility, performance, SEO, security). Ask him which tools/skills and the order. Fixes go through the normal branch + PR flow.
-- ~~**Measure on the live domain**~~ done 2026-11-08 (docs only, ADR-024): Observatory **B+ (80/100)**, 11/12 — only `'unsafe-inline'` (ADR-022); PageSpeed `/en` **100/100/100/100** on mobile and desktop. The shell here cannot reach `*.vercel.app`; measured through Gustavo's Chrome.
-- **Review plan agreed on 2026-11-08** (Gustavo chose a single reviewer, area by area; tips from his notes filtered: no parallax/video, no FAQ/breadcrumbs/terms page):
-  - Part 9 (technical): 404, JSON-LD, icons, 320 px header, heading order. **Old domain** `portfolio-kappa-black-12.vercel.app` → 308 redirect to the production domain: **done** by Gustavo (308, checked through the Vercel API on 2026-11-09).
-  - ~~Part 10 (content)~~ PR open (ADR-027): hero/tagline/meta, privacy page, no em dashes, Autoria numbers after its 2nd job (2 jobs, 29/29), README table. The Autoria service page got a "paused" notice in `autoria-em-forma-pipeline` PR #1 (its Cloudflare **preview** build failed; production build runs on merge — check the log if it fails again). Not re-checked after the 2nd job: "14 errors → rules" and "111-item checklist" (in the project's Claude files).
-  - Part 11 (design): compact profile card on mobile (the hero is below the fold at 390 px), leftovers. Then handoff.
-- **Full content review** (moved from pre-launch; `PORTFOLIO-09`).
+### 1. Before sharing the link
+- **Decide with Gustavo whether to share now** (ADR-025 said: not before the post-launch review — that review is done). Ask him first; sharing is his call.
+- **Confirm two Autoria em Forma numbers after its 2nd job** (not in the repository; they live in the project's Claude files): "14 real errors → rules" and "111-item QA checklist in 12 stages". Ask Gustavo for each one; update `projects.ts` and `SOURCES.md` only with what he confirms.
 - **Shark in ServiceNow #14 (Aoop):** when the certificate arrives, link (or PDF) + month → `servicenow-shark` in `certifications.ts` (`PORTFOLIO-09`).
-- Optional: submit `sitemap.xml` to Google Search Console.
 
-### Part 8 — checks done on 2026-11-05 (logged out)
-- `gustavorodrigues.vercel.app`: `/en`, `/pt/projects/autoria-em-forma` public; `sitemap.xml` and `robots.txt` use the new domain; `/_vercel/insights/script.js` served (Web Analytics enabled by Gustavo).
-- Preview URLs still redirect to `vercel.com/login` (Standard Protection).
-- `portfolio-kappa-black-12.vercel.app` still serves the same deployment; canonicals point to the new domain.
+### 2. Optional
+- Submit `sitemap.xml` to Google Search Console (Gustavo's account).
+- Re-measure Observatory/PageSpeed after big changes (docs only, ADR-024). The shell can't reach `*.vercel.app`; use Gustavo's Chrome.
 
 ## Later
 
