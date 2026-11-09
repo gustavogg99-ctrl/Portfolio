@@ -7,7 +7,7 @@ import type { Project } from "./schema";
  * - Only things that exist and can be checked. No idea/deck-only projects.
  * - Every project lists its limitations.
  * - Autoria em Forma: launched Oct/2026, paused after a demand test without
- *   organic traction; 1 complete job delivered. No clients, sales or revenue.
+ *   organic traction; 2 complete jobs delivered (Oct and Nov 2026). No clients, sales or revenue.
  *   Never link /painel. No real TCC content anywhere (see SOURCES.md).
  * - Support agent: rule-based prototype. No LLM, no automated tests yet.
  */
@@ -18,8 +18,8 @@ export const projects = [
     featured: true,
     status: "paused",
     statusNote: {
-      en: "Launched Oct 2026 · paused after a demand test without organic traction · 1 complete job delivered",
-      pt: "Lançado em out/2026 · pausado após teste de demanda sem tração orgânica · 1 trabalho completo entregue",
+      en: "Launched Oct 2026 · paused after a demand test without organic traction · 2 complete jobs delivered",
+      pt: "Lançado em out/2026 · pausado após teste de demanda sem tração orgânica · 2 trabalhos completos entregues",
     },
     summary: {
       en: "ABNT formatting and text revision service for undergraduate theses, with an AI pipeline whose deliveries are gated by automated checks.",
@@ -40,8 +40,8 @@ export const projects = [
     stack: ["Python", "Claude", "Cloudflare Workers", "Cloudflare D1", "OOXML (.docx)"],
     highlights: [
       {
-        en: "Regression suite with 20 tests on fictional documents generated at every run (20/20 passing).",
-        pt: "Suíte de regressão com 20 testes sobre documentos fictícios gerados a cada execução (20/20 passando).",
+        en: "Regression suite with 29 checks on fictional documents generated at every run (29/29 passing).",
+        pt: "Suíte de regressão com 29 verificações sobre documentos fictícios gerados a cada execução (29/29 passando).",
       },
       {
         en: "4 automated checks that block a delivery if they fail (pagination, quotation integrity, clean version, tracked-changes version), plus 1 triage check reviewed by hand (quotation × reference cross-check).",

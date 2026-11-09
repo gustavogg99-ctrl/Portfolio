@@ -29,6 +29,7 @@ src/
       layout.tsx       ← root layout: <html lang>, fonts, metadata
       page.tsx         ← home page
       projects/[slug]/page.tsx ← case-study page (only projects with `page` in content)
+      privacy/page.tsx ← privacy notice (LGPD), text in the dictionaries (ADR-027)
       not-found.tsx    ← localized 404 inside the site shell (ADR-026)
       [...missing]/page.tsx ← catch-all → notFound(), so unmatched paths get that 404
       icon.png  apple-icon.png ← "GR" monogram (512 / 180)
@@ -184,7 +185,8 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Analytics:** `<Analytics />` from `@vercel/analytics/next` in the root layout. Script and beacon on `/_vercel/insights/*` (same origin), so the CSP needs no change; no cookies. Enabled per project in the Vercel dashboard (ADR-025).
 - **Metadata:** canonical + `hreflang` (en, pt-BR, x-default → en) on every page via `alternatesFor()`; Open Graph and Twitter card per locale.
 - **Open Graph image:** `src/app/[lang]/opengraph-image.tsx`, 1200×630, prerendered per locale. Repeats the dark-theme hex values (ImageResponse can't read CSS variables) — the one exception to the tokens rule.
-- **`/sitemap.xml`** (home + case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link).
+- **Titles:** `Page | Gustavo Rodrigues`; the home is `Gustavo Rodrigues | <title>`. No em dashes in visible text (test in `tests/content.test.ts`, ADR-027).
+- **`/sitemap.xml`** (home, privacy and case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link).
 - **Structured data:** `Person` JSON-LD on the home page (`src/lib/json-ld.ts`), only facts from `src/content`; not executed, so no CSP change.
 - **Icons:** own "GR" favicon, `icon.png` and `apple-icon.png` (static files; colors repeat the tokens, like the OG image).
 - **404:** `[lang]/not-found.tsx` inside `SiteShell`, in the URL's language, `noindex`; a catch-all route sends unmatched paths there. Title = site title (ADR-026).
