@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 11 · 2026-11-09
+
+- ROADMAP: Parts 9–11 and the live measurements moved to "Done"; "Next" is now: decide on sharing the link, confirm two Autoria em Forma numbers, ServiceNow certificate; Notion codes up to `PORTFOLIO-13`; notes on the Autoria repository and the new writing rules.
+
 ## Part 11 — Compact profile card on mobile · 2026-11-09
 
 **Changed**
