@@ -66,7 +66,7 @@ export const certifications = [
   {
     // Only becomes "verified" once the certificate is issued (bootcamp ends Nov/2026).
     id: "servicenow-shark",
-    name: "Shark in ServiceNow #14 — App Engine Studio",
+    name: "Shark in ServiceNow #14: App Engine Studio",
     issuer: "Aoop",
     status: "pending_link",
   },
@@ -75,8 +75,8 @@ export const certifications = [
   {
     id: "microsoft-track",
     name: {
-      en: "Microsoft Learn — AI, security and data track",
-      pt: "Microsoft Learn — trilha de IA, segurança e dados",
+      en: "Microsoft Learn: AI, security and data track",
+      pt: "Microsoft Learn: trilha de IA, segurança e dados",
     },
     issuer: "Microsoft",
     status: "in_progress",

@@ -80,12 +80,12 @@ export const profile = {
         en: "service points covered by the infrastructure team I co-led",
         pt: "pontos de atendimento cobertos pela equipe de infraestrutura que co-liderei",
       },
-      evidence: "Teledata/CAIXA — briefing §4 and audit summary.",
+      evidence: "Teledata/CAIXA, briefing §4 and audit summary.",
     },
     {
       value: { en: "~1,000", pt: "~1.000" },
       label: { en: "incidents handled per month", pt: "incidentes tratados por mês" },
-      evidence: "Teledata/CAIXA — briefing §4.",
+      evidence: "Teledata/CAIXA, briefing §4.",
     },
     // The Mozilla Observatory "A+" counter was removed (ADR-024): a header
     // configuration check reads as beginner-level when shown as a headline number.

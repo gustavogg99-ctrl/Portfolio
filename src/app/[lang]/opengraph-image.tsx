@@ -13,7 +13,7 @@ const FG = "#ededed";
 const MUTED = "#8a8a8a";
 const BORDER = "#2a2a2a";
 
-export const alt = "Gustavo Rodrigues — portfolio";
+export const alt = "Gustavo Rodrigues, portfolio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

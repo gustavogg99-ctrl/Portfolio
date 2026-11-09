@@ -26,12 +26,12 @@ export const projects = [
       pt: "Serviço de formatação ABNT e revisão textual de TCC, com um pipeline de IA em que as entregas passam por verificações automáticas.",
     },
     scope: {
-      en: "Formatting and revision only — requests to write content are refused. Every delivery ships with tracked changes and comments, so the text provably remains the author's.",
-      pt: "Só formatação e revisão — pedidos de escrita de conteúdo são recusados. Toda entrega vai com controle de alterações e comentários, para provar que o texto continua do autor.",
+      en: "Formatting and revision only: requests to write content are refused. Every delivery ships with tracked changes and comments, so the text provably remains the author's.",
+      pt: "Só formatação e revisão: pedidos de escrita de conteúdo são recusados. Toda entrega vai com controle de alterações e comentários, para provar que o texto continua do autor.",
     },
     problem: {
-      en: "ABNT rules differ from one institution to another, and generic AI tools rewrite the student's text — which puts authorship at risk.",
-      pt: "As regras ABNT mudam de uma instituição para outra, e ferramentas genéricas de IA reescrevem o texto do aluno — o que coloca a autoria em risco.",
+      en: "ABNT rules differ from one institution to another, and generic AI tools rewrite the student's text, which puts authorship at risk.",
+      pt: "As regras ABNT mudam de uma instituição para outra, e ferramentas genéricas de IA reescrevem o texto do aluno, o que coloca a autoria em risco.",
     },
     built: {
       en: "A Python + Claude pipeline that runs outside the website, in an isolated environment: the LLM interprets the course manual and points out corrections, deterministic code applies the formatting to the .docx XML, and automated checks block the delivery if anything fails. Output: a clean version, a tracked-changes version and a PDF. The public site is a static page on Cloudflare Workers with first-party analytics (Worker + D1), no login and no upload.",
@@ -108,7 +108,7 @@ export const projects = [
           {
             kind: "io",
             title: { en: "Student sends the .docx", pt: "Aluno envia o .docx" },
-            detail: { en: "Via WhatsApp — the website has no upload.", pt: "Pelo WhatsApp — o site não tem upload." },
+            detail: { en: "Via WhatsApp. The website has no upload.", pt: "Pelo WhatsApp. O site não tem upload." },
           },
           {
             kind: "guard",
@@ -165,8 +165,8 @@ export const projects = [
           { en: "PDF", pt: "PDF" },
         ],
         parallel: {
-          en: "In parallel: a static page on Cloudflare Workers with first-party analytics (Worker + D1) — no login, no upload, no third-party trackers.",
-          pt: "Em paralelo: página estática em Cloudflare Workers com analytics próprio (Worker + D1) — sem login, sem upload, sem rastreadores de terceiros.",
+          en: "In parallel: a static page on Cloudflare Workers with first-party analytics (Worker + D1): no login, no upload, no third-party trackers.",
+          pt: "Em paralelo: página estática em Cloudflare Workers com analytics próprio (Worker + D1): sem login, sem upload, sem rastreadores de terceiros.",
         },
       },
       snippetIds: ["aef-safe-docx", "aef-quote-integrity", "aef-regression"],
@@ -213,8 +213,8 @@ export const projects = [
     ],
     limitations: [
       {
-        en: "Deterministic rules only — no LLM integrated yet.",
-        pt: "Só regras determinísticas — ainda sem LLM integrado.",
+        en: "Deterministic rules only. No LLM integrated yet.",
+        pt: "Só regras determinísticas. Ainda sem LLM integrado.",
       },
       { en: "No automated tests yet.", pt: "Ainda sem testes automatizados." },
       {
@@ -249,8 +249,8 @@ export const projects = [
     stack: ["LGPD", "ISO/IEC 42001", "ISO/IEC 27001", "NIST AI RMF", "Excel"],
     highlights: [
       {
-        en: "Framework mapping: of 23 requirements, 13 covered explicitly, 7 partially and 3 delegated to the adopting organization — gaps documented in a v3.0 roadmap.",
-        pt: "Mapeamento de frameworks: de 23 requisitos, 13 cobertos explicitamente, 7 parcialmente e 3 delegados à organização que adota — lacunas documentadas num roadmap da v3.0.",
+        en: "Framework mapping: of 23 requirements, 13 covered explicitly, 7 partially and 3 delegated to the adopting organization. Gaps documented in a v3.0 roadmap.",
+        pt: "Mapeamento de frameworks: de 23 requisitos, 13 cobertos explicitamente, 7 parcialmente e 3 delegados à organização que adota. Lacunas documentadas num roadmap da v3.0.",
       },
       {
         en: "Vendor risk procedure: inherent-risk tiering, 30 questions in 8 weighted domains, 5 knock-out criteria and required contract clauses.",
@@ -260,8 +260,8 @@ export const projects = [
     guardrails: [],
     limitations: [
       {
-        en: "A template — not an active policy of any organization. Adoption requires legal and governance review by the adopting company.",
-        pt: "É um modelo — não é a política ativa de nenhuma organização. A adoção exige revisão jurídica e de governança pela empresa que adotar.",
+        en: "A template, not an active policy of any organization. Adoption requires legal and governance review by the adopting company.",
+        pt: "É um modelo, não a política ativa de nenhuma organização. A adoção exige revisão jurídica e de governança pela empresa que adotar.",
       },
     ],
     links: {

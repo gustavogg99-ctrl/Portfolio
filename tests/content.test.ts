@@ -95,6 +95,11 @@ describe("claims guard (docs/SOURCES.md)", () => {
   // Dictionaries carry page text too (privacy page, meta descriptions), so they are scanned with the content.
   const all = JSON.stringify(content) + JSON.stringify(en) + JSON.stringify(pt);
 
+  // Em dashes read as AI-generated text; use a colon, comma or period (Part 10).
+  it("has no em dashes in visible text", () => {
+    expect(all).not.toContain("\u2014");
+  });
+
   it.each(BANNED_TERMS)("never contains %s", (term) => {
     expect(all).not.toContain(term);
   });

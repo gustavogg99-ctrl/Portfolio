@@ -13,7 +13,7 @@ import { SiteShell } from "@/components/site-shell";
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const dict = await getDictionary();
-  const title = `${dict.privacy.metaTitle} — ${content.profile.name}`;
+  const title = `${dict.privacy.metaTitle} | ${content.profile.name}`;
   const description = dict.privacy.metaDescription;
   return {
     title,
