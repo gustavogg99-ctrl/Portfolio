@@ -9,7 +9,8 @@ import type { Project } from "./schema";
  * - Autoria em Forma: launched Oct/2026, paused after a demand test without
  *   organic traction; 2 complete jobs delivered (Oct and Nov 2026). No clients, sales or revenue.
  *   No internal links and no real TCC content anywhere (see SOURCES.md).
- * - Support agent: rule-based prototype. No LLM, no automated tests yet.
+ * - Support agent: rule-based prototype. No LLM. 20 automated tests in CI
+ *   (repository PR #1, 09/11/2026).
  */
 export const projects = [
   {
@@ -200,6 +201,10 @@ export const projects = [
         en: "On the 10 simulated tickets: 6 escalated to a human, 4 automated, 3 sensitive-data cases detected.",
         pt: "Nos 10 chamados simulados: 6 escalonados para humano, 4 automatizados, 3 casos de dados sensíveis detectados.",
       },
+      {
+        en: "20 automated tests pin every governance rule and the results above; CI runs them on each push (Python 3.10 and 3.13).",
+        pt: "20 testes automatizados fixam cada regra de governança e os resultados acima; o CI roda a cada push (Python 3.10 e 3.13).",
+      },
     ],
     guardrails: [
       {
@@ -216,7 +221,6 @@ export const projects = [
         en: "Deterministic rules only. No LLM integrated yet.",
         pt: "Só regras determinísticas. Ainda sem LLM integrado.",
       },
-      { en: "No automated tests yet.", pt: "Ainda sem testes automatizados." },
       {
         en: "Simulated tickets; no real ticketing-system integration.",
         pt: "Chamados simulados; sem integração com sistema de chamados real.",
