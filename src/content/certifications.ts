@@ -7,6 +7,7 @@ import type { Certification } from "./schema";
  * (Credly, Microsoft Learn, issuer portal). Without the URL the build fails.
  *
  * NOT Gustavo's (never add): COBIT 2019, EXIN AI Essentials.
+ * Certificates of completion (courses, bootcamps) go to education.ts (ADR-018, ADR-029).
  */
 export const certifications = [
   // Verified
@@ -60,15 +61,6 @@ export const certifications = [
     status: "verified",
     credentialUrl: "https://www.skillfront.com/Badges/92711847854180",
     issued: "2024-12",
-  },
-
-  // Issued — waiting for verification links (Part 5).
-  {
-    // Only becomes "verified" once the certificate is issued (bootcamp ends Nov/2026).
-    id: "servicenow-shark",
-    name: "Shark in ServiceNow #14: App Engine Studio",
-    issuer: "Aoop",
-    status: "pending_link",
   },
 
   // In progress

@@ -42,6 +42,13 @@ describe("content rules", () => {
     expect(names.some((n) => n.includes("english") || n.includes("thomas jefferson"))).toBe(false);
   });
 
+  it("never shows a bootcamp certificate of completion as a certification (ADR-029)", () => {
+    const c = fresh();
+    const names = c.certifications.map((x) => JSON.stringify(x.name).toLowerCase());
+    expect(names.some((n) => n.includes("servicenow") || n.includes("shark"))).toBe(false);
+    expect(c.education.some((e) => e.id === "servicenow-shark" && e.completed)).toBe(true);
+  });
+
   it("rejects a placeholder in a visible item", () => {
     const c = fresh();
     c.projects[0].summary.en = "[CONFIRMAR: something]";

@@ -158,7 +158,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 ## Experience, Certifications and Now
 
-- **Experience (`#experience`):** vertical timeline, newest first; each company lists its roles with periods (`Present` when `end` is null) and highlights. Then **Education & courses** (`#education`, sub-section): degrees show "Expected", completed courses show "Completed".
+- **Experience (`#experience`):** vertical timeline, newest first; each company lists its roles with periods (`Present` when `end` is null) and highlights. Then **Education & courses** (`#education`, sub-section, in file order): degrees show "Expected", completed courses show "Completed". Certificates of completion (language course, bootcamp) live here, never in Certifications (ADR-018, ADR-029).
 - **Certifications (`#certifications`):** cards for `verified` items, newest first, each with a way to check it — a link to the credential page, or the issuer's portal plus the certificate number (`lookupId`, ADR-017). `pending_link` items are never rendered. `in_progress` items appear as chips.
 - **Now (`#now`, sub-section of Certifications):** visible items from `now.ts` with an "In progress"/"Planned" tag and the `updated` month. Items already shown as certifications in progress are hidden there to avoid duplicates. With no visible item the sub-section is not rendered at all — the case today (ADR-023).
 - Certification names are a plain string for official names or `{ en, pt }` for descriptions (same pattern as skills, ADR-014).
@@ -230,7 +230,4 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 ## Planned (not built yet)
 
-| Part | Item |
-|---|---|
-| 10 | Content review (ROADMAP "After launch") |
-| 11 | Design review: compact profile card on mobile |
+Nothing structural. Pending items live in `docs/ROADMAP.md`.

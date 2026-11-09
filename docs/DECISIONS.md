@@ -371,3 +371,17 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** Hiding the card on mobile and moving the name into the hero (rejected: the photo and the contact button are the fastest trust signals); collapsing it into the header (rejected: the header is already full at 320 px, ADR-026).
 
 **Consequences.** At 390×844 the h1 starts at ~324 px, so the hero headline and subtitle are on the first screen; at 320×640 the h1 starts at ~362 px. Tablet (768 px) gets the same compact card.
+
+---
+
+## ADR-029 — Shark in ServiceNow bootcamp is a course, not a certification
+
+**Date:** 2026-11-09
+
+**Context.** The ROADMAP waited for the "Shark in ServiceNow #14" certificate to list it under Certifications (`servicenow-shark`, `pending_link`; Notion `PORTFOLIO-09`). The document that arrived is a certificate of completion: an online training of 15 h, completed "satisfactorily", dated 30/10/2026, issued by Shark Academy (Aoop). It has no exam, no verification link, code or number, and it shows the full legal name and a signature. The name in the code ("…: App Engine Studio") is not on the certificate.
+
+**Decision.** Same rule as ADR-018: list it under **Education & courses** as "Shark in ServiceNow bootcamp, 14th edition (15 h) · Shark Academy (Aoop) · Online training · Completed Oct 2026", and remove the entry from `certifications.ts`. The name follows the certificate. The issuer is written without "NTT DATA" (claims guard; avoids implying employment). The certificate image is not published (ADR-017). Approved by Gustavo on 2026-11-09. A test keeps ServiceNow/Shark out of the certifications list.
+
+**Alternatives considered.** Keep it as a certification (rejected: nothing a stranger can check, and no exam); host the certificate image (rejected: legal name, signature, proves nothing).
+
+**Consequences.** `PORTFOLIO-09` is closed. Certifications lists only credentials with an exam and a way to verify them. If ServiceNow itself certifies Gustavo later (e.g. CSA), that goes to Certifications with its own verification link.
