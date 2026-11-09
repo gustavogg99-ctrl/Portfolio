@@ -2,6 +2,17 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 14 — Support Agent tests (pre-sharing review) · 2026-11-09
+
+**Changed**
+- Support Agent card: new highlight "20 automated tests… CI (Python 3.10 and 3.13)"; the limitation "No automated tests yet" removed. SOURCES.md updated.
+
+**Related (other repository)**
+- `support-agent-governance-prototype` PR #1: 20 `unittest` tests pinning every governance rule and the published 10/6/4/3 results; GitHub Actions on Python 3.10 and 3.13; README without "Career Relevance".
+
+**Verified**
+- `npm run check`, `npm run build`; Playwright on the Projects card (EN/PT).
+
 ## Part 13 — Public repository hygiene before sharing · 2026-11-09
 
 **Changed**
