@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
   const locale = await getLocale();
-  const title = `${content.profile.name} — ${content.profile.title[locale]}`;
+  const title = `${content.profile.name} | ${content.profile.title[locale]}`;
   const other = locales.filter((l) => l !== locale);
   return {
     metadataBase: SITE_URL,

@@ -2,6 +2,27 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 10 — Content review · 2026-11-09
+
+**Added**
+- Privacy page `/en/privacy` and `/pt/privacy` (LGPD: purposes, providers, legal basis, international transfer, rights), linked from the footer and the contact form; in the sitemap.
+- Test: no em dashes in visible text; the claims guard now scans the dictionaries too.
+- README: "Security, privacy and accessibility" table.
+- ADR-027.
+
+**Changed**
+- Hero h1 (EN) "I BUILD AI / THAT IS / …"; new subtitle, card tagline and meta description (EN/PT).
+- 26 em dashes replaced in content and dictionaries; page titles use `|`.
+- Autoria em Forma: 2 complete jobs delivered; regression suite 29/29 (SOURCES.md updated).
+- ROADMAP: old domain now redirects with 308 (done by Gustavo, checked through the Vercel API).
+
+**Related (other repository)**
+- `autoria-em-forma-pipeline` PR #1: "paused" notice on the service page; quote sending disabled.
+
+**Verified**
+- `npm run check`, `npm run build`.
+- Playwright + axe on the new privacy page (320/390/1440 px, dark and light): 0 violations, no overflow; hero at 320/390/1440 px without overflow.
+
 ## Part 9 — Post-launch technical fixes · 2026-11-08
 
 **Added**

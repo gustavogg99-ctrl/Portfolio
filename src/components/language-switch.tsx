@@ -38,7 +38,7 @@ export function LanguageSwitch({
     >
       {/* Visible text stays part of the accessible name (WCAG 2.5.3). */}
       {short}
-      <span className="sr-only"> — {label}</span>
+      <span className="sr-only">, {label}</span>
     </a>
   );
 }

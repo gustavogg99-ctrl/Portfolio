@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { content } from "@/content";
 import { validateContent } from "@/content/validate";
 import { BANNED_TERMS, BANNED_WORDS } from "@/content/claims";
+import en from "@/i18n/dictionaries/en.json";
+import pt from "@/i18n/dictionaries/pt.json";
 
 /** Deep copy so each test mutates its own version of the real content. */
 const fresh = () => structuredClone(content);
@@ -90,7 +92,13 @@ describe("code snippets (sanitized excerpts from private repos)", () => {
 });
 
 describe("claims guard (docs/SOURCES.md)", () => {
-  const all = JSON.stringify(content);
+  // Dictionaries carry page text too (privacy page, meta descriptions), so they are scanned with the content.
+  const all = JSON.stringify(content) + JSON.stringify(en) + JSON.stringify(pt);
+
+  // Em dashes read as AI-generated text; use a colon, comma or period (Part 10).
+  it("has no em dashes in visible text", () => {
+    expect(all).not.toContain("\u2014");
+  });
 
   it.each(BANNED_TERMS)("never contains %s", (term) => {
     expect(all).not.toContain(term);

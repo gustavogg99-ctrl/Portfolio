@@ -75,6 +75,10 @@ export function SiteShell({
           >
             {dict.footer.source}
           </a>
+          {" · "}
+          <a href={`/${locale}/privacy`} className="underline underline-offset-4 hover:text-foreground">
+            {dict.privacy.nav}
+          </a>
         </p>
       </footer>
     </>

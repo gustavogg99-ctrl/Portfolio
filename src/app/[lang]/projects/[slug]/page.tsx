@@ -29,7 +29,7 @@ async function findProject(params: PageProps<"/[lang]/projects/[slug]">["params"
 export async function generateMetadata(props: PageProps<"/[lang]/projects/[slug]">): Promise<Metadata> {
   const project = await findProject(props.params);
   const locale = await getLocale();
-  const title = `${project.name} — ${content.profile.name}`;
+  const title = `${project.name} | ${content.profile.name}`;
   const description = l(project.summary, locale);
   return {
     title,

@@ -11,21 +11,24 @@ export const profile = {
     en: "AI Builder · AI Governance",
     pt: "AI Builder · Governança de IA",
   },
-  // Same tone as the LinkedIn headline ("Building with AI, safely").
+  // The fact that sets him apart, not a fourth version of the hero sentence (Part 10).
   tagline: {
-    en: "Building with AI, safely.",
-    pt: "Construindo com IA, com segurança.",
+    en: "Systems analysis + journalism",
+    pt: "Análise de sistemas + jornalismo",
   },
+  // Who it is for and how, instead of repeating the h1 (Part 10).
   headline: {
-    en: "I build AI-powered products that are secure, tested and auditable.",
-    pt: "Construo produtos com IA que são seguros, testados e auditáveis.",
+    en: "AI products and governance for teams that need to ship with evidence: tests, controls and documentation.",
+    pt: "Produtos com IA e governança para equipes que precisam entregar com evidência: testes, controles e documentação.",
   },
   subtitle: {
     en: "Applied AI · Automation · AI Security & Governance · Brasília, Brazil",
     pt: "IA aplicada · Automação · Segurança e Governança de IA · Brasília, Brasil",
   },
   hero: {
-    static: { en: "I BUILD AI", pt: "CONSTRUO IA" },
+    // EN needs "THAT IS" for the adjective to read correctly; PT already agrees ("IA SEGURA").
+    // "\n" marks a forced line break (rendered as <br />).
+    static: { en: "I BUILD AI\nTHAT IS", pt: "CONSTRUO IA" },
     // Each word must be backed by a project on the site:
     // secure → Autoria em Forma security headers; tested → its regression suite;
     // auditable → audit logs in Autoria em Forma and the support-agent prototype.
@@ -77,12 +80,12 @@ export const profile = {
         en: "service points covered by the infrastructure team I co-led",
         pt: "pontos de atendimento cobertos pela equipe de infraestrutura que co-liderei",
       },
-      evidence: "Teledata/CAIXA — briefing §4 and audit summary.",
+      evidence: "Teledata/CAIXA, briefing §4 and audit summary.",
     },
     {
       value: { en: "~1,000", pt: "~1.000" },
       label: { en: "incidents handled per month", pt: "incidentes tratados por mês" },
-      evidence: "Teledata/CAIXA — briefing §4.",
+      evidence: "Teledata/CAIXA, briefing §4.",
     },
     // The Mozilla Observatory "A+" counter was removed (ADR-024): a header
     // configuration check reads as beginner-level when shown as a headline number.

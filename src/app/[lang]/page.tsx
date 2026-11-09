@@ -46,7 +46,7 @@ export default async function Home() {
       </Section>
 
       <Section id="contact" title={dict.sections.contact}>
-        <Contact dict={dict} />
+        <Contact locale={locale} dict={dict} />
       </Section>
     </SiteShell>
   );

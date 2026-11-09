@@ -338,3 +338,22 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** `global-not-found.js` (experimental; bypasses the layout, so the shell and fonts would be duplicated); keeping the default favicon; a hamburger menu at 320 px (hides the navigation for one breakpoint).
 
 **Consequences.** The 404 title is the site title (Next.js doesn't accept page metadata from `not-found.js`, and a `<title>` rendered there is dropped); the page is `noindex`. On a streamed 404 the `<head>` theme script doesn't run, so the toggle applies the stored theme on mount: one frame of dark on 404 pages only. The first request to an unknown slug may still return HTTP 200 (unchanged caveat).
+
+---
+
+## ADR-027 — Content review after launch: hero copy, privacy page, no em dashes
+
+**Date:** 2026-11-09
+
+**Context.** The post-launch review found the same sentence four times (h1 "I BUILD AI / SECURE", subtitle, meta description, card tagline), with an h1 that reads oddly in English ("I build AI secure"); no privacy page although the site uses Formspree and Vercel Web Analytics and the owner presents himself in LGPD; ~30 em dashes, a common tell of AI-written text; and Autoria em Forma numbers that predate its second job (Nov/2026). The project's own service page also still offered November/December slots while the portfolio said "paused".
+
+**Decision.**
+- Hero: EN h1 "I BUILD AI / THAT IS / SECURE·TESTED·AUDITABLE" (fixed line breaks via `\n` in content); PT unchanged. Subtitle says who it is for and how ("AI products and governance for teams that need to ship with evidence…"). Card tagline states the background ("Systems analysis + journalism"), no longer the LinkedIn headline. Meta description ~155 characters naming the areas and the certificates by their official names.
+- `/[lang]/privacy`: controller, data per purpose (form, statistics, hosting, preferences on the device), providers, legal basis (legitimate interest, art. 7, IX), international transfer (art. 33), rights (art. 18) and the ANPD. Linked from the footer and the form notice; in the sitemap. Text in the dictionaries.
+- No em dashes in visible text: colon, comma or period instead; page titles use `|`. A test fails if one comes back. The claims guard now also scans the dictionaries.
+- Autoria em Forma: 2 complete jobs (confirmed by Gustavo, 09/11/2026); regression suite 29/29 (run against the private repository the same day). The service page got a "paused" notice and its send button is disabled (separate PR in that repository).
+- README: a "Security, privacy and accessibility" table with controls and where each is decided, explicitly not a certification.
+
+**Alternatives considered.** "I BUILD SECURE AI" with a rotating adjective (rejected: "AUDITABLE AI" overflows at 390 px); a cookie banner (rejected: no cookie needs consent); terms of use (rejected: the site provides no service).
+
+**Consequences.** The card no longer mirrors the LinkedIn headline. The privacy page must change whenever a provider or a collected field changes. "14 real errors → rules" and "111-item checklist" were not re-checked after the 2nd job (they live in the project's Claude files, not in the repository).
