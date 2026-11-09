@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (Part 14: Support Agent tests; GitHub profile cleaned up)._
+_Last updated: 2026-11-09 (handoff after Part 14: Parts 12–14 done; next chat starts at "Next")._
 
 ## How we work
 
@@ -21,6 +21,10 @@ _Last updated: 2026-11-09 (Part 14: Support Agent tests; GitHub profile cleaned 
 - Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-16` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14). New parts get the next code.
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **Writing rules added on 2026-11-09:** no em dashes in visible text (test enforces it); page titles use `|`; the claims guard also scans the dictionaries; the privacy page must change when a provider or a collected field changes (ADR-027).
+- **Other repositories touched in Parts 12–14:** `support-agent-governance-prototype` (branch + PR; its own CI runs `python -m unittest discover -s tests` on Python 3.10 and 3.13; a card claim about it changes only after its PR is merged) and the profile repository `gustavogg99-ctrl/gustavogg99-ctrl` (profile README; edited directly on `main` with Gustavo's explicit OK).
+- **GitHub account and repository settings** (name, bio, pins, repo description/website, contribution settings) change only with Gustavo's explicit OK for each change, through his Chrome: the API proxy refuses repository-settings writes.
+- **Banned terms** live only as hashes in `src/content/claims.ts` (ADR-030). The plain list is in the private Notion task `PORTFOLIO-15`; add one with `npm run claims:hash -- "term"`. Never write a banned term in plain text in this public repository.
+- **Local checks:** before serving a build for Playwright, make sure no old `next-server` is still on port 3000 (`pkill -f next-server`), or the check reads a stale build (happened in Part 13; re-verified in Part 14).
 - Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
 ## Handoff (every 3 parts)
@@ -58,11 +62,12 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). The post-launch review (Parts 9–11) is done. New chat starts at 0.
+The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the first round of the pre-sharing review (Parts 12–14) are done. New chat starts at 0.
 
 ### 1. Before sharing the link (pre-sharing review, 09/11/2026)
 Ask Gustavo one item at a time; sharing is his call (ADR-025).
 - Done on 09/11/2026 (outside this repo, with Gustavo's approval): GitHub name "Gustavo Rodrigues", bio "AI Builder · AI Governance", profile URL, Portfolio repo pinned with description and the new site, profile README links the portfolio and uses the official certification names, private contributions shown. Writing section checked live: 3 posts.
+- **Next item to ask:** availability (below), then the rest in this order.
 - **Profile photo on GitHub:** a mirror selfie; use the site photo (Gustavo uploads it). Optionally drag the Portfolio pin to the first position.
 - **`ethical-ai-policy` README:** "Related Project: AI Autonomous Support Agent" → the real name, without "Autonomous".
 - **Stale branches** in this repo: `content-observatory-highlight`, `docs-handoff-after-part-8`.

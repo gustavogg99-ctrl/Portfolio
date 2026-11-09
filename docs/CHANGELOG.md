@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 14 · 2026-11-09
+
+- ROADMAP: Parts 12–14 and the docs-only PR #19 in "Done"; "Next" lists the remaining pre-sharing items; new agreements recorded (other repositories, GitHub settings only with explicit OK via Chrome, banned terms only as hashes with the plain list in Notion `PORTFOLIO-15`, kill stale local servers before Playwright).
+
 ## Part 14 — Support Agent tests (pre-sharing review) · 2026-11-09
 
 **Changed**
