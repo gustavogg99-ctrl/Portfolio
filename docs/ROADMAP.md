@@ -64,7 +64,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | — | Outside this repo: GitHub photo = site photo (Gustavo); `ethical-ai-policy` README names the related project correctly (that repo, PR #1); stale branches deleted by Gustavo (the proxy refuses branch deletion) | — |
 | 16 | Autoria em Forma card leads with the 2 delivered jobs; "paused" only in the badge and one line | #24 |
 | 17 | MerkurIA: "No formal title in a small team" replaced by "Led project management and the security and governance of client projects" (same facts) | #25 |
-| 18 | Resume PDFs EN/PT without the phone number; freelance entry in Experience (ADR-032) | #26 |
+| 18 | Resume PDFs EN/PT without the phone number; freelance entry in Experience (ADR-032) | #27 |
 
 ## Next (in order)
 
