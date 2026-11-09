@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 19 · 2026-11-09
+
+- ROADMAP: Parts 18–19 done; handoff requested by Gustavo after 2 parts, to run the iFood intensive in fresh chats. New "Next" item 1: the iFood intensive until 16/11 (Part 20: Autoria prompt excerpt and client-side numbers; then the Support Agent card), coordinated in the Notion project `IFOOD`; the site's link is shared in the application on 16/11.
+
 ## Part 19 — Autoria checks as the code runs them; tools confirmed by Gustavo · 2026-11-09
 
 **Changed**
