@@ -2,6 +2,15 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 16 — Autoria em Forma card leads with what was delivered · 2026-11-09
+
+**Changed**
+- Autoria em Forma status line (home card and case study): "2 complete jobs delivered (Oct and Nov 2026) · paused after a demand test without organic traction". It opened with "Launched… · paused…"; the facts are the same and "paused" stays in the badge and once in this line.
+- ROADMAP: pre-sharing items done outside this repo recorded (GitHub photo, `ethical-ai-policy` README PR #1, stale branches deleted).
+
+**Verified**
+- `npm run check`, `npm run build`; Playwright on the featured card at 1440×900 and 390×844, dark and light, EN and PT.
+
 ## Part 15 — "Now": work, study, project · 2026-11-09
 
 **Changed**
