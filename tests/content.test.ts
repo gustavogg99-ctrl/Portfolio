@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { content } from "@/content";
 import { validateContent } from "@/content/validate";
-import { BANNED_TERMS, BANNED_WORDS } from "@/content/claims";
+import { BANNED_TERM_HASHES, BANNED_WORDS, SNIPPET_TERM_HASHES, findBannedClaim, findHashedTerm, hashTerm } from "@/content/claims";
 import en from "@/i18n/dictionaries/en.json";
 import pt from "@/i18n/dictionaries/pt.json";
 
@@ -84,7 +84,11 @@ describe("content rules", () => {
 describe("code snippets (sanitized excerpts from private repos)", () => {
   const code = content.snippets.map((s) => s.code).join("\n").toLowerCase();
 
-  it.each(["painel", "wrangler", "password", "senha", "secret", "token", "api_key", "apikey", "http://", "https://", "/home/", "c:\\"])(
+  it("never contains an internal term (hashed, ADR-030)", () => {
+    expect(findHashedTerm(code, SNIPPET_TERM_HASHES)).toBeNull();
+  });
+
+  it.each(["wrangler", "password", "senha", "secret", "token", "api_key", "apikey", "http://", "https://", "/home/", "c:\\"])(
     "never contains %s",
     (term) => {
       expect(code).not.toContain(term);
@@ -107,8 +111,27 @@ describe("claims guard (docs/SOURCES.md)", () => {
     expect(all).not.toContain("\u2014");
   });
 
-  it.each(BANNED_TERMS)("never contains %s", (term) => {
-    expect(all).not.toContain(term);
+  it("never contains a banned term (hashed, ADR-030)", () => {
+    expect(findHashedTerm(all, BANNED_TERM_HASHES)).toBeNull();
+  });
+
+  it("finds a hashed term anywhere in a text, case-sensitively", () => {
+    const list = [hashTerm("Fake Corp"), hashTerm("42K")];
+    expect(findHashedTerm("Worked at Fake Corp in 2020", list)).toBe("Fake Corp");
+    expect(findHashedTerm("Reached R$42K", list)).toBe("42K");
+    expect(findHashedTerm("worked at fake corp", list)).toBeNull();
+  });
+
+  it("stores only well-formed hashes", () => {
+    for (const t of [...BANNED_TERM_HASHES, ...SNIPPET_TERM_HASHES]) {
+      expect(t.sha256).toMatch(/^[0-9a-f]{64}$/);
+      expect(t.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("flags a banned word in external text (blog titles)", () => {
+    expect(findBannedClaim("I am an Expert in everything")).toBe("expert");
+    expect(findBannedClaim("Notes from a bootcamp")).toBeNull();
   });
 
   it.each(BANNED_WORDS)(

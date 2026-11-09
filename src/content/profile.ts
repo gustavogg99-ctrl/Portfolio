@@ -1,9 +1,8 @@
 import type { Profile } from "./schema";
 
 /**
- * Who Gustavo is. Source of truth: the portfolio briefing + the 29/10/2026
- * claims audit (docs/SOURCES.md). Do not add numbers that are not on the
- * "verifiable" list there.
+ * Who Gustavo is. Sources: docs/SOURCES.md. Do not add a number that a
+ * visitor can't check (ADR-007).
  */
 export const profile = {
   name: "Gustavo Rodrigues",

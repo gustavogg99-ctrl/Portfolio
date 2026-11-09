@@ -10,6 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "content:check": "tsx scripts/check-content.ts",
+    "claims:hash": "tsx scripts/hash-term.ts",
     "check": "npm run lint && npm run typecheck && npm test && npm run content:check"
   },
   "dependencies": {

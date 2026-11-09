@@ -6,7 +6,7 @@ import type { Certification } from "./schema";
  * To publish one: change status to "verified" and add `credentialUrl`
  * (Credly, Microsoft Learn, issuer portal). Without the URL the build fails.
  *
- * NOT Gustavo's (never add): COBIT 2019, EXIN AI Essentials.
+ * Only certifications with an exam and a way for a visitor to verify them.
  * Certificates of completion (courses, bootcamps) go to education.ts (ADR-018, ADR-029).
  */
 export const certifications = [
