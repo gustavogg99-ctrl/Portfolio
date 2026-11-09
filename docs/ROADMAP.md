@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (Part 12: ServiceNow bootcamp under Education & courses)._
+_Last updated: 2026-11-09 (Part 12 merged; Autoria em Forma numbers confirmed)._
 
 ## How we work
 
@@ -52,6 +52,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 10 | Content review: hero/tagline/meta, privacy page (LGPD), no em dashes, Autoria numbers after its 2nd job (ADR-027); Autoria service page "paused" (other repo, PR #1) | #15 |
 | 11 | Compact profile card below 1024 px, hero on a phone's first screen (ADR-028) | #16 |
 | 12 | Shark in ServiceNow bootcamp under Education & courses, not a certification (ADR-029) | #18 |
+| — | Docs only: Autoria em Forma "14 real errors → rules" and "111-item checklist in 12 stages" confirmed by Gustavo after the 2nd job; site unchanged | #19 |
 
 ## Next (in order)
 
@@ -59,7 +60,6 @@ The site is **live and public but not shared yet** (ADR-025). The post-launch re
 
 ### 1. Before sharing the link
 - **Decide with Gustavo whether to share now** (ADR-025 said: not before the post-launch review — that review is done). Ask him first; sharing is his call.
-- **Confirm two Autoria em Forma numbers after its 2nd job** (not in the repository; they live in the project's Claude files): "14 real errors → rules" and "111-item QA checklist in 12 stages". Ask Gustavo for each one; update `projects.ts` and `SOURCES.md` only with what he confirms.
 
 ### 2. Optional
 - Submit `sitemap.xml` to Google Search Console (Gustavo's account).
