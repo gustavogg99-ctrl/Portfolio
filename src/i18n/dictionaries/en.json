@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "Gustavo Rodrigues — I build AI-powered products that are secure, tested and auditable."
+    "description": "Gustavo Rodrigues, AI builder and AI governance in Brasília, Brazil. Projects with tests, security controls and audit logs. ITIL 4 and ISO/IEC 27001 Associate."
   },
   "nav": {
     "home": "Home",
@@ -130,7 +130,8 @@
     "error": "The message couldn't be sent. Please write to me directly at",
     "privacy": "Your name, email and message are sent through Formspree to my inbox and used only to reply to you.",
     "subject": "Portfolio contact (EN)",
-    "direct": "Or write directly"
+    "direct": "Or write directly",
+    "privacyLink": "Privacy policy"
   },
   "notFound": {
     "heading": [
@@ -140,5 +141,63 @@
     "text": "This address doesn't exist on this site. It may have moved, or the link has a typo.",
     "home": "Go to the home page",
     "projects": "See projects"
+  },
+  "privacy": {
+    "nav": "Privacy",
+    "title": [
+      "PRIVACY"
+    ],
+    "metaTitle": "Privacy",
+    "metaDescription": "What this site collects, why, who processes it and how to exercise your rights under Brazil's LGPD.",
+    "updated": "Last updated: November 9, 2026",
+    "intro": "This is a personal portfolio. It collects as little as it can, and this page lists all of it. The person responsible for the data (controller, under Brazil's LGPD) is Gustavo Rodrigues, reachable at the email at the end of this page.",
+    "sections": [
+      {
+        "heading": "Contact form",
+        "items": [
+          "What: the name, email and message you type.",
+          "Why: to reply to you. Nothing else: no newsletter, no list, no sharing.",
+          "Who processes it: Formspree (United States) receives the form and forwards it to my inbox. Formspree keeps a copy under its own privacy policy.",
+          "How long: I keep the message while the conversation is relevant and delete it, in my inbox and in Formspree, when you ask."
+        ]
+      },
+      {
+        "heading": "Visit statistics",
+        "items": [
+          "What: pages visited, referring site, country, browser and device type, counted in aggregate by Vercel Web Analytics.",
+          "How: no cookies. A visitor is counted with a hash of the request that Vercel discards after 24 hours, so the same person can't be followed across days or sites.",
+          "Why: to know which pages are read, so I can improve them."
+        ]
+      },
+      {
+        "heading": "Hosting",
+        "items": [
+          "Vercel (United States) hosts the site. Like any web server, it processes technical data of each request, such as the IP address, to deliver pages and protect the site from abuse, under its own privacy policy. I don't store these data."
+        ]
+      },
+      {
+        "heading": "Stored on your device",
+        "items": [
+          "A cookie named \"locale\" with your language choice (en or pt), for one year.",
+          "Your theme choice (light or dark) in your browser's local storage.",
+          "Both only remember preferences, stay on your device and are not used for tracking. There are no advertising or third-party tracking cookies."
+        ]
+      },
+      {
+        "heading": "Legal basis and international transfer",
+        "items": [
+          "Replying to messages and visit statistics rely on legitimate interest (LGPD, art. 7, IX), limited to the uses above.",
+          "Formspree and Vercel are in the United States, so the data above are transferred internationally (LGPD, art. 33) to the providers that run the form and the site."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "items": [
+          "You can ask for confirmation, access, correction or deletion of your data, information about who it was shared with, and object to its use (LGPD, art. 18). Write to the email below and I will answer within the LGPD deadlines.",
+          "You can also file a complaint with Brazil's data protection authority (ANPD)."
+        ]
+      }
+    ],
+    "contact": "Contact for privacy requests:"
   }
 }

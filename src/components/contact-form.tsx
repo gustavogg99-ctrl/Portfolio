@@ -12,6 +12,7 @@ type Strings = {
   success: string;
   error: string;
   privacy: string;
+  privacyLink: string;
   subject: string;
 };
 
@@ -29,10 +30,12 @@ const field =
 export function ContactForm({
   endpoint,
   fallbackEmail,
+  privacyHref,
   strings,
 }: {
   endpoint: string;
   fallbackEmail: string;
+  privacyHref: string;
   strings: Strings;
 }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -81,7 +84,12 @@ export function ContactForm({
         <textarea name="message" required minLength={10} maxLength={5000} rows={6} className={`${field} resize-y`} />
       </label>
 
-      <p className="text-xs leading-relaxed text-muted">{strings.privacy}</p>
+      <p className="text-xs leading-relaxed text-muted">
+        {strings.privacy}{" "}
+        <a href={privacyHref} className="underline underline-offset-4 hover:text-foreground">
+          {strings.privacyLink}
+        </a>
+      </p>
 
       <div className="flex flex-wrap items-center gap-4">
         <button

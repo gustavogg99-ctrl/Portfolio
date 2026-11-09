@@ -24,10 +24,14 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         <h1 className="text-5xl leading-[0.95] font-bold tracking-tight md:text-7xl xl:text-8xl">
           {/* Screen readers get one stable sentence instead of a changing word. */}
           <span className="sr-only">
-            {staticLine}: {words.join(", ")}.
+            {staticLine.replace("\n", " ")}: {words.join(", ")}.
           </span>
-          <span aria-hidden>{staticLine}</span>
-          <br />
+          {staticLine.split("\n").map((line) => (
+            <span key={line} aria-hidden>
+              {line}
+              <br />
+            </span>
+          ))}
           <Typewriter words={words} />
         </h1>
 

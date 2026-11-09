@@ -1,11 +1,12 @@
 import { Mail } from "lucide-react";
 import { content } from "@/content";
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { ContactForm } from "./contact-form";
 import { LinkedInIcon } from "./icons";
 
 /** Contact: short intro, form (Formspree) and direct channels. No phone, no WhatsApp. */
-export function Contact({ dict }: { dict: Dictionary }) {
+export function Contact({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const { profile } = content;
   const c = dict.contact;
 
@@ -16,6 +17,7 @@ export function Contact({ dict }: { dict: Dictionary }) {
         <ContactForm
           endpoint={profile.contactForm}
           fallbackEmail={profile.email}
+          privacyHref={`/${locale}/privacy`}
           strings={{
             name: c.name,
             email: c.email,
@@ -25,6 +27,7 @@ export function Contact({ dict }: { dict: Dictionary }) {
             success: c.success,
             error: c.error,
             privacy: c.privacy,
+            privacyLink: c.privacyLink,
             subject: c.subject,
           }}
         />

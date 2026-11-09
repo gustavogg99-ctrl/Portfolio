@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "Gustavo Rodrigues — Construo produtos com IA que são seguros, testados e auditáveis."
+    "description": "Gustavo Rodrigues, AI builder e governança de IA em Brasília. Projetos com testes, controles de segurança e logs de auditoria. ITIL 4 e ISO/IEC 27001 Associate."
   },
   "nav": {
     "home": "Início",
@@ -130,7 +130,8 @@
     "error": "Não foi possível enviar a mensagem. Escreva direto para",
     "privacy": "Seu nome, e-mail e mensagem são enviados pelo Formspree para a minha caixa de entrada e usados só para responder você.",
     "subject": "Contato pelo portfólio (PT)",
-    "direct": "Ou escreva direto"
+    "direct": "Ou escreva direto",
+    "privacyLink": "Política de privacidade"
   },
   "notFound": {
     "heading": [
@@ -140,5 +141,63 @@
     "text": "Este endereço não existe neste site. Ele pode ter mudado, ou o link tem um erro de digitação.",
     "home": "Ir para a página inicial",
     "projects": "Ver projetos"
+  },
+  "privacy": {
+    "nav": "Privacidade",
+    "title": [
+      "PRIVACIDADE"
+    ],
+    "metaTitle": "Privacidade",
+    "metaDescription": "O que este site coleta, por quê, quem trata os dados e como exercer seus direitos pela LGPD.",
+    "updated": "Última atualização: 9 de novembro de 2026",
+    "intro": "Este é um portfólio pessoal. Ele coleta o mínimo possível, e esta página lista tudo. O responsável pelos dados (controlador, pela LGPD) é Gustavo Rodrigues, no e-mail do fim desta página.",
+    "sections": [
+      {
+        "heading": "Formulário de contato",
+        "items": [
+          "O quê: o nome, o e-mail e a mensagem que você digita.",
+          "Para quê: responder você. Só isso: sem newsletter, sem lista, sem compartilhamento.",
+          "Quem trata: o Formspree (Estados Unidos) recebe o formulário e encaminha para a minha caixa de entrada. O Formspree guarda uma cópia conforme a política de privacidade dele.",
+          "Por quanto tempo: guardo a mensagem enquanto a conversa for relevante e apago, na minha caixa e no Formspree, quando você pedir."
+        ]
+      },
+      {
+        "heading": "Estatísticas de visita",
+        "items": [
+          "O quê: páginas visitadas, site de origem, país, navegador e tipo de dispositivo, contados de forma agregada pelo Vercel Web Analytics.",
+          "Como: sem cookies. O visitante é contado por um hash da requisição que a Vercel descarta em 24 horas, então ninguém é acompanhado entre dias ou entre sites.",
+          "Para quê: saber quais páginas são lidas e melhorá-las."
+        ]
+      },
+      {
+        "heading": "Hospedagem",
+        "items": [
+          "A Vercel (Estados Unidos) hospeda o site. Como qualquer servidor web, ela trata dados técnicos de cada acesso, como o endereço IP, para entregar as páginas e proteger o site contra abuso, conforme a política de privacidade dela. Eu não guardo esses dados."
+        ]
+      },
+      {
+        "heading": "Guardado no seu dispositivo",
+        "items": [
+          "Um cookie chamado \"locale\" com o idioma escolhido (en ou pt), por um ano.",
+          "O tema escolhido (claro ou escuro), no armazenamento local do navegador.",
+          "Os dois só lembram preferências, ficam no seu dispositivo e não servem para rastrear. Não há cookies de publicidade nem de rastreamento de terceiros."
+        ]
+      },
+      {
+        "heading": "Base legal e transferência internacional",
+        "items": [
+          "Responder mensagens e contar visitas se baseiam no legítimo interesse (LGPD, art. 7º, IX), limitado aos usos acima.",
+          "O Formspree e a Vercel ficam nos Estados Unidos, então os dados acima passam por transferência internacional (LGPD, art. 33) para os fornecedores que operam o formulário e o site."
+        ]
+      },
+      {
+        "heading": "Seus direitos",
+        "items": [
+          "Você pode pedir confirmação, acesso, correção ou eliminação dos seus dados, saber com quem foram compartilhados e se opor ao uso (LGPD, art. 18). Escreva para o e-mail abaixo e respondo nos prazos da LGPD.",
+          "Você também pode reclamar à Autoridade Nacional de Proteção de Dados (ANPD)."
+        ]
+      }
+    ],
+    "contact": "Contato para pedidos de privacidade:"
   }
 }
