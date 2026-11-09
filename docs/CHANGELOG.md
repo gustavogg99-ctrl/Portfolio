@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Autoria em Forma numbers confirmed · 2026-11-09
+
+- Gustavo confirmed, after the 2nd job, "14 real errors → rules (4 with automated tests)" and "111-item QA checklist in 12 stages". The site already shows them; SOURCES.md records the confirmation and the ROADMAP item is closed (it was the open point in ADR-027's consequences).
+
 ## Part 12 — ServiceNow bootcamp under Education & courses · 2026-11-09
 
 **Changed**
