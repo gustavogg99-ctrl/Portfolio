@@ -320,3 +320,21 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 - Vercel Authentication goes back to **Standard Protection** (`prod_deployment_urls_and_all_previews`): the production domains are public, previews and deployment URLs stay private (supersedes the "all deployments" part of ADR-019).
 
 **Consequences.** The site is public but unannounced. Content still follows SOURCES.md; anything found in the post-launch review is fixed through the normal branch + PR flow. Observatory and Lighthouse are measured on the live domain and recorded in docs only (ADR-024).
+
+---
+
+## ADR-026 — Post-launch technical fixes: localized 404, Person JSON-LD, own icons
+
+**Date:** 2026-11-08
+
+**Context.** The post-launch review (ROADMAP "After launch") found: unmatched paths fell through to Next.js's default 404 (English, unstyled, even under `/pt`); no structured data; the favicon was still the `create-next-app` default (the same kind of leftover ADR-001 criticized in the reference site); the header overflowed by 31 px at 320 px, which fails WCAG 1.4.10 at 400% zoom; and the profile-card name was an `h2` before the page `h1`. Lighthouse, Observatory and axe were otherwise clean.
+
+**Decision.**
+- `[lang]/not-found.tsx` renders inside `SiteShell` in the URL's language. A catch-all `[lang]/[...missing]/page.tsx` calls `notFound()` so unmatched paths reach it (in this app `[lang]` is the root segment, so there is no app-level not-found to fall back on). `generateStaticParams` returns one unused param set because Cache Components requires at least one.
+- `Person` JSON-LD on the home page with name, job title, headline, location, languages and `sameAs` (LinkedIn, GitHub, blog), taken from `src/content` only. It is data, not a script the browser runs, so the CSP is unchanged; `<` is escaped.
+- Icons generated once from Geist Bold: "GR" in the silver gradient on the near-black background (colors from the tokens; static files, like the OG image exception).
+- Below 380 px the header controls shrink to 30–32 px.
+
+**Alternatives considered.** `global-not-found.js` (experimental; bypasses the layout, so the shell and fonts would be duplicated); keeping the default favicon; a hamburger menu at 320 px (hides the navigation for one breakpoint).
+
+**Consequences.** The 404 title is the site title (Next.js doesn't accept page metadata from `not-found.js`, and a `<title>` rendered there is dropped); the page is `noindex`. On a streamed 404 the `<head>` theme script doesn't run, so the toggle applies the stored theme on mount: one frame of dark on 404 pages only. The first request to an unknown slug may still return HTTP 200 (unchanged caveat).

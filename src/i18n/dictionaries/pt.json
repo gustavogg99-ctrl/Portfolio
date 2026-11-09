@@ -131,5 +131,14 @@
     "privacy": "Seu nome, e-mail e mensagem são enviados pelo Formspree para a minha caixa de entrada e usados só para responder você.",
     "subject": "Contato pelo portfólio (PT)",
     "direct": "Ou escreva direto"
+  },
+  "notFound": {
+    "heading": [
+      "PÁGINA",
+      "NÃO ENCONTRADA"
+    ],
+    "text": "Este endereço não existe neste site. Ele pode ter mudado, ou o link tem um erro de digitação.",
+    "home": "Ir para a página inicial",
+    "projects": "Ver projetos"
   }
 }

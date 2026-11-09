@@ -54,7 +54,7 @@ export function SiteNav({
 
   return (
     <nav aria-label={ariaLabel}>
-      <ul className="flex items-center gap-1 rounded-full border border-border bg-surface/80 p-1 backdrop-blur-md">
+      <ul className="flex items-center rounded-full min-[380px]:gap-1 border border-border bg-surface/80 p-1 backdrop-blur-md">
         {NAV_SECTIONS.map(({ id, icon: Icon }) => {
           const isActive = active === id;
           return (
@@ -63,7 +63,7 @@ export function SiteNav({
                 href={`${hrefBase}#${id}`}
                 aria-current={isActive ? "location" : undefined}
                 aria-label={labels[id]}
-                className={`grid size-9 place-items-center rounded-full transition-colors sm:size-10 ${
+                className={`grid size-[30px] place-items-center rounded-full transition-colors min-[380px]:size-9 sm:size-10 ${
                   isActive ? "bg-foreground text-background" : "text-muted hover:bg-surface-2 hover:text-foreground"
                 }`}
               >

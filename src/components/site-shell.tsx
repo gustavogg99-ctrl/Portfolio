@@ -38,14 +38,14 @@ export function SiteShell({
         {dict.a11y.skip}
       </a>
 
-      <header className="sticky top-0 z-40 flex items-center justify-center gap-2 bg-background/80 px-4 py-3 backdrop-blur-md sm:py-4">
+      <header className="sticky top-0 z-40 flex items-center justify-center gap-1.5 bg-background/80 px-2 py-3 min-[380px]:gap-2 min-[380px]:px-4 backdrop-blur-md sm:py-4">
         <SiteNav
           labels={dict.nav}
           ariaLabel={dict.a11y.nav}
           hrefBase={onHome ? "" : `/${locale}`}
           fixedActive={onHome ? undefined : active}
         />
-        <div className="flex items-center gap-2 sm:absolute sm:right-6">
+        <div className="flex items-center gap-1 min-[380px]:gap-2 sm:absolute sm:right-6">
           <LanguageSwitch
             target={other}
             label={dict.actions.switchLanguage}

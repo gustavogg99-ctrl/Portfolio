@@ -29,6 +29,10 @@ src/
       layout.tsx       ← root layout: <html lang>, fonts, metadata
       page.tsx         ← home page
       projects/[slug]/page.tsx ← case-study page (only projects with `page` in content)
+      not-found.tsx    ← localized 404 inside the site shell (ADR-026)
+      [...missing]/page.tsx ← catch-all → notFound(), so unmatched paths get that 404
+      icon.png  apple-icon.png ← "GR" monogram (512 / 180)
+    favicon.ico        ← "GR" monogram (16/32/48)
     globals.css        ← design tokens (colors, fonts) + Tailwind
   content/             ← EVERYTHING about Gustavo. Edit here, not in components.
     schema.ts          ← Zod schemas = the rules content must follow
@@ -68,10 +72,12 @@ src/
     rss.ts             ← RSS parser + post selection (pure, tested)
     blog.ts            ← cached fetch of the blog feed ("use cache", hourly)
     locale-path.ts     ← swapLocale(path, locale)
+    json-ld.ts         ← schema.org Person for the home page (ADR-026)
   proxy.ts             ← redirects "/" and unprefixed paths to /en or /pt
 scripts/check-content.ts   ← `npm run content:check`
 tests/content.test.ts      ← content rules + claims guard
 tests/locale-path.test.ts  ← language switch path logic
+tests/json-ld.test.ts      ← structured data uses only content facts
 docs/                      ← this documentation
 ```
 
@@ -169,6 +175,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - The toggle reads the attribute via `useSyncExternalStore` + `MutationObserver`, so its icon always matches the screen.
 - Pages stay statically prerendered (a cookie read on the server would make them dynamic). See ADR-009.
 - The CSP allows inline scripts, so this script needs no hash (ADR-022).
+- On a streamed 404 the `<head>` script is inserted by React and not run; `ThemeToggle` applies the stored theme on mount there (ADR-026).
 
 ## Security headers and SEO
 
@@ -178,6 +185,10 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Metadata:** canonical + `hreflang` (en, pt-BR, x-default → en) on every page via `alternatesFor()`; Open Graph and Twitter card per locale.
 - **Open Graph image:** `src/app/[lang]/opengraph-image.tsx`, 1200×630, prerendered per locale. Repeats the dark-theme hex values (ImageResponse can't read CSS variables) — the one exception to the tokens rule.
 - **`/sitemap.xml`** (home + case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link).
+- **Structured data:** `Person` JSON-LD on the home page (`src/lib/json-ld.ts`), only facts from `src/content`; not executed, so no CSP change.
+- **Icons:** own "GR" favicon, `icon.png` and `apple-icon.png` (static files; colors repeat the tokens, like the OG image).
+- **404:** `[lang]/not-found.tsx` inside `SiteShell`, in the URL's language, `noindex`; a catch-all route sends unmatched paths there. Title = site title (ADR-026).
+- **Measured on the live site (2026-11-08):** Observatory B+ (80/100, only `'unsafe-inline'`), PageSpeed 100 in all four categories on mobile and desktop. Docs only (ADR-024).
 
 ## Accessibility (baseline)
 
@@ -185,7 +196,8 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - Nav links have `aria-label` and `aria-current="location"` for the section in view; tooltips are visual only.
 - Icon-only buttons have labels in both languages; language links carry `hreflang`/`lang`.
 - Visible `:focus-visible` outline using the accent token; `prefers-reduced-motion` respected.
-- Checked with axe-core (WCAG 2.2 AA + best practices) on the home page and the case study, dark and light: 0 violations (Part 7). Visible text is part of every accessible name (language switch); each page has one `h1`; heading levels don't skip.
+- Checked with axe-core (WCAG 2.2 AA + best practices) on the home page and the case study, dark and light: 0 violations (Part 7); again in Part 9 including the 404 page, at 320/390/1440 px.
+- Reflow (WCAG 1.4.10): no horizontal scroll at 320 px; header controls shrink to 30–32 px below 380 px. The profile card's name is a `<p>` so the page `h1` is the first heading. Visible text is part of every accessible name (language switch); each page has one `h1`; heading levels don't skip.
 
 ## Content rules (enforced by code)
 
@@ -217,4 +229,5 @@ Validation runs when `src/content/index.ts` is imported, so **invalid content fa
 
 | Part | Item |
 |---|---|
-| 8 | Production checks on the live domain; Observatory and Lighthouse measured (recorded in docs only, ADR-024) |
+| 10 | Content review (ROADMAP "After launch") |
+| 11 | Design review: compact profile card on mobile |

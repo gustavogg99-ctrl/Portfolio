@@ -34,7 +34,7 @@ export function LanguageSwitch({
           window.location.assign(href + window.location.hash);
         }
       }}
-      className="grid h-10 min-w-10 place-items-center rounded-full border border-border bg-surface px-3 font-mono text-xs font-medium text-foreground transition-colors hover:bg-surface-2"
+      className="grid h-8 min-w-8 place-items-center rounded-full border border-border bg-surface px-2 min-[380px]:h-10 min-[380px]:min-w-10 min-[380px]:px-3 font-mono text-xs font-medium text-foreground transition-colors hover:bg-surface-2"
     >
       {/* Visible text stays part of the accessible name (WCAG 2.5.3). */}
       {short}

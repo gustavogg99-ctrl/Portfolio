@@ -2,6 +2,28 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 9 — Post-launch technical fixes · 2026-11-08
+
+**Added**
+- Localized 404 inside the site layout (`[lang]/not-found.tsx`), also for unmatched paths via a catch-all route (`[lang]/[...missing]`). Previously unmatched paths showed Next.js's default English page.
+- schema.org `Person` JSON-LD on the home page (`src/lib/json-ld.ts`, tested), built only from `src/content`.
+- Own icons: "GR" monogram favicon, `icon.png` (512) and `apple-icon.png` (180), replacing the `create-next-app` favicon.
+- ADR-026.
+
+**Fixed**
+- Header no longer overflows at 320 px (WCAG 1.4.10 reflow): controls shrink below 380 px (30–32 px targets, above the 24 px minimum of WCAG 2.5.8).
+- Theme on 404 pages: the stored theme is applied on mount when the `<head>` script didn't run (streamed 404).
+- Heading order: the name in the profile card is no longer an `h2` before the page `h1`.
+
+**Measured on the live site (2026-11-08, recorded in docs only — ADR-024)**
+- Mozilla Observatory: B+ (80/100), 11/12 tests; the only failure is `'unsafe-inline'` (ADR-022).
+- PageSpeed Insights `/en`: mobile 100/100/100/100 (LCP 1.7 s, CLS 0.015, TBT 10 ms); desktop 100/100/100/100 (LCP 0.3 s).
+- Production headers match `security-headers.ts`; pages served from the CDN cache (`HIT`).
+
+**Verified**
+- `npm run check`, `npm run build`.
+- Playwright + axe-core (WCAG 2.2 AA + best practices) on `/en`, `/pt`, the case study and both 404 types, at 320/390/1440 px, dark and light: 0 violations, no horizontal overflow, `h1` is the first heading.
+
 ## Docs — Handoff after Part 8 · 2026-11-05
 
 - ROADMAP: parts #10–#12 moved to "Done"; next chat starts at "After launch" (large review, live measurements, content review, ServiceNow); Part 8 logged-out checks recorded.
