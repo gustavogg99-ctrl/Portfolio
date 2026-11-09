@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 17 · 2026-11-09
+
+- ROADMAP: Parts 15–17 in "Done" (plus the items done outside this repo); "Next" starts at the hero counters, then the decision to share; new agreement recorded ("Now" must stay current, ADR-031).
+
 ## Part 17 — MerkurIA wording · 2026-11-09
 
 **Changed**
