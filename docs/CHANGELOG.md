@@ -2,6 +2,18 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 19 — Autoria checks as the code runs them; tools confirmed by Gustavo · 2026-11-09
+
+**Changed**
+- Autoria em Forma (card, case study, diagram): the 4 blocking checks run on the client's file and are separate from the 29 regression tests; the triage check is automated and does not block, and its list is reviewed by hand. New limitation: the 4 checks run one by one, blocking is a process rule (ADR-033).
+- Resume PDFs replaced (EN/PT, still without the phone number): corrected Autoria line and the tools below.
+- Experience: Teledata workflows with Microsoft Copilot, incidents in Jira, ITIL training of new technicians; MerkurIA WhatsApp customer-service bots (Make, then n8n; OpenAI API; WhatsApp API; Supabase).
+- Skills: Claude (with connectors), OpenAI API, Microsoft Copilot, n8n and Make listed separately; "Engineering & tools" with CI, Supabase, WhatsApp API, Jira, Microsoft 365; "ServiceNow (learning)".
+- SOURCES.md: Autoria re-check of 09/11/2026 and the tools confirmed by Gustavo.
+
+**Verified**
+- `npm run check`, `npm run build`; claims guard on both PDF texts; phone number absent from both PDFs; Playwright at 1440×900 and 390×844, dark and light, EN and PT.
+
 ## Part 18 — Resume PDFs and freelance entry · 2026-11-09
 
 **Added**
