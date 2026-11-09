@@ -2,6 +2,21 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 12 — ServiceNow bootcamp under Education & courses · 2026-11-09
+
+**Changed**
+- Shark in ServiceNow bootcamp (14th edition, 15 h, Shark Academy / Aoop, completed Oct 2026) added to Education & courses; the `pending_link` certification entry removed (ADR-029). Notion `PORTFOLIO-09` closed.
+- SOURCES.md: certificate facts and the "course, not certification" rule.
+- ARCHITECTURE.md: stale "Planned" table (Parts 10–11, already done) removed.
+
+**Added**
+- Test: ServiceNow/Shark never appears as a certification; the education entry exists.
+- ADR-029.
+
+**Verified**
+- `npm run check`, `npm run build`.
+- Playwright (1440×900 and 390×844, dark and light): Education & courses shows the bootcamp in EN and PT; Certifications unchanged.
+
 ## Docs — Handoff after Part 11 · 2026-11-09
 
 - ROADMAP: Parts 9–11 and the live measurements moved to "Done"; "Next" is now: decide on sharing the link, confirm two Autoria em Forma numbers, ServiceNow certificate; Notion codes up to `PORTFOLIO-13`; notes on the Autoria repository and the new writing rules.

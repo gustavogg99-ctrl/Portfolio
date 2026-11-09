@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (handoff after Part 11 — post-launch review done; next chat starts at "Next")._
+_Last updated: 2026-11-09 (Part 12: ServiceNow bootcamp under Education & courses)._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-09 (handoff after Part 11 — post-launch review done; ne
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content polish is deferred** to the pre-launch phase: build every feature first, then one full content review (Gustavo's choice, 05/11/2026).
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-13` (all done except 09 = ServiceNow certificate; 11–13 = Parts 9–11). New parts get the next code.
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-14` (all done; 09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12). New parts get the next code.
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **Writing rules added on 2026-11-09:** no em dashes in visible text (test enforces it); page titles use `|`; the claims guard also scans the dictionaries; the privacy page must change when a provider or a collected field changes (ADR-027).
 - Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
@@ -51,6 +51,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 9 | Post-launch technical fixes: localized 404, Person JSON-LD, own icons, 320 px header, heading order (ADR-026); old domain → 308 | #14 |
 | 10 | Content review: hero/tagline/meta, privacy page (LGPD), no em dashes, Autoria numbers after its 2nd job (ADR-027); Autoria service page "paused" (other repo, PR #1) | #15 |
 | 11 | Compact profile card below 1024 px, hero on a phone's first screen (ADR-028) | #16 |
+| 12 | Shark in ServiceNow bootcamp under Education & courses, not a certification (ADR-029) | #18 |
 
 ## Next (in order)
 
@@ -59,7 +60,6 @@ The site is **live and public but not shared yet** (ADR-025). The post-launch re
 ### 1. Before sharing the link
 - **Decide with Gustavo whether to share now** (ADR-025 said: not before the post-launch review — that review is done). Ask him first; sharing is his call.
 - **Confirm two Autoria em Forma numbers after its 2nd job** (not in the repository; they live in the project's Claude files): "14 real errors → rules" and "111-item QA checklist in 12 stages". Ask Gustavo for each one; update `projects.ts` and `SOURCES.md` only with what he confirms.
-- **Shark in ServiceNow #14 (Aoop):** when the certificate arrives, link (or PDF) + month → `servicenow-shark` in `certifications.ts` (`PORTFOLIO-09`).
 
 ### 2. Optional
 - Submit `sitemap.xml` to Google Search Console (Gustavo's account).

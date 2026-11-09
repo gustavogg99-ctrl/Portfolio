@@ -3,7 +3,7 @@ import type { Now } from "./schema";
 /**
  * "What I'm doing now" — the place for moving work, so the Projects section
  * stays limited to finished, verifiable work. Update `updated` on every edit.
- * ServiceNow is intentionally not here (it goes to certifications once issued).
+ * ServiceNow is intentionally not here (completed bootcamp, listed under education).
  * With no visible item the whole sub-section is not rendered (ADR-023): only
  * work that has actually started goes here, never "planned" filler.
  */
