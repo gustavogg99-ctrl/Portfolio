@@ -205,16 +205,33 @@ export type SkillGroup = z.infer<typeof SkillGroup>;
 
 /* ---------- now ---------- */
 
+/**
+ * "Now": three fixed lines (ADR-031): current work status, what I'm studying,
+ * the project I'm building. At most one visible item per kind.
+ */
+export const NowKind = z.enum(["work", "study", "project"]);
+export type NowKind = z.infer<typeof NowKind>;
+
 export const Now = z.object({
   updated: YearMonth,
-  items: z.array(
-    z.object({
-      id: z.string(),
-      text: Localized,
-      status: z.enum(["in_progress", "planned"]),
-      visible,
-    }),
-  ),
+  items: z
+    .array(
+      z.object({
+        id: z.string(),
+        kind: NowKind,
+        text: Localized,
+        /** Optional evidence link (repository, contact). External links open in a new tab. */
+        link: z.object({ href: z.string().regex(/^(https:\/\/|#)/, "https URL or #anchor"), label: Localized }).optional(),
+        visible,
+      }),
+    )
+    .refine(
+      (items) => {
+        const kinds = items.filter((i) => i.visible !== false).map((i) => i.kind);
+        return new Set(kinds).size === kinds.length;
+      },
+      { message: "Now: at most one visible item per kind" },
+    ),
 });
 export type Now = z.infer<typeof Now>;
 

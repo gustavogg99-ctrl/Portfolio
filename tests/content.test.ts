@@ -49,6 +49,24 @@ describe("content rules", () => {
     expect(c.education.some((e) => e.id === "servicenow-shark" && e.completed)).toBe(true);
   });
 
+  it("Now shows exactly work, study and project, once each (ADR-031)", () => {
+    const kinds = fresh().now.items.filter((i) => i.visible).map((i) => i.kind);
+    expect(kinds.toSorted()).toEqual(["project", "study", "work"]);
+  });
+
+  it("rejects two visible Now items of the same kind", () => {
+    const c = fresh();
+    c.now.items.push({ ...c.now.items[0], id: "work-2" });
+    expect(() => validateContent(c)).toThrow(/one visible item per kind/);
+  });
+
+  it("the Now project links to the public repository of a project on the site", () => {
+    const c = fresh();
+    const project = c.now.items.find((i) => i.kind === "project" && i.visible);
+    const repos = c.projects.filter((p) => p.visible && !p.links.repoPrivate).map((p) => p.links.repo);
+    expect(repos).toContain(project?.link?.href);
+  });
+
   it("rejects a placeholder in a visible item", () => {
     const c = fresh();
     c.projects[0].summary.en = "[CONFIRMAR: something]";

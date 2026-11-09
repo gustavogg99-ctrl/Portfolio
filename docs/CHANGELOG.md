@@ -2,6 +2,20 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 15 — "Now": work, study, project · 2026-11-09
+
+**Changed**
+- "Now" is back (ADR-031, supersedes ADR-023), as a sub-section of About before Skills: three cards (Work: available now, link to Contact; Studying: SC-900 and Scrum Master; Project: Support Agent v2 triage, link to the repository).
+- `now.ts`: items have a `kind` (`work`/`study`/`project`) and an optional link; at most one visible item per kind.
+- Certifications "In progress": SC-900 replaces the generic Microsoft Learn track.
+- SOURCES.md and ARCHITECTURE.md updated; unused "Planned" label removed.
+
+**Added**
+- Tests: one item per kind, duplicate kind rejected, project link points to a public repository on the site.
+
+**Verified**
+- `npm run check`, `npm run build`; Playwright at 1440×900 and 390×844, dark and light, EN and PT (no horizontal scroll); axe 0 violations on `/en` and `/pt`, dark and light.
+
 ## Docs — Handoff after Part 14 · 2026-11-09
 
 - ROADMAP: Parts 12–14 and the docs-only PR #19 in "Done"; "Next" lists the remaining pre-sharing items; new agreements recorded (other repositories, GitHub settings only with explicit OK via Chrome, banned terms only as hashes with the plain list in Notion `PORTFOLIO-15`, kill stale local servers before Playwright).

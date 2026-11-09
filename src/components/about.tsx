@@ -3,9 +3,10 @@ import { content } from "@/content";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { l } from "@/lib/localize";
+import { NowList } from "./now";
 import { SectionTitle } from "./section";
 
-/** "About me" text + quick facts, followed by the skills groups. */
+/** "About me" text + quick facts, then "Now" (ADR-031) and the skills groups. */
 export function About({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const { profile, skills } = content;
 
@@ -41,6 +42,8 @@ export function About({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           ))}
         </dl>
       </div>
+
+      <NowList locale={locale} dict={dict} />
 
       <div id="skills" className="flex flex-col gap-8">
         <SectionTitle lines={dict.sections.skills} id="skills-title" level={3} />

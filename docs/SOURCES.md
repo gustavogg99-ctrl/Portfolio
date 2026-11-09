@@ -19,7 +19,7 @@ The specific terms the site must never contain (names, organizations, numbers, i
 - Never: "specialist", "expert", "senior", "senior consultant", "passionate about".
 - English level: **advanced** (not fluent/native).
 - Graduation: **July 2027** for both degrees (ADS — FACINT; Journalism — IESB). No start dates.
-- Certifications issued (checked against the certificates on 05/11/2026): Microsoft Certified: AI Transformation Leader (AB-731, Jul 2026); ITIL 4 Foundation (PeopleCert, Dec 2024); ISO/IEC 27001:2022 Information Security Associate™, ISO/IEC 20000 IT Service Management Associate™, ISO 9001 Quality Management Systems Associate™ (all SkillFront — "Associate", never "Foundation"). Shown only with a way to verify them (ADR-017). Other Microsoft certs and Scrum: in progress.
+- Certifications issued (checked against the certificates on 05/11/2026): Microsoft Certified: AI Transformation Leader (AB-731, Jul 2026); ITIL 4 Foundation (PeopleCert, Dec 2024); ISO/IEC 27001:2022 Information Security Associate™, ISO/IEC 20000 IT Service Management Associate™, ISO 9001 Quality Management Systems Associate™ (all SkillFront — "Associate", never "Foundation"). Shown only with a way to verify them (ADR-017). In progress (Gustavo, 09/11/2026): Microsoft SC-900 (Security, Compliance, and Identity Fundamentals) and Scrum Master.
 - English (Casa Thomas Jefferson): a course completed in Dec 2021, **not a certification** — shown under education (ADR-018).
 - Shark in ServiceNow bootcamp, 14th edition (Shark Academy / Aoop): certificate of completion seen 09/11/2026, online, **15 h**, dated **30/10/2026**, no exam and no verification link. A course under education, **not a certification** (ADR-029). Never say "App Engine Studio" in its name, never show the certificate image.
 - Only the certifications in `certifications.ts` are claimed. Frameworks known without a certificate appear only as skills, marked "conceptual" (e.g. COBIT).
@@ -31,6 +31,7 @@ The specific terms the site must never contain (names, organizations, numbers, i
 - Support Agent Governance Prototype: rule-based, **no LLM**. **20 automated tests** (unittest) in CI on Python 3.10 and 3.13, added on 09/11/2026 (repository PR #1); they also assert the 10/6/4/3 results. Never suggest a working AI agent. v2 tracked in Notion ("Support Agent v2 – LLM com guardrails"); its task AGENT-V2-09 updates this card.
 - Employers and clients appear only as listed in `experience.ts`; no other engagement is named.
 - No Lighthouse/PageSpeed score until measured on the live site. No line or commit counts as merit.
+- "Now" (Gustavo, 09/11/2026): **available for work now**; studying for SC-900 and Scrum Master; building the Support Agent v2 (IT ticket triage: LLM classifies and drafts, the current rules are guardrails, a person approves). Say it is being built; never that the LLM triage works until its repository proves it.
 - Tone: first person, direct, evidence over adjectives (links, tests, docs).
 
 Many of these are enforced automatically by `tests/content.test.ts` (claims guard).
