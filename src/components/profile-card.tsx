@@ -59,7 +59,8 @@ export function ProfileCard({
         <div className="flex min-w-0 flex-1 flex-col gap-2 lg:w-full">
           {profile.resumeUrl && (
             <a
-              href={profile.resumeUrl}
+              href={l(profile.resumeUrl, locale)}
+                type="application/pdf"
               className="flex items-center justify-center gap-2 rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
             >
               <FileText className="size-4" aria-hidden />

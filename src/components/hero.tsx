@@ -49,7 +49,8 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         </a>
         {profile.resumeUrl && (
           <a
-            href={profile.resumeUrl}
+            href={l(profile.resumeUrl, locale)}
+                type="application/pdf"
             className="flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-medium transition-colors hover:bg-surface-2"
           >
             <FileText className="size-4" aria-hidden />

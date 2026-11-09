@@ -424,3 +424,21 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** Keep "Now" under Certifications (rejected: a work status reads oddly in a certifications section); a top-level section with a nav icon (rejected: header space, ADR-026); "Available now" only as an About fact (rejected: Gustavo wants the three lines together).
 
 **Consequences.** "Now" must be kept current: `updated` changes on every edit, and the work line changes the day Gustavo is hired. The unused "Planned" label was removed from the dictionaries.
+
+---
+
+## ADR-032 — Resume PDFs on the site, without the phone number; freelance entry in Experience
+
+**Date:** 2026-11-09
+
+**Context.** The hero and the profile card already had a "Resume" button that appears when `profile.resumeUrl` is set (Part 3). On 09/11/2026 Gustavo sent his updated resume in English and Portuguese (one A4 page each, exported from LibreOffice) and said he had reviewed and approved the text. Checked against SOURCES.md and the site: the claims guard finds nothing in either text, and every fact matches the site except two. Both PDFs print his phone number, and SOURCES.md says "No phone number": a PDF linked from a public page is indexed and scraped like the page itself. Both also list "Freelance and independent projects" (Mar 2026 to present), which the site did not have.
+
+**Decision.**
+- The site serves **site versions without the phone number** (Gustavo's choice, 09/11/2026). The number was removed from the file (redaction of the text, not a box drawn over it); the LinkedIn link moved into its place and still works; the font was re-subset; title and author metadata kept, producer cleared. The originals with the phone stay with Gustavo, for sending directly to recruiters. Text extraction of both site files finds no phone number.
+- Files in `public/resume/` (`Gustavo_Rodrigues_Resume.pdf`, `Gustavo_Rodrigues_Curriculo.pdf`), so a download keeps a readable name. `profile.resumeUrl` becomes `{ en, pt }`, each must match `/resume/<name>.pdf`; the buttons link to the PDF in the page's language. Same origin: no CSP change; the proxy already skips paths with a file extension.
+- Experience gets the same freelance entry as the resume, newest first, without naming any client (Gustavo chose to keep the site and the resume consistent). `company` may now be `{ en, pt }` when the heading is a description, like skills (ADR-014).
+- Tests: every resume link points to an existing file under 200 KB; a URL outside `/resume` is rejected.
+
+**Alternatives considered.** Keep the phone in the PDF with an exception to SOURCES.md (rejected by Gustavo); one PDF for both languages (a Portuguese visitor would get the English file); leave the freelance entry only in the PDF (the site would show one experience fewer than the resume it links to).
+
+**Consequences.** Replacing the resume = overwrite the two files with versions **without the phone number** and re-run the checks; nothing else changes. The PDFs are not covered by the em-dash test or the claims guard, which scan site text only: their text is checked by hand when they change. The resume text is Gustavo's approved wording, so small differences in phrasing from the site are expected; facts must still match.

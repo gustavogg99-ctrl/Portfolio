@@ -2,6 +2,20 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 18 — Resume PDFs and freelance entry · 2026-11-09
+
+**Added**
+- Resume PDFs in English and Portuguese (`public/resume/`), site versions without the phone number (ADR-032). The "Resume"/"Currículo" buttons in the hero and the profile card now appear and open the PDF in the page's language.
+- Experience: "Freelance and independent projects" (Mar 2026 to present), the same entry as the resume, no client named.
+- Tests: resume links point to existing files under 200 KB; a URL outside `/resume` is rejected.
+
+**Changed**
+- `profile.resumeUrl` is `{ en, pt }`; `experience.company` may be `{ en, pt }`.
+- ROADMAP: resume moved from "Later" to "Done"; agreements recorded (hero counters kept for now, site text approved by Gustavo, `gustavorodrigues.vercel.app` is the final domain).
+
+**Verified**
+- `npm run check`, `npm run build`; PDF served as `application/pdf` with the security headers; Playwright at 1440×900 and 390×844, dark and light, EN and PT (buttons link to the right file, no horizontal scroll).
+
 ## Docs — Handoff after Part 17 · 2026-11-09
 
 - ROADMAP: Parts 15–17 in "Done" (plus the items done outside this repo); "Next" starts at the hero counters, then the decision to share; new agreement recorded ("Now" must stay current, ADR-031).

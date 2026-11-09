@@ -81,6 +81,7 @@ scripts/hash-term.ts       ← `npm run claims:hash -- "term"`: line to add to t
 tests/content.test.ts      ← content rules + claims guard
 tests/locale-path.test.ts  ← language switch path logic
 tests/json-ld.test.ts      ← structured data uses only content facts
+public/resume/             ← resume PDFs (EN, PT), site versions without the phone number (ADR-032)
 docs/                      ← this documentation
 ```
 
@@ -144,7 +145,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 - **Hero title** = static line + rotating word (`profile.hero`). The server renders the first word complete, so the page works without JavaScript and doesn't jump. The `Typewriter` client component then types/erases each word (≈90 ms per letter, 1.8 s hold).
 - **Accessibility:** the visual title is `aria-hidden`; screen readers read one stable sentence ("I BUILD AI: SECURE, TESTED, AUDITABLE."). With `prefers-reduced-motion`, the first word stays still.
-- **CTAs:** See projects (primary), Resume (only when `resumeUrl` is set), Contact.
+- **CTAs:** See projects (primary), Resume (only when `resumeUrl` is set; `{ en, pt }`, each a PDF under `/resume/`, ADR-032), Contact. The profile card shows the same Resume button.
 - **Counters** come from `profile.stats`; each has an internal `evidence` note (ADR-007). Today there are two, both from infrastructure operations (ADR-024). The grid follows the number of counters (`STAT_COLUMNS` in `hero.tsx`: 2 → two columns, 3 → three, 4 → 2×2 then four on `xl`).
 - **About:** paragraphs from `profile.about` + facts card (location, where I'm open to work, languages).
 - **Now** (`#now`, sub-section of About, before Skills; not in the nav): three cards from `now.ts`, one per `kind`: `work` (status, link to Contact), `study` (also listed as certifications in progress), `project` (link to its public repository), plus the `updated` month. The schema allows at most one visible item per kind; with none visible the sub-section is not rendered (ADR-031, supersedes ADR-023).
@@ -161,7 +162,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 ## Experience and Certifications
 
-- **Experience (`#experience`):** vertical timeline, newest first; each company lists its roles with periods (`Present` when `end` is null) and highlights. Then **Education & courses** (`#education`, sub-section, in file order): degrees show "Expected", completed courses show "Completed". Certificates of completion (language course, bootcamp) live here, never in Certifications (ADR-018, ADR-029).
+- **Experience (`#experience`):** vertical timeline, newest first; each company (a plain name, or `{ en, pt }` when the heading is a description such as freelance work) lists its roles with periods (`Present` when `end` is null) and highlights. Then **Education & courses** (`#education`, sub-section, in file order): degrees show "Expected", completed courses show "Completed". Certificates of completion (language course, bootcamp) live here, never in Certifications (ADR-018, ADR-029).
 - **Certifications (`#certifications`):** cards for `verified` items, newest first, each with a way to check it — a link to the credential page, or the issuer's portal plus the certificate number (`lookupId`, ADR-017). `pending_link` items are never rendered. `in_progress` items appear as chips.
 - Certification names are a plain string for official names or `{ en, pt }` for descriptions (same pattern as skills, ADR-014).
 

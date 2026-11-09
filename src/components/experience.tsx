@@ -29,7 +29,7 @@ export function Experience({ locale, dict }: { locale: Locale; dict: Dictionary 
               className="absolute top-2 -left-[29px] size-2.5 rounded-full border border-border bg-foreground md:-left-[37px]"
             />
             <div className="flex flex-col gap-1">
-              <h3 className="text-xl font-semibold">{job.company}</h3>
+              <h3 className="text-xl font-semibold">{typeof job.company === "string" ? job.company : l(job.company, locale)}</h3>
               {job.context && <p className="text-sm text-muted">{l(job.context, locale)}</p>}
             </div>
 

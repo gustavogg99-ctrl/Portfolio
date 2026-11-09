@@ -7,8 +7,31 @@ import type { Experience } from "./schema";
  * - Teledata: "co-led", never "led a team of 16" alone.
  * - MerkurIA: no numbers; none can be checked by a visitor.
  * - Only the employers listed here; no other engagement is named.
+ * - Freelance: same entry as the resume (Gustavo, 09/11/2026); no client is named.
  */
 export const experience = [
+  {
+    id: "freelance",
+    company: { en: "Freelance and independent projects", pt: "Freelancer e projetos próprios" },
+    roles: [
+      {
+        title: { en: "Freelancer", pt: "Freelancer" },
+        start: "2026-03",
+        end: null,
+      },
+    ],
+    highlights: [
+      {
+        en: "Technical documentation and executive presentations for municipal digital-maturity assessments.",
+        pt: "Documentação técnica e apresentações executivas para diagnósticos de maturidade digital de municípios.",
+      },
+      {
+        en: "Built and published the projects on this site and the site itself (Next.js/Vercel, with CI); earned the Microsoft AB-731 certification.",
+        pt: "Construí e publiquei os projetos deste site e o próprio site (Next.js/Vercel, com CI); obtive a certificação Microsoft AB-731.",
+      },
+    ],
+    visible: true,
+  },
   {
     id: "teledata",
     company: "Teledata",

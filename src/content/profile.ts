@@ -66,7 +66,11 @@ export const profile = {
     source: "https://github.com/gustavogg99-ctrl/Portfolio",
   },
   // Hidden until the final resume PDF is ready (it will live in /public).
-  resumeUrl: null,
+  // Site versions without the phone number (SOURCES.md, ADR-032).
+  resumeUrl: {
+    en: "/resume/Gustavo_Rodrigues_Resume.pdf",
+    pt: "/resume/Gustavo_Rodrigues_Curriculo.pdf",
+  },
   languages: [
     { name: { en: "Portuguese", pt: "Português" }, level: { en: "native", pt: "nativo" } },
     { name: { en: "English", pt: "Inglês" }, level: { en: "advanced", pt: "avançado" } },

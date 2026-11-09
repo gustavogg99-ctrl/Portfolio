@@ -48,7 +48,13 @@ export const Profile = z.object({
     /** This site's own repository (footer link). */
     source: z.url(),
   }),
-  resumeUrl: z.string().nullable(),
+  /** Resume PDF per language, served from /public/resume (ADR-032). null hides the buttons. */
+  resumeUrl: z
+    .object({
+      en: z.string().regex(/^\/resume\/[A-Za-z_]+\.pdf$/, "Use /resume/<name>.pdf"),
+      pt: z.string().regex(/^\/resume\/[A-Za-z_]+\.pdf$/, "Use /resume/<name>.pdf"),
+    })
+    .nullable(),
   languages: z.array(z.object({ name: Localized, level: Localized })),
   stats: z
     .array(
@@ -73,7 +79,8 @@ export const Role = z.object({
 
 export const Experience = z.object({
   id: z.string(),
-  company: z.string(),
+  /** Plain string for a proper name; `{ en, pt }` when the heading is a description (e.g. freelance work). */
+  company: z.union([z.string().min(1), Localized]),
   context: Localized.optional(),
   roles: z.array(Role).min(1),
   highlights: z.array(Localized).min(1),
