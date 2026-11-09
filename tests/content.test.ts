@@ -159,3 +159,23 @@ describe("claims guard (docs/SOURCES.md)", () => {
     },
   );
 });
+
+describe("resume PDFs (ADR-032)", () => {
+  it("every resume link points to a file in public/", async () => {
+    const { existsSync, statSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const urls = content.profile.resumeUrl;
+    if (!urls) return;
+    for (const url of [urls.en, urls.pt]) {
+      const file = join(process.cwd(), "public", url);
+      expect(existsSync(file), url).toBe(true);
+      expect(statSync(file).size).toBeLessThan(200_000);
+    }
+  });
+
+  it("rejects a resume URL outside /resume", () => {
+    const c = fresh();
+    c.profile.resumeUrl = { en: "https://example.com/cv.pdf", pt: "/resume/Curriculo.pdf" };
+    expect(() => validateContent(c)).toThrow(/resume/);
+  });
+});
