@@ -357,3 +357,17 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** "I BUILD SECURE AI" with a rotating adjective (rejected: "AUDITABLE AI" overflows at 390 px); a cookie banner (rejected: no cookie needs consent); terms of use (rejected: the site provides no service).
 
 **Consequences.** The card no longer mirrors the LinkedIn headline. The privacy page must change whenever a provider or a collected field changes. "14 real errors → rules" and "111-item checklist" were not re-checked after the 2nd job (they live in the project's Claude files, not in the repository).
+
+---
+
+## ADR-028 — Compact profile card below 1024 px
+
+**Date:** 2026-11-09
+
+**Context.** On phones the profile card (photo up to 176 px wide, name, title, tagline, full-width button, icon row) filled the whole first screen at 390×844; the hero, which says what Gustavo does, only appeared after scrolling. The post-launch review flagged it (item 7).
+
+**Decision.** Below `lg` the card is a two-column grid: an 80 px photo beside the name, title and tagline, then one row with the contact button and the four icons (36 px). From `lg` up the card is unchanged (sticky column, large photo). The gap between card and content drops from 64 to 40 px below `lg`. Approved by Gustavo on 2026-11-09.
+
+**Alternatives considered.** Hiding the card on mobile and moving the name into the hero (rejected: the photo and the contact button are the fastest trust signals); collapsing it into the header (rejected: the header is already full at 320 px, ADR-026).
+
+**Consequences.** At 390×844 the h1 starts at ~324 px, so the hero headline and subtitle are on the first screen; at 320×640 the h1 starts at ~362 px. Tablet (768 px) gets the same compact card.

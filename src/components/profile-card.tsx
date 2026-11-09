@@ -10,6 +10,8 @@ import { GitHubIcon, LinkedInIcon } from "./icons";
 /**
  * The "who am I" card. Sticky on large screens so it stays visible
  * while the content scrolls (pattern from the reference site, ADR-001).
+ * Below lg it is compact (photo beside the name, actions in one row) so the
+ * hero shows on the first screen of a phone (ADR-028).
  */
 export function ProfileCard({
   locale,
@@ -33,62 +35,65 @@ export function ProfileCard({
   return (
     <aside
       aria-label={profile.name}
-      className="profile-glow flex w-full max-w-sm flex-col items-center gap-5 rounded-3xl border border-border bg-surface p-6 text-center"
+      className="profile-glow grid w-full max-w-sm grid-cols-[auto_1fr] items-center gap-4 rounded-3xl border border-border bg-surface p-4 text-left lg:flex lg:flex-col lg:gap-5 lg:p-6 lg:text-center"
     >
       <Image
         src={profilePhoto}
         alt={dict.labels.photoAlt}
         placeholder="blur"
-        sizes="(min-width: 1024px) 288px, 176px"
+        sizes="(min-width: 1024px) 288px, 80px"
         preload
-        className="aspect-[4/5] w-full max-w-44 rounded-2xl object-cover lg:max-w-72"
+        className="aspect-[4/5] w-20 rounded-xl object-cover lg:w-full lg:max-w-72 lg:rounded-2xl"
       />
 
-      <div className="flex flex-col gap-1">
-        {/* Not a heading: the page h1 must come first; the <aside> is already labelled with the name. */}
-        <p className="text-2xl font-bold tracking-tight">{profile.name}</p>
-        <p className="text-sm font-medium text-silver">{l(profile.title, locale)}</p>
+      <div className="flex min-w-0 flex-col gap-1 lg:items-center lg:gap-5">
+        <div className="flex flex-col gap-1">
+          {/* Not a heading: the page h1 must come first; the <aside> is already labelled with the name. */}
+          <p className="text-xl font-bold tracking-tight lg:text-2xl">{profile.name}</p>
+          <p className="text-sm font-medium text-silver">{l(profile.title, locale)}</p>
+        </div>
+        <p className="text-sm text-muted">{l(profile.tagline, locale)}</p>
       </div>
 
-      <p className="text-sm text-muted">{l(profile.tagline, locale)}</p>
-
-      <div className="flex w-full flex-col gap-2">
-        {profile.resumeUrl && (
-          <a
-            href={profile.resumeUrl}
-            className="flex items-center justify-center gap-2 rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
-          >
-            <FileText className="size-4" aria-hidden />
-            {dict.actions.resume}
-          </a>
-        )}
-        <a
-          href={`${hrefBase}#contact`}
-          className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
-            profile.resumeUrl
-              ? "border border-border hover:bg-surface-2"
-              : "bg-foreground text-background hover:opacity-90"
-          }`}
-        >
-          {dict.actions.contact}
-        </a>
-      </div>
-
-      <ul className="flex items-center gap-1">
-        {socials.map(({ href, label, icon: Icon, external }) => (
-          <li key={label}>
+      <div className="col-span-2 flex items-center gap-2 lg:w-full lg:flex-col lg:gap-5">
+        <div className="flex min-w-0 flex-1 flex-col gap-2 lg:w-full">
+          {profile.resumeUrl && (
             <a
-              href={href}
-              aria-label={label}
-              title={label}
-              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="grid size-10 place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-foreground"
+              href={profile.resumeUrl}
+              className="flex items-center justify-center gap-2 rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
             >
-              <Icon className="size-5" />
+              <FileText className="size-4" aria-hidden />
+              {dict.actions.resume}
             </a>
-          </li>
-        ))}
-      </ul>
+          )}
+          <a
+            href={`${hrefBase}#contact`}
+            className={`rounded-xl px-4 py-2.5 text-center text-sm font-medium transition-colors lg:py-3 ${
+              profile.resumeUrl
+                ? "border border-border hover:bg-surface-2"
+                : "bg-foreground text-background hover:opacity-90"
+            }`}
+          >
+            {dict.actions.contact}
+          </a>
+        </div>
+
+        <ul className="flex items-center lg:gap-1">
+          {socials.map(({ href, label, icon: Icon, external }) => (
+            <li key={label}>
+              <a
+                href={href}
+                aria-label={label}
+                title={label}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="grid size-9 place-items-center rounded-full text-muted lg:size-10 transition-colors hover:bg-surface-2 hover:text-foreground"
+              >
+                <Icon className="size-5" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </aside>
   );
 }

@@ -55,7 +55,7 @@ export function SiteShell({
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-16 px-6 pt-6 pb-24 lg:flex-row lg:items-start lg:gap-20 lg:pt-10">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-6 pt-6 pb-24 lg:flex-row lg:items-start lg:gap-20 lg:pt-10">
         <div className="w-full max-w-sm lg:sticky lg:top-28 lg:w-80 lg:shrink-0">
           <ProfileCard locale={locale} dict={dict} hrefBase={onHome ? "" : `/${locale}`} />
         </div>

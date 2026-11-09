@@ -2,6 +2,16 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 11 — Compact profile card on mobile · 2026-11-09
+
+**Changed**
+- Profile card below 1024 px: 80 px photo beside name, title and tagline; contact button and icons in one row (ADR-028). Desktop unchanged.
+- Gap between card and content below `lg`: 64 → 40 px.
+
+**Verified**
+- `npm run check`, `npm run build`.
+- Playwright + axe at 320/390/768/1440 px (dark and light, home and case study): 0 violations, no horizontal overflow; h1 top at 390×844 ≈ 324 px (was below the fold).
+
 ## Part 10 — Content review · 2026-11-09
 
 **Added**

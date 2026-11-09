@@ -199,6 +199,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - Icon-only buttons have labels in both languages; language links carry `hreflang`/`lang`.
 - Visible `:focus-visible` outline using the accent token; `prefers-reduced-motion` respected.
 - Checked with axe-core (WCAG 2.2 AA + best practices) on the home page and the case study, dark and light: 0 violations (Part 7); again in Part 9 including the 404 page, at 320/390/1440 px.
+- Profile card: compact grid below `lg` (photo beside the name, actions in one row) so the hero is on a phone's first screen (ADR-028).
 - Reflow (WCAG 1.4.10): no horizontal scroll at 320 px; header controls shrink to 30–32 px below 380 px. The profile card's name is a `<p>` so the page `h1` is the first heading. Visible text is part of every accessible name (language switch); each page has one `h1`; heading levels don't skip.
 
 ## Content rules (enforced by code)
