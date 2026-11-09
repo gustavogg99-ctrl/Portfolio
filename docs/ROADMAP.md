@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (Parts 15–16 done; 2 of 3 parts in the current chat)._
+_Last updated: 2026-11-09 (Parts 15–17 done; 3 of 3 parts in the current chat: handoff next)._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-09 (Parts 15–16 done; 2 of 3 parts in the current chat)
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content polish is deferred** to the pre-launch phase: build every feature first, then one full content review (Gustavo's choice, 05/11/2026).
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-18` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16). New parts get the next code.
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-19` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17). New parts get the next code.
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **Writing rules added on 2026-11-09:** no em dashes in visible text (test enforces it); page titles use `|`; the claims guard also scans the dictionaries; the privacy page must change when a provider or a collected field changes (ADR-027).
 - **Other repositories touched in Parts 12–14:** `support-agent-governance-prototype` (branch + PR; its own CI runs `python -m unittest discover -s tests` on Python 3.10 and 3.13; a card claim about it changes only after its PR is merged) and the profile repository `gustavogg99-ctrl/gustavogg99-ctrl` (profile README; edited directly on `main` with Gustavo's explicit OK).
@@ -62,6 +62,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 15 | "Now" back under About: work (available now), study (SC-900, Scrum Master), project (Support Agent v2) (ADR-031) | #23 |
 | — | Outside this repo: GitHub photo = site photo (Gustavo); `ethical-ai-policy` README names the related project correctly (that repo, PR #1); stale branches deleted by Gustavo (the proxy refuses branch deletion) | — |
 | 16 | Autoria em Forma card leads with the 2 delivered jobs; "paused" only in the badge and one line | #24 |
+| 17 | MerkurIA: "No formal title in a small team" replaced by "Led project management and the security and governance of client projects" (same facts) | #25 |
 
 ## Next (in order)
 
@@ -70,8 +71,7 @@ The site is **live and public but not shared yet** (ADR-025). Post-launch review
 ### 1. Before sharing the link (pre-sharing review, 09/11/2026)
 Ask Gustavo one item at a time; sharing is his call (ADR-025).
 - Done on 09/11/2026 (outside this repo, with Gustavo's approval): GitHub name "Gustavo Rodrigues", bio "AI Builder · AI Governance", profile URL, Portfolio repo pinned with description and the new site, profile README links the portfolio and uses the official certification names, private contributions shown. Writing section checked live: 3 posts.
-- **Next item to ask:** MerkurIA wording (below), then the rest in this order. Done in this chat: availability (Part 15), GitHub photo, `ethical-ai-policy` README, stale branches, Autoria card order (Part 16).
-- **MerkurIA wording:** replace "No formal title in a small team" with a non-defensive line (same facts).
+- **Next item to ask:** hero counters (below), then decide on sharing. Done on 09/11/2026: availability and "Now" (Part 15), GitHub photo, `ethical-ai-policy` README, stale branches, Autoria card order (Part 16), MerkurIA wording (Part 17).
 - **Hero counters:** both are infrastructure numbers under "I BUILD AI"; ask Gustavo whether to keep them (ADR-024).
 - Then decide with Gustavo whether to share now.
 
