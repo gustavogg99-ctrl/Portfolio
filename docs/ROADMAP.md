@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (Part 19: Autoria checks and confirmed tools; chat count 2 of 3)._
+_Last updated: 2026-11-09 (handoff after Part 19, at Gustavo's request: Parts 18–19 done; next chat starts at "Next")._
 
 ## How we work
 
@@ -69,18 +69,27 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. Current chat: Parts 18–19 done (2 of 3).
+The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. New chat starts at 0 (handoff after Part 19, requested by Gustavo to run the iFood intensive in fresh chats).
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
-### 1. Before sharing the link (pre-sharing review, 09/11/2026)
+### 1. iFood intensive (until 16/11/2026, 23:59): top priority
+
+Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026** (deadline 17/11) and puts this site's link in the form, so the site is shared from then on. Until 16/11 the site only changes for the items below. Plan, schedule and rules: Notion project `IFOOD` ("Candidatura iFood GenAI — AI Builder"), tasks `IFOOD-00` to `IFOOD-06`. A separate "manager" chat coordinates; this repository's chat only does the site parts.
+
+- **Next part (Part 20, `IFOOD-01`, by 10/11):** Autoria em Forma case study gets (a) a sanitized excerpt of the real pipeline prompt, as a snippet with a fidelity note, and (b) client-side numbers from the 2 real jobs (versions until approval, tracked changes and comments delivered, blocking checks at final delivery, triage items, client approval), each with its source. Gustavo brings both from the Autoria project; anything without a safe source stays out. Never say the clients' theses were approved by their universities before it happens (end of Nov/2026).
+- **Then (`IFOOD-03`, by 14/11):** Support Agent card and the "Now" project line updated with only what the `support-agent-governance-prototype` repository proves after its v2 short version (`IFOOD-02`, LLM triage + guardrails + evaluation of 2 prompts × 2 models) is merged there.
+- Optional (`IFOOD-05`): a timed test of the Autoria pipeline (by hand × pipeline on a fictional document), published only with its method and n=1.
+- The form question "What appears in your AI portfolio?" is answered only with what is on the site at submission (rule in the Notion project).
+
+### 2. Before sharing the link (pre-sharing review, 09/11/2026)
 Ask Gustavo one item at a time; sharing is his call (ADR-025).
 - Done on 09/11/2026 (outside this repo, with Gustavo's approval): GitHub name "Gustavo Rodrigues", bio "AI Builder · AI Governance", profile URL, Portfolio repo pinned with description and the new site, profile README links the portfolio and uses the official certification names, private contributions shown. Writing section checked live: 3 posts.
-- **Next item to ask:** decide with Gustavo whether to share now.
+- Sharing: the link goes into the iFood application on 16/11 (item 1).
 - Replacing the resume: Gustavo exports the `_site` versions (no phone) himself; compare their text with the previous PDFs and publish only facts he confirmed.
 - Done on 09/11/2026: availability and "Now" (Part 15), GitHub photo, `ethical-ai-policy` README, stale branches, Autoria card order (Part 16), MerkurIA wording (Part 17), resume (Part 18), hero counters (kept for now), resume line about the Autoria checks (Part 19).
 
-### 2. Optional
+### 3. Optional
 - Submit `sitemap.xml` to Google Search Console (Gustavo's account).
 - Re-measure Observatory/PageSpeed after big changes (docs only, ADR-024). The shell can't reach `*.vercel.app`; use Gustavo's Chrome.
 
