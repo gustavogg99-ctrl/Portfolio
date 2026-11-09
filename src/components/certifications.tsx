@@ -6,19 +6,17 @@ import { formatYearMonth, l } from "@/lib/localize";
 import type { Localized } from "@/content/schema";
 
 const certName = (name: string | Localized, locale: Locale) => (typeof name === "string" ? name : l(name, locale));
-import { SectionTitle } from "./section";
 
 /**
- * Verified certifications (each with a way to check it), certifications in
- * progress, and the "Now" list. Certifications without a verification method
- * (`pending_link`) are never rendered.
+ * Verified certifications (each with a way to check it) and certifications in
+ * progress. Certifications without a verification method (`pending_link`) are
+ * never rendered. "Now" lives under About (ADR-031).
  */
 export function Certifications({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const verified = content.certifications
     .filter((c) => c.status === "verified")
     .toSorted((a, b) => (b.issued ?? "").localeCompare(a.issued ?? ""));
   const inProgress = content.certifications.filter((c) => c.status === "in_progress");
-  const nowItems = content.now.items.filter((i) => i.visible);
 
   return (
     <div className="flex flex-col gap-16">
@@ -82,28 +80,6 @@ export function Certifications({ locale, dict }: { locale: Locale; dict: Diction
           </div>
         )}
       </div>
-
-      {nowItems.length > 0 && (
-        <div id="now" className="flex flex-col gap-8">
-          <div className="flex flex-col gap-3">
-            <SectionTitle lines={dict.sections.now} id="now-title" level={3} />
-            <p className="font-mono text-xs text-muted">
-              {dict.labels.updated}{" "}
-              <time dateTime={content.now.updated}>{formatYearMonth(content.now.updated, locale)}</time>
-            </p>
-          </div>
-          <ul className="flex max-w-2xl flex-col gap-4">
-            {nowItems.map((item) => (
-              <li key={item.id} className="flex flex-col gap-2 rounded-2xl border border-border bg-surface p-5 sm:flex-row sm:items-start sm:gap-4">
-                <span className="w-fit shrink-0 rounded-full border border-border px-3 py-1 font-mono text-[11px] tracking-wide text-muted uppercase">
-                  {item.status === "in_progress" ? dict.labels.inProgress : dict.labels.planned}
-                </span>
-                <p className="text-foreground/90">{l(item.text, locale)}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }

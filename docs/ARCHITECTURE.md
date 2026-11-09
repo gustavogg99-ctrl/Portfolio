@@ -58,7 +58,8 @@ src/
     architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
     code-block.tsx     ← code excerpt + explanation + fidelity note
     experience.tsx     ← work timeline + education and courses
-    certifications.tsx ← verified certifications, in progress, and "Now"
+    certifications.tsx ← verified certifications and in progress
+    now.tsx            ← "Now": work, study, project (sub-section of About, ADR-031)
     writing.tsx        ← newest blog posts (RSS) + link to the blog
     contact.tsx        ← contact intro, form and direct channels
     contact-form.tsx   ← Formspree form (client, AJAX + native fallback)
@@ -145,7 +146,8 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Accessibility:** the visual title is `aria-hidden`; screen readers read one stable sentence ("I BUILD AI: SECURE, TESTED, AUDITABLE."). With `prefers-reduced-motion`, the first word stays still.
 - **CTAs:** See projects (primary), Resume (only when `resumeUrl` is set), Contact.
 - **Counters** come from `profile.stats`; each has an internal `evidence` note (ADR-007). Today there are two, both from infrastructure operations (ADR-024). The grid follows the number of counters (`STAT_COLUMNS` in `hero.tsx`: 2 → two columns, 3 → three, 4 → 2×2 then four on `xl`).
-- **About:** paragraphs from `profile.about` + facts card (location, availability, languages).
+- **About:** paragraphs from `profile.about` + facts card (location, where I'm open to work, languages).
+- **Now** (`#now`, sub-section of About, before Skills; not in the nav): three cards from `now.ts`, one per `kind`: `work` (status, link to Contact), `study` (also listed as certifications in progress), `project` (link to its public repository), plus the `updated` month. The schema allows at most one visible item per kind; with none visible the sub-section is not rendered (ADR-031, supersedes ADR-023).
 - **Skills** (`#skills`, a sub-section of About, not in the nav): groups from `skills.ts` rendered as tags, no levels or percentages. Items are either a plain name (same in both languages, e.g. "ISO/IEC 27001") or `{ en, pt }` for descriptions.
 
 ## Projects
@@ -157,11 +159,10 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Shared shell:** `SiteShell` renders the header, profile card and footer for every page. Off the home page, nav and "Contact" link back to `/{lang}#section`.
 - **Known behavior (Next 16 + Cache Components):** `dynamicParams` is not available, so unknown slugs are rejected with `notFound()`. The first request to an unknown slug may return HTTP 200 with the not-found UI and `noindex`; later requests return 404. Acceptable: no content leaks and search engines don't index it.
 
-## Experience, Certifications and Now
+## Experience and Certifications
 
 - **Experience (`#experience`):** vertical timeline, newest first; each company lists its roles with periods (`Present` when `end` is null) and highlights. Then **Education & courses** (`#education`, sub-section, in file order): degrees show "Expected", completed courses show "Completed". Certificates of completion (language course, bootcamp) live here, never in Certifications (ADR-018, ADR-029).
 - **Certifications (`#certifications`):** cards for `verified` items, newest first, each with a way to check it — a link to the credential page, or the issuer's portal plus the certificate number (`lookupId`, ADR-017). `pending_link` items are never rendered. `in_progress` items appear as chips.
-- **Now (`#now`, sub-section of Certifications):** visible items from `now.ts` with an "In progress"/"Planned" tag and the `updated` month. Items already shown as certifications in progress are hidden there to avoid duplicates. With no visible item the sub-section is not rendered at all — the case today (ADR-023).
 - Certification names are a plain string for official names or `{ en, pt }` for descriptions (same pattern as skills, ADR-014).
 
 ## Writing and Contact

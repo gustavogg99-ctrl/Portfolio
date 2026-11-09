@@ -89,13 +89,17 @@
     "stack": "Stack",
     "scope": "Escopo",
     "completed": "Concluído",
-    "planned": "Planejado",
     "issued": "Emitida em",
     "verifyAt": "Verificar na",
     "certificateNo": "Nº do certificado",
     "opensInNewTab": "abre em nova aba",
     "allPosts": "Todos os posts no blog",
     "readBlog": "Ler o blog"
+  },
+  "now": {
+    "work": "Trabalho",
+    "study": "Estudando",
+    "project": "Projeto"
   },
   "a11y": {
     "skip": "Pular para o conteúdo",

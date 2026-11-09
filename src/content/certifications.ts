@@ -64,12 +64,10 @@ export const certifications = [
   },
 
   // In progress
+  // Studying for it (Gustavo, 09/11/2026); also the "study" line in now.ts (ADR-031).
   {
-    id: "microsoft-track",
-    name: {
-      en: "Microsoft Learn: AI, security and data track",
-      pt: "Microsoft Learn: trilha de IA, segurança e dados",
-    },
+    id: "sc-900",
+    name: "Microsoft Certified: Security, Compliance, and Identity Fundamentals (SC-900)",
     issuer: "Microsoft",
     status: "in_progress",
   },

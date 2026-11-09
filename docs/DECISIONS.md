@@ -404,3 +404,23 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** Make the repository private and remove the "Source code" link (rejected: loses the public evidence of CI, tests and decisions, which supports the site's thesis); drop the specific terms from the guard (rejected: the blog filter and regression protection depend on them); rewrite the git history (rejected: destructive, breaks every existing link to commits, and the history is rarely read).
 
 **Consequences.** Short terms can be found by guessing and hashing, so this hides the list from readers; it is not secrecy. The old wording remains in the git history before this PR. Adding a term needs the script instead of a plain edit.
+
+---
+
+## ADR-031 — "Now" returns as three fixed lines under About (supersedes ADR-023)
+
+**Date:** 2026-11-09
+
+**Context.** ADR-023 hid "Now" because it had only one planned item. In the pre-sharing review (ROADMAP item "Availability"), both roles on the site end by Mar/2026 and nothing said what Gustavo does today. On 09/11/2026 he asked for "Now" to show three things: where he works (he is available for work now), what he is studying (SC-900 and Scrum Master) and the project he is building (Support Agent v2, Notion `AGENT-V2`: IT ticket triage where an LLM classifies and drafts, the current rules are guardrails and a person approves). Its step 1, tests for the current rules, is done (Part 14).
+
+**Decision.**
+- `now.ts` items get a `kind` (`work`, `study`, `project`) instead of a status; the schema allows at most one visible item per kind. Each item may carry one link: Contact for work, the public repository for the project.
+- "Now" moves from the end of Certifications to **About, before Skills**: a visitor reads who Gustavo is, then what he does today. Same anchor `#now`; no nav change (the header is full at 320 px, ADR-026). Three cards in a row from `md`, stacked on phones.
+- The "work" line is the availability statement, so the About facts card keeps location, "open to" and languages (no duplicate line).
+- Certifications "In progress": SC-900 (official name) replaces the generic "Microsoft Learn: AI, security and data track". It repeats the "study" line on purpose: Certifications lists credentials, "Now" says what occupies the time today. ADR-023's no-duplicates rule no longer applies.
+- The project line says "Building"; nothing claims the LLM triage works. The card updates when its repository proves more (AGENT-V2-09).
+- Tests: exactly one visible work, study and project item; a duplicate kind is rejected; the project link is the public repository of a project shown on the site.
+
+**Alternatives considered.** Keep "Now" under Certifications (rejected: a work status reads oddly in a certifications section); a top-level section with a nav icon (rejected: header space, ADR-026); "Available now" only as an About fact (rejected: Gustavo wants the three lines together).
+
+**Consequences.** "Now" must be kept current: `updated` changes on every edit, and the work line changes the day Gustavo is hired. The unused "Planned" label was removed from the dictionaries.
