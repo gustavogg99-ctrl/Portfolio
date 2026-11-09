@@ -2,6 +2,14 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 17 — MerkurIA wording · 2026-11-09
+
+**Changed**
+- MerkurIA first highlight: "No formal title in a small team: worked on…" → "Led project management and the security and governance of client projects." (PT: "Liderei a gestão de projetos…"). Same facts; the role title "Co-founder" already sits above it, so the line no longer explains the absence of a title.
+
+**Verified**
+- `npm run check`, `npm run build`; Playwright on the Experience timeline (EN/PT).
+
 ## Part 16 — Autoria em Forma card leads with what was delivered · 2026-11-09
 
 **Changed**

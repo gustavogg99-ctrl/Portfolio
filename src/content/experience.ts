@@ -64,8 +64,8 @@ export const experience = [
     ],
     highlights: [
       {
-        en: "No formal title in a small team: worked on project management and on the security and governance of client projects.",
-        pt: "Sem cargo formal em uma equipe pequena: atuei na gestão de projetos e na segurança e governança dos projetos de clientes.",
+        en: "Led project management and the security and governance of client projects.",
+        pt: "Liderei a gestão de projetos e a segurança e governança dos projetos de clientes.",
       },
       {
         en: "Built AI automations and assistants for clients, including an AI customer-service bot.",
