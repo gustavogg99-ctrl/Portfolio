@@ -442,3 +442,20 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Alternatives considered.** Keep the phone in the PDF with an exception to SOURCES.md (rejected by Gustavo); one PDF for both languages (a Portuguese visitor would get the English file); leave the freelance entry only in the PDF (the site would show one experience fewer than the resume it links to).
 
 **Consequences.** Replacing the resume = overwrite the two files with versions **without the phone number** and re-run the checks; nothing else changes. The PDFs are not covered by the em-dash test or the claims guard, which scan site text only: their text is checked by hand when they change. The resume text is Gustavo's approved wording, so small differences in phrasing from the site are expected; facts must still match.
+
+---
+
+## ADR-033 — Autoria em Forma: blocking checks and triage described as the code runs them
+
+**Date:** 2026-11-09
+
+**Context.** The resume sent in Part 18 said "29 regression checks (4 blocking) decide delivery". Gustavo asked the Autoria em Forma project to check it against its private repository (09/11/2026; suite run again, 29/29). Findings: the 4 blocking checks (`verificar_limpa`, `verificar_marcada`, `verificar_hashes`, `verificar_paginacao`) run on the client's actual file and are a different set from the 29 regression tests, which run on fictional documents and test the scripts. No script chains the 4 or stops the delivery by itself: each exits with an error and the process says not to deliver. The triage check (`cruzar_citacoes`) is automated and does not block; a person reviews what it lists. The site called it a triage check "reviewed by hand" and said "any failure blocks the delivery". The other numbers (14 errors → rules, 4 with tests, 111-item checklist in 12 stages) were confirmed.
+
+**Decision.**
+- Resume (EN/PT): "4 blocking checks decide delivery; 29 regression tests guard the scripts". New PDFs exported by Gustavo, site versions without the phone number (ADR-032).
+- Site: the highlights say the 4 checks run on the client's file and are separate from the 29 tests; triage is an automated, non-blocking check whose list is reviewed by hand. The diagram's human step says the same. New limitation: the 4 checks run one by one and blocking is a rule of the process.
+- SOURCES.md records the re-check and the wording that must not come back.
+
+**Consequences.** The case study now matches what the code does, including a less flattering detail (the gate is a process, not a single command), consistent with ADR-015. If a script later chains the 4 checks, the limitation goes and the guard step can say so.
+
+The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilot and Jira at Teledata; WhatsApp bots with Make, n8n, OpenAI API, WhatsApp API and Supabase at MerkurIA; matching skills). They were added to Experience and Skills so the site and the resume stay consistent (his choice, as in ADR-032). "ServiceNow App Engine Studio (learning)" became "ServiceNow (learning)", matching the resume and the rule of ADR-029.
