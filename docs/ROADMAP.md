@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (Parts 15–17 done; 3 of 3 parts in the current chat: handoff next)._
+_Last updated: 2026-11-09 (handoff after Part 17: Parts 15–17 done; next chat starts at "Next")._
 
 ## How we work
 
@@ -20,6 +20,7 @@ _Last updated: 2026-11-09 (Parts 15–17 done; 3 of 3 parts in the current chat:
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
 - Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-19` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17). New parts get the next code.
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
+- **"Now" must stay current** (ADR-031): change `updated` on every edit; the work line changes the day Gustavo is hired; the study line and the "In progress" certifications change together; the project line never claims more than the Support Agent repository proves.
 - **Writing rules added on 2026-11-09:** no em dashes in visible text (test enforces it); page titles use `|`; the claims guard also scans the dictionaries; the privacy page must change when a provider or a collected field changes (ADR-027).
 - **Other repositories touched in Parts 12–14:** `support-agent-governance-prototype` (branch + PR; its own CI runs `python -m unittest discover -s tests` on Python 3.10 and 3.13; a card claim about it changes only after its PR is merged) and the profile repository `gustavogg99-ctrl/gustavogg99-ctrl` (profile README; edited directly on `main` with Gustavo's explicit OK).
 - **GitHub account and repository settings** (name, bio, pins, repo description/website, contribution settings) change only with Gustavo's explicit OK for each change, through his Chrome: the API proxy refuses repository-settings writes. It also refuses deleting branches (API and `git push --delete`): Gustavo deletes them on the Branches page, or via his Chrome.
@@ -66,7 +67,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the first round of the pre-sharing review (Parts 12–14) are done. New chat starts at 0.
+The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–17) are done except the hero counters. New chat starts at 0.
 
 ### 1. Before sharing the link (pre-sharing review, 09/11/2026)
 Ask Gustavo one item at a time; sharing is his call (ADR-025).
