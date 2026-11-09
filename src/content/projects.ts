@@ -18,9 +18,10 @@ export const projects = [
     name: "Autoria em Forma",
     featured: true,
     status: "paused",
+    // Lead with what was delivered; "paused" stays in the badge and once here (Part 16).
     statusNote: {
-      en: "Launched Oct 2026 · paused after a demand test without organic traction · 2 complete jobs delivered",
-      pt: "Lançado em out/2026 · pausado após teste de demanda sem tração orgânica · 2 trabalhos completos entregues",
+      en: "2 complete jobs delivered (Oct and Nov 2026) · paused after a demand test without organic traction",
+      pt: "2 trabalhos completos entregues (out e nov/2026) · pausado após teste de demanda sem tração orgânica",
     },
     summary: {
       en: "ABNT formatting and text revision service for undergraduate theses, with an AI pipeline whose deliveries are gated by automated checks.",
