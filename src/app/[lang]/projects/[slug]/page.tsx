@@ -12,6 +12,7 @@ import { Deliveries } from "@/components/deliveries";
 import { ProjectLinks, StackTags, StatusBadge } from "@/components/projects";
 import { SectionTitle } from "@/components/section";
 import { SiteShell } from "@/components/site-shell";
+import { TimedTest } from "@/components/timed-test";
 
 /** Only projects that declare a `page` get a case-study route. */
 const withPage = () => content.projects.filter((p) => p.visible && p.page);
@@ -96,6 +97,13 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
           <section className={block} aria-labelledby="deliveries">
             <h2 id="deliveries" className={h2}>{dict.labels.deliveries}</h2>
             <Deliveries deliveries={project.deliveries} locale={locale} dict={dict} />
+          </section>
+        )}
+
+        {project.timedTest && (
+          <section className={block} aria-labelledby="timed-test">
+            <h2 id="timed-test" className={h2}>{dict.labels.timedTest}</h2>
+            <TimedTest test={project.timedTest} locale={locale} dict={dict} />
           </section>
         )}
 

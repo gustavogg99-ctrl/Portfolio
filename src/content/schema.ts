@@ -198,6 +198,23 @@ export const Project = z.object({
       method: Localized,
     })
     .optional(),
+  /** Controlled timing test on a fictional document, by hand x pipeline (SOURCES.md, ADR-037). Case page only. */
+  timedTest: z
+    .object({
+      summary: Localized,
+      rows: z
+        .array(z.object({ label: Localized, byHand: Localized, pipeline: Localized }))
+        .min(1),
+      /** How to read the table. */
+      notes: z.array(Localized).default([]),
+      wentWrongPipeline: z.array(Localized).min(1),
+      wentWrongByHand: z.array(Localized).min(1),
+      method: z.array(Localized).min(1),
+      /** The limitations always travel with the numbers. */
+      limitations: z.array(Localized).min(1),
+      notConcluded: Localized,
+    })
+    .optional(),
   highlights: z.array(Localized).default([]),
   guardrails: z.array(Localized).default([]),
   limitations: z.array(Localized).min(1, "Every project states its limitations"),

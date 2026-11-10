@@ -139,6 +139,31 @@ describe("code snippets (sanitized excerpts from private repos)", () => {
     expect(shown).toMatch(/aceito/);
   });
 
+  it("publishes the timed test as n=1 on a fictional document, with its limitations and no hours-saved claim (ADR-037)", () => {
+    const t = content.projects.find((p) => p.slug === "autoria-em-forma")!.timedTest!;
+    // The case page only: the card stays as it is.
+    expect(content.projects.filter((p) => p.timedTest).map((p) => p.slug)).toEqual(["autoria-em-forma"]);
+    expect(t.limitations).toHaveLength(8);
+    expect(t.rows[0].byHand.en).toContain("4 h 56 min 45 s");
+    expect(t.rows[0].pipeline.en).toContain("18 min 20 s");
+    expect(t.rows[0].pipeline.en).toContain("3 min 45 s");
+    for (const loc of ["en", "pt"] as const) {
+      const shown = JSON.stringify(t, (_k, v) => (v && typeof v === "object" && loc in v ? v[loc] : v)).toLowerCase();
+      expect(shown).toMatch(/n = 1/);
+      expect(shown).toMatch(loc === "en" ? /fictional/ : /fictício/);
+      // Never a time-saving claim, and no institution or course of the real jobs.
+      expect(shown).not.toMatch(/faster|mais rápido|times? faster|vezes mais/);
+      // "hours saved" appears only inside the explicit denial.
+      const { notConcluded, ...rest } = t;
+      expect(JSON.stringify(rest, (_k, v) => (v && typeof v === "object" && loc in v ? v[loc] : v)).toLowerCase()).not.toMatch(
+        /hours saved|horas economizadas/,
+      );
+      expect(notConcluded[loc].toLowerCase()).toMatch(loc === "en" ? /not concluding hours saved/ : /não concluo horas economizadas/);
+      expect(shown).not.toMatch(/iesb|jornalismo|journalism/);
+    }
+    expect(t.notConcluded.en).toContain("not concluding hours saved");
+  });
+
   it("Support Agent card states only what its repository README proves, with its limitations (ADR-036)", () => {
     const p = content.projects.find((x) => x.slug === "support-agent-governance-prototype")!;
     const repo = "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype";

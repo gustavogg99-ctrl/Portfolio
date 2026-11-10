@@ -2,6 +2,17 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 24 — Autoria em Forma timed test (by hand × pipeline) · 2026-11-10
+
+**Added**
+- `Project.timedTest` (schema) and the `TimedTest` component: a table of both conditions, notes on how to read it, what went wrong in each condition, method, 8 numbered limitations and "what I am not concluding". Rendered on the Autoria em Forma case page only (ADR-037). Dictionary labels in both languages.
+- Test that pins the two times, the 8 limitations, the "n = 1" and "fictional document" wording in both languages, the absence of "hours saved" outside the denial and of any institution or course name.
+- SOURCES.md rule and ADR-037. `IFOOD-05`.
+
+**Not changed**
+- The featured card and the real-job numbers (ADR-035) stay as they were. No hours-saved claim, no ratio.
+
+
 ## Docs — Handoff after Part 23 · 2026-11-10
 
 **Changed**
