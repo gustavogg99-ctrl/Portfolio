@@ -2,6 +2,11 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 22 · 2026-11-10
+
+**Changed**
+- ROADMAP: Parts 20 to 22 summarized (IFOOD-01 complete, with the rules that stay: project instructions not "prompt", "accepted" not "approved", what is not published); next part is `IFOOD-03`; Notion codes `PORTFOLIO-22` (Part 20 and 21) and `PORTFOLIO-23` (Part 22); GitHub session setup notes; a "Later" item for the university approval line.
+
 ## Part 22 — Autoria em Forma: numbers of the 2 real jobs · 2026-11-10
 
 **Added**
