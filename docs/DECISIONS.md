@@ -459,3 +459,21 @@ Architecture Decision Records, newest at the bottom. Each entry: context → dec
 **Consequences.** The case study now matches what the code does, including a less flattering detail (the gate is a process, not a single command), consistent with ADR-015. If a script later chains the 4 checks, the limitation goes and the guard step can say so.
 
 The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilot and Jira at Teledata; WhatsApp bots with Make, n8n, OpenAI API, WhatsApp API and Supabase at MerkurIA; matching skills). They were added to Experience and Skills so the site and the resume stay consistent (his choice, as in ADR-032). "ServiceNow App Engine Studio (learning)" became "ServiceNow (learning)", matching the resume and the rule of ADR-029.
+
+---
+
+## ADR-034 — Autoria em Forma: excerpt of the project's instructions, labelled as what it is
+
+**Date:** 2026-11-10
+
+**Context.** For the iFood application (`IFOOD-01`) the case study should show how Claude is instructed in the Autoria em Forma pipeline. The first idea was "a sanitized excerpt of the real pipeline prompt". The Autoria project answered (10/11/2026) that the pipeline calls no model through an API: Claude is driven in a Claude project, whose instructions and a lessons file it reads before every triage or review. Calling the text a "prompt sent to the model" would be false and would contradict the card ("the LLM interprets the manual", which stays true).
+
+**Decision.**
+- New excerpt `aef-project-instructions`, first in the code excerpts: rules 1, 3, 4 and 11, the review output format, and one line from the lessons file, literal with `[...]` cuts, plus an English translation and a fidelity note in both languages (what was cut, what was left out, what changed in the translation).
+- Label: "instructions of the Claude project that runs the pipeline" (+ lessons file line). The fidelity note says it is not a prompt sent through an API, that it is the 10/11/2026 text, and that it evolved after the 1st job, so it does not describe how that job was delivered.
+- `Snippet` gets two optional fields: `translation` (second block, shown under the original) and `kind: "instructions"` (only changes the fidelity label to "…real instructions"). No other snippet changes.
+- The numbers of the 2 deliveries are not part of this decision or this part; they wait for Gustavo's `.docx` files.
+
+**Alternatives considered.** Show only the English translation (rejected: the original is what the project uses, and a reader can compare); describe the instructions in prose (rejected: the point is evidence a reader can read); a new section instead of the code excerpts (rejected: one more heading for one block; the label and fidelity note already say it is text, not code).
+
+**Consequences.** The section heading still reads "Code excerpts"; the first block states in its title and header that it is instructions. If the instructions change materially, the excerpt is refreshed from the project and the date in the note changes.

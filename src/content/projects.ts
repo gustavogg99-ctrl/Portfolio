@@ -175,7 +175,7 @@ export const projects = [
           pt: "Em paralelo: página estática em Cloudflare Workers com analytics próprio (Worker + D1): sem login, sem upload, sem rastreadores de terceiros.",
         },
       },
-      snippetIds: ["aef-safe-docx", "aef-quote-integrity", "aef-regression"],
+      snippetIds: ["aef-project-instructions", "aef-safe-docx", "aef-quote-integrity", "aef-regression"],
     },
     visible: true,
   },

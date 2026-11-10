@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-09 (handoff after Part 19, at Gustavo's request: Parts 18–19 done; next chat starts at "Next")._
+_Last updated: 2026-11-10 (Part 20 done in the first chat after the Part 19 handoff; Part A of IFOOD-01 still pending)._
 
 ## How we work
 
@@ -66,6 +66,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 17 | MerkurIA: "No formal title in a small team" replaced by "Led project management and the security and governance of client projects" (same facts) | #25 |
 | 18 | Resume PDFs EN/PT without the phone number; freelance entry in Experience (ADR-032) | #27 |
 | 19 | Autoria blocking/triage checks described as the code runs them (ADR-033); tools confirmed by Gustavo in Experience, Skills and the resume | #28 |
+| 20 | Autoria em Forma: excerpt of the Claude project's instructions (original + translation + fidelity note), not a "prompt" (ADR-034); part B of `IFOOD-01` only | #30 |
 
 ## Next (in order)
 
@@ -77,7 +78,8 @@ Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisit
 
 Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026** (deadline 17/11) and puts this site's link in the form, so the site is shared from then on. Until 16/11 the site only changes for the items below. Plan, schedule and rules: Notion project `IFOOD` ("Candidatura iFood GenAI — AI Builder"), tasks `IFOOD-00` to `IFOOD-06`. A separate "manager" chat coordinates; this repository's chat only does the site parts.
 
-- **Next part (Part 20, `IFOOD-01`, by 10/11):** Autoria em Forma case study gets (a) a sanitized excerpt of the real pipeline prompt, as a snippet with a fidelity note, and (b) client-side numbers from the 2 real jobs (versions until approval, tracked changes and comments delivered, blocking checks at final delivery, triage items, client approval), each with its source. Gustavo brings both from the Autoria project; anything without a safe source stays out. Never say the clients' theses were approved by their universities before it happens (end of Nov/2026).
+- **Part 20 (`IFOOD-01`), done on 10/11:** part B only, the excerpt of the instructions of the Claude project that runs the Autoria pipeline (ADR-034). It is labelled as project instructions, never as a prompt sent to a model or through an API (the pipeline calls no model by API); its rules evolved after the 1st job, so never say they applied then.
+- **Pending, depends on Gustavo (part A of `IFOOD-01`):** client-side numbers from the 2 real jobs (versions until approval, tracked changes and comments delivered, blocking checks at final delivery, triage items, client approval), each with its source. **No new number goes on the site** until Gustavo brings the `.docx` files of the 2 deliveries; anything without a safe source stays out. Never say the clients' theses were approved by their universities before it happens (end of Nov/2026).
 - **Then (`IFOOD-03`, by 14/11):** Support Agent card and the "Now" project line updated with only what the `support-agent-governance-prototype` repository proves after its v2 short version (`IFOOD-02`, LLM triage + guardrails + evaluation of 2 prompts × 2 models) is merged there.
 - Optional (`IFOOD-05`): a timed test of the Autoria pipeline (by hand × pipeline on a fictional document), published only with its method and n=1.
 - The form question "What appears in your AI portfolio?" is answered only with what is on the site at submission (rule in the Notion project).

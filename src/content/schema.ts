@@ -154,8 +154,12 @@ export const Snippet = z.object({
   /** Generic source path inside the project, never an absolute path. */
   file: z.string().regex(/^[\w./+ -]+$/, "Generic relative path only"),
   code: z.string().min(1),
+  /** Optional English translation of `code`, for excerpts of instructions written in Portuguese. */
+  translation: z.string().min(1).optional(),
+  /** "instructions" = text given to Claude in a project (not code): changes the labels only. */
+  kind: z.enum(["code", "instructions"]).optional(),
   explanation: Localized,
-  /** How this excerpt differs from the real code (honesty note). */
+  /** How this excerpt differs from the real code or text (honesty note). */
   fidelity: Localized,
 });
 export type Snippet = z.infer<typeof Snippet>;
