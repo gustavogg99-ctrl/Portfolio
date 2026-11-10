@@ -2,6 +2,14 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 21 — Wording fix in the Autoria instructions excerpt · 2026-11-10
+
+**Changed**
+- The explanation of the `aef-project-instructions` excerpt (EN and PT) now ends "a change makes the check fail", without "blocks the delivery", matching ADR-033 (blocking is a process rule, no script stops the delivery by itself). Gustavo's choice. Nothing else changed.
+
+**Verified**
+- `npm run check`, `npm run build`, Playwright on the page (EN and PT).
+
 ## Part 20 — Autoria em Forma: excerpt of the Claude project's instructions · 2026-11-10
 
 **Added**
