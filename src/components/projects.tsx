@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Lock } from "lucide-react";
+import { ArrowRight, ChartColumn, ExternalLink, Lock } from "lucide-react";
 import { content } from "@/content";
 import type { Project } from "@/content/schema";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -29,7 +29,7 @@ export function StackTags({ stack }: { stack: string[] }) {
 }
 
 export function ProjectLinks({ project, dict }: { project: Project; dict: Dictionary }) {
-  const { live, repo, repoPrivate } = project.links;
+  const { live, repo, results, repoPrivate } = project.links;
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
       {live && (
@@ -52,6 +52,17 @@ export function ProjectLinks({ project, dict }: { project: Project; dict: Dictio
         >
           <GitHubIcon className="size-4" />
           {dict.labels.repository}
+        </a>
+      )}
+      {results && (
+        <a
+          href={results}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 underline-offset-4 hover:underline"
+        >
+          <ChartColumn className="size-4" aria-hidden />
+          {dict.labels.evaluationResults}
         </a>
       )}
       {repoPrivate && (

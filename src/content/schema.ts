@@ -204,6 +204,8 @@ export const Project = z.object({
   links: z.object({
     live: z.url().optional(),
     repo: z.url().optional(),
+    /** Public evaluation results of the project (a section of its repository README). Part 23, ADR-036. */
+    results: z.url().optional(),
     repoPrivate: z.boolean().default(false),
   }),
   builtWith: Localized.optional(),

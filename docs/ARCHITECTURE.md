@@ -54,7 +54,7 @@ src/
     language-switch.tsx← EN ⇄ PT link, keeps #section, saves cookie (client)
     section.tsx        ← <Section> + two-tone <SectionTitle> (h2 or h3)
     site-shell.tsx     ← header + profile card column + footer, shared by all pages
-    projects.tsx       ← featured card, project cards (native <details>), status/stack/links
+    projects.tsx       ← featured card, project cards (native <details>), status/stack/links (repository, optional "Evaluation results" link, ADR-036)
     architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
     deliveries.tsx     ← counts from real delivered jobs + method note (card and case page, ADR-035)
     code-block.tsx     ← code excerpt (+ optional translation) + explanation + fidelity note

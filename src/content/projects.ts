@@ -9,8 +9,9 @@ import type { Project } from "./schema";
  * - Autoria em Forma: launched Oct/2026, paused after a demand test without
  *   organic traction; 2 complete jobs delivered (Oct and Nov 2026). No clients, sales or revenue.
  *   No internal links and no real TCC content anywhere (see SOURCES.md).
- * - Support agent: rule-based prototype. No LLM. 20 automated tests in CI
- *   (repository PR #1, 09/11/2026).
+ * - Support agent: rules + LLM triage prototype. Every number on the card comes from
+ *   `results/eval_results.json` and the README (section 8) of its repository, merged
+ *   on 10/11/2026 (repository PRs #2 to #7). Limitations come from the same README (Part 23, ADR-036).
  */
 export const projects = [
   {
@@ -206,54 +207,84 @@ export const projects = [
     featured: false,
     status: "prototype",
     statusNote: {
-      en: "Prototype · LLM integration on the roadmap",
-      pt: "Protótipo · integração com LLM no roadmap",
+      en: "Prototype · LLM triage with a rules guardrail, evaluated on 30 synthetic tickets",
+      pt: "Protótipo · triagem com LLM e guardrail de regras, avaliada em 30 chamados sintéticos",
     },
     summary: {
-      en: "Prototype of the governance layer for an AI support agent: rule-based triage, human escalation and an audit log with sensitive-data masking.",
-      pt: "Protótipo da camada de governança de um agente de suporte com IA: triagem por regras, escalonamento humano e log de auditoria com mascaramento.",
+      en: "Prototype of an IT ticket triage agent with governance: an LLM (Claude) classifies and drafts a reply, deterministic rules act as a guardrail the LLM can only make stricter, and a person approves before anything is sent.",
+      pt: "Protótipo de um agente de triagem de chamados de TI com governança: um LLM (Claude) classifica e sugere a resposta, regras determinísticas funcionam como guardrail que o LLM só pode tornar mais rígido, e uma pessoa aprova antes de qualquer envio.",
     },
     problem: {
       en: "Support teams want to automate ticket handling, but automating access requests, critical incidents or tickets with personal data without clear limits creates risk. Inspired by handling ~1,000 incidents a month.",
       pt: "Times de suporte querem automatizar chamados, mas automatizar pedidos de acesso, incidentes críticos ou chamados com dados pessoais sem limites claros gera risco. Inspirado na experiência com ~1.000 incidentes por mês.",
     },
     built: {
-      en: "A local Python prototype (standard library only) that classifies and prioritizes simulated tickets, decides whether automation is allowed or blocked, escalates sensitive or high-risk cases to a human, and writes a redacted audit log. Fully documented: scope, architecture, decision logic and governance controls.",
-      pt: "Um protótipo local em Python (só biblioteca padrão) que classifica e prioriza chamados simulados, decide se a automação é permitida ou bloqueada, escalona casos sensíveis ou de alto risco para um humano e grava um log de auditoria mascarado. Documentado: escopo, arquitetura, lógica de decisão e controles de governança.",
+      en: "A local Python prototype. The rules of the first version (standard library only) stay as the guardrail, and an LLM classifier (Claude through the Anthropic API, JSON output validated against closed lists, invalid output goes to a person) is combined with them: the stricter decision wins and any disagreement goes to a person. A reply is drafted only when both allow automation, is checked (sensitive data, claims of actions performed, length) and is sent, in simulation, only after explicit approval. An evaluation harness compares 2 prompt versions and 2 models on 30 labelled synthetic tickets. The audit log records both decisions with sensitive values redacted.",
+      pt: "Um protótipo local em Python. As regras da primeira versão (só biblioteca padrão) continuam como guardrail, e um classificador com LLM (Claude pela API da Anthropic, saída JSON validada contra listas fechadas, saída inválida vai para uma pessoa) é combinado com elas: vale a decisão mais restritiva e qualquer divergência vai para uma pessoa. A resposta só é redigida quando os dois permitem automação, é verificada (dados sensíveis, afirmação de ação realizada, tamanho) e é enviada, em simulação, só com aprovação explícita. Um avaliador compara 2 versões de prompt e 2 modelos em 30 chamados sintéticos rotulados. O log de auditoria registra as duas decisões com valores sensíveis mascarados.",
     },
-    stack: ["Python"],
+    stack: ["Python", "Claude API"],
     highlights: [
       {
-        en: "On the 10 simulated tickets: 6 escalated to a human, 4 automated, 3 sensitive-data cases detected.",
-        pt: "Nos 10 chamados simulados: 6 escalonados para humano, 4 automatizados, 3 casos de dados sensíveis detectados.",
+        en: "Evaluation on 30 labelled synthetic tickets, 2 Claude models × 2 prompt versions. With the written policy in the prompt (v2), both models got the category right on 28/30 tickets, against 9/30 for the rules alone.",
+        pt: "Avaliação em 30 chamados sintéticos rotulados, 2 modelos Claude × 2 versões de prompt. Com a política escrita no prompt (v2), os dois modelos acertaram a categoria em 28/30 chamados, contra 9/30 das regras sozinhas.",
       },
       {
-        en: "20 automated tests pin every governance rule and the results above; CI runs them on each push (Python 3.10 and 3.13).",
-        pt: "20 testes automatizados fixam cada regra de governança e os resultados acima; o CI roda a cada push (Python 3.10 e 3.13).",
+        en: "Unsafe automation (a ticket that needs a person but would get an automated answer, 21 of the 30): 8/21 with the rules alone; with the guardrail, 1/21 on prompt v1 and 0/21 on v2. The LLM alone would have automated 3/21 (v1) and 1/21 (v2).",
+        pt: "Automação indevida (chamado que exige uma pessoa mas receberia resposta automática, 21 dos 30): 8/21 só com as regras; com o guardrail, 1/21 no prompt v1 e 0/21 no v2. O LLM sozinho teria automatizado 3/21 (v1) e 1/21 (v2).",
+      },
+      {
+        en: "The cost of caution: with v2, 4 of the 9 tickets that could be automated still went to a person. Cost per ticket with v2: US$ 0.00016 (Haiku 5.5) against US$ 0.0032 (Sonnet 5.5), at prices checked on 10/11/2026.",
+        pt: "O custo da cautela: com o v2, 4 dos 9 chamados que poderiam ser automatizados foram para uma pessoa mesmo assim. Custo por chamado com o v2: US$ 0,00016 (Haiku 5.5) contra US$ 0,0032 (Sonnet 5.5), com preços conferidos em 10/11/2026.",
+      },
+      {
+        en: "84 automated tests (standard library; none calls the API) run in CI on each push (Python 3.10 and 3.13). The results table is generated from a committed results file, and a test checks that the README matches it.",
+        pt: "84 testes automatizados (biblioteca padrão; nenhum chama a API) rodam no CI a cada push (Python 3.10 e 3.13). A tabela de resultados é gerada de um arquivo de resultados versionado, e um teste confere que o README bate com ele.",
       },
     ],
     guardrails: [
       {
-        en: "Automation is blocked whenever predefined risk conditions are met.",
-        pt: "A automação é bloqueada sempre que condições de risco predefinidas são atendidas.",
+        en: "The LLM can only make a decision stricter: whatever the rules block it cannot release, and any disagreement between rules and LLM goes to a person.",
+        pt: "O LLM só pode tornar a decisão mais rígida: o que as regras bloqueiam ele não libera, e qualquer divergência entre regras e LLM vai para uma pessoa.",
       },
       {
-        en: "Sensitive data is masked before it reaches the audit log.",
+        en: "Invalid LLM output (bad JSON, unknown value, refusal, API error) is treated as a failure and sent to a person.",
+        pt: "Saída inválida do LLM (JSON malformado, valor desconhecido, recusa, erro de API) conta como falha e vai para uma pessoa.",
+      },
+      {
+        en: "A reply draft is checked for sensitive data, claims of actions performed and length, and nothing is sent without explicit human approval.",
+        pt: "O rascunho de resposta é verificado quanto a dados sensíveis, afirmação de ação realizada e tamanho, e nada é enviado sem aprovação humana explícita.",
+      },
+      {
+        en: "Sensitive data is redacted before it reaches the audit log.",
         pt: "Dados sensíveis são mascarados antes de chegar ao log de auditoria.",
       },
     ],
     limitations: [
       {
-        en: "Deterministic rules only. No LLM integrated yet.",
-        pt: "Só regras determinísticas. Ainda sem LLM integrado.",
+        en: "30 synthetic tickets, labels drafted with AI assistance and approved by one reviewer (me): one ticket is 3.3 percentage points. One run per combination, variance not measured.",
+        pt: "30 chamados sintéticos, com rótulos redigidos com apoio de IA e aprovados por um revisor (eu): um chamado vale 3,3 pontos percentuais. Uma execução por combinação, variância não medida.",
       },
       {
-        en: "Simulated tickets; no real ticketing-system integration.",
-        pt: "Chamados simulados; sem integração com sistema de chamados real.",
+        en: "Prompt v2 was written from the same policy that produced the labels. The result shows that the model follows a stated policy, not how it would perform on real tickets.",
+        pt: "O prompt v2 foi escrito a partir da mesma política que gerou os rótulos. O resultado mostra que o modelo segue uma política declarada, não como ele se sairia em chamados reais.",
+      },
+      {
+        en: "Only classification was evaluated; reply drafts and latency were not.",
+        pt: "Só a classificação foi avaliada; os rascunhos de resposta e a latência não.",
+      },
+      {
+        en: "No full prompt-injection defence (5 injection tickets are a sample, not a security assessment), and no masking before the API call: the ticket text is sent as written, only the requester's name is left out.",
+        pt: "Sem defesa completa contra prompt injection (5 chamados de injection são uma amostra, não uma avaliação de segurança) e sem mascaramento antes da chamada à API: o texto do chamado é enviado como está, só o nome do solicitante fica de fora.",
+      },
+      {
+        en: "Human approval is a console prompt and sending is simulated; no real ticketing-system integration.",
+        pt: "A aprovação humana é uma pergunta no console e o envio é simulado; sem integração com sistema de chamados real.",
       },
     ],
     links: {
       repo: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype",
+      results:
+        "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype#8-llm-triage-with-guardrail-results",
       repoPrivate: false,
     },
     visible: true,

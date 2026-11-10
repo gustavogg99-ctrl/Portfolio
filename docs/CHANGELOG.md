@@ -2,6 +2,24 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 23 — Support Agent card and "Now" line after the v2 short version · 2026-11-10
+
+**Added**
+- `Project.links.results` and an "Evaluation results" link (both languages) on the project card, pointing to section 8 of the Support Agent README. ADR-036.
+- Test that pins the card's numbers, the results link, the limitations in both languages and the absence of "no LLM" and "in production" wording.
+
+**Changed**
+- Support Agent card: status note, summary, "what I built", stack (+ Claude API), four highlights with the evaluation numbers (28/30 and 9/30 categories, unsafe automation 8/21, 1/21, 0/21, cost of caution, cost per ticket, 84 tests), guardrails of the combined design, and the README's limitations. The rules-only highlights (10 tickets, 6/4/3) left the card.
+- "Now" project line: first version done and measured on 30 synthetic tickets; next steps taken from the repository's "Later" list.
+- SOURCES.md: what the card may claim, with the numbers' origin, and what it must never claim.
+- ROADMAP: `IFOOD-03` done.
+
+**Not changed**
+- Status stays "Prototype". Nothing says it works in production or that a model is recommended.
+
+**Verified**
+- Before editing: `main` of the Support Agent repository pulled, 84 tests run, README table recomputed from `results/eval_results.json`, prompt and evaluation-set hashes compared. See also the PR description.
+
 ## Docs — Handoff after Part 22 · 2026-11-10
 
 **Changed**

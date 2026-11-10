@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-10 (handoff after Part 22: Parts 20 to 22 done in the previous chat; `IFOOD-01` complete; next is `IFOOD-03`)._
+_Last updated: 2026-11-10 (Part 23 done, `IFOOD-03` complete: Support Agent card and "Now" line after the v2 short version merged in its repository)._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-10 (handoff after Part 22: Parts 20 to 22 done in the pre
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content review:** done; Gustavo reviewed and approved the site text on 09/11/2026.
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-23` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22). New parts get the next code.
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-24` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23). New parts get the next code.
 - **Session setup for GitHub (learned in Parts 20 to 22):** at the start of a chat, call the repository tool `add_repo` for `gustavogg99-ctrl/Portfolio` with push access, or the git proxy refuses `git push` (403, "not in this session's authorized repository set"). `gh pr create` fails (GraphQL is blocked): open PRs with `gh api repos/gustavogg99-ctrl/Portfolio/pulls --method POST --input <json>`. A PR's CI can start a few minutes late; wait for the `check` run, never push an empty commit.
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **"Now" must stay current** (ADR-031): change `updated` on every edit; the work line changes the day Gustavo is hired; the study line and the "In progress" certifications change together; the project line never claims more than the Support Agent repository proves.
@@ -70,10 +70,11 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 20 | Autoria em Forma: excerpt of the Claude project's instructions (original + translation + fidelity note), not a "prompt" (ADR-034); part B of `IFOOD-01` only | #30 |
 | 21 | Wording fix in the Part 20 excerpt: "makes the check fail", no "blocks the delivery" (ADR-033); Gustavo's choice | #31 |
 | 22 | Autoria em Forma: numbers of the 2 real jobs on the card and the case page (versions until client acceptance, tracked changes per revision, comments), anonymous, "accepted by the client" (ADR-035); part A of `IFOOD-01` | #32 |
+| 23 | Support Agent card and "Now" line after the v2 short version (repository PRs #2 to #7): evaluation numbers, guardrails, the README's limitations and an "Evaluation results" link (ADR-036); `IFOOD-03` | #34 |
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. New chat starts at 0 (handoff after Part 22, the 3rd part of the previous chat).
+The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. New chat started at 0 after the handoff following Part 22; Part 23 is the 1st part of this chat (the 3rd triggers the next handoff).
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
@@ -82,7 +83,7 @@ Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisit
 Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026** (deadline 17/11) and puts this site's link in the form, so the site is shared from then on. Until 16/11 the site only changes for the items below. Plan, schedule and rules: Notion project `IFOOD` ("Candidatura iFood GenAI — AI Builder"), tasks `IFOOD-00` to `IFOOD-06`. A separate "manager" chat coordinates; this repository's chat only does the site parts.
 
 - **`IFOOD-01` is complete (Parts 20 to 22, 10/11):** the excerpt of the instructions of the Claude project that runs the Autoria pipeline (ADR-034) and the numbers of the 2 real jobs on the card and the case page (ADR-035). Rules that stay: the excerpt is labelled as **project instructions**, never "prompt sent to a model" or "API prompt" (the pipeline calls no model by API), and its rules **evolved after the 1st job**, so never say they applied then; the numbers are **"accepted by the client"**, never "approved" (approval by the university only happens at the end of Nov/2026, and any line about it needs Gustavo's confirmation); **check results, triage items and comment prefixes are deliberately not published** (SOURCES.md). The section heading stays "Code excerpts" (ADR-034).
-- **Next part, Part 23 (`IFOOD-03`, by 14/11):** Support Agent card and the "Now" project line updated with only what the `support-agent-governance-prototype` repository proves after its v2 short version (`IFOOD-02`, LLM triage + guardrails + evaluation of 2 prompts × 2 models) is merged there.
+- **`IFOOD-03` is complete (Part 23, 10/11):** Support Agent card and "Now" project line updated with what the `support-agent-governance-prototype` repository proves after its v2 short version (`IFOOD-02`, merged 10/11 in its PRs #2 to #7). Rules that stay: always shown with the README's limitations; numbers change only with a new `results/eval_results.json`; never "works in production" or "the larger model is needed" (ADR-036).
 - Optional (`IFOOD-05`): a timed test of the Autoria pipeline (by hand × pipeline on a fictional document), published only with its method and n=1.
 - The form question "What appears in your AI portfolio?" is answered only with what is on the site at submission (rule in the Notion project).
 
@@ -100,7 +101,7 @@ Ask Gustavo one item at a time; sharing is his call (ADR-025).
 ## Later
 
 - After the clients' theses are approved by their university (expected end of Nov/2026): ask Gustavo whether he wants a line about it on the Autoria card, with his confirmation and no identifying detail.
-- Support Agent v2 (IT ticket triage with LLM and guardrails), in progress and shown in "Now" — tracked in Notion `AGENT-V2`; task AGENT-V2-09 updates the project card and the "Now" line here.
+- Support Agent v2 beyond the short version (AGENT-V2-05 prompt-injection defence, AGENT-V2-06 masking before the API call, demo): when one is merged in its repository, update the card limitations and the "Now" line here (Notion `AGENT-V2`, task AGENT-V2-09).
 - English version of `docs/` is fine.
 
 ## Known caveats
