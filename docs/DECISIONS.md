@@ -534,3 +534,16 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Putting the test on the card (rejected: two kinds of evidence on a small card); publishing only the two times (rejected: that is exactly the number that misleads without the checks and limits); a ratio ("X times faster") (rejected: derived from n=1 and a design that favors the pipeline); naming the institution because the file used its manual (rejected, see above).
 
 **Consequences.** The page says plainly that the test is not blind and not generalizable, which the recruiter can verify against the method. If Gustavo repeats the test (other document, other order), add a second block rather than editing the first. If the pipeline engine gains paragraph merging or SEQ captions, the "not resolved" lines stay as they were on 10/11/2026.
+
+
+## ADR-038 — Timed test: one note for what was found after the run, numbers untouched
+
+**Date:** 2026-11-10
+
+**Context.** After ADR-037 was published, Gustavo and Claude checked the delivered files again: the by-hand .docx has no page numbers, the pipeline's early versions had a reference out of alphabetical order (a build-spec mistake), and Word and Google Docs paginate one page differently from the PDF. Two of these make the published comparison look better for the pipeline or hide a defect in it.
+
+**Decision.** Add exactly one note to `timedTest.notes` (the "how to read the table" list), saying what was found, that it came after the run and that it is not reflected in the table. Reword the limitation "not tested in Word or Google Docs" to "during the run (tested afterwards)". The times, checks and counts are not edited, and the test is not redone (Gustavo's call: no rerun).
+
+**Alternatives considered.** Rewriting the table with the new findings (rejected: it would mix the measured run with later work); a new limitation (rejected: the limitations list is pinned at 8 by a test and these are findings, not design limits); saying nothing (rejected: the note on checklist item 65 and the by-hand pagination are material to the comparison).
+
+**Consequences.** The page keeps the measured numbers and shows, in one place, what was learned afterwards. Rule: any later finding about the same run goes into this note or a second one, never into the numbers.

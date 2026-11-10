@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-10 (Part 24 open: `IFOOD-05` result published on the Autoria em Forma case page, ADR-037; after Part 23 merged and `IFOOD-03` complete)._
+_Last updated: 2026-11-10 (Part 26 open: one note on the timed test, ADR-038; Part 25 merged)._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-10 (Part 24 open: `IFOOD-05` result published on the Auto
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content review:** done; Gustavo reviewed and approved the site text on 09/11/2026.
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-25` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24). New parts get the next code (the next one is `PORTFOLIO-26`).
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-26` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24; 26 = Parts 25 and 26). New parts get the next code (the next one is `PORTFOLIO-27`).
 - **Session setup for GitHub (learned in Parts 20 to 22):** at the start of a chat, call the repository tool `add_repo` for `gustavogg99-ctrl/Portfolio` with push access, or the git proxy refuses `git push` (403, "not in this session's authorized repository set"). `gh pr create` fails (GraphQL is blocked): open PRs with `gh api repos/gustavogg99-ctrl/Portfolio/pulls --method POST --input <json>`. A PR's CI can start a few minutes late; wait for the `check` run, never push an empty commit. Re-checked in Part 23: `gh auth status` reports an invalid `GH_TOKEN`, but `gh api` still works through the proxy (open the PR and read check runs with it); `npm ci` is needed before `npm run check`; Python Playwright with Chromium is available in the sandbox (serve `npx next start -p 3000` after `npm run build`, kill it afterwards).
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **"Now" must stay current** (ADR-031): change `updated` on every edit; the work line changes the day Gustavo is hired; the study line and the "In progress" certifications change together; the project line never claims more than the Support Agent repository proves.
@@ -72,7 +72,8 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 22 | Autoria em Forma: numbers of the 2 real jobs on the card and the case page (versions until client acceptance, tracked changes per revision, comments), anonymous, "accepted by the client" (ADR-035); part A of `IFOOD-01` | #32 |
 | 23 | Support Agent card and "Now" line after the v2 short version (repository PRs #2 to #7): evaluation numbers, guardrails, the README's limitations and an "Evaluation results" link (ADR-036); `IFOOD-03` | #34 |
 | 24 | Autoria em Forma case page: timed test by hand × pipeline, n=1, fictional document, with limitations and what went wrong in each condition (ADR-037); `IFOOD-05` | #36 |
-| 25 | Wording of the "processing time not measured" limitation, now that the timed test exists (no new claim) | (this PR) |
+| 25 | Wording of the "processing time not measured" limitation, now that the timed test exists (no new claim) | #37 |
+| 26 | Timed test: one note on what was found after the run (page numbers of the by-hand file, reference order, Word/Docs pagination); numbers untouched (ADR-038) | (this PR) |
 
 ## Next (in order)
 

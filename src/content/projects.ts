@@ -187,6 +187,10 @@ export const projects = [
           pt: "O gabarito dos erros plantados foi aberto só depois da rodada do pipeline (10/11/2026).",
         },
         {
+          en: "Checked after the run, on the delivered files, and not reflected in the table above: (1) the by-hand .docx passes the hashes and clean-version checks but has no page numbers at all, so its pagination check fails; (2) the pipeline's reference list went out in versions 1 to 3 with one reference out of alphabetical order (a mistake of my build spec, not of the source document), marked OK in the checklist, and was fixed in a later version outside the measured time; (3) opened afterwards in Word and Google Docs, the pipeline's version 3 showed the same page numbers as the PDF up to the Introduction and one page more at the References, so the table of contents has to be updated there.",
+          pt: "Conferido depois da rodada, nos arquivos entregues, e não refletido na tabela acima: (1) o .docx à mão passa nas verificações de hashes e de versão limpa, mas não tem número de página nenhum, então a verificação de paginação falha; (2) a lista de referências do pipeline saiu nas versões 1 a 3 com uma referência fora da ordem alfabética (erro da minha spec de montagem, não do documento de origem), marcada OK no checklist, e foi corrigida numa versão posterior, fora do tempo medido; (3) abrindo depois no Word e no Google Docs, a versão 3 do pipeline mostrou os mesmos números de página do PDF até a Introdução e uma página a mais nas Referências, então o sumário precisa ser atualizado ali.",
+        },
+        {
           en: "The pipeline repository is private, so the method is summarized here.",
           pt: "O repositório do pipeline é privado, então o método está resumido aqui.",
         },
@@ -208,8 +212,8 @@ export const projects = [
           pt: "As fronteiras de etapa são diferentes entre as condições; só os totais são comparáveis.",
         },
         {
-          en: "The pipeline was not tested in Word or Google Docs.",
-          pt: "O pipeline não foi testado no Word nem no Google Docs.",
+          en: "The pipeline was not tested in Word or Google Docs during the run (tested afterwards, see the note above).",
+          pt: "O pipeline não foi testado no Word nem no Google Docs durante a rodada (testado depois, veja a nota acima).",
         },
         {
           en: "The pipeline was designed for this type of document.",
