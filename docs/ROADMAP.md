@@ -71,7 +71,8 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 21 | Wording fix in the Part 20 excerpt: "makes the check fail", no "blocks the delivery" (ADR-033); Gustavo's choice | #31 |
 | 22 | Autoria em Forma: numbers of the 2 real jobs on the card and the case page (versions until client acceptance, tracked changes per revision, comments), anonymous, "accepted by the client" (ADR-035); part A of `IFOOD-01` | #32 |
 | 23 | Support Agent card and "Now" line after the v2 short version (repository PRs #2 to #7): evaluation numbers, guardrails, the README's limitations and an "Evaluation results" link (ADR-036); `IFOOD-03` | #34 |
-| 24 | Autoria em Forma case page: timed test by hand × pipeline, n=1, fictional document, with limitations and what went wrong in each condition (ADR-037); `IFOOD-05` | (this PR) |
+| 24 | Autoria em Forma case page: timed test by hand × pipeline, n=1, fictional document, with limitations and what went wrong in each condition (ADR-037); `IFOOD-05` | #36 |
+| 25 | Wording of the "processing time not measured" limitation, now that the timed test exists (no new claim) | (this PR) |
 
 ## Next (in order)
 
