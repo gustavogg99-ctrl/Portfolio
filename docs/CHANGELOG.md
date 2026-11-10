@@ -2,6 +2,23 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 20 — Autoria em Forma: excerpt of the Claude project's instructions · 2026-11-10
+
+**Added**
+- Autoria em Forma case study: excerpt of the instructions of the Claude project that runs the pipeline (rules 1, 3, 4, 11, review format, one lessons-file line), original in Brazilian Portuguese with English translation and a fidelity note in both languages. Labelled as project instructions, never as a prompt sent to a model or through an API (ADR-034).
+- `Snippet.translation` and `Snippet.kind` (optional); labels for original, translation and "real instructions" in both dictionaries.
+
+**Changed**
+- SOURCES.md: origin of the excerpt (Autoria project, 10/11/2026), the API caveat, and the rule that its text evolved after the 1st job.
+- ROADMAP: Part 20 done; the numbers of the 2 deliveries (part A) stay pending until Gustavo brings the `.docx` files.
+- The snippet test also scans the translation.
+
+**Not changed**
+- No new number on the site; card text ("the LLM interprets the manual") untouched.
+
+**Verified**
+- See the PR description.
+
 ## Docs — Handoff after Part 19 · 2026-11-09
 
 - ROADMAP: Parts 18–19 done; handoff requested by Gustavo after 2 parts, to run the iFood intensive in fresh chats. New "Next" item 1: the iFood intensive until 16/11 (Part 20: Autoria prompt excerpt and client-side numbers; then the Support Agent card), coordinated in the Notion project `IFOOD`; the site's link is shared in the application on 16/11.

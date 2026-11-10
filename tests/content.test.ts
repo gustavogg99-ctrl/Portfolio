@@ -100,7 +100,7 @@ describe("content rules", () => {
 });
 
 describe("code snippets (sanitized excerpts from private repos)", () => {
-  const code = content.snippets.map((s) => s.code).join("\n").toLowerCase();
+  const code = content.snippets.map((s) => `${s.code}\n${s.translation ?? ""}`).join("\n").toLowerCase();
 
   it("never contains an internal term (hashed, ADR-030)", () => {
     expect(findHashedTerm(code, SNIPPET_TERM_HASHES)).toBeNull();
@@ -112,6 +112,17 @@ describe("code snippets (sanitized excerpts from private repos)", () => {
       expect(code).not.toContain(term);
     },
   );
+
+  it("labels the Autoria instructions as project instructions, never as a prompt sent to a model (ADR-034)", () => {
+    const s = content.snippets.find((x) => x.id === "aef-project-instructions")!;
+    expect(s.kind).toBe("instructions");
+    expect(s.translation).toBeTruthy();
+    for (const loc of ["en", "pt"] as const) {
+      const shown = `${s.title[loc]} ${s.explanation[loc]}`.toLowerCase();
+      expect(shown).not.toMatch(/prompt|api/);
+      expect(s.fidelity[loc].toLowerCase()).toContain("api");
+    }
+  });
 
   it("rejects a project page that points to a missing snippet", () => {
     const c = fresh();
