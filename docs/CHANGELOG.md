@@ -2,6 +2,11 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 26 — Timed test: one note on what was found after the run · 2026-11-10
+
+**Changed**
+- Autoria em Forma case page, timed test block: one note added to "how to read the table" (by-hand .docx without page numbers; a reference out of alphabetical order in the pipeline's versions 1 to 3, a build-spec mistake fixed in version 4; one page of difference in Word and Google Docs). The measured numbers are untouched. The limitation "not tested in Word or Google Docs" now says "during the run". ADR-038, SOURCES.md.
+
 ## Part 25 — Wording of the Autoria "processing time" limitation · 2026-11-10
 
 **Changed**
