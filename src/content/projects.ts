@@ -227,12 +227,12 @@ export const projects = [
     },
     highlights: [
       {
-        en: "Regression suite with 29 tests that guard the pipeline's scripts, run on fictional documents generated at every run (29/29 passing).",
-        pt: "Suíte de regressão com 29 testes que protegem os scripts do pipeline, sobre documentos fictícios gerados a cada execução (29/29 passando).",
+        en: "Regression suite with 41 tests that guard the pipeline's scripts, run on fictional documents generated at every run (41/41 passing).",
+        pt: "Suíte de regressão com 41 testes que protegem os scripts do pipeline, sobre documentos fictícios gerados a cada execução (41/41 passando).",
       },
       {
-        en: "4 automated checks on the client's actual file that block a delivery if they fail (pagination, quotation integrity, clean version, tracked-changes version), separate from the 29 tests. Plus 1 automated triage check that does not block: it lists quotation × reference mismatches, reviewed by hand.",
-        pt: "4 verificações automáticas no arquivo real do cliente que bloqueiam a entrega se falharem (paginação, integridade das citações, versão limpa, versão marcada), separadas dos 29 testes. Mais 1 verificação de triagem automática que não bloqueia: lista divergências entre citação e referência, conferidas à mão.",
+        en: "4 automated checks on the client's actual file that block a delivery if they fail (pagination, quotation integrity, clean version, tracked-changes version), separate from the 41 tests. Plus 1 automated triage check that does not block: it lists quotation × reference mismatches, reviewed by hand.",
+        pt: "4 verificações automáticas no arquivo real do cliente que bloqueiam a entrega se falharem (paginação, integridade das citações, versão limpa, versão marcada), separadas dos 41 testes. Mais 1 verificação de triagem automática que não bloqueia: lista divergências entre citação e referência, conferidas à mão.",
       },
       {
         en: "14 real errors documented with root cause and turned into permanent rules; 4 of them also have automated tests, the rest are in the manual checklist.",

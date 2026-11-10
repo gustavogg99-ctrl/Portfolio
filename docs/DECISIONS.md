@@ -547,3 +547,17 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Rewriting the table with the new findings (rejected: it would mix the measured run with later work); a new limitation (rejected: the limitations list is pinned at 8 by a test and these are findings, not design limits); saying nothing (rejected: the note on checklist item 65 and the by-hand pagination are material to the comparison).
 
 **Consequences.** The page keeps the measured numbers and shows, in one place, what was learned afterwards. Rule: any later finding about the same run goes into this note or a second one, never into the numbers.
+
+
+## ADR-039 — Autoria em Forma: regression suite count updated from 29 to 41
+
+**Date:** 2026-11-10
+
+**Context.** The case page and the card said "29 tests (29/29 passing)", the number checked on 09/11/2026 (SOURCES.md). The pipeline's self-test grew after that: the engine gained paragraph merging (PR #3) and paragraph exclusion (PR #4) as part of closing `IFOOD-05`, and the suite now has 41 checks. A visitor who reads the private repository's description or Gustavo's own notes would see 41, so 29 had become stale.
+
+**Decision.** Change the count to 41 in the three highlight strings (EN and PT) and in SOURCES.md, with the date, the command and the source of the number: `python3 -I testes/autoteste/rodar.py` run on 10/11/2026 against the private repository's `main` after PR #4 (41/41; the same result after PR #5, which only changed the example spec). No other claim changes. The 4 blocking checks, the triage check and the "14 real errors, 4 with tests" line are untouched.
+
+**Alternatives considered.** Leaving 29 (rejected: stale number on a page that will be shared from 16/11); showing "more than 29" (rejected: vaguer than a checked number); listing what each added test covers (rejected: the repository is private and the page already summarizes the method).
+
+**Consequences.** The number is pinned in SOURCES.md with its run date. Any later change to the suite size needs a new check against the repository before the page changes. In the earlier run the suite failed 1 of 41 only because `pymupdf` was missing in a fresh environment; it is in the repository's requirements and passes once installed.
+
