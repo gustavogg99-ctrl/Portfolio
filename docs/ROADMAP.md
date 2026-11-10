@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-10 (Parts 20 and 21 done in the first chat after the Part 19 handoff; part A of IFOOD-01 still pending)._
+_Last updated: 2026-11-10 (Parts 20, 21 and 22 done in the first chat after the Part 19 handoff; `IFOOD-01` complete)._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-10 (Parts 20 and 21 done in the first chat after the Part
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content review:** done; Gustavo reviewed and approved the site text on 09/11/2026.
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-21` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19). New parts get the next code.
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-22` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20; Part 21 is recorded inside 22). New parts get the next code.
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **"Now" must stay current** (ADR-031): change `updated` on every edit; the work line changes the day Gustavo is hired; the study line and the "In progress" certifications change together; the project line never claims more than the Support Agent repository proves.
 - **Writing rules added on 2026-11-09:** no em dashes in visible text (test enforces it); page titles use `|`; the claims guard also scans the dictionaries; the privacy page must change when a provider or a collected field changes (ADR-027).
@@ -67,7 +67,8 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 18 | Resume PDFs EN/PT without the phone number; freelance entry in Experience (ADR-032) | #27 |
 | 19 | Autoria blocking/triage checks described as the code runs them (ADR-033); tools confirmed by Gustavo in Experience, Skills and the resume | #28 |
 | 20 | Autoria em Forma: excerpt of the Claude project's instructions (original + translation + fidelity note), not a "prompt" (ADR-034); part B of `IFOOD-01` only | #30 |
-| 21 | Wording fix in the Part 20 excerpt: "makes the check fail", no "blocks the delivery" (ADR-033); Gustavo's choice | PR_TBD |
+| 21 | Wording fix in the Part 20 excerpt: "makes the check fail", no "blocks the delivery" (ADR-033); Gustavo's choice | #31 |
+| 22 | Autoria em Forma: numbers of the 2 real jobs on the card and the case page (versions until client acceptance, tracked changes per revision, comments), anonymous, "accepted by the client" (ADR-035); part A of `IFOOD-01` | #32 |
 
 ## Next (in order)
 
@@ -80,8 +81,8 @@ Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisit
 Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026** (deadline 17/11) and puts this site's link in the form, so the site is shared from then on. Until 16/11 the site only changes for the items below. Plan, schedule and rules: Notion project `IFOOD` ("Candidatura iFood GenAI — AI Builder"), tasks `IFOOD-00` to `IFOOD-06`. A separate "manager" chat coordinates; this repository's chat only does the site parts.
 
 - **Part 20 (`IFOOD-01`), done on 10/11:** part B only, the excerpt of the instructions of the Claude project that runs the Autoria pipeline (ADR-034). It is labelled as project instructions, never as a prompt sent to a model or through an API (the pipeline calls no model by API); its rules evolved after the 1st job, so never say they applied then.
-- **Pending, depends on Gustavo (part A of `IFOOD-01`):** client-side numbers from the 2 real jobs (versions until approval, tracked changes and comments delivered, blocking checks at final delivery, triage items, client approval), each with its source. **No new number goes on the site** until Gustavo brings the `.docx` files of the 2 deliveries; anything without a safe source stays out. Never say the clients' theses were approved by their universities before it happens (end of Nov/2026).
-- **Then (`IFOOD-03`, by 14/11; Part 22, since the wording fix took Part 21):** Support Agent card and the "Now" project line updated with only what the `support-agent-governance-prototype` repository proves after its v2 short version (`IFOOD-02`, LLM triage + guardrails + evaluation of 2 prompts × 2 models) is merged there.
+- **Part 22 (`IFOOD-01`, part A), done on 10/11:** numbers of the 2 real jobs on the card and the case page (ADR-035), anonymous, authorized by both clients. Say "accepted by the client", never "approved": approval by the university only happens at the end of Nov/2026, and any line about it needs Gustavo's confirmation. Check results, triage items and comment prefixes are deliberately not published (see SOURCES.md).
+- **Then (`IFOOD-03`, by 14/11; the next part):** Support Agent card and the "Now" project line updated with only what the `support-agent-governance-prototype` repository proves after its v2 short version (`IFOOD-02`, LLM triage + guardrails + evaluation of 2 prompts × 2 models) is merged there.
 - Optional (`IFOOD-05`): a timed test of the Autoria pipeline (by hand × pipeline on a fictional document), published only with its method and n=1.
 - The form question "What appears in your AI portfolio?" is answered only with what is on the site at submission (rule in the Notion project).
 

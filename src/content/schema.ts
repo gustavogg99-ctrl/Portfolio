@@ -178,6 +178,26 @@ export const Project = z.object({
   problem: Localized,
   built: Localized,
   stack: z.array(z.string()).min(1),
+  /** Counts from real delivered jobs (anonymous, SOURCES.md, ADR-035). Rendered on the card and the case page. */
+  deliveries: z
+    .object({
+      jobs: z
+        .array(
+          z.object({
+            label: Localized,
+            /** Versions delivered until the client accepted the work. */
+            versions: z.number().int().positive(),
+            /** Tracked changes in the final marked version, counted per revision. */
+            changes: z.number().int().nonnegative(),
+            /** Comments in the final marked version. */
+            comments: z.number().int().nonnegative(),
+          }),
+        )
+        .min(1),
+      /** How the numbers were counted, and what they are not. */
+      method: Localized,
+    })
+    .optional(),
   highlights: z.array(Localized).default([]),
   guardrails: z.array(Localized).default([]),
   limitations: z.array(Localized).min(1, "Every project states its limitations"),

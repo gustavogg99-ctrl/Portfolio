@@ -124,6 +124,21 @@ describe("code snippets (sanitized excerpts from private repos)", () => {
     }
   });
 
+  it("publishes only the agreed numbers of the 2 real Autoria jobs, as accepted by the client (ADR-035)", () => {
+    const d = content.projects.find((p) => p.slug === "autoria-em-forma")!.deliveries!;
+    expect(d.jobs.map((j) => [j.versions, j.changes, j.comments])).toEqual([
+      [3, 87, 14],
+      [1, 69, 31],
+    ]);
+    // Only these three numbers per job (no check results, triage items or comment prefixes).
+    for (const j of d.jobs) expect(Object.keys(j).sort()).toEqual(["changes", "comments", "label", "versions"]);
+    const shown = JSON.stringify(d).toLowerCase();
+    // Client acceptance, never the university's approval; nothing about checks, triage or prefixes.
+    expect(shown).not.toMatch(/approved|aprovad(o|a)s?\b|block|bloque|triage|triagem|prefix|\[regra\]/);
+    expect(shown).toMatch(/accepted/);
+    expect(shown).toMatch(/aceito/);
+  });
+
   it("rejects a project page that points to a missing snippet", () => {
     const c = fresh();
     c.projects[0].page!.snippetIds.push("does-not-exist");

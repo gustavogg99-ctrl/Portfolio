@@ -8,6 +8,7 @@ import { l } from "@/lib/localize";
 import { alternatesFor } from "@/lib/alternates";
 import { ArchitectureDiagram } from "@/components/architecture-diagram";
 import { CodeBlock } from "@/components/code-block";
+import { Deliveries } from "@/components/deliveries";
 import { ProjectLinks, StackTags, StatusBadge } from "@/components/projects";
 import { SectionTitle } from "@/components/section";
 import { SiteShell } from "@/components/site-shell";
@@ -90,6 +91,13 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
           <h2 id="architecture" className={h2}>{dict.labels.architecture}</h2>
           <ArchitectureDiagram architecture={page.architecture} locale={locale} dict={dict} />
         </section>
+
+        {project.deliveries && (
+          <section className={block} aria-labelledby="deliveries">
+            <h2 id="deliveries" className={h2}>{dict.labels.deliveries}</h2>
+            <Deliveries deliveries={project.deliveries} locale={locale} dict={dict} />
+          </section>
+        )}
 
         {project.highlights.length > 0 && (
           <section className={block} aria-labelledby="evidence">
