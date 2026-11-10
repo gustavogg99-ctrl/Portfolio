@@ -2,6 +2,11 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 23 · 2026-11-10
+
+**Changed**
+- ROADMAP: `IFOOD-03` done in Part 23; `IFOOD-05` described with its protocol (written before measuring, in the Notion task), who runs it (Gustavo, in the Autoria project) and the rules for publishing it as Part 24 only after he brings the record; GitHub and Playwright session notes; next Notion code `PORTFOLIO-25`.
+
 ## Part 23 — Support Agent card and "Now" line after the v2 short version · 2026-11-10
 
 **Added**
