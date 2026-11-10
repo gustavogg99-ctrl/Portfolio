@@ -2,6 +2,14 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 27 — Autoria em Forma: regression suite count 29 → 41 · 2026-11-10
+
+**Changed**
+- Autoria em Forma card and case page: "Regression suite with 41 tests (41/41 passing)" and "separate from the 41 tests", in EN and PT. SOURCES.md records the run (10/11/2026, private repository, after its PR #4) and the history 20 → 29 → 41 (ADR-039).
+
+**Not changed**
+- The 4 blocking checks, the triage check, the 14 real errors, the timed test and every other number.
+
 ## Part 26 — Timed test: one note on what was found after the run · 2026-11-10
 
 **Changed**
