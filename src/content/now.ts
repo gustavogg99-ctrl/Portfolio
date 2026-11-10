@@ -32,14 +32,16 @@ export const now = {
     },
     {
       // Notion AGENT-V2 ("Support Agent v2: IT ticket triage with LLM and guardrails").
-      // Step 1 (tests for the current rules) is done: 20 unittest tests in CI, repository PR #1.
-      // Never suggest the LLM triage already works: it is being built.
+      // Short version merged on 10/11/2026 (repository PRs #2 to #7): LLM classifier, rules as
+      // guardrail, human approval, evaluation of 2 prompts x 2 models on 30 synthetic tickets.
+      // Say "measured on 30 synthetic tickets", never that it works in production (ADR-036).
+      // The "Next" part is the repository ROADMAP "Later" list (AGENT-V2-05 and -06).
       id: "project",
       kind: "project",
       visible: true,
       text: {
-        en: "Building an IT ticket triage on top of my Support Agent prototype: an LLM classifies and drafts a reply, the current rules act as guardrails, and a person approves before anything is sent.",
-        pt: "Construindo uma triagem de chamados de TI sobre o meu protótipo Support Agent: um LLM classifica e sugere a resposta, as regras atuais funcionam como guardrail e uma pessoa aprova antes de qualquer envio.",
+        en: "Building an IT ticket triage on top of my Support Agent prototype. The first version is done and measured on 30 synthetic tickets: an LLM classifies and drafts a reply, the rules act as a guardrail and a person approves. Next: prompt-injection defence and masking before the API call.",
+        pt: "Construindo uma triagem de chamados de TI sobre o meu protótipo Support Agent. A primeira versão está pronta e medida em 30 chamados sintéticos: um LLM classifica e sugere a resposta, as regras funcionam como guardrail e uma pessoa aprova. Próximo: defesa contra prompt injection e mascaramento antes da chamada à API.",
       },
       link: {
         href: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype",

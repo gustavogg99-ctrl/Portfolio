@@ -65,6 +65,7 @@
     "verify": "Verificar credencial",
     "repository": "Repositório",
     "liveSite": "Site no ar",
+    "evaluationResults": "Resultados da avaliação",
     "privateRepo": "Repositório privado, descrito aqui",
     "limitations": "Limitações conhecidas",
     "guardrails": "Guardrails",

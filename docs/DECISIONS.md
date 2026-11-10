@@ -496,3 +496,22 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Extra highlight lines instead of a structured block (rejected: the numbers need the method note next to them, and the card shows only four highlights); publishing the blocking-check results with a caveat (rejected: no safe source for the 1st job); a total across both jobs (rejected: hides that the 2nd needed 1 version and the 1st needed 3).
 
 **Consequences.** The 1st job's higher version count stays visible (honest, and it explains the process improving). The numbers do not change unless the files do. When the university approves the work (expected end of Nov/2026) Gustavo may ask for a line about it, only with his confirmation.
+
+---
+
+## ADR-036 — Support Agent card and "Now" line updated to the merged v2 short version, with a link to the evaluation
+
+**Date:** 2026-11-10
+
+**Context.** ADR-031 and SOURCES.md said the project line and the card change only when the `support-agent-governance-prototype` repository proves more (`IFOOD-03`, `AGENT-V2-09`). On 10/11/2026 its short version was merged (repository PRs #2 to #7): LLM classifier, rules as guardrail, human approval, and an evaluation of 2 prompt versions × 2 Claude models on 30 labelled synthetic tickets, with a committed results file and a README table checked by a test. Before writing anything I pulled `main`, ran its 84 tests, recomputed the table from `results/eval_results.json` and compared the prompt and evaluation-set hashes with the file.
+
+**Decision.**
+- The card keeps the project's honest framing: still a **prototype**; the status note says "evaluated on 30 synthetic tickets". Four highlights carry numbers, each one in the repository's README table; the guardrails list describes the design in `docs/guardrail.md`; the limitations are the README's own, in both languages (synthetic data, one run, prompt written from the labelling policy, classification only, no full injection defence, no masking before the API, simulated sending).
+- New optional `Project.links.results`, rendered as "Evaluation results" next to the repository link, pointing at README section 8. The recruiter reaches the table in one click instead of trusting the card.
+- The "Now" project line says the first version is done and measured on 30 synthetic tickets, keeps "Building", and names the next steps from the repository's "Later" list. It still links to the repository (a test requires the public repository of a project on the site).
+- The rules-only highlights (10 tickets, 6/4/3) leave the card: they are the old baseline and still true in the repository, but two sets of numbers on one small card would confuse. The card shows the rules-only baseline inside the new comparison (9/30, 8/21).
+- A test pins the numbers, the results link, the limitations in both languages and the absence of "no LLM" and "in production" wording.
+
+**Alternatives considered.** Keep the card as is until the full v2 (rejected: the application is sent on 16/11 and the repository now proves much more); say "works" or recommend a model (rejected: one run, 30 tickets, three tickets of difference is noise, as the README says); leave out the cost and the limitations to keep the card short (rejected: cost is part of the experiment, and the project's own README declares the limits, so the card must too).
+
+**Consequences.** Numbers on the card change only when `results/eval_results.json` changes: re-check them after any new run. If the README section is renumbered, the anchor breaks; the test compares the link with the expected anchor so the change is noticed. The "Now" line must change again when AGENT-V2-05 or -06 is merged.

@@ -139,6 +139,28 @@ describe("code snippets (sanitized excerpts from private repos)", () => {
     expect(shown).toMatch(/aceito/);
   });
 
+  it("Support Agent card states only what its repository README proves, with its limitations (ADR-036)", () => {
+    const p = content.projects.find((x) => x.slug === "support-agent-governance-prototype")!;
+    const repo = "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype";
+    expect(p.links.repo).toBe(repo);
+    expect(p.links.results).toBe(`${repo}#8-llm-triage-with-guardrail-results`);
+    const en = JSON.stringify([p.highlights, p.guardrails, p.limitations].map((a) => a.map((x) => x.en))).toLowerCase();
+    // Numbers from results/eval_results.json (run of 10/11/2026, repository PR #7).
+    for (const n of ["28/30", "9/30", "8/21", "1/21", "0/21", "3/21", "4 of the 9", "84 automated tests", "0.00016", "0.0032"]) {
+      expect(en).toContain(n);
+    }
+    // Limitations declared in both languages: synthetic data, no full injection defence, no masking before the API.
+    for (const loc of ["en", "pt"] as const) {
+      const lim = p.limitations.map((x) => x[loc]).join(" ").toLowerCase();
+      expect(lim).toMatch(/sint[eé]tic|synthetic/);
+      expect(lim).toMatch(/prompt injection|prompt-injection/);
+      expect(lim).toMatch(/mascaramento|masking/);
+    }
+    // No claim that it works in production or on real tickets, and no stale "no LLM" line.
+    const all = JSON.stringify(p).toLowerCase();
+    expect(all).not.toMatch(/no llm|sem llm|production-ready|in production|em produ[cç][aã]o|ainda sem llm/);
+  });
+
   it("rejects a project page that points to a missing snippet", () => {
     const c = fresh();
     c.projects[0].page!.snippetIds.push("does-not-exist");
