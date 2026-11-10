@@ -477,3 +477,22 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Show only the English translation (rejected: the original is what the project uses, and a reader can compare); describe the instructions in prose (rejected: the point is evidence a reader can read); a new section instead of the code excerpts (rejected: one more heading for one block; the label and fidelity note already say it is text, not code).
 
 **Consequences.** The section heading still reads "Code excerpts"; the first block states in its title and header that it is instructions. If the instructions change materially, the excerpt is refreshed from the project and the date in the note changes.
+
+---
+
+## ADR-035 — Autoria em Forma: counts from the 2 real jobs, anonymous and limited to three numbers
+
+**Date:** 2026-11-10
+
+**Context.** The iFood application (`IFOOD-01`, part A) needs measurable results from delivered work. The Autoria project counted them in the delivered files; both clients authorized anonymous numbers (confirmed by Gustavo, 10/11/2026). Some numbers would have been misleading: the blocking checks did not exist as a pattern in the 1st job and cannot be re-run on the 2nd; the triage list can contain false positives; the comment prefixes did not exist in the 1st job.
+
+**Decision.**
+- New optional `Project.deliveries` (jobs + a method note), rendered by one component on the featured card and on the case page, so both always show the same numbers. Per job, exactly three numbers: versions until client acceptance (3 | 1), tracked changes in the final marked version counted per revision (87 | 69), comments in the final marked version (14 | 31).
+- Wording is "accepted by the client", never "approved"; the note says it is not the university's approval, which is a separate step.
+- The method note on the site says how tracked changes were counted and by what (a script over the XML of the delivered marked files, 10/11/2026).
+- Not published: check results, triage items, comments split by prefix, anything identifying.
+- A test pins the six numbers and the allowed fields, and fails if the text mentions approval, blocking, triage or prefixes.
+
+**Alternatives considered.** Extra highlight lines instead of a structured block (rejected: the numbers need the method note next to them, and the card shows only four highlights); publishing the blocking-check results with a caveat (rejected: no safe source for the 1st job); a total across both jobs (rejected: hides that the 2nd needed 1 version and the 1st needed 3).
+
+**Consequences.** The 1st job's higher version count stays visible (honest, and it explains the process improving). The numbers do not change unless the files do. When the university approves the work (expected end of Nov/2026) Gustavo may ask for a line about it, only with his confirmation.

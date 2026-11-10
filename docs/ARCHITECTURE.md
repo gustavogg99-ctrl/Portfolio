@@ -56,6 +56,7 @@ src/
     site-shell.tsx     ← header + profile card column + footer, shared by all pages
     projects.tsx       ← featured card, project cards (native <details>), status/stack/links
     architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
+    deliveries.tsx     ← counts from real delivered jobs + method note (card and case page, ADR-035)
     code-block.tsx     ← code excerpt (+ optional translation) + explanation + fidelity note
     experience.tsx     ← work timeline + education and courses
     certifications.tsx ← verified certifications and in progress

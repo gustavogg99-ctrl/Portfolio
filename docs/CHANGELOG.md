@@ -2,6 +2,22 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 22 — Autoria em Forma: numbers of the 2 real jobs · 2026-11-10
+
+**Added**
+- `Project.deliveries` and a `Deliveries` component, shown on the Autoria em Forma card and case page: per job, versions until client acceptance (3 | 1), tracked changes counted per revision (87 | 69) and comments (14 | 31), with a method note in both languages. Labels in both dictionaries. ADR-035.
+- Test that pins the six numbers and fails on "approved", blocking, triage or prefix wording in that block.
+
+**Changed**
+- SOURCES.md: origin of each number, the counting rule, the authorization of both clients, and what is deliberately not published. "3 versions until approval" became "until client acceptance".
+- ROADMAP: part A of `IFOOD-01` done.
+
+**Not changed**
+- No check result, triage item, comment prefix split or identifying detail on the site.
+
+**Verified**
+- See the PR description.
+
 ## Part 21 — Wording fix in the Autoria instructions excerpt · 2026-11-10
 
 **Changed**

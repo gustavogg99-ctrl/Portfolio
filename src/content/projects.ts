@@ -40,6 +40,27 @@ export const projects = [
       pt: "Um pipeline em Python + Claude que roda fora do site, em ambiente isolado: o LLM interpreta o manual do curso e aponta correções, código determinístico aplica a formatação no XML do .docx e verificações automáticas bloqueiam a entrega se algo falhar. Saem uma versão limpa, uma versão com controle de alterações e um PDF. O site público é uma página estática em Cloudflare Workers com analytics próprio (Worker + D1), sem login e sem upload.",
     },
     stack: ["Python", "Claude", "Cloudflare Workers", "Cloudflare D1", "OOXML (.docx)"],
+    // Counts from the 2 real jobs (SOURCES.md, ADR-035). Only these 3 numbers per job: no check results, no triage items, no split by comment prefix.
+    deliveries: {
+      jobs: [
+        {
+          label: { en: "1st job (delivered Oct/2026)", pt: "1º trabalho (entregue em out/2026)" },
+          versions: 3,
+          changes: 87,
+          comments: 14,
+        },
+        {
+          label: { en: "2nd job (delivered Nov/2026)", pt: "2º trabalho (entregue em nov/2026)" },
+          versions: 1,
+          changes: 69,
+          comments: 31,
+        },
+      ],
+      method: {
+        en: "Anonymous counts, authorized by both clients. \"Accepted\" means accepted by the client, not approval by the university, which is a separate step. Tracked changes are counted per revision (an adjacent deletion and insertion by the same author count as 1; paragraph marks excluded), by a script over the XML of the delivered marked .docx files (10/11/2026).",
+        pt: "Contagens anônimas, autorizadas pelos dois clientes. \"Aceito\" quer dizer aceito pelo cliente, e não a aprovação pela faculdade, que é uma etapa à parte. As alterações rastreadas são contadas por revisão (exclusão e inserção adjacentes do mesmo autor valem 1; marcas de parágrafo fora), por um script sobre o XML dos .docx marcados entregues (10/11/2026).",
+      },
+    },
     highlights: [
       {
         en: "Regression suite with 29 tests that guard the pipeline's scripts, run on fictional documents generated at every run (29/29 passing).",

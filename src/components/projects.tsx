@@ -5,6 +5,7 @@ import type { Project } from "@/content/schema";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { l } from "@/lib/localize";
+import { Deliveries } from "./deliveries";
 import { GitHubIcon } from "./icons";
 
 export function StatusBadge({ project, dict }: { project: Project; dict: Dictionary }) {
@@ -89,6 +90,12 @@ function FeaturedCard({ project, locale, dict }: { project: Project; locale: Loc
       <p className="text-lg text-foreground/90">{l(project.summary, locale)}</p>
       {project.scope && (
         <p className="border-l-2 border-accent pl-4 text-sm text-muted">{l(project.scope, locale)}</p>
+      )}
+      {project.deliveries && (
+        <div className="flex flex-col gap-3">
+          <h4 className="text-sm font-semibold">{dict.labels.deliveries}</h4>
+          <Deliveries deliveries={project.deliveries} locale={locale} dict={dict} />
+        </div>
       )}
       <ul className="grid gap-3 sm:grid-cols-2">
         {project.highlights.slice(0, 4).map((h) => (
