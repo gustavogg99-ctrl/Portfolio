@@ -68,7 +68,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 19 | Autoria blocking/triage checks described as the code runs them (ADR-033); tools confirmed by Gustavo in Experience, Skills and the resume | #28 |
 | 20 | Autoria em Forma: excerpt of the Claude project's instructions (original + translation + fidelity note), not a "prompt" (ADR-034); part B of `IFOOD-01` only | #30 |
 | 21 | Wording fix in the Part 20 excerpt: "makes the check fail", no "blocks the delivery" (ADR-033); Gustavo's choice | #31 |
-| 22 | Autoria em Forma: numbers of the 2 real jobs on the card and the case page (versions until client acceptance, tracked changes per revision, comments), anonymous, "accepted by the client" (ADR-035); part A of `IFOOD-01` | PR_TBD |
+| 22 | Autoria em Forma: numbers of the 2 real jobs on the card and the case page (versions until client acceptance, tracked changes per revision, comments), anonymous, "accepted by the client" (ADR-035); part A of `IFOOD-01` | #32 |
 
 ## Next (in order)
 
