@@ -66,7 +66,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 17 | MerkurIA: "No formal title in a small team" replaced by "Led project management and the security and governance of client projects" (same facts) | #25 |
 | 18 | Resume PDFs EN/PT without the phone number; freelance entry in Experience (ADR-032) | #27 |
 | 19 | Autoria blocking/triage checks described as the code runs them (ADR-033); tools confirmed by Gustavo in Experience, Skills and the resume | #28 |
-| 20 | Autoria em Forma: excerpt of the Claude project's instructions (original + translation + fidelity note), not a "prompt" (ADR-034); part B of `IFOOD-01` only | PR_TBD |
+| 20 | Autoria em Forma: excerpt of the Claude project's instructions (original + translation + fidelity note), not a "prompt" (ADR-034); part B of `IFOOD-01` only | #30 |
 
 ## Next (in order)
 
