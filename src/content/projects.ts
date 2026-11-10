@@ -62,6 +62,165 @@ export const projects = [
         pt: "Contagens anônimas, autorizadas pelos dois clientes. \"Aceito\" quer dizer aceito pelo cliente, e não a aprovação pela faculdade, que é uma etapa à parte. As alterações rastreadas são contadas por revisão (exclusão e inserção adjacentes do mesmo autor valem 1; marcas de parágrafo fora), por um script sobre o XML dos .docx marcados entregues (10/11/2026).",
       },
     },
+    // Controlled timing test on ONE fictional document (SOURCES.md, ADR-037). Case page only. No client, course or institution is named.
+    timedTest: {
+      summary: {
+        en: "I ran the pipeline and manual formatting on the same fictional 29-page thesis. By hand: 4 h 56 min 45 s net. Pipeline: 18 min 20 s on the clock, of which 3 min 45 s was my active work. This is a single run and its design favors the pipeline (see the limitations), so I draw no time-saving conclusion from it. What it shows well is what failed in each condition.",
+        pt: "Rodei o pipeline e a formatação manual no mesmo TCC fictício de 29 páginas. À mão: 4h56min45s líquidos. Pipeline: 18min20s de relógio, dos quais 3min45s de trabalho ativo meu. É uma única rodada e o desenho favorece o pipeline (veja as limitações), então não tiro conclusão de tempo economizado. O que o teste mostra bem é o que falhou em cada condição.",
+      },
+      rows: [
+        {
+          label: { en: "Time", pt: "Tempo" },
+          byHand: {
+            en: "4 h 56 min 45 s net (5 h 14 min gross, 2 pauses)",
+            pt: "4h56min45s líquidos (5h14min brutos, 2 pausas)",
+          },
+          pipeline: {
+            en: "18 min 20 s on the clock; 3 min 45 s of my active work",
+            pt: "18min20s de relógio; 3min45s de trabalho ativo meu",
+          },
+        },
+        {
+          label: { en: "4 blocking checks", pt: "4 verificações bloqueantes" },
+          byHand: {
+            en: "Not all met: clean version OK; no marked-up version; hashes and pagination failed or inconclusive (the delivered .docx was a PDF conversion)",
+            pt: "Não atendidas por completo: versão limpa OK; sem versão marcada; hashes e paginação falharam ou ficaram inconclusivos (o .docx entregue era conversão de PDF)",
+          },
+          pipeline: { en: "4 of 4", pt: "4 de 4" },
+        },
+        {
+          label: { en: "111-item checklist (OK / pending / N/A)", pt: "Checklist de 111 itens (OK / pendente / N/A)" },
+          byHand: { en: "87 / 6 / 18", pt: "87 / 6 / 18" },
+          pipeline: { en: "80 / 10 / 21 (after the final check)", pt: "80 / 10 / 21 (após a conferência final)" },
+        },
+        {
+          label: { en: "12 planted text errors", pt: "12 erros de texto plantados" },
+          byHand: { en: "Corrected", pt: "Corrigidos" },
+          pipeline: { en: "Corrected", pt: "Corrigidos" },
+        },
+        {
+          label: { en: "6 in-text citations with wrong capitalization", pt: "6 chamadas com maiúsculas e minúsculas erradas" },
+          byHand: { en: "Corrected", pt: "Corrigidas" },
+          pipeline: { en: "Corrected", pt: "Corrigidas" },
+        },
+        {
+          label: { en: "Citation × reference mismatches (4)", pt: "Divergências entre citação e referência (4)" },
+          byHand: {
+            en: "Decided by me, which the process leaves to the client (removed a reference, changed a year, set another year from the text)",
+            pt: "Decididas por mim, o que o processo deixa ao cliente (removi uma referência, troquei um ano, pus outro ano conforme o texto)",
+          },
+          pipeline: { en: "Left as pending for the client", pt: "Deixadas como pendência ao cliente" },
+        },
+      ],
+      notes: [
+        {
+          en: "Only the totals are comparable; stage boundaries differ between the two conditions.",
+          pt: "Só os totais são comparáveis; as fronteiras de etapa diferem entre as duas condições.",
+        },
+        {
+          en: "The pipeline's clock includes the model's processing time and my response time to its questions.",
+          pt: "O relógio do pipeline inclui o tempo de processamento do modelo e o meu tempo de resposta às perguntas dele.",
+        },
+        {
+          en: "The pipeline time does not include the fixes for two errors found at the final check (a reference title without bold; \"et al.\" in 1 of 17 citations), made outside the measured time.",
+          pt: "O tempo do pipeline não inclui a correção de 2 erros achados na conferência final (título de referência sem negrito; \"et al.\" em 1 de 17 chamadas), feita fora do tempo medido.",
+        },
+        {
+          en: "The 87 \"OK\" by hand include at least 7 items (78 to 84, marked-up version) marked OK although no marked-up version existed. Corrected for that, the two checklist counts are close.",
+          pt: "Dos 87 \"OK\" à mão, pelo menos 7 (itens 78 a 84, versão marcada) foram marcados OK sem que existisse versão marcada. Corrigindo isso, as duas contagens de checklist ficam próximas.",
+        },
+        {
+          en: "The lower \"pending\" count by hand partly reflects decisions that the process assigns to the client.",
+          pt: "A contagem menor de pendências à mão reflete em parte decisões que o processo atribui ao cliente.",
+        },
+      ],
+      wentWrongPipeline: [
+        { en: "A missing dependency in the self-test.", pt: "Dependência faltando no autoteste." },
+        { en: "The build of the document's spec failed twice.", pt: "O build da spec do documento falhou 2 vezes." },
+        {
+          en: "Place and year were missing from the cover footer (a new cycle of checks).",
+          pt: "Local e ano fora do pé da capa (novo ciclo de verificações).",
+        },
+        {
+          en: "94 comments broke the rule of commenting only the first occurrence of a repeated error; redone, 53.",
+          pt: "94 comentários quebravam a regra de comentar só a 1ª ocorrência de um erro repetido; refeito, 53.",
+        },
+        { en: "The final check found 2 errors (above).", pt: "A conferência final achou 2 erros (acima)." },
+        {
+          en: "Not resolved: the abstract in 2 paragraphs (the engine does not merge paragraphs) and the 2019a/2019b citations.",
+          pt: "Não resolvidos: resumo em 2 parágrafos (o motor não junta parágrafos) e chamadas 2019a/2019b.",
+        },
+      ],
+      wentWrongByHand: [
+        {
+          en: "Two course rules were not applied: sub-items (alíneas) stayed lowercase with \";\" and keywords stayed separated by \";\".",
+          pt: "Duas regras do curso não foram aplicadas: alíneas ficaram em minúscula com \";\" e palavras-chave ficaram separadas por \";\".",
+        },
+        {
+          en: "Rework: 8 min 15 s (2019a/2019b citations) and 3 min 10 s (spacing after table and figure source lines).",
+          pt: "Retrabalho: 8min15s (chamadas 2019a/2019b) e 3min10s (espaçamento após a fonte da tabela e da figura).",
+        },
+        {
+          en: "No marked-up version was produced, so a client could not review the changes.",
+          pt: "Não houve versão marcada, então um cliente não conseguiria revisar as alterações.",
+        },
+        {
+          en: "The citation × reference decisions listed in the table were mine, not the client's.",
+          pt: "As decisões de citação × referência da tabela foram minhas, não do cliente.",
+        },
+      ],
+      method: [
+        {
+          en: "The same fictional file in both conditions: 29 pages, an undergraduate thesis with 48 planted errors, no client content.",
+          pt: "O mesmo arquivo fictício nas duas condições: 29 páginas, um TCC com 48 erros plantados, nenhum conteúdo de cliente.",
+        },
+        {
+          en: "The same done criterion: the 4 blocking checks plus the 111-item checklist, with the checks also run on the by-hand output.",
+          pt: "O mesmo critério de pronto: as 4 verificações bloqueantes mais o checklist de 111 itens, com as verificações rodadas também na saída à mão.",
+        },
+        {
+          en: "By hand: timed by me, without help from Claude. Pipeline: operated in a Claude project, with my own stopwatch read at each stage.",
+          pt: "À mão: cronometrado por mim, sem ajuda do Claude. Pipeline: operado num projeto do Claude, com o meu cronômetro lido a cada etapa.",
+        },
+        {
+          en: "The key to the planted errors was opened only after the pipeline run (10/11/2026).",
+          pt: "O gabarito dos erros plantados foi aberto só depois da rodada do pipeline (10/11/2026).",
+        },
+        {
+          en: "The pipeline repository is private, so the method is summarized here.",
+          pt: "O repositório do pipeline é privado, então o método está resumido aqui.",
+        },
+      ],
+      limitations: [
+        { en: "n = 1.", pt: "n = 1." },
+        { en: "Fictional document.", pt: "Documento fictício." },
+        { en: "I know the process well.", pt: "Eu conheço bem o processo." },
+        {
+          en: "The by-hand run came first, which favors the pipeline: I already knew the document.",
+          pt: "A condição à mão veio primeiro, o que favorece o pipeline: eu já conhecia o documento.",
+        },
+        {
+          en: "The test generator and the pipeline spec were written by someone who had seen the planted errors, so the test is not blind.",
+          pt: "O gerador do teste e a spec do pipeline foram escritos por quem tinha visto os erros plantados, então o teste não é cego.",
+        },
+        {
+          en: "Stage boundaries differ between conditions; only totals are comparable.",
+          pt: "As fronteiras de etapa são diferentes entre as condições; só os totais são comparáveis.",
+        },
+        {
+          en: "The pipeline was not tested in Word or Google Docs.",
+          pt: "O pipeline não foi testado no Word nem no Google Docs.",
+        },
+        {
+          en: "The pipeline was designed for this type of document.",
+          pt: "O pipeline foi desenhado para este tipo de documento.",
+        },
+      ],
+      notConcluded: {
+        en: "I am not concluding hours saved, nor that the result generalizes to other documents, people or clients.",
+        pt: "Não concluo horas economizadas, nem que o resultado vale para outros documentos, pessoas ou clientes.",
+      },
+    },
     highlights: [
       {
         en: "Regression suite with 29 tests that guard the pipeline's scripts, run on fictional documents generated at every run (29/29 passing).",

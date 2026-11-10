@@ -57,6 +57,7 @@ src/
     projects.tsx       ← featured card, project cards (native <details>), status/stack/links (repository, optional "Evaluation results" link, ADR-036)
     architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
     deliveries.tsx     ← counts from real delivered jobs + method note (card and case page, ADR-035)
+    timed-test.tsx     ← the by-hand × pipeline timed test: table, what went wrong, method, limitations (case page only, ADR-037)
     code-block.tsx     ← code excerpt (+ optional translation) + explanation + fidelity note
     experience.tsx     ← work timeline + education and courses
     certifications.tsx ← verified certifications and in progress

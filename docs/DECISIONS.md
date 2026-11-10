@@ -515,3 +515,22 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Keep the card as is until the full v2 (rejected: the application is sent on 16/11 and the repository now proves much more); say "works" or recommend a model (rejected: one run, 30 tickets, three tickets of difference is noise, as the README says); leave out the cost and the limitations to keep the card short (rejected: cost is part of the experiment, and the project's own README declares the limits, so the card must too).
 
 **Consequences.** Numbers on the card change only when `results/eval_results.json` changes: re-check them after any new run. If the README section is renumbered, the anchor breaks; the test compares the link with the expected anchor so the change is noticed. The "Now" line must change again when AGENT-V2-05 or -06 is merged.
+
+---
+
+## ADR-037 — Autoria em Forma: the timed test (by hand × pipeline) as a block on the case page, n=1
+
+**Date:** 2026-11-10
+
+**Context.** `IFOOD-05` (optional) asked for a measured number instead of a claim: the same fictional document formatted by hand and by the pipeline, with the same acceptance criterion. The protocol was written before measuring (Notion). Gustavo ran it on 10/11/2026 in the Autoria Claude project. The result is lopsided in time (4 h 56 min 45 s by hand against 18 min 20 s on the clock and 3 min 45 s of active work with the pipeline) but the test is weak as evidence: n=1, a document made by the same person who built the pipeline, the by-hand run first, a stopwatch read by hand, and a by-hand output that did not reach the same deliverables (no marked-up version).
+
+**Decision.**
+- New optional `Project.timedTest`, rendered by one component (`TimedTest`) on the **case page only**; the featured card does not change (it already carries four highlights and the real-job numbers, and putting a test on a fictional file next to real jobs would blur which is which).
+- The block shows both times side by side, the checks and the checklist counts of both outputs, how to read the table, **what went wrong in each condition**, the method, the 8 limitations as a numbered list and a closing "what I am not concluding".
+- Two corrections to the first draft, both pro-honesty: the by-hand column of the checklist (87 OK) is annotated because at least 7 of its OK items refer to a marked-up version that did not exist; and "what went wrong by hand" is a section of its own, so the page does not read as a list of the pipeline's failures only.
+- No institution, course or client named: the fictional document follows a real institution's manual, and naming it would identify the real jobs (SOURCES.md).
+- The phrase "hours saved" is allowed only inside the explicit denial; a test enforces it, and the test also pins the two times and the 8 limitations.
+
+**Alternatives considered.** Putting the test on the card (rejected: two kinds of evidence on a small card); publishing only the two times (rejected: that is exactly the number that misleads without the checks and limits); a ratio ("X times faster") (rejected: derived from n=1 and a design that favors the pipeline); naming the institution because the file used its manual (rejected, see above).
+
+**Consequences.** The page says plainly that the test is not blind and not generalizable, which the recruiter can verify against the method. If Gustavo repeats the test (other document, other order), add a second block rather than editing the first. If the pipeline engine gains paragraph merging or SEQ captions, the "not resolved" lines stay as they were on 10/11/2026.
