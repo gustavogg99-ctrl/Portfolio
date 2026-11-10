@@ -2,6 +2,12 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 25 — Wording of the Autoria "processing time" limitation · 2026-11-10
+
+**Changed**
+- The Autoria em Forma limitation "Processing time per document has not been measured" now says it refers to real client documents and points to the timed test (fictional document, n = 1) as the only measurement. Follow-up to Part 24 (ADR-037); no new claim.
+
+
 ## Part 24 — Autoria em Forma timed test (by hand × pipeline) · 2026-11-10
 
 **Added**

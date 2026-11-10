@@ -277,8 +277,8 @@ export const projects = [
         pt: "Não é automático de ponta a ponta: as verificações são automáticas, mas a aplicação da formatação ainda é ajustada por documento, com revisão humana.",
       },
       {
-        en: "Processing time per document has not been measured.",
-        pt: "O tempo de processamento por documento não foi medido.",
+        en: "Processing time per real client document has not been measured; the only measurement is the single timed test on a fictional document above (n = 1).",
+        pt: "O tempo de processamento por documento real de cliente não foi medido; a única medição é o teste cronometrado único, em documento fictício, acima (n = 1).",
       },
     ],
     links: {
