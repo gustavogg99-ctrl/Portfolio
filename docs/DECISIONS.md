@@ -561,3 +561,19 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** The number is pinned in SOURCES.md with its run date. Any later change to the suite size needs a new check against the repository before the page changes. In the earlier run the suite failed 1 of 41 only because `pymupdf` was missing in a fresh environment; it is in the repository's requirements and passes once installed.
 
+
+## ADR-040 — Resume PDFs replaced by the 10/11/2026 site versions
+
+**Date:** 2026-11-10
+
+**Context.** The resumes on the site (Part 18, updated in Part 19) predate the Autoria em Forma numbers (ADR-035, ADR-039) and the Support Agent v2 evaluation (ADR-036). The site, which will be linked from the iFood application on 16/11, said more than the PDF it offers for download. On 10/11/2026 Gustavo exported new site versions (EN and PT, one A4 page each, no phone number, ADR-032) and asked for them to replace the files. He listed three changes: the Autoria line separating pipeline and site, 41 regression tests and the Support Agent v2 numbers. The line-by-line comparison with the previous PDFs found four more: the freelance bullets merged into one, the Autoria line now carries the accepted-by-the-client numbers and the "formatting and revision only" scope, the Corporate AI Use Policy line names the vendor risk procedure (30 questions in 8 domains) instead of the Excel matrix, and the skill "LLM evaluation (accuracy and cost)" was added.
+
+**Decision.**
+- Overwrite `public/resume/Gustavo_Rodrigues_Resume.pdf` and `Gustavo_Rodrigues_Curriculo.pdf` with the new files, unchanged. Nothing else in the code changes (ADR-032: replacing the resume is only a file swap plus checks).
+- Checks done by hand, since the automated guards scan site text only: no phone number in the text, the metadata or the link annotations; the claims guard run over the extracted text; every changed fact traced to SOURCES.md (the new paragraph there lists where each one is backed); one page, rendered and read in both languages; sizes under the 200 KB test limit.
+- Two points are recorded, not changed, because the text is Gustavo's: the Support Agent sentence gives "0 of 21" without saying it is the prompt v2 figure (1/21 with v1), and the Skills line has "LLM evaluation (accuracy and cost)", which the site's Skills section does not list. SOURCES.md states the rule for the first and the open item for the second.
+
+**Alternatives considered.** Editing the PDFs here to add "with prompt v2" (rejected: the resume is Gustavo's approved text and the number is correct for v2, the sentence just needs a clearer clause on the next export); adding the new skill to the site in the same part (rejected: ADR-032 keeps this part to the file swap, and a new skill on the site is a content change that Gustavo decides).
+
+**Consequences.** The resume and the site agree on the Autoria and Support Agent numbers, so a recruiter who opens the PDF after the site sees the same figures. They differ in one place until Gustavo decides on the skill: the resume lists it, the site does not. Browsers and the CDN may serve the old PDF for a short time after the deploy because the file name is unchanged.
+
