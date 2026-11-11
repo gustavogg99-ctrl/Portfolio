@@ -86,7 +86,7 @@ Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisit
 
 ### 1. iFood intensive (until 16/11/2026, 23:59): site side closed on 10/11/2026
 
-**Status (Gustavo, 10/11/2026):** with Parts 28 and 29 the site work for the intensive is finished. No further site part is planned before the application. Until Gustavo submits on 16/11, the site changes only if he asks. What remains of the intensive (the application form itself, `IFOOD-06`) is his, in the Notion project `IFOOD`.
+**Status (Gustavo, 10/11/2026):** with Parts 28 and 29 the site work for the intensive is finished. No further site part is planned before the application. Until Gustavo submits on 16/11, the site changes only if he asks. What remains of the intensive is not site work and is tracked in the Notion project `IFOOD` by the manager chat: sending the application (`IFOOD-04`) and the optional n8n newsletter automation (`IFOOD-06`, not started).
 
 Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026** (deadline 17/11) and puts this site's link in the form, so the site is shared from then on. Until 16/11 the site only changes for the items below. Plan, schedule and rules: Notion project `IFOOD` ("Candidatura iFood GenAI — AI Builder"), tasks `IFOOD-00` to `IFOOD-06`. A separate "manager" chat coordinates; this repository's chat only does the site parts.
 
