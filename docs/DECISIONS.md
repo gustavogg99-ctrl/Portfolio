@@ -575,5 +575,21 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Alternatives considered.** Editing the PDFs here to add "with prompt v2" (rejected: the resume is Gustavo's approved text and the number is correct for v2, the sentence just needs a clearer clause on the next export); adding the new skill to the site in the same part (rejected: ADR-032 keeps this part to the file swap, and a new skill on the site is a content change that Gustavo decides).
 
-**Consequences.** The resume and the site agree on the Autoria and Support Agent numbers, so a recruiter who opens the PDF after the site sees the same figures. They differ in one place until Gustavo decides on the skill: the resume lists it, the site does not. Browsers and the CDN may serve the old PDF for a short time after the deploy because the file name is unchanged.
+**Consequences.** The resume and the site agree on the Autoria and Support Agent numbers, so a recruiter who opens the PDF after the site sees the same figures. They differ in one place until Gustavo decides on the skill: the resume lists it, the site does not (resolved in ADR-041). Browsers and the CDN may serve the old PDF for a short time after the deploy because the file name is unchanged.
 
+
+
+## ADR-041 — Skills line aligned with the resume; "0 of 21" says it is the prompt v2 figure
+
+**Date:** 2026-11-10
+
+**Context.** ADR-040 left two points open and Gustavo asked for both on 10/11/2026, to close the iFood intensive. (1) The resume lists "LLM evaluation (accuracy and cost)" and "Claude (API and connectors)"; the site's Skills section had only "Claude (with connectors)". (2) The Support Agent sentence on the resume gave "0 of 21" without saying it is the prompt v2 figure (SOURCES.md: 1/21 with v1, 0/21 with v2 + guardrail).
+
+**Decision.**
+- `skills.ts`: add "LLM evaluation (accuracy and cost)" and change "Claude (with connectors)" to "Claude (API and connectors)", in both languages, as on the resume. Both are backed by the Support Agent evaluation (accuracy per category, cost per ticket, Claude through the Anthropic API).
+- Resume PDFs: only the last line of the Support Agent bullet changes. EN: "with prompt v2 and the guardrail, 0 of 21 ...". PT: "com prompt v2 e guardrail, 0 de 21 ..." (the PT line is at the right margin, so "o" was dropped). The line was redacted and rewritten in Carlito, the font the file already uses (the new text is embedded as a subset; the old line's text was removed, not covered). Everything else is byte-for-byte the content of Gustavo's 10/11 export; the edit was made here because the source document is not in the repository, and Gustavo asked for it.
+- Checked: text diff against the previous PDFs shows only that line (plus a pdftotext spacing artifact in a heading); one page; links and metadata kept; no phone number; sizes about 70 KB (under the 200 KB test limit); the edited region was rendered and read in both languages.
+
+**Alternatives considered.** Waiting for Gustavo's next LibreOffice export (rejected: the intensive closes now and the sentence is ambiguous today); a longer PT wording ("com o prompt v2 e o guardrail", rejected: it overflows the right margin and would push a fourth line and move the page).
+
+**Consequences.** If Gustavo exports the resume again from his source file, that export must carry the same wording, or the next replacement will bring the ambiguity back. The skills lists on the site and on the resume now match.

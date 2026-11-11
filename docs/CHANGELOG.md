@@ -2,6 +2,16 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 29 — Skills aligned with the resume; "0 of 21" says prompt v2 · 2026-11-10
+
+**Changed**
+- Skills (EN/PT): added "LLM evaluation (accuracy and cost)"; "Claude (with connectors)" is now "Claude (API and connectors)". Same as the resume (ADR-041).
+- Resume PDFs: the Support Agent line now says the "0 of 21" is with prompt v2 and the guardrail (EN: "with prompt v2 and the guardrail"; PT: "com prompt v2 e guardrail"). Only that line changed; one page, links and metadata kept, no phone number, about 70 KB each.
+- SOURCES.md, ADR-040 note and ROADMAP updated; the iFood intensive is closed on the site side.
+
+**Not changed**
+- Every number, every other line of the resumes, any other page.
+
 ## Part 28 — Resume PDFs replaced (EN and PT, no phone number) · 2026-11-10
 
 **Changed**
