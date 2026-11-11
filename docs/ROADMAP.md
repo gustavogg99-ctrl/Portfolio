@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-10 (Part 28 open: resume PDFs replaced, ADR-040; Part 27 merged, PR #39)._
+_Last updated: 2026-11-10 (Part 29 open: skills aligned with the resume, "0 of 21" fixed, ADR-041; Part 28 merged, PR #40). The site side of the iFood intensive is closed._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-10 (Part 28 open: resume PDFs replaced, ADR-040; Part 27 
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content review:** done; Gustavo reviewed and approved the site text on 09/11/2026.
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-28` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24; 26 = Parts 25 and 26; 27 = Part 27; 28 = Part 28). New parts get the next code (the next one is `PORTFOLIO-29`).
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-29` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24; 26 = Parts 25 and 26; 27 = Part 27; 28 = Part 28; 29 = Part 29). New parts get the next code (the next one is `PORTFOLIO-30`).
 - **Session setup for GitHub (learned in Parts 20 to 22):** at the start of a chat, call the repository tool `add_repo` for `gustavogg99-ctrl/Portfolio` with push access, or the git proxy refuses `git push` (403, "not in this session's authorized repository set"). `gh pr create` fails (GraphQL is blocked): open PRs with `gh api repos/gustavogg99-ctrl/Portfolio/pulls --method POST --input <json>`. A PR's CI can start a few minutes late; wait for the `check` run, never push an empty commit. Re-checked in Part 23: `gh auth status` reports an invalid `GH_TOKEN`, but `gh api` still works through the proxy (open the PR and read check runs with it); `npm ci` is needed before `npm run check`; Python Playwright with Chromium is available in the sandbox (serve `npx next start -p 3000` after `npm run build`, kill it afterwards).
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **"Now" must stay current** (ADR-031): change `updated` on every edit; the work line changes the day Gustavo is hired; the study line and the "In progress" certifications change together; the project line never claims more than the Support Agent repository proves.
@@ -76,6 +76,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 26 | Timed test: one note on what was found after the run (page numbers of the by-hand file, reference order, Word/Docs pagination); numbers untouched (ADR-038) | #38 |
 | 27 | Autoria em Forma: regression suite count updated from 29 to 41 (ADR-039) | #39 |
 | 28 | Resume PDFs (EN/PT) replaced by the 10/11/2026 site versions, no phone number: Autoria numbers and 41 tests, Support Agent v2 numbers, new skill line (ADR-040) | #40 |
+| 29 | Skills section aligned with the resume ("LLM evaluation (accuracy and cost)", "Claude (API and connectors)"); resume line says the "0 of 21" is with prompt v2 (ADR-041). Closes the site side of the iFood intensive | #41 |
 
 ## Next (in order)
 
@@ -83,7 +84,9 @@ The site is **live and public but not shared yet** (ADR-025). Post-launch review
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
-### 1. iFood intensive (until 16/11/2026, 23:59): top priority
+### 1. iFood intensive (until 16/11/2026, 23:59): site side closed on 10/11/2026
+
+**Status (Gustavo, 10/11/2026):** with Parts 28 and 29 the site work for the intensive is finished. No further site part is planned before the application. Until Gustavo submits on 16/11, the site changes only if he asks. What remains of the intensive (the application form itself, `IFOOD-06`) is his, in the Notion project `IFOOD`.
 
 Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026** (deadline 17/11) and puts this site's link in the form, so the site is shared from then on. Until 16/11 the site only changes for the items below. Plan, schedule and rules: Notion project `IFOOD` ("Candidatura iFood GenAI — AI Builder"), tasks `IFOOD-00` to `IFOOD-06`. A separate "manager" chat coordinates; this repository's chat only does the site parts.
 
@@ -96,7 +99,7 @@ Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026
 Ask Gustavo one item at a time; sharing is his call (ADR-025).
 - Done on 09/11/2026 (outside this repo, with Gustavo's approval): GitHub name "Gustavo Rodrigues", bio "AI Builder · AI Governance", profile URL, Portfolio repo pinned with description and the new site, profile README links the portfolio and uses the official certification names, private contributions shown. Writing section checked live: 3 posts.
 - Sharing: the link goes into the iFood application on 16/11 (item 1).
-- Replacing the resume: Gustavo exports the `_site` versions (no phone) himself; compare their text with the previous PDFs and publish only facts he confirmed. **Done again in Part 28 (10/11/2026).** Waiting on him: (a) whether to add "LLM evaluation (accuracy and cost)" to the site's Skills section, which the new resume lists and the site does not; (b) on the next export, whether the Support Agent sentence should say that the "0 of 21" is the prompt v2 figure (1/21 with v1).
+- Replacing the resume: Gustavo exports the `_site` versions (no phone) himself; compare their text with the previous PDFs and publish only facts he confirmed. **Done again in Part 28 (10/11/2026).** Part 29 settled the two open points: the skill is on the site and the "0 of 21" line says prompt v2 (ADR-041). If Gustavo exports the resume again from his source file, that export must carry the same wording (Support Agent line, EN and PT).
 - Done on 09/11/2026: availability and "Now" (Part 15), GitHub photo, `ethical-ai-policy` README, stale branches, Autoria card order (Part 16), MerkurIA wording (Part 17), resume (Part 18), hero counters (kept for now), resume line about the Autoria checks (Part 19).
 
 ### 3. Optional

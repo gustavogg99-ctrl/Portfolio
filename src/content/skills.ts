@@ -9,11 +9,12 @@ export const skills = [
     id: "applied-ai",
     name: { en: "Applied AI", pt: "IA aplicada" },
     items: [
-      { en: "Claude (with connectors)", pt: "Claude (com conectores)" },
+      { en: "Claude (API and connectors)", pt: "Claude (API e conectores)" },
       { en: "OpenAI API", pt: "API da OpenAI" },
       "Microsoft Copilot",
       { en: "Prompt engineering", pt: "Engenharia de prompt" },
       { en: "Agents", pt: "Agentes" },
+      { en: "LLM evaluation (accuracy and cost)", pt: "Avaliação de LLMs (acurácia e custo)" },
       "n8n",
       "Make",
       "Power Automate",
