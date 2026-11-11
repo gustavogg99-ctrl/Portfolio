@@ -2,6 +2,18 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 28 — Resume PDFs replaced (EN and PT, no phone number) · 2026-11-10
+
+**Changed**
+- `public/resume/Gustavo_Rodrigues_Resume.pdf` and `Gustavo_Rodrigues_Curriculo.pdf` replaced by the versions Gustavo exported on 10/11/2026: Autoria em Forma line split into pipeline and site, with the accepted-by-the-client numbers and 41 regression tests; Support Agent v2 numbers (28/30, 9/30, 0 of 21, 84 tests); Corporate AI Use Policy vendor risk line; skill "LLM evaluation (accuracy and cost)"; freelance bullets merged (ADR-040).
+- SOURCES.md: where each new or changed fact is backed. ROADMAP: Part 27 marked as merged (#39) and Part 28 added.
+
+**Verified**
+- No phone number in the text, metadata or links of either file; one A4 page each; claims guard clean over the extracted text; files under the 200 KB test limit.
+
+**Not changed**
+- Site content and code. Two points left for Gustavo: "0 of 21" without "prompt v2" on the resume, and the new skill, which the site's Skills section does not list yet.
+
 ## Part 27 — Autoria em Forma: regression suite count 29 → 41 · 2026-11-10
 
 **Changed**
