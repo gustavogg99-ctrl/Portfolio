@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-16 (handoff after Part 35: Parts 33 to 35 merged, PRs #47 to #49; the plan from Gustavo's analysis of another portfolio is finished and the sitemap is in Google Search Console)._
+_Last updated: 2026-11-16 (Part 36: Observatory re-measured, unchanged; 1 part done in this chat)._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-16 (handoff after Part 35: Parts 33 to 35 merged, PRs #47
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content review:** done; Gustavo reviewed and approved the site text on 09/11/2026.
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-29` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24; 26 = Parts 25 and 26; 27 = Part 27; 28 = Part 28; 29 = Part 29; 30 = Part 30; 31 = Part 31; 32 = Part 32; 33 = Part 33; 34 = Part 34; 35 = Part 35). New parts get the next code (33 = Part 33; 34 = Part 34; 35 = Part 35; the next one is `PORTFOLIO-36`).
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-29` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24; 26 = Parts 25 and 26; 27 = Part 27; 28 = Part 28; 29 = Part 29; 30 = Part 30; 31 = Part 31; 32 = Part 32; 33 = Part 33; 34 = Part 34; 35 = Part 35; 36 = Part 36). New parts get the next code (the next one is `PORTFOLIO-37`).
 - **Session setup for GitHub (learned in Parts 20 to 22):** at the start of a chat, call the repository tool `add_repo` for `gustavogg99-ctrl/Portfolio` with push access, or the git proxy refuses `git push` (403, "not in this session's authorized repository set"). `gh pr create` fails (GraphQL is blocked): open PRs with `gh api repos/gustavogg99-ctrl/Portfolio/pulls --method POST --input <json>`. A PR's CI can start a few minutes late; wait for the `check` run, never push an empty commit. Re-checked in Part 23: `gh auth status` reports an invalid `GH_TOKEN`, but `gh api` still works through the proxy (open the PR and read check runs with it); `npm ci` is needed before `npm run check`; Python Playwright with Chromium is available in the sandbox (serve `npx next start -p 3000` after `npm run build`, kill it afterwards).
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **"Now" must stay current** (ADR-031): change `updated` on every edit; the work line changes the day Gustavo is hired; the study line and the "In progress" certifications change together; the project line never claims more than the Support Agent repository proves.
@@ -86,6 +86,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 33 | Resume PDFs (EN/PT) replaced by Gustavo's 16/11/2026 export: Support Agent line says 102 tests; "prompt v2" wording now in his source file | #47 |
 | 34 | Autoria case: deliveries job headings h3 under the h2 (live PageSpeed had Accessibility 99, `heading-order`); live PageSpeed of home and both cases in the CHANGELOG; mobile header stays icon-only (ADR-045) | #48 |
 | 35 | Google Search Console: verification file for the URL-prefix property (ADR-046); sitemap submitted after the merge | #49 |
+| 36 | Docs only: Observatory re-measured on the live site after Parts 30 to 35, B+ 80/100, 11/12, only `'unsafe-inline'` (unchanged) | #? |
 
 ## Next (in order)
 
@@ -137,7 +138,7 @@ Ask Gustavo one item at a time; sharing is his call (ADR-025).
 
 ### 4. Optional
 - ~~Submit `sitemap.xml` to Google Search Console~~: Part 35 (ADR-046); the verification file in `public/` must stay.
-- Re-measure Observatory/PageSpeed after big changes (docs only, ADR-024). The shell can't reach `*.vercel.app`; use Gustavo's Chrome (done for PageSpeed on 16/11/2026, Parts 34 and 35; the Observatory grade was last measured on 08/11, before Parts 30 to 35).
+- Re-measure Observatory/PageSpeed after big changes (docs only, ADR-024). The shell can't reach `*.vercel.app`; use Gustavo's Chrome (PageSpeed on 16/11/2026, Parts 34 and 35; Observatory on 16/11/2026, Part 36: B+ 80/100, unchanged).
 - Search Console: after a few days, look at "Pages" (indexing) and "Performance" with Gustavo; docs only.
 
 ## Later

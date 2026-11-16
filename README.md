@@ -35,7 +35,7 @@ How this site handles the things I write about. These are controls adopted in th
 | Area | What the site does | Where |
 |---|---|---|
 | HTTP security | CSP (`default-src 'self'`, `frame-ancestors 'none'`, `object-src 'none'`), HSTS with preload, `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, COOP | `security-headers.ts`, ADR-022 |
-| Known trade-off | Scripts allow `'unsafe-inline'` so pages stay static and cached; Mozilla Observatory B+ (80/100) on 08/11/2026 | ADR-022, ADR-024 |
+| Known trade-off | Scripts allow `'unsafe-inline'` so pages stay static and cached; Mozilla Observatory B+ (80/100) on 08/11/2026 and again on 16/11/2026 | ADR-022, ADR-024 |
 | Data minimization (LGPD) | The only personal data collected is what someone types in the contact form; analytics are cookie-less and aggregated; no tracking or advertising cookies | [`/en/privacy`](https://gustavorodrigues.vercel.app/en/privacy), ADR-021, ADR-027 |
 | Transparency | Privacy page with purpose, providers (Formspree, Vercel), legal basis, international transfer and data-subject rights | `src/app/[lang]/privacy` |
 | Content integrity | Every claim traces to a source; a claims guard (specific terms stored as hashes) fails the build on banned terms and the tests scan all visible text | `docs/SOURCES.md`, `src/content/claims.ts`, ADR-030 |
