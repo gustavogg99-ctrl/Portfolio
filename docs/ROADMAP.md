@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-16 (Part 32 opened: quick read and preview on both case studies; 3rd part of this chat, handoff after its merge)._
+_Last updated: 2026-11-16 (handoff after Part 32: Parts 30 to 32 merged, PRs #43 to #45; the plan from Gustavo's analysis of another portfolio is done except improvement 4)._
 
 ## How we work
 
@@ -26,6 +26,7 @@ _Last updated: 2026-11-16 (Part 32 opened: quick read and preview on both case s
 - **Other repositories touched in Parts 12–14:** `support-agent-governance-prototype` (branch + PR; its own CI runs `python -m unittest discover -s tests` on Python 3.10 and 3.13; a card claim about it changes only after its PR is merged) and the profile repository `gustavogg99-ctrl/gustavogg99-ctrl` (profile README; edited directly on `main` with Gustavo's explicit OK).
 - **GitHub account and repository settings** (name, bio, pins, repo description/website, contribution settings) change only with Gustavo's explicit OK for each change, through his Chrome: the API proxy refuses repository-settings writes. It also refuses deleting branches (API and `git push --delete`): Gustavo deletes them on the Branches page, or via his Chrome.
 - **Banned terms** live only as hashes in `src/content/claims.ts` (ADR-030). The plain list is in the private Notion task `PORTFOLIO-15`; add one with `npm run claims:hash -- "term"`. Never write a banned term in plain text in this public repository.
+- **Performance without Gustavo's Chrome (Parts 30 to 32):** install `lighthouse@12` in a separate folder, point `CHROME_PATH` to Playwright's Chromium, and run 3 times per form factor against `npx next start -p 3000` (median). For a "before" number, build `origin/main` in a `git worktree` with its own `npm ci` (a symlinked `node_modules` breaks the Turbopack build). Local numbers are only comparable with each other, never with PageSpeed.
 - **Local checks:** before serving a build for Playwright, make sure no old `next-server` is still on port 3000 (`pkill -f next-server`), or the check reads a stale build (happened in Part 13; re-verified in Part 14).
 - Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
 
@@ -83,11 +84,18 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. A new chat starts at 0 after this handoff (16/11/2026, requested by Gustavo to start the work in item 1).
+The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. A new chat starts at 0 after this handoff (16/11/2026, after Parts 30 to 32; the previous handoff, after Part 29, opened item 1).
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
-### 1. Ideas from Gustavo's analysis of another portfolio (16/11/2026): start here
+### 1. What is left from Gustavo's analysis of another portfolio: start here
+
+Parts 30 to 32 (ADR-042 to ADR-044) delivered improvements 1 to 3. Left, in this order; ask Gustavo one at a time:
+1. **Resume PDFs with "102 tests"** (Support Agent line): the site says 102 since Part 32, the PDFs still say 84. Gustavo exports new EN and PT PDFs; a part replaces them in `public/resume/` as in Part 28 (ADR-040): no phone number, one A4 page, claims guard over the extracted text, compare line by line.
+2. **Improvement 4, visible labels for Projects and Contact in the mobile header:** not decided. Since Part 30 the first phone screen already shows "Case study: Autoria em Forma" and "See projects" as text buttons, and Contact is in the profile card. Ask Gustavo whether he still wants it after seeing the live site at 390 and 320 px. If yes: a separate part with an ADR superseding ADR-026 in part (the header is full at 320 px, so some icons must move, e.g. into a "More" menu, with focus and keyboard tests).
+3. **Live PageSpeed** of `/en`, `/en/projects/autoria-em-forma` and `/en/projects/support-agent-governance-prototype` with Gustavo's Chrome when it is connected (Parts 30 to 32 only measured a local production build; numbers in the CHANGELOG). Record them in the CHANGELOG as a docs entry.
+
+How item 1 was handled (kept for the record):
 
 Gustavo analysed another portfolio and wrote a document with what he would like to add to this one. He brings it to the new chat. How to handle it:
 
