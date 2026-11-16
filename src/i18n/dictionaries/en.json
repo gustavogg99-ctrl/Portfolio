@@ -12,6 +12,7 @@
     "contact": "Contact"
   },
   "actions": {
+    "featuredCase": "Case study: {name}",
     "projects": "See projects",
     "resume": "Resume",
     "contact": "Contact",

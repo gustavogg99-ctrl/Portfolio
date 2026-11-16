@@ -2,6 +2,23 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 30 — Projects right after the hero; named shortcut to the case study; case links on every card · 2026-11-16
+
+First part from Gustavo's analysis of another portfolio (ROADMAP "Next" item 1, ADR-042).
+
+**Changed**
+- Home order: Hero → Projects → About (Now, Skills) → Experience → Certifications → Writing → Contact. The nav icons follow the same order.
+- Hero: new primary button "Case study: Autoria em Forma" / "Estudo de caso: Autoria em Forma", built from the featured project's name, opens its case page. "See projects" becomes a secondary button.
+- Project cards: each card has `id={slug}`; "Read the case study" is shown on any card whose project has a page (today only the featured one, so nothing new is visible yet). The case page's "All projects" link returns to the project's own card (`/{lang}#{slug}`).
+- New test file `tests/home-order.test.ts` (section order, nav order, featured project has a page, label names the case, card anchors don't clash with section ids).
+
+**Verified**
+- `npm run check` (70 tests) and `npm run build`. Playwright at 1440×900, 390×844 and 320×640, EN and PT, dark and light: no horizontal scroll; at 390×844 the case button ends at 745–763 px (first screen); shortcut opens the case; "All projects" lands on the card; keyboard order follows the new nav.
+- Lighthouse (performance only, local production build, median of 3, same machine before and after): mobile 96 → 95, LCP 2.72 → 2.48 s, TBT 92 → 63 ms, CLS 0.015 → 0.015; desktop 100 → 100, CLS 0.008. Within noise. Not a live measurement (Gustavo's Chrome was not connected).
+
+**Not changed**
+- Content facts, texts of the sections, the case page itself, header layout (mobile labels are evaluated later, ADR-042).
+
 ## Docs — Handoff after Part 29 · 2026-11-16
 
 - ROADMAP: handoff requested by Gustavo. New "Next" item 1: his analysis of another portfolio, with the workflow for the new chat (read the whole document, classify each idea against the site and the rules, ask one item at a time, never copy distinctive elements). "Last updated" refreshed; the other items renumbered.

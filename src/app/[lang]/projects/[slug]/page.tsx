@@ -59,7 +59,7 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
       <article className="flex flex-col gap-16">
         <header className="flex flex-col gap-6">
           <Link
-            href={`/${locale}#projects`}
+            href={`/${locale}#${project.slug}`}
             className="flex w-fit items-center gap-2 text-sm text-muted hover:text-foreground"
           >
             <ArrowLeft className="size-4" aria-hidden />

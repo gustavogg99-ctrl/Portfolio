@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
 import { content } from "@/content";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -17,6 +18,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const { profile } = content;
   const staticLine = l(profile.hero.static, locale);
   const words = profile.hero.rotating.map((w) => l(w, locale));
+  const featured = content.projects.find((p) => p.visible && p.featured);
 
   return (
     <div className="flex flex-col gap-10">
@@ -40,12 +42,21 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
       </div>
 
       <div className="flex flex-wrap gap-3">
+        {/* Named shortcut to the featured case study, one action from the first screen (ADR-042). */}
+        {featured?.page && (
+          <Link
+            href={`/${locale}/projects/${featured.slug}`}
+            className="group flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          >
+            {dict.actions.featuredCase.replace("{name}", featured.name)}
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+          </Link>
+        )}
         <a
           href="#projects"
-          className="group flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          className="rounded-xl border border-border px-5 py-3 text-sm font-medium transition-colors hover:bg-surface-2"
         >
           {dict.actions.projects}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </a>
         {profile.resumeUrl && (
           <a

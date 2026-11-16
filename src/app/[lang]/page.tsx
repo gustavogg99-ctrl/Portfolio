@@ -25,12 +25,13 @@ export default async function Home() {
         <Hero locale={locale} dict={dict} />
       </Section>
 
-      <Section id="about" title={dict.sections.about}>
-        <About locale={locale} dict={dict} />
-      </Section>
-
+      {/* Projects right after the hero (ADR-042). */}
       <Section id="projects" title={dict.sections.projects}>
         <Projects locale={locale} dict={dict} />
+      </Section>
+
+      <Section id="about" title={dict.sections.about}>
+        <About locale={locale} dict={dict} />
       </Section>
 
       <Section id="experience" title={dict.sections.experience}>
