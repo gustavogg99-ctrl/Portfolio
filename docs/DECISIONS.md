@@ -612,3 +612,20 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** The hero has four buttons; at 390×844 the case button is on the first screen, and at 320×640 it is just below it (the h1 starts at about 416 px there). A visitor learns about Gustavo after seeing his work. If the featured project changes, the shortcut follows it with no code change.
 
+
+## ADR-043 — Support Agent case page, share image per case, details only on cards without a page
+
+**Date:** 2026-11-16
+
+**Context.** Improvement 2 of Gustavo's analysis (ROADMAP "Next" item 1): the Support Agent prototype should have its own shareable URL in EN and PT, like Autoria em Forma, so it can be linked from the resume, LinkedIn or a message. Part 30 (ADR-042) already made the card link and the back link generic.
+
+**Decision.**
+- The Support Agent project gets a `page`. Its architecture diagram has 7 steps taken from `docs/guardrail.md` and `docs/architecture.md` of the public repository (checked on 16/11/2026 at `4706b74`): ticket in → rules classify → Claude classifies → guardrail combines both → Claude drafts a reply (only when automation is allowed) → draft checks → a person approves; outputs: simulated send, fixed handoff message, redacted audit log; in parallel: the evaluation harness. No code excerpts: the repository is public and linked from the page. The page reuses the card's problem, built, evidence, guardrails and limitations, so the limitations travel with the numbers.
+- `links.results` points to the README's `#results` anchor: the repository's README was reorganised on 15-16/11/2026 and the old `#8-llm-triage-with-guardrail-results` anchor no longer exists (the live card was landing at the top of the README). The numbers in `results/eval_results.json` are unchanged since 10/11/2026.
+- Each case study gets its own Open Graph image (1200×630, built at build time): "Case study" / "Estudo de caso", the project name and its status note in the page's language. Same hex exception as the site's OG image.
+- On the home, a card whose project has a page shows "Read the case study" instead of the expandable details (the page has everything the details had, and more). Projects without a page keep the details.
+
+**Alternatives considered.** Keep the details on the Support Agent card too (rejected: the same text twice, and the doc asked for details only on briefly presented projects); copy code excerpts from the public repository (rejected for now: the repository link is one click away, and excerpts need the sanitizing work of SOURCES.md for no new evidence); one OG image for all cases (rejected: the share preview should name the case).
+
+**Consequences.** Two case studies with their own URLs, sitemap entries and share images. The Support Agent card no longer carries its numbers on the home, only its summary and the links; the numbers and their limitations are on the case page. Open point for Gustavo: the repository now has 102 tests (after its PRs #10 to #18), while the site and the resume say 84 (count of 10/11/2026).
+

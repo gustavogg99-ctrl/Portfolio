@@ -2,6 +2,24 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 31 — Support Agent case page; share image per case; details only on cards without a page · 2026-11-16
+
+Second part of the plan from Gustavo's analysis of another portfolio (ADR-043).
+
+**Changed**
+- New page `/en|pt/projects/support-agent-governance-prototype`: summary, problem, what I built, a 7-step architecture diagram (from the public repository's `docs/guardrail.md` and `docs/architecture.md`, checked at `4706b74`), evidence, guardrails, limitations, repository and results links. In the sitemap with alternates.
+- Open Graph image per case study and language (`projects/[slug]/opengraph-image.tsx`).
+- Home: the Support Agent card shows "Read the case study" and no longer the expandable details; the Corporate AI Use Policy card keeps them.
+- Fixed: the "Evaluation results" link pointed to a README anchor that no longer exists (`#8-llm-triage-with-guardrail-results`, removed when the repository's README was reorganised on 15-16/11/2026); now `#results`. Numbers unchanged (`results/eval_results.json` last changed on 10/11/2026).
+- Tests: the case page exists, ends with a person, has at least 3 control steps and the simulated send, and never claims production use or a full injection defence; the results link test follows the new anchor.
+
+**Verified**
+- `npm run check` (73 tests) and `npm run build`. Playwright on the new page at 1440×900, 390×844 and 320×640, EN and PT, dark and light: no horizontal scroll. The card opens the case, "All projects" lands on the card, the language switch keeps the case, `og:image` points to the case image (200, image/png, both languages).
+- Lighthouse (local production build, median of 3): home mobile 94 (LCP 2.74 s, TBT 127 ms, CLS 0.015), desktop 100; the new case page mobile 96 (LCP 2.72 s, TBT 50 ms, CLS 0), desktop 100. No media added; differences from Part 30 are within noise.
+
+**Not changed**
+- Every number and sentence of the Support Agent content (the page reuses them). The "84 automated tests" line stays as published until Gustavo decides (the repository now has 102).
+
 ## Part 30 — Projects right after the hero; named shortcut to the case study; case links on every card · 2026-11-16
 
 First part from Gustavo's analysis of another portfolio (ROADMAP "Next" item 1, ADR-042).

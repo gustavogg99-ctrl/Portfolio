@@ -138,7 +138,7 @@ function FeaturedCard({ project, locale, dict }: { project: Project; locale: Loc
   );
 }
 
-/** Regular card; details are expandable with a native <details> (no JavaScript). */
+/** Regular card; projects without a case page get expandable details with a native <details> (no JavaScript). */
 function ProjectCard({ project, locale, dict }: { project: Project; locale: Locale; dict: Dictionary }) {
   return (
     <article id={project.slug} className="flex flex-col gap-5 rounded-3xl border border-border bg-surface p-6">
@@ -150,25 +150,28 @@ function ProjectCard({ project, locale, dict }: { project: Project; locale: Loca
       <p className="text-foreground/90">{l(project.summary, locale)}</p>
       <StackTags stack={project.stack} />
 
-      <details className="group rounded-xl border border-border bg-surface-2 p-4 [&_summary::-webkit-details-marker]:hidden">
-        <summary className="flex cursor-pointer items-center justify-between text-sm font-medium">
-          {dict.labels.details}
-          <ArrowRight className="size-4 transition-transform group-open:rotate-90" aria-hidden />
-        </summary>
-        <div className="mt-4 flex flex-col gap-5">
-          <div className="flex flex-col gap-2">
-            <h4 className="text-sm font-semibold">{dict.labels.problem}</h4>
-            <p className="text-sm text-muted">{l(project.problem, locale)}</p>
+      {/* Projects with a case page link to it instead of repeating it here (ADR-043). */}
+      {!project.page && (
+        <details className="group rounded-xl border border-border bg-surface-2 p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer items-center justify-between text-sm font-medium">
+            {dict.labels.details}
+            <ArrowRight className="size-4 transition-transform group-open:rotate-90" aria-hidden />
+          </summary>
+          <div className="mt-4 flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <h4 className="text-sm font-semibold">{dict.labels.problem}</h4>
+              <p className="text-sm text-muted">{l(project.problem, locale)}</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h4 className="text-sm font-semibold">{dict.labels.built}</h4>
+              <p className="text-sm text-muted">{l(project.built, locale)}</p>
+            </div>
+            <List title={dict.labels.evidence} items={project.highlights} locale={locale} />
+            <List title={dict.labels.guardrails} items={project.guardrails} locale={locale} />
+            <List title={dict.labels.limitations} items={project.limitations} locale={locale} />
           </div>
-          <div className="flex flex-col gap-2">
-            <h4 className="text-sm font-semibold">{dict.labels.built}</h4>
-            <p className="text-sm text-muted">{l(project.built, locale)}</p>
-          </div>
-          <List title={dict.labels.evidence} items={project.highlights} locale={locale} />
-          <List title={dict.labels.guardrails} items={project.guardrails} locale={locale} />
-          <List title={dict.labels.limitations} items={project.limitations} locale={locale} />
-        </div>
-      </details>
+        </details>
+      )}
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
         <ReadCaseLink project={project} locale={locale} dict={dict} />

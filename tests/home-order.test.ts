@@ -35,3 +35,25 @@ describe("home order and case links (ADR-042)", () => {
     for (const p of content.projects) expect(sections.has(p.slug)).toBe(false);
   });
 });
+
+describe("Support Agent case page (ADR-043)", () => {
+  const sa = content.projects.find((p) => p.slug === "support-agent-governance-prototype")!;
+
+  it("has a case page, so its card links to it", () => {
+    expect(sa.page).toBeDefined();
+  });
+
+  it("keeps a person in the loop and the simulated send in the diagram", () => {
+    const kinds = sa.page!.architecture.main.map((s) => s.kind);
+    expect(kinds.at(-1)).toBe("human");
+    expect(kinds.filter((k) => k === "guard").length).toBeGreaterThanOrEqual(3);
+    expect(sa.page!.architecture.outputs.map((o) => o.en).join(" ")).toMatch(/simulated send/i);
+  });
+
+  it("never claims production use or a full injection defence", () => {
+    const text = JSON.stringify(sa.page).toLowerCase();
+    for (const bad of ["in production", "em produção", "protected against prompt injection", "real tickets", "chamados reais"]) {
+      expect(text).not.toContain(bad);
+    }
+  });
+});
