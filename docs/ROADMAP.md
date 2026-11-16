@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-16 (Part 35: Search Console verification file; 3 parts done in this chat, handoff next). The plan from Gustavo's analysis of another portfolio is finished._
+_Last updated: 2026-11-16 (handoff after Part 35: Parts 33 to 35 merged, PRs #47 to #49; the plan from Gustavo's analysis of another portfolio is finished and the sitemap is in Google Search Console)._
 
 ## How we work
 
@@ -28,7 +28,9 @@ _Last updated: 2026-11-16 (Part 35: Search Console verification file; 3 parts do
 - **Banned terms** live only as hashes in `src/content/claims.ts` (ADR-030). The plain list is in the private Notion task `PORTFOLIO-15`; add one with `npm run claims:hash -- "term"`. Never write a banned term in plain text in this public repository.
 - **Performance without Gustavo's Chrome (Parts 30 to 32):** install `lighthouse@12` in a separate folder, point `CHROME_PATH` to Playwright's Chromium, and run 3 times per form factor against `npx next start -p 3000` (median). For a "before" number, build `origin/main` in a `git worktree` with its own `npm ci` (a symlinked `node_modules` breaks the Turbopack build). Local numbers are only comparable with each other, never with PageSpeed.
 - **Local checks:** before serving a build for Playwright, make sure no old `next-server` is still on port 3000 (`pkill -f next-server`), or the check reads a stale build (happened in Part 13; re-verified in Part 14).
-- Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging.
+- Vercel: project `portfolio`, production domain `gustavorodrigues.vercel.app`; every PR gets a preview URL (open it logged in to Vercel). Check it before merging. **Long branch names are shortened in the preview URL** (e.g. `portfolio-git-part-33-resume-d1ebcf-…`): take the link from the Vercel bot comment on the PR (`gh api repos/gustavogg99-ctrl/Portfolio/issues/<n>/comments`), never build it from the branch name (learned in Part 33).
+- **Resume source file (Part 33):** Gustavo's LibreOffice source now carries the "with prompt v2 and the guardrail" wording and "102 tests". Every new export is still compared line by line with the PDFs in `public/resume/` before it replaces them: the first export of 16/11 had lost both and was rejected.
+- **Google Search Console (Part 35, ADR-046):** URL-prefix property `https://gustavorodrigues.vercel.app/`, verified by `public/google4f8e9eef3fd71ea9.html` (must stay); `sitemap.xml` submitted 16/11/2026, "Processed", 8 pages. Clicks that confirm something in Gustavo's Google account may be blocked for Claude by the session's permission check: then give him the exact steps.
 
 ## Handoff (every 3 parts)
 
@@ -87,7 +89,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. A new chat starts at 0 after this handoff (16/11/2026, after Parts 30 to 32; the previous handoff, after Part 29, opened item 1).
+The site is **live and shared** since the iFood application (16/11/2026). Post-launch review (Parts 9–11), the pre-sharing review (Parts 12–18) and the plan from Gustavo's analysis (Parts 30 to 35) are done. **Nothing is pending on the site.** A new chat starts at 0 after this handoff (16/11/2026, after Parts 33 to 35). Start the new chat by asking Gustavo what he wants next; candidates are under "Optional" and "Later".
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
@@ -135,7 +137,8 @@ Ask Gustavo one item at a time; sharing is his call (ADR-025).
 
 ### 4. Optional
 - ~~Submit `sitemap.xml` to Google Search Console~~: Part 35 (ADR-046); the verification file in `public/` must stay.
-- Re-measure Observatory/PageSpeed after big changes (docs only, ADR-024). The shell can't reach `*.vercel.app`; use Gustavo's Chrome (done for PageSpeed on 16/11/2026, Part 34; the Observatory grade was last measured on 08/11).
+- Re-measure Observatory/PageSpeed after big changes (docs only, ADR-024). The shell can't reach `*.vercel.app`; use Gustavo's Chrome (done for PageSpeed on 16/11/2026, Parts 34 and 35; the Observatory grade was last measured on 08/11, before Parts 30 to 35).
+- Search Console: after a few days, look at "Pages" (indexing) and "Performance" with Gustavo; docs only.
 
 ## Later
 

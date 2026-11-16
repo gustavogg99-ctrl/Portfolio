@@ -2,6 +2,11 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 35 · 2026-11-16
+
+- ROADMAP: Parts 33 to 35 done (PRs #47 to #49); "Next" now says nothing is pending on the site and the new chat starts by asking Gustavo. New "How we work" notes: take preview links from the Vercel bot comment (long branch names are shortened); the resume source file now carries the Part 29 wording, and exports are still compared line by line; Search Console property, file and sitemap status. "Optional" gains a Search Console follow-up.
+- Search Console after the Part 35 merge (Gustavo, 16/11/2026): property verified automatically by the HTML file; `sitemap.xml` submitted, status "Processed", 8 pages found (home, privacy and the two case pages, in both languages).
+
 ## Part 35 — Google Search Console verification file · 2026-11-16
 
 ROADMAP "Optional": submit the sitemap to Google Search Console (ADR-046).
