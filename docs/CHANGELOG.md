@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 32 · 2026-11-16
+
+- ROADMAP: Parts 30 to 32 done (PRs #43 to #45). "Next" item 1 now lists what is left from Gustavo's analysis: resume PDFs with "102 tests", the undecided mobile header labels (improvement 4), and a live PageSpeed run of the home and both case pages. New "How we work" note on measuring performance locally when Gustavo's Chrome is not connected. "Last updated" refreshed.
+
 ## Part 32 — Quick read and preview on both case studies; Support Agent test count 102 · 2026-11-16
 
 Third part of the plan from Gustavo's analysis of another portfolio (ADR-044).
