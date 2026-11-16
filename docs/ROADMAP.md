@@ -77,7 +77,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 27 | Autoria em Forma: regression suite count updated from 29 to 41 (ADR-039) | #39 |
 | 28 | Resume PDFs (EN/PT) replaced by the 10/11/2026 site versions, no phone number: Autoria numbers and 41 tests, Support Agent v2 numbers, new skill line (ADR-040) | #40 |
 | 29 | Skills section aligned with the resume ("LLM evaluation (accuracy and cost)", "Claude (API and connectors)"); resume line says the "0 of 21" is with prompt v2 (ADR-041). Closes the site side of the iFood intensive | #41 |
-| 30 | Projects right after the hero; named shortcut to the Autoria case; "Read the case study" on any card with a page; back link to the card (ADR-042) | #PRNUM |
+| 30 | Projects right after the hero; named shortcut to the Autoria case; "Read the case study" on any card with a page; back link to the card (ADR-042) | #43 |
 
 ## Next (in order)
 
