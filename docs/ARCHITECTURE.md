@@ -28,7 +28,8 @@ src/
     [lang]/            ← every page lives under /en or /pt
       layout.tsx       ← root layout: <html lang>, fonts, metadata
       page.tsx         ← home page
-      projects/[slug]/page.tsx ← case-study page (only projects with `page` in content)
+      projects/[slug]/page.tsx ← case-study page (only projects with `page` in content: Autoria em Forma, Support Agent)
+      projects/[slug]/opengraph-image.tsx ← share image per case study and locale (ADR-043)
       privacy/page.tsx ← privacy notice (LGPD), text in the dictionaries (ADR-027)
       not-found.tsx    ← localized 404 inside the site shell (ADR-026)
       [...missing]/page.tsx ← catch-all → notFound(), so unmatched paths get that 404
@@ -155,7 +156,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 ## Projects
 
-- **Home (`#projects`, right after the hero, ADR-042):** every card has `id={slug}` and shows "Read the case study" when the project has a `page`. The featured project (one at most) gets a large card with status, status note, summary, scope, up to 4 highlights, stack and a "Read the case study" button. Other projects get cards whose details (problem, what I built, evidence, guardrails, limitations) open with a native `<details>` — no JavaScript.
+- **Home (`#projects`, right after the hero, ADR-042):** every card has `id={slug}` and shows "Read the case study" when the project has a `page`; only cards without a page keep the expandable details (ADR-043). The featured project (one at most) gets a large card with status, status note, summary, scope, up to 4 highlights, stack and a "Read the case study" button. Other projects get cards whose details (problem, what I built, evidence, guardrails, limitations) open with a native `<details>` — no JavaScript.
 - **Case-study page `/[lang]/projects/[slug]`:** only for projects that define `page` in content. The back link returns to the project's own card (`/{lang}#{slug}`). Sections: scope, problem, what I built, architecture diagram, evidence, guardrails, code excerpts, limitations. Prerendered for both languages via `generateStaticParams`.
 - **Architecture diagram** is data (`page.architecture`): ordered steps with a `kind` (`io`, `ai`, `code`, `guard`, `human`) that sets the visual style; AI steps are inverted so the reader sees where the LLM sits between controls.
 - **Code excerpts** (`snippets.ts`) come from private repositories, sanitized at the source and re-checked here. Each has a `fidelity` note saying how it differs from the real code. A test scans all excerpts (and translations) for secrets and internal terms. A snippet may carry a `translation` (second block under the original) and `kind: "instructions"` (text given to Claude rather than code: only the fidelity label changes), ADR-034.
@@ -189,7 +190,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Base URL** (`src/lib/site-url.ts`): `VERCEL_PROJECT_PRODUCTION_URL` on Vercel (production domain `gustavorodrigues.vercel.app`), localhost otherwise. Previews point canonicals to production.
 - **Analytics:** `<Analytics />` from `@vercel/analytics/next` in the root layout. Script and beacon on `/_vercel/insights/*` (same origin), so the CSP needs no change; no cookies. Enabled per project in the Vercel dashboard (ADR-025).
 - **Metadata:** canonical + `hreflang` (en, pt-BR, x-default → en) on every page via `alternatesFor()`; Open Graph and Twitter card per locale.
-- **Open Graph image:** `src/app/[lang]/opengraph-image.tsx`, 1200×630, prerendered per locale. Repeats the dark-theme hex values (ImageResponse can't read CSS variables) — the one exception to the tokens rule.
+- **Open Graph image:** `src/app/[lang]/opengraph-image.tsx`, 1200×630, prerendered per locale; each case study has its own (`projects/[slug]/opengraph-image.tsx`: "Case study" label in the page's language, project name, status note, ADR-043). Repeats the dark-theme hex values (ImageResponse can't read CSS variables) — the one exception to the tokens rule.
 - **Titles:** `Page | Gustavo Rodrigues`; the home is `Gustavo Rodrigues | <title>`. No em dashes in visible text (test in `tests/content.test.ts`, ADR-027).
 - **`/sitemap.xml`** (home, privacy and case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link).
 - **Structured data:** `Person` JSON-LD on the home page (`src/lib/json-ld.ts`), only facts from `src/content`; not executed, so no CSP change.

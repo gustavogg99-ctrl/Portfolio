@@ -446,9 +446,83 @@ export const projects = [
     ],
     links: {
       repo: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype",
-      results:
-        "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype#8-llm-triage-with-guardrail-results",
+      // README "Results" section (renamed from "8. LLM triage with guardrail: results" on 15-16/11/2026).
+      results: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype#results",
       repoPrivate: false,
+    },
+    // Case page (Part 31, ADR-043). Steps from docs/guardrail.md and docs/architecture.md of the public repository.
+    page: {
+      architecture: {
+        main: [
+          {
+            kind: "io",
+            title: { en: "A ticket comes in", pt: "Chega um chamado" },
+            detail: {
+              en: "Synthetic tickets only: samples in code and the 30 labelled evaluation tickets.",
+              pt: "Só chamados sintéticos: exemplos no código e os 30 chamados rotulados da avaliação.",
+            },
+          },
+          {
+            kind: "guard",
+            title: { en: "Rules classify", pt: "Regras classificam" },
+            detail: {
+              en: "Deterministic Python, standard library, no network: sensitive data and security are checked first, then category, priority, escalation and automation.",
+              pt: "Python determinístico, só biblioteca padrão, sem rede: dados sensíveis e segurança são verificados primeiro, depois categoria, prioridade, escalonamento e automação.",
+            },
+          },
+          {
+            kind: "ai",
+            title: { en: "Claude classifies", pt: "Claude classifica" },
+            detail: {
+              en: "Category, priority and a sensitive-data flag as JSON, validated against closed lists. Anything invalid counts as a failure. The ticket text is sent as data, without the requester's name.",
+              pt: "Categoria, prioridade e um indicador de dados sensíveis em JSON, validados contra listas fechadas. Qualquer saída inválida conta como falha. O texto do chamado vai como dado, sem o nome do solicitante.",
+            },
+          },
+          {
+            kind: "guard",
+            title: { en: "Guardrail combines both", pt: "Guardrail combina os dois" },
+            detail: {
+              en: "A person reviews if the rules block, the LLM output was rejected, the two disagree, or the LLM's own answer requires review. Otherwise automation is allowed.",
+              pt: "Uma pessoa revisa se as regras bloqueiam, se a saída do LLM foi rejeitada, se os dois divergem ou se a própria resposta do LLM exige revisão. Fora isso, a automação é permitida.",
+            },
+          },
+          {
+            kind: "ai",
+            title: { en: "Claude drafts a reply", pt: "Claude redige a resposta" },
+            detail: {
+              en: "Only when automation is allowed. Otherwise the requester gets a fixed handoff message and no draft is written.",
+              pt: "Só quando a automação é permitida. Caso contrário, o solicitante recebe uma mensagem fixa de encaminhamento e nenhum rascunho é escrito.",
+            },
+          },
+          {
+            kind: "guard",
+            title: { en: "Draft checks", pt: "Verificação do rascunho" },
+            detail: {
+              en: "Discarded if empty or over 1,200 characters, if it contains sensitive data, or if it claims an action was performed (a keyword heuristic, not a guarantee).",
+              pt: "Descartado se vier vazio ou passar de 1.200 caracteres, se tiver dados sensíveis ou se afirmar que uma ação foi realizada (uma heurística por palavras-chave, não uma garantia).",
+            },
+          },
+          {
+            kind: "human",
+            title: { en: "A person approves", pt: "Uma pessoa aprova" },
+            detail: {
+              en: "Only an explicit yes approves; anything else, including an empty answer, rejects.",
+              pt: "Só um sim explícito aprova; qualquer outra resposta, inclusive vazia, rejeita.",
+            },
+          },
+        ],
+        outputs: [
+          { en: "Simulated send (no mail or ticketing integration)", pt: "Envio simulado (sem integração com e-mail ou sistema de chamados)" },
+          { en: "Fixed handoff message when a person must review", pt: "Mensagem fixa de encaminhamento quando uma pessoa precisa revisar" },
+          { en: "Audit log with both decisions and the reasons, sensitive values redacted", pt: "Log de auditoria com as duas decisões e os motivos, valores sensíveis mascarados" },
+        ],
+        parallel: {
+          en: "In parallel: an evaluation harness runs 2 prompt versions and 2 models through the same guardrail on the 30 labelled tickets. The results file is committed, and a test checks that the README table matches it.",
+          pt: "Em paralelo: um avaliador passa 2 versões de prompt e 2 modelos pelo mesmo guardrail nos 30 chamados rotulados. O arquivo de resultados é versionado, e um teste confere que a tabela do README bate com ele.",
+        },
+      },
+      // No code excerpts: the repository is public and linked from the page.
+      snippetIds: [],
     },
     visible: true,
   },
