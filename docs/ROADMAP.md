@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-10 (Part 29 open: skills aligned with the resume, "0 of 21" fixed, ADR-041; Part 28 merged, PR #40). The site side of the iFood intensive is closed._
+_Last updated: 2026-11-16 (handoff requested by Gustavo: Part 29 merged, PR #41; the next chat starts with his analysis of another portfolio, "Next" item 1)._
 
 ## How we work
 
@@ -80,11 +80,21 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 
 ## Next (in order)
 
-The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. A new chat starts at 0 after this handoff (Part 23 was the only part of the previous chat; Gustavo asked for the early switch).
+The site is **live and public but not shared yet** (ADR-025). Post-launch review (Parts 9–11) and the pre-sharing review (Parts 12–18) are done. A new chat starts at 0 after this handoff (16/11/2026, requested by Gustavo to start the work in item 1).
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
-### 1. iFood intensive (until 16/11/2026, 23:59): site side closed on 10/11/2026
+### 1. Ideas from Gustavo's analysis of another portfolio (16/11/2026): start here
+
+Gustavo analysed another portfolio and wrote a document with what he would like to add to this one. He brings it to the new chat. How to handle it:
+
+1. Read the whole document before proposing anything. Ask for it if it was not attached.
+2. Classify each idea against this site and these docs: **already on the site**; **fits** (say which file changes and which SOURCES.md fact backs it); **needs a new fact from Gustavo** (say exactly which); **conflicts with a rule or decision** (name the ADR or rule, e.g. ADR-001 on what not to copy from a reference site, no unverifiable numbers, no percentage bars or skill levels, the claims guard, no em dashes, colors only via tokens).
+3. Present the classification as one short list, then ask Gustavo one item at a time which to do and in what order. Group small related items into one part; anything non-trivial gets an ADR.
+4. Never copy text, images, logos, layouts or other distinctive elements from the other portfolio: take the idea, write it for this site. Content still comes only from `src/content/` backed by SOURCES.md.
+5. The link is shared from the iFood application (16/11/2026), so every change is public as soon as it merges: check each preview before merging, as usual.
+
+### 2. iFood intensive (until 16/11/2026, 23:59): site side closed on 10/11/2026
 
 **Status (Gustavo, 10/11/2026):** with Parts 28 and 29 the site work for the intensive is finished. No further site part is planned before the application. Until Gustavo submits on 16/11, the site changes only if he asks. What remains of the intensive is not site work and is tracked in the Notion project `IFOOD` by the manager chat: sending the application (`IFOOD-04`) and the optional n8n newsletter automation (`IFOOD-06`, not started).
 
@@ -95,14 +105,14 @@ Gustavo applies to the iFood GenAI internship (AI Builder track) on **16/11/2026
 - **`IFOOD-05` (optional, done in Part 24, 10/11; merged, with follow-ups in Parts 25 to 27):** timed test of the Autoria pipeline, by hand × pipeline, on one fictional document, run by Gustavo on 10/11/2026 (protocol written before measuring, in the Notion task). Published as a block on the **case page only** (ADR-037): both times side by side (4 h 56 min 45 s net by hand; 18 min 20 s on the clock and 3 min 45 s active with the pipeline), the checks and checklist counts of both outputs, what went wrong in each condition, the method and 8 limitations. Rules that stay: "controlled test, n=1, fictional document"; never "hours saved", "faster" or a ratio; never extrapolated to the 2 real jobs (no baseline); no institution, course or client named; real-job numbers and test numbers stay in separate blocks. Record: `claude/Resultado_IFOOD05_Teste_Cronometrado.md` in the Autoria Claude project.
 - The form question "What appears in your AI portfolio?" is answered only with what is on the site at submission (rule in the Notion project).
 
-### 2. Before sharing the link (pre-sharing review, 09/11/2026)
+### 3. Before sharing the link (pre-sharing review, 09/11/2026)
 Ask Gustavo one item at a time; sharing is his call (ADR-025).
 - Done on 09/11/2026 (outside this repo, with Gustavo's approval): GitHub name "Gustavo Rodrigues", bio "AI Builder · AI Governance", profile URL, Portfolio repo pinned with description and the new site, profile README links the portfolio and uses the official certification names, private contributions shown. Writing section checked live: 3 posts.
-- Sharing: the link goes into the iFood application on 16/11 (item 1).
+- Sharing: the link goes into the iFood application on 16/11 (item 2).
 - Replacing the resume: Gustavo exports the `_site` versions (no phone) himself; compare their text with the previous PDFs and publish only facts he confirmed. **Done again in Part 28 (10/11/2026).** Part 29 settled the two open points: the skill is on the site and the "0 of 21" line says prompt v2 (ADR-041). If Gustavo exports the resume again from his source file, that export must carry the same wording (Support Agent line, EN and PT).
 - Done on 09/11/2026: availability and "Now" (Part 15), GitHub photo, `ethical-ai-policy` README, stale branches, Autoria card order (Part 16), MerkurIA wording (Part 17), resume (Part 18), hero counters (kept for now), resume line about the Autoria checks (Part 19).
 
-### 3. Optional
+### 4. Optional
 - Submit `sitemap.xml` to Google Search Console (Gustavo's account).
 - Re-measure Observatory/PageSpeed after big changes (docs only, ADR-024). The shell can't reach `*.vercel.app`; use Gustavo's Chrome.
 

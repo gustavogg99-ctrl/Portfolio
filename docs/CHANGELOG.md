@@ -2,6 +2,10 @@
 
 What changed in each part of the build. Newest first.
 
+## Docs — Handoff after Part 29 · 2026-11-16
+
+- ROADMAP: handoff requested by Gustavo. New "Next" item 1: his analysis of another portfolio, with the workflow for the new chat (read the whole document, classify each idea against the site and the rules, ask one item at a time, never copy distinctive elements). "Last updated" refreshed; the other items renumbered.
+
 ## Part 29 — Skills aligned with the resume; "0 of 21" says prompt v2 · 2026-11-10
 
 **Changed**
