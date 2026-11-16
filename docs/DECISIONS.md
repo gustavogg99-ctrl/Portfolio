@@ -662,3 +662,16 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** No code change. Revisit only if the nav loses sections or analytics show visitors not reaching Projects or Contact.
 
+
+## ADR-046 — Google Search Console verified with an HTML file
+
+**Date:** 2026-11-16
+
+**Context.** ROADMAP "Optional": submit `sitemap.xml` to Google Search Console. Gustavo agreed (16/11/2026). His account had no property. `gustavorodrigues.vercel.app` is a subdomain of a domain he does not own, so a Domain property (DNS TXT record) is not possible; a URL-prefix property for `https://gustavorodrigues.vercel.app/` is. Google offers an HTML file, a meta tag, Google Analytics or Tag Manager for it.
+
+**Decision.** Verify with the HTML file Google issued for this property: `public/google4f8e9eef3fd71ea9.html`, containing only Google's one-line verification text. It is a static file, served from the root (the locale proxy skips paths with an extension), so no layout change, no new script and no CSP change. It must stay in place: Google re-checks it, and removing it loses the verification. After the merge Gustavo clicks "Verify" and the sitemap is submitted.
+
+**Alternatives considered.** Meta tag in the root layout (rejected: it puts a token in every page's `<head>` for a one-off check, and the file is easier to audit and remove); Google Analytics or Tag Manager (rejected: third-party scripts, against ADR-022's threat model and the privacy page); Domain property (not possible on `vercel.app`).
+
+**Consequences.** Search Console reads Google's own crawl and search data; it adds nothing to the site and collects nothing from visitors, so the privacy page does not change (ADR-027). The file name is a public identifier by design, not a secret. A test keeps exactly one such file with the exact content.
+

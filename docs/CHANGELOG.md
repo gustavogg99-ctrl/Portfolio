@@ -2,6 +2,21 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 35 — Google Search Console verification file · 2026-11-16
+
+ROADMAP "Optional": submit the sitemap to Google Search Console (ADR-046).
+
+**Added**
+- `public/google4f8e9eef3fd71ea9.html`: the verification file Google issued for the URL-prefix property `https://gustavorodrigues.vercel.app/`, unchanged. Test `tests/search-console.test.ts` (one file, exact content, not caught by the locale proxy).
+
+**Verified**
+- `npm run check` (83 tests) and `npm run build`. The production build serves the file at `/google4f8e9eef3fd71ea9.html` (200, `text/html`, exact content, no redirect); `robots.txt` and `sitemap.xml` (8 URLs) unchanged.
+
+**After the merge (Gustavo's account, his Chrome)**
+- "Verify" in Search Console, then submit `https://gustavorodrigues.vercel.app/sitemap.xml`. Results go into the handoff entry.
+
+**Also recorded: live PageSpeed of the Autoria case after Part 34** (16/11/2026, one run, right after the deploy): mobile 99 · 100 · 100 · 100 (FCP 0.9 s, LCP 2.1 s, TBT 30 ms, CLS 0), desktop 100 · 100 · 100 · 100. Accessibility is 100 with no failing audit; the mobile performance 99 is one run after a fresh deploy (LCP 1.0 s in the previous run, no change to that page's loading).
+
 ## Part 34 — Heading order on the Autoria case; live PageSpeed; mobile header decision · 2026-11-16
 
 Last two items left from Gustavo's analysis (ROADMAP "Next" item 1).

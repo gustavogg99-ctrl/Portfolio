@@ -87,6 +87,8 @@ tests/locale-path.test.ts  ← language switch path logic
 tests/json-ld.test.ts      ← structured data uses only content facts
 tests/heading-order.test.tsx ← deliveries block renders the heading level each page needs (Vitest runs `.test.ts` and `.test.tsx`)
 public/resume/             ← resume PDFs (EN, PT), site versions without the phone number (ADR-032)
+public/google4f8e9eef3fd71ea9.html ← Google Search Console ownership file; must stay (ADR-046)
+tests/search-console.test.ts ← exactly one verification file, exact content
 docs/                      ← this documentation
 ```
 
@@ -194,7 +196,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Metadata:** canonical + `hreflang` (en, pt-BR, x-default → en) on every page via `alternatesFor()`; Open Graph and Twitter card per locale.
 - **Open Graph image:** `src/app/[lang]/opengraph-image.tsx`, 1200×630, prerendered per locale; each case study has its own (`projects/[slug]/opengraph-image.tsx`: "Case study" label in the page's language, project name, status note, ADR-043). Repeats the dark-theme hex values (ImageResponse can't read CSS variables) — the one exception to the tokens rule.
 - **Titles:** `Page | Gustavo Rodrigues`; the home is `Gustavo Rodrigues | <title>`. No em dashes in visible text (test in `tests/content.test.ts`, ADR-027).
-- **`/sitemap.xml`** (home, privacy and case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link).
+- **`/sitemap.xml`** (home, privacy and case-study pages, both languages, with alternates) and **`/robots.txt`** (allow all, sitemap link). The sitemap is submitted in Google Search Console (URL-prefix property, verified by the HTML file in `public/`, ADR-046).
 - **Structured data:** `Person` JSON-LD on the home page (`src/lib/json-ld.ts`), only facts from `src/content`; not executed, so no CSP change.
 - **Icons:** own "GR" favicon, `icon.png` and `apple-icon.png` (static files; colors repeat the tokens, like the OG image).
 - **404:** `[lang]/not-found.tsx` inside `SiteShell`, in the URL's language, `noindex`; a catch-all route sends unmatched paths there. Title = site title (ADR-026).
