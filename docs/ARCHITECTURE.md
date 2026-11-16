@@ -57,7 +57,7 @@ src/
     site-shell.tsx     ← header + profile card column + footer, shared by all pages
     projects.tsx       ← featured card, project cards (native <details>), status/stack/links (repository, optional "Evaluation results" link, ADR-036)
     architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
-    deliveries.tsx     ← counts from real delivered jobs + method note (card and case page, ADR-035)
+    deliveries.tsx     ← counts from real delivered jobs + method note (card and case page, ADR-035); `headingLevel` 4 on the card, 3 on the case page
     quick-read.tsx     ← quick read (problem, my role, evidence + source) and the case preview: a recorded evaluation result or an illustrative before/after (case page only, ADR-044)
     timed-test.tsx     ← the by-hand × pipeline timed test: table, what went wrong, method, limitations (case page only, ADR-037)
     code-block.tsx     ← code excerpt (+ optional translation) + explanation + fidelity note
@@ -85,6 +85,7 @@ scripts/hash-term.ts       ← `npm run claims:hash -- "term"`: line to add to t
 tests/content.test.ts      ← content rules + claims guard
 tests/locale-path.test.ts  ← language switch path logic
 tests/json-ld.test.ts      ← structured data uses only content facts
+tests/heading-order.test.tsx ← deliveries block renders the heading level each page needs (Vitest runs `.test.ts` and `.test.tsx`)
 public/resume/             ← resume PDFs (EN, PT), site versions without the phone number (ADR-032)
 docs/                      ← this documentation
 ```
@@ -197,7 +198,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Structured data:** `Person` JSON-LD on the home page (`src/lib/json-ld.ts`), only facts from `src/content`; not executed, so no CSP change.
 - **Icons:** own "GR" favicon, `icon.png` and `apple-icon.png` (static files; colors repeat the tokens, like the OG image).
 - **404:** `[lang]/not-found.tsx` inside `SiteShell`, in the URL's language, `noindex`; a catch-all route sends unmatched paths there. Title = site title (ADR-026).
-- **Measured on the live site (2026-11-08):** Observatory B+ (80/100, only `'unsafe-inline'`), PageSpeed 100 in all four categories on mobile and desktop. Docs only (ADR-024).
+- **Measured on the live site (2026-11-08):** Observatory B+ (80/100, only `'unsafe-inline'`), PageSpeed 100 in all four categories on mobile and desktop. Docs only (ADR-024). PageSpeed again on 2026-11-16 for the home and both case pages: 100 everywhere except Accessibility 99 on the Autoria case (heading order, fixed in Part 34); numbers in the CHANGELOG.
 
 ## Accessibility (baseline)
 
@@ -207,7 +208,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - Visible `:focus-visible` outline using the accent token; `prefers-reduced-motion` respected.
 - Checked with axe-core (WCAG 2.2 AA + best practices) on the home page and the case study, dark and light: 0 violations (Part 7); again in Part 9 including the 404 page, at 320/390/1440 px.
 - Profile card: compact grid below `lg` (photo beside the name, actions in one row) so the hero is on a phone's first screen (ADR-028).
-- Reflow (WCAG 1.4.10): no horizontal scroll at 320 px; header controls shrink to 30–32 px below 380 px. The profile card's name is a `<p>` so the page `h1` is the first heading. Visible text is part of every accessible name (language switch); each page has one `h1`; heading levels don't skip.
+- Reflow (WCAG 1.4.10): no horizontal scroll at 320 px; header controls shrink to 30–32 px below 380 px. The profile card's name is a `<p>` so the page `h1` is the first heading. Visible text is part of every accessible name (language switch); each page has one `h1`; heading levels don't skip. Components used under different parent headings take the level as a prop (`Deliveries`).
 
 ## Content rules (enforced by code)
 
