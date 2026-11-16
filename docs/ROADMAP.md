@@ -79,7 +79,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 29 | Skills section aligned with the resume ("LLM evaluation (accuracy and cost)", "Claude (API and connectors)"); resume line says the "0 of 21" is with prompt v2 (ADR-041). Closes the site side of the iFood intensive | #41 |
 | 30 | Projects right after the hero; named shortcut to the Autoria case; "Read the case study" on any card with a page; back link to the card (ADR-042) | #43 |
 | 31 | Support Agent case page (EN/PT, 7-step diagram from its public repository); share image per case; details only on cards without a page; results link fixed to `#results` (ADR-043) | #44 |
-| 32 | Quick read (problem, my role, evidence) and preview on both case studies: recorded EVAL-011 result for the Support Agent, illustrative before/after for Autoria; Support Agent test count 102 (ADR-044) | #PRNUM |
+| 32 | Quick read (problem, my role, evidence) and preview on both case studies: recorded EVAL-011 result for the Support Agent, illustrative before/after for Autoria; Support Agent test count 102 (ADR-044) | #45 |
 
 ## Next (in order)
 
