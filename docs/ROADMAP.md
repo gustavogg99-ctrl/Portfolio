@@ -86,7 +86,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 33 | Resume PDFs (EN/PT) replaced by Gustavo's 16/11/2026 export: Support Agent line says 102 tests; "prompt v2" wording now in his source file | #47 |
 | 34 | Autoria case: deliveries job headings h3 under the h2 (live PageSpeed had Accessibility 99, `heading-order`); live PageSpeed of home and both cases in the CHANGELOG; mobile header stays icon-only (ADR-045) | #48 |
 | 35 | Google Search Console: verification file for the URL-prefix property (ADR-046); sitemap submitted after the merge | #49 |
-| 36 | Docs only: Observatory re-measured on the live site after Parts 30 to 35, B+ 80/100, 11/12, only `'unsafe-inline'` (unchanged) | #? |
+| 36 | Docs only: Observatory re-measured on the live site after Parts 30 to 35, B+ 80/100, 11/12, only `'unsafe-inline'` (unchanged) | #51 |
 
 ## Next (in order)
 
