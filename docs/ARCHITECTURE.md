@@ -200,7 +200,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Structured data:** `Person` JSON-LD on the home page (`src/lib/json-ld.ts`), only facts from `src/content`; not executed, so no CSP change.
 - **Icons:** own "GR" favicon, `icon.png` and `apple-icon.png` (static files; colors repeat the tokens, like the OG image).
 - **404:** `[lang]/not-found.tsx` inside `SiteShell`, in the URL's language, `noindex`; a catch-all route sends unmatched paths there. Title = site title (ADR-026).
-- **Measured on the live site (2026-11-08):** Observatory B+ (80/100, only `'unsafe-inline'`), PageSpeed 100 in all four categories on mobile and desktop. Docs only (ADR-024). PageSpeed again on 2026-11-16 for the home and both case pages: 100 everywhere except Accessibility 99 on the Autoria case (heading order, fixed in Part 34); numbers in the CHANGELOG.
+- **Measured on the live site (2026-11-08):** Observatory B+ (80/100, only `'unsafe-inline'`), PageSpeed 100 in all four categories on mobile and desktop. Docs only (ADR-024). PageSpeed again on 2026-11-16 for the home and both case pages: 100 everywhere except Accessibility 99 on the Autoria case (heading order, fixed in Part 34); numbers in the CHANGELOG. Observatory again on 2026-11-16 (after Parts 30 to 35): B+ (80/100), 11/12, same single failure.
 
 ## Accessibility (baseline)
 

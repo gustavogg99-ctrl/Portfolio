@@ -2,6 +2,17 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 36 — Observatory re-measured on the live site · 2026-11-16
+
+ROADMAP "Optional": re-measure after big changes (docs only, ADR-024). The last Observatory grade was from 08/11, before Parts 30 to 35.
+
+**Measured (live, MDN HTTP Observatory in Gustavo's Chrome, 16/11/2026 ~16:20, host `gustavorodrigues.vercel.app/en`)**
+- B+ (80/100), 11 of 12 tests passed. The only failure is the CSP (−20, `'unsafe-inline'` in `script-src`), as decided in ADR-022. Cookies: none detected; CORS, redirection, Referrer-Policy and HSTS (preloaded) pass.
+- Same grade and score as 08/11/2026: Parts 30 to 35 changed no header.
+
+**Changed**
+- ARCHITECTURE ("Measured on the live site"), README (security table) and ROADMAP ("Optional", Done) record the new date. No site change; no score is shown on the site.
+
 ## Docs — Handoff after Part 35 · 2026-11-16
 
 - ROADMAP: Parts 33 to 35 done (PRs #47 to #49); "Next" now says nothing is pending on the site and the new chat starts by asking Gustavo. New "How we work" notes: take preview links from the Vercel bot comment (long branch names are shortened); the resume source file now carries the Part 29 wording, and exports are still compared line by line; Search Console property, file and sitemap status. "Optional" gains a Search Console follow-up.
