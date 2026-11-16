@@ -4,7 +4,26 @@ import type { Locale } from "@/i18n/config";
 import { formatYearMonth, l } from "@/lib/localize";
 import { SectionTitle } from "./section";
 
-function Period({ start, end, locale, dict }: { start: string; end: string | null; locale: Locale; dict: Dictionary }) {
+function Period({
+  start,
+  end,
+  upcoming,
+  locale,
+  dict,
+}: {
+  start: string;
+  end: string | null;
+  upcoming?: boolean;
+  locale: Locale;
+  dict: Dictionary;
+}) {
+  if (upcoming) {
+    return (
+      <span className="font-mono text-xs text-muted">
+        {dict.labels.starting} <time dateTime={start}>{formatYearMonth(start, locale)}</time>
+      </span>
+    );
+  }
   return (
     <span className="font-mono text-xs text-muted">
       <time dateTime={start}>{formatYearMonth(start, locale)}</time>
@@ -37,7 +56,7 @@ export function Experience({ locale, dict }: { locale: Locale; dict: Dictionary 
               {job.roles.map((role) => (
                 <li key={role.start} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                   <span className="font-medium">{l(role.title, locale)}</span>
-                  <Period start={role.start} end={role.end} locale={locale} dict={dict} />
+                  <Period start={role.start} end={role.end} upcoming={role.upcoming} locale={locale} dict={dict} />
                 </li>
               ))}
             </ul>

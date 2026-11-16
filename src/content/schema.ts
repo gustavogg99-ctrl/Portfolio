@@ -75,6 +75,8 @@ export const Role = z.object({
   title: Localized,
   start: YearMonth,
   end: YearMonth.nullable(), // null = current
+  /** Hired, not started yet: rendered as "Starting <month>" instead of "<month> – Present" (ADR-047). Remove on the start date. */
+  upcoming: z.boolean().optional(),
 });
 
 export const Experience = z.object({

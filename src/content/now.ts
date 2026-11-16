@@ -15,11 +15,11 @@ export const now = {
       id: "work",
       kind: "work",
       visible: true,
+      // Hired on 16/11/2026 (Gustavo; ADR-047). Change again on 01/12/2026, when the job starts.
       text: {
-        en: "Available for work now.",
-        pt: "Disponível para trabalho agora.",
+        en: "Hired by Aoop (an NTT DATA company) as a Junior in ServiceNow, on an AI-specialized track. I start in December 2026.",
+        pt: "Contratado pela Aoop (empresa do grupo NTT DATA) como Júnior em ServiceNow, numa trilha especializada em IA. Começo em dezembro de 2026.",
       },
-      link: { href: "#contact", label: { en: "Get in touch", pt: "Fale comigo" } },
     },
     {
       id: "study",
