@@ -3,22 +3,30 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { l } from "@/lib/localize";
 
-/** Counts from the real delivered jobs, with how they were counted (ADR-035). */
+/**
+ * Counts from the real delivered jobs, with how they were counted (ADR-035).
+ * `headingLevel` is one below the heading that introduces the block: h4 on the
+ * home card (under its h4 label, as siblings), h3 on the case page (under an h2),
+ * so heading levels never skip (ARCHITECTURE, Accessibility; Part 34).
+ */
 export function Deliveries({
   deliveries,
   locale,
   dict,
+  headingLevel = 4,
 }: {
   deliveries: NonNullable<Project["deliveries"]>;
   locale: Locale;
   dict: Dictionary;
+  headingLevel?: 3 | 4;
 }) {
+  const JobHeading = headingLevel === 3 ? "h3" : "h4";
   return (
     <div className="flex flex-col gap-3">
       <ul className="grid gap-3 sm:grid-cols-2">
         {deliveries.jobs.map((job) => (
           <li key={job.label.en} className="flex flex-col gap-3 rounded-xl border border-border bg-surface-2 p-4">
-            <h4 className="text-sm font-semibold">{l(job.label, locale)}</h4>
+            <JobHeading className="text-sm font-semibold">{l(job.label, locale)}</JobHeading>
             <dl className="flex flex-col gap-2 text-sm">
               {[
                 [dict.labels.deliveriesVersions, job.versions],

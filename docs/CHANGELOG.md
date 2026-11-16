@@ -2,6 +2,30 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 34 — Heading order on the Autoria case; live PageSpeed; mobile header decision · 2026-11-16
+
+Last two items left from Gustavo's analysis (ROADMAP "Next" item 1).
+
+**Fixed**
+- Autoria em Forma case page: the job headings of the deliveries block were `h4` right under the section's `h2`, so live PageSpeed gave Accessibility 99 (`heading-order`). `Deliveries` takes a `headingLevel` (h3 on the case page, h4 on the home card, unchanged there). Same look.
+- Test `tests/heading-order.test.tsx` renders the block at both levels and checks that the case page asks for h3; Vitest now also runs `.test.tsx` files.
+
+**Decided**
+- Improvement 4 (labels in the mobile header): not done, the header stays icon-only (ADR-045).
+
+**Measured (live, PageSpeed Insights in Gustavo's Chrome, 16/11/2026 ~15:35, one run each, before this fix)**
+
+| Page | Mobile (Perf · A11y · BP · SEO) | Mobile FCP / LCP / TBT / CLS | Desktop (Perf · A11y · BP · SEO) |
+|---|---|---|---|
+| `/en` | 100 · 100 · 100 · 100 | 0.9 s / 0.9 s / 40 ms / 0.015 | 100 · 100 · 100 · 100 |
+| `/en/projects/autoria-em-forma` | 100 · **99** · 100 · 100 | 1.0 s / 1.0 s / 50 ms / 0 | 100 · **99** · 100 · 100 |
+| `/en/projects/support-agent-governance-prototype` | 100 · 100 · 100 · 100 | 0.9 s / 0.9 s / 10 ms / 0 | 100 · 100 · 100 · 100 |
+
+The 99 is the heading order fixed above. Docs only (ADR-024): no score is shown on the site.
+
+**Verified**
+- `npm run check` (80 tests) and `npm run build`. Playwright on the production build: no heading-level skip on `/en`, `/pt`, both case pages and the privacy page in both languages; the deliveries block at 1440×900 and 390×844, dark and light, looks the same as before; no horizontal scroll.
+
 ## Part 33 — Resume PDFs with "102 tests" · 2026-11-16
 
 First item left from Gustavo's analysis (ROADMAP "Next" item 1). A file swap under ADR-032, like Part 28 (ADR-040); no new decision, so no ADR.

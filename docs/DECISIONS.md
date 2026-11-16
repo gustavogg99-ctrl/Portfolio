@@ -649,3 +649,16 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** Both cases open with the same three-cell box and a preview, and the Problem heading moves into the box. The site and the resume differ on the Support Agent test count (102 vs 84) until the next export. Lighthouse local, median of 3: Autoria case mobile 93 → 94, Support Agent case 96 → 96.
 
+
+## ADR-045 — Mobile header stays icon-only (improvement 4 not done)
+
+**Date:** 2026-11-16
+
+**Context.** Improvement 4 of Gustavo's analysis asked for visible labels for Projects and Contact in the mobile header. ADR-042 left it to be judged after Part 30. Gustavo asked Claude to decide (16/11/2026). Measured on a production build of `main`: at 320 px the icon nav spans 13 to 233 px and the language and theme buttons end at 307 px, so about 13 px are free; at 390 px the nav ends at 290 px and the buttons at 386 px. Two labels need about 130 px more.
+
+**Decision.** Keep the header as it is (ADR-026). Labels would force 3 or 4 icons into a "More" menu, which hides half of the navigation behind a tap (the reason ADR-026 rejected a hamburger at 320 px) and adds client code, a focus trap and keyboard handling for two words. The need is already met by text: at 390×844 the first screen shows "Contact" (profile card) and "Case study: Autoria em Forma" (hero); at 320×640 "Contact" is on the first screen and the hero buttons right after it.
+
+**Alternatives considered.** A "More" menu for the less used sections (rejected, above); labels only from `sm` up (rejected: desktop already shows tooltips and has room, and the request was about phones); shrinking the icons further (rejected: they are 30 px at 320 px, already the floor for touch targets the site uses).
+
+**Consequences.** No code change. Revisit only if the nav loses sections or analytics show visitors not reaching Projects or Contact.
+

@@ -109,7 +109,7 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
         {project.deliveries && (
           <section className={block} aria-labelledby="deliveries">
             <h2 id="deliveries" className={h2}>{dict.labels.deliveries}</h2>
-            <Deliveries deliveries={project.deliveries} locale={locale} dict={dict} />
+            <Deliveries deliveries={project.deliveries} locale={locale} dict={dict} headingLevel={3} />
           </section>
         )}
 
