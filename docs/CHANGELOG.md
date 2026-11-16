@@ -2,6 +2,25 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 32 — Quick read and preview on both case studies; Support Agent test count 102 · 2026-11-16
+
+Third part of the plan from Gustavo's analysis of another portfolio (ADR-044).
+
+**Changed**
+- Case pages: right after the header, a quick read with three cells (Problem, My role, Evidence with a "Source" link) and a preview. The separate Problem section is omitted when the quick read is shown.
+- Autoria em Forma: role line approved by Gustavo ("designed it, built it with Claude and run the pipeline; deal with the clients and review every delivery"); evidence "2 real jobs accepted by the clients, 41/41 regression tests" (→ deliveries); illustrative before/after of a long direct quotation on fictional text.
+- Support Agent: role line approved by Gustavo ("reviewed and approved the labels", not "labelled"); evidence "0 of 21 with prompt v2 + guardrail, 8 of 21 rules only" (→ README results); preview = the recorded result for ticket EVAL-011 (rules, Claude Haiku 5.5 with prompt v2, guardrail, label), linked to `results/eval_results.json`.
+- Support Agent card: "102 automated tests" (was 84), CI "Python 3.10 and 3.13 on Ubuntu, 3.13 on Windows" (repository at `4706b74`, 16/11/2026).
+- New schema fields `quickRead` and `preview`, component `quick-read.tsx`, 8 new dictionary labels, 4 new tests.
+
+**Verified**
+- `npm run check` (77 tests) and `npm run build`. Playwright on both case pages at 1440×900, 390×844 and 320×640, EN and PT, dark and light: no horizontal scroll; the evidence link of Autoria lands on the deliveries section.
+- Repository facts re-read: EVAL-011 record in all 4 runs (human review, disagreements on category and priority, LLM alone would automate it); "General Support always escalates" in `docs/decision-logic.md`; 102 tests passing locally; CI matrix in the workflow.
+- Lighthouse (local production build, median of 3, same machine): Autoria case mobile 93 → 94 (LCP 3.17 → 3.12 s, TBT 81 → 50 ms, CLS 0), desktop 100; Support Agent case mobile 96 → 96, desktop 100; home mobile 98.
+
+**Not changed**
+- The resume PDFs (still "84 tests" until Gustavo exports new ones). Any other number or limitation.
+
 ## Part 31 — Support Agent case page; share image per case; details only on cards without a page · 2026-11-16
 
 Second part of the plan from Gustavo's analysis of another portfolio (ADR-043).

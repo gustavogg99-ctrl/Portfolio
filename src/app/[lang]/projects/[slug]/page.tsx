@@ -13,6 +13,7 @@ import { ProjectLinks, StackTags, StatusBadge } from "@/components/projects";
 import { SectionTitle } from "@/components/section";
 import { SiteShell } from "@/components/site-shell";
 import { TimedTest } from "@/components/timed-test";
+import { CasePreview, QuickRead } from "@/components/quick-read";
 
 /** Only projects that declare a `page` get a case-study route. */
 const withPage = () => content.projects.filter((p) => p.visible && p.page);
@@ -78,10 +79,22 @@ export default async function ProjectPage(props: PageProps<"/[lang]/projects/[sl
           <ProjectLinks project={project} dict={dict} />
         </header>
 
-        <section className={block} aria-labelledby="problem">
-          <h2 id="problem" className={h2}>{dict.labels.problem}</h2>
-          <p className="max-w-2xl text-foreground/90">{l(project.problem, locale)}</p>
-        </section>
+        {/* Quick read and preview at the top (ADR-044); the problem moves into the quick read. */}
+        {(project.quickRead || project.preview) && (
+          <div className="flex flex-col gap-6">
+            {project.quickRead && (
+              <QuickRead project={project} quickRead={project.quickRead} locale={locale} dict={dict} />
+            )}
+            {project.preview && <CasePreview preview={project.preview} locale={locale} dict={dict} />}
+          </div>
+        )}
+
+        {!project.quickRead && (
+          <section className={block} aria-labelledby="problem">
+            <h2 id="problem" className={h2}>{dict.labels.problem}</h2>
+            <p className="max-w-2xl text-foreground/90">{l(project.problem, locale)}</p>
+          </section>
+        )}
 
         <section className={block} aria-labelledby="built">
           <h2 id="built" className={h2}>{dict.labels.built}</h2>

@@ -171,7 +171,7 @@ describe("code snippets (sanitized excerpts from private repos)", () => {
     expect(p.links.results).toBe(`${repo}#results`);
     const en = JSON.stringify([p.highlights, p.guardrails, p.limitations].map((a) => a.map((x) => x.en))).toLowerCase();
     // Numbers from results/eval_results.json (run of 10/11/2026, repository PR #7).
-    for (const n of ["28/30", "9/30", "8/21", "1/21", "0/21", "3/21", "4 of the 9", "84 automated tests", "0.00016", "0.0032"]) {
+    for (const n of ["28/30", "9/30", "8/21", "1/21", "0/21", "3/21", "4 of the 9", "102 automated tests", "0.00016", "0.0032"]) {
       expect(en).toContain(n);
     }
     // Limitations declared in both languages: synthetic data, no full injection defence, no masking before the API.

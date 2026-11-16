@@ -60,6 +60,14 @@
     ]
   },
   "labels": {
+    "myRole": "My role",
+    "atAGlance": "At a glance",
+    "source": "Source",
+    "before": "Before",
+    "after": "After",
+    "illustrative": "Illustrative",
+    "recorded": "Recorded result",
+    "ticket": "Ticket",
     "present": "Present",
     "expected": "Expected",
     "inProgress": "In progress",

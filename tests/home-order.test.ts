@@ -57,3 +57,36 @@ describe("Support Agent case page (ADR-043)", () => {
     }
   });
 });
+
+describe("quick read and previews (ADR-044)", () => {
+  const withPage = content.projects.filter((p) => p.visible && p.page);
+
+  it("every case page has a quick read and a preview", () => {
+    for (const p of withPage) {
+      expect(p.quickRead, p.slug).toBeDefined();
+      expect(p.preview, p.slug).toBeDefined();
+    }
+  });
+
+  it("the Autoria role line says it was built with Claude", () => {
+    const a = content.projects.find((p) => p.slug === "autoria-em-forma")!;
+    expect(a.quickRead!.role.en).toMatch(/with Claude/);
+    expect(a.quickRead!.role.pt).toMatch(/com o Claude/);
+  });
+
+  it("the before/after is labelled illustrative and fictional", () => {
+    const a = content.projects.find((p) => p.slug === "autoria-em-forma")!;
+    expect(a.preview!.kind).toBe("beforeAfter");
+    expect(a.preview!.note.en).toMatch(/^Illustrative: fictional/);
+    expect(a.preview!.note.pt).toMatch(/^Ilustrativo: texto fictício/);
+  });
+
+  it("the Support Agent preview is a real record from the committed results", () => {
+    const sa = content.projects.find((p) => p.slug === "support-agent-governance-prototype")!;
+    const pv = sa.preview!;
+    expect(pv.kind).toBe("record");
+    if (pv.kind !== "record") return;
+    expect(pv.ticket.id).toMatch(/^EVAL-\d{3}$/);
+    expect(pv.sourceHref).toMatch(/support-agent-governance-prototype\/blob\/main\/results\/eval_results\.json$/);
+  });
+});

@@ -226,6 +226,45 @@ export const Project = z.object({
     repoPrivate: z.boolean().default(false),
   }),
   builtWith: Localized.optional(),
+  /**
+   * Quick read at the top of the case page (Part 32, ADR-044): the problem (from `problem`),
+   * my role and one piece of evidence with where it comes from.
+   */
+  quickRead: z
+    .object({
+      role: Localized,
+      evidence: Localized,
+      /** Where the evidence comes from: an anchor on the page or an https URL. */
+      evidenceHref: z.string().regex(/^(https:\/\/|#)/, "https URL or #anchor"),
+    })
+    .optional(),
+  /** A short preview of the work at the top of the case page (Part 32, ADR-044). */
+  preview: z
+    .discriminatedUnion("kind", [
+      /** A real record from an evaluation run: one synthetic ticket and what each layer decided. */
+      z.object({
+        kind: z.literal("record"),
+        caption: Localized,
+        ticket: z.object({ id: z.string(), subject: z.string(), description: z.string() }),
+        rows: z
+          .array(z.object({ label: Localized, value: Localized, tone: z.enum(["guard", "ai", "human", "io"]) }))
+          .min(2),
+        note: Localized,
+        sourceHref: z.url(),
+      }),
+      /** An illustrative before/after on fictional text; always labelled as illustrative. */
+      z.object({
+        kind: z.literal("beforeAfter"),
+        caption: Localized,
+        lead: Localized,
+        quote: Localized,
+        citation: z.string(),
+        beforeNotes: z.array(Localized).min(1),
+        afterNotes: z.array(Localized).min(1),
+        note: Localized,
+      }),
+    ])
+    .optional(),
   /** Projects with a dedicated page at /[lang]/projects/[slug]. */
   page: z
     .object({
