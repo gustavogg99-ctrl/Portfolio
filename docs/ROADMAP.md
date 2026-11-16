@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-16 (handoff after Part 32: Parts 30 to 32 merged, PRs #43 to #45; the plan from Gustavo's analysis of another portfolio is done except improvement 4)._
+_Last updated: 2026-11-16 (Part 33: resume PDFs with "102 tests"; new chat after the Part 32 handoff, 1 part done in it)._
 
 ## How we work
 
@@ -18,7 +18,7 @@ _Last updated: 2026-11-16 (handoff after Part 32: Parts 30 to 32 merged, PRs #43
 - **Blog in the Writing section** is automatic (RSS, ADR-020). A post whose title trips the claims guard is shown only after Gustavo reviews it (`blog.allowed`).
 - **Content review:** done; Gustavo reviewed and approved the site text on 09/11/2026.
 - **Decisions worth a blog post** are written up in the Notion task with the reasoning (e.g. the CSP trade-off in `PORTFOLIO-07`), for the future post about building this site.
-- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-29` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24; 26 = Parts 25 and 26; 27 = Part 27; 28 = Part 28; 29 = Part 29; 30 = Part 30; 31 = Part 31; 32 = Part 32). New parts get the next code (the next one is `PORTFOLIO-33`).
+- Notion: project "Portfólio pessoal (site)" (code `PORTFOLIO`) in "GG — Central de Projetos", tasks `PORTFOLIO-01` to `PORTFOLIO-29` (09 = ServiceNow, closed in Part 12; 11–13 = Parts 9–11; 14 = Part 12; 15 = Part 13, which also holds the private list of banned terms; 16 = Part 14; 17 = Part 15; 18 = Part 16; 19 = Part 17; 20 = Part 18; 21 = Part 19; 22 = Part 20, which also records Part 21; 23 = Part 22; 24 = Part 23; 25 = Part 24; 26 = Parts 25 and 26; 27 = Part 27; 28 = Part 28; 29 = Part 29; 30 = Part 30; 31 = Part 31; 32 = Part 32; 33 = Part 33). New parts get the next code (33 = Part 33; the next one is `PORTFOLIO-34`).
 - **Session setup for GitHub (learned in Parts 20 to 22):** at the start of a chat, call the repository tool `add_repo` for `gustavogg99-ctrl/Portfolio` with push access, or the git proxy refuses `git push` (403, "not in this session's authorized repository set"). `gh pr create` fails (GraphQL is blocked): open PRs with `gh api repos/gustavogg99-ctrl/Portfolio/pulls --method POST --input <json>`. A PR's CI can start a few minutes late; wait for the `check` run, never push an empty commit. Re-checked in Part 23: `gh auth status` reports an invalid `GH_TOKEN`, but `gh api` still works through the proxy (open the PR and read check runs with it); `npm ci` is needed before `npm run check`; Python Playwright with Chromium is available in the sandbox (serve `npx next start -p 3000` after `npm run build`, kill it afterwards).
 - **Other repository:** the Autoria em Forma service page lives in `gustavogg99-ctrl/autoria-em-forma-pipeline` (private; `pagina/fonte.html` → `python3 -I pagina/gerar_site.py` → `site/`). Changes go through a branch + PR there too; merging to `main` deploys to Cloudflare. Branch preview builds fail on that project (production builds pass).
 - **"Now" must stay current** (ADR-031): change `updated` on every edit; the work line changes the day Gustavo is hired; the study line and the "In progress" certifications change together; the project line never claims more than the Support Agent repository proves.
@@ -81,6 +81,7 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 30 | Projects right after the hero; named shortcut to the Autoria case; "Read the case study" on any card with a page; back link to the card (ADR-042) | #43 |
 | 31 | Support Agent case page (EN/PT, 7-step diagram from its public repository); share image per case; details only on cards without a page; results link fixed to `#results` (ADR-043) | #44 |
 | 32 | Quick read (problem, my role, evidence) and preview on both case studies: recorded EVAL-011 result for the Support Agent, illustrative before/after for Autoria; Support Agent test count 102 (ADR-044) | #45 |
+| 33 | Resume PDFs (EN/PT) replaced by Gustavo's 16/11/2026 export: Support Agent line says 102 tests; "prompt v2" wording now in his source file | #47 |
 
 ## Next (in order)
 
@@ -91,7 +92,7 @@ Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisit
 ### 1. What is left from Gustavo's analysis of another portfolio: start here
 
 Parts 30 to 32 (ADR-042 to ADR-044) delivered improvements 1 to 3. Left, in this order; ask Gustavo one at a time:
-1. **Resume PDFs with "102 tests"** (Support Agent line): the site says 102 since Part 32, the PDFs still say 84. Gustavo exports new EN and PT PDFs; a part replaces them in `public/resume/` as in Part 28 (ADR-040): no phone number, one A4 page, claims guard over the extracted text, compare line by line.
+1. ~~Resume PDFs with "102 tests"~~: **done in Part 33** (16/11/2026).
 2. **Improvement 4, visible labels for Projects and Contact in the mobile header:** not decided. Since Part 30 the first phone screen already shows "Case study: Autoria em Forma" and "See projects" as text buttons, and Contact is in the profile card. Ask Gustavo whether he still wants it after seeing the live site at 390 and 320 px. If yes: a separate part with an ADR superseding ADR-026 in part (the header is full at 320 px, so some icons must move, e.g. into a "More" menu, with focus and keyboard tests).
 3. **Live PageSpeed** of `/en`, `/en/projects/autoria-em-forma` and `/en/projects/support-agent-governance-prototype` with Gustavo's Chrome when it is connected (Parts 30 to 32 only measured a local production build; numbers in the CHANGELOG). Record them in the CHANGELOG as a docs entry.
 
@@ -108,7 +109,7 @@ Gustavo analysed another portfolio and wrote a document with what he would like 
 **Received and classified on 16/11/2026** (document "Melhorias para o portfólio de Gustavo Rodrigues"; reference: another public portfolio). Plan agreed with Gustavo, 3 parts in this chat:
 - **Part 30 (done, ADR-042):** improvement 1 (projects right after the hero, named shortcut to the featured case) + the base of improvement 2 that serves both cases (case link on any card with a page, card anchors, back link to the card).
 - **Part 31 (done, ADR-043):** improvement 2, Support Agent case page in EN/PT + a share image per case. No code excerpts.
-- **Part 32 (done, ADR-044):** improvement 3, quick read and preview on both cases, with the role lines Gustavo approved; Support Agent test count 102 on the site. **Waiting on Gustavo:** export new resume PDFs with "102 tests" (the site says 102, the PDFs 84).
+- **Part 32 (done, ADR-044):** improvement 3, quick read and preview on both cases, with the role lines Gustavo approved; Support Agent test count 102 on the site. Resume PDFs with "102 tests": done in Part 33.
 - **Improvement 4 (visible labels in the mobile header):** conflicts in part with ADR-026 (header full at 320 px). Judged on the Part 30 preview; if still needed, a separate part with an ADR superseding ADR-026 in part.
 - Performance: compare Lighthouse before and after any added media, same conditions (Part 30 baseline is in the CHANGELOG; the live site is measured with Gustavo's Chrome when it is connected).
 

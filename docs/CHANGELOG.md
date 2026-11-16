@@ -2,6 +2,21 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 33 — Resume PDFs with "102 tests" · 2026-11-16
+
+First item left from Gustavo's analysis (ROADMAP "Next" item 1). A file swap under ADR-032, like Part 28 (ADR-040); no new decision, so no ADR.
+
+**Changed**
+- `public/resume/Gustavo_Rodrigues_Resume.pdf` and `Gustavo_Rodrigues_Curriculo.pdf` replaced, unchanged, by Gustavo's export of 16/11/2026 (site versions, no phone number). The only text change: the Support Agent line ends "102 tests in CI" / "102 testes em CI" (was 84), matching the site since Part 32.
+- The "with prompt v2 and the guardrail" / "com prompt v2 e guardrail" wording, edited into the PDFs in Part 29 (ADR-041), is now in Gustavo's source file, so the next export keeps it.
+
+**Verified**
+- Text extracted and compared line by line with the previous PDFs: only the Support Agent line differs (in PT the line now wraps one word, "CI.", onto a fourth line; plus a pdftotext spacing artifact in a heading). One A4 page each, rendered and read in both languages. No phone number in the text; links (LinkedIn, GitHub, this site) and metadata unchanged; fonts embedded. Claims guard over both texts: nothing found. Sizes 43 KB and 45 KB (under the 200 KB test limit).
+- A first export the same day still said "84 tests" and had lost "prompt v2" (the source file did not have the Part 29 edit); it was rejected and not committed.
+
+**Not changed**
+- Site text and content. The Support Agent numbers and limitations.
+
 ## Docs — Handoff after Part 32 · 2026-11-16
 
 - ROADMAP: Parts 30 to 32 done (PRs #43 to #45). "Next" item 1 now lists what is left from Gustavo's analysis: resume PDFs with "102 tests", the undecided mobile header labels (improvement 4), and a live PageSpeed run of the home and both case pages. New "How we work" note on measuring performance locally when Gustavo's Chrome is not connected. "Last updated" refreshed.
