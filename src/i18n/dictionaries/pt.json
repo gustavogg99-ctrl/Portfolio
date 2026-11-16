@@ -60,6 +60,14 @@
     ]
   },
   "labels": {
+    "myRole": "Meu papel",
+    "atAGlance": "Em resumo",
+    "source": "Origem",
+    "before": "Antes",
+    "after": "Depois",
+    "illustrative": "Ilustrativo",
+    "recorded": "Resultado registrado",
+    "ticket": "Chamado",
     "present": "Atual",
     "expected": "Previsão",
     "inProgress": "Em andamento",

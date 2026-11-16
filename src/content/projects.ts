@@ -293,6 +293,55 @@ export const projects = [
       en: "Developed with the help of Claude.",
       pt: "Desenvolvido com apoio do Claude.",
     },
+    // Role line approved by Gustavo on 16/11/2026 (Part 32, ADR-044).
+    quickRead: {
+      role: {
+        en: "I designed it, built it with Claude and run the pipeline; I deal with the clients and review every delivery.",
+        pt: "Concebi, construí com o Claude e opero o pipeline; atendo os clientes e reviso cada entrega.",
+      },
+      evidence: {
+        en: "2 real jobs delivered and accepted by the clients, and 41/41 regression tests on fictional documents.",
+        pt: "2 trabalhos reais entregues e aceitos pelos clientes, e 41/41 testes de regressão em documentos fictícios.",
+      },
+      evidenceHref: "#deliveries",
+    },
+    // Illustrative only: fictional text written for this page (Gustavo chose this over the test document, 16/11/2026).
+    preview: {
+      kind: "beforeAfter",
+      caption: {
+        en: "A long direct quotation, before and after formatting",
+        pt: "Uma citação direta longa, antes e depois da formatação",
+      },
+      lead: {
+        en: "According to the author, planning the work is part of the result:",
+        pt: "Segundo o autor, o planejamento do trabalho faz parte do resultado:",
+      },
+      quote: {
+        en: "a study that defines its question, its method and its limits before collecting data tends to reach conclusions that the reader can check, because each step leaves a record that can be followed from the beginning to the end of the text",
+        pt: "um estudo que define sua pergunta, seu método e seus limites antes de coletar dados tende a chegar a conclusões que o leitor consegue verificar, porque cada etapa deixa um registro que pode ser acompanhado do início ao fim do texto",
+      },
+      citation: "(AUTOR, 2020, p. 12)",
+      beforeNotes: [
+        {
+          en: "More than 3 lines, but inline and in quotation marks, like a short quotation.",
+          pt: "Mais de 3 linhas, mas no meio do parágrafo e entre aspas, como uma citação curta.",
+        },
+      ],
+      afterNotes: [
+        {
+          en: "Set apart as a block: indented, smaller font, single spacing, no quotation marks (exact values come from each institution's manual).",
+          pt: "Destacada em bloco: com recuo, fonte menor, espaçamento simples e sem aspas (os valores exatos vêm do manual de cada instituição).",
+        },
+        {
+          en: "The words of the quotation are the same before and after: quotation integrity is one of the checks on every delivery.",
+          pt: "As palavras da citação são as mesmas antes e depois: a integridade das citações é uma das verificações de toda entrega.",
+        },
+      ],
+      note: {
+        en: "Illustrative: fictional text written for this page, not a client's document.",
+        pt: "Ilustrativo: texto fictício escrito para esta página, não é documento de cliente.",
+      },
+    },
     page: {
       architecture: {
         main: [
@@ -400,8 +449,8 @@ export const projects = [
         pt: "O custo da cautela: com o v2, 4 dos 9 chamados que poderiam ser automatizados foram para uma pessoa mesmo assim. Custo por chamado com o v2: US$ 0,00016 (Haiku 5.5) contra US$ 0,0032 (Sonnet 5.5), com preços conferidos em 10/11/2026.",
       },
       {
-        en: "84 automated tests (standard library; none calls the API) run in CI on each push (Python 3.10 and 3.13). The results table is generated from a committed results file, and a test checks that the README matches it.",
-        pt: "84 testes automatizados (biblioteca padrão; nenhum chama a API) rodam no CI a cada push (Python 3.10 e 3.13). A tabela de resultados é gerada de um arquivo de resultados versionado, e um teste confere que o README bate com ele.",
+        en: "102 automated tests (standard library; none calls the API) run in CI on each push (Python 3.10 and 3.13 on Ubuntu, 3.13 on Windows). The results table is generated from a committed results file, and a test checks that the README matches it.",
+        pt: "102 testes automatizados (biblioteca padrão; nenhum chama a API) rodam no CI a cada push (Python 3.10 e 3.13 no Ubuntu, 3.13 no Windows). A tabela de resultados é gerada de um arquivo de resultados versionado, e um teste confere que o README bate com ele.",
       },
     ],
     guardrails: [
@@ -449,6 +498,70 @@ export const projects = [
       // README "Results" section (renamed from "8. LLM triage with guardrail: results" on 15-16/11/2026).
       results: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype#results",
       repoPrivate: false,
+    },
+    // Role line approved by Gustavo on 16/11/2026 (Part 32, ADR-044).
+    quickRead: {
+      role: {
+        en: "I designed the rules and the guardrail, built the prototype with Claude, reviewed and approved the labels of the 30 tickets and ran the evaluation.",
+        pt: "Projetei as regras e o guardrail, construí o protótipo com o Claude, revisei e aprovei os rótulos dos 30 chamados e rodei a avaliação.",
+      },
+      evidence: {
+        en: "With prompt v2 and the guardrail, none of the 21 tickets that need a person got an automated reply (8 of 21 with the rules alone), on 30 synthetic tickets.",
+        pt: "Com o prompt v2 e o guardrail, nenhum dos 21 chamados que exigem uma pessoa recebeu resposta automática (8 de 21 só com as regras), em 30 chamados sintéticos.",
+      },
+      evidenceHref: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype#results",
+    },
+    // A real record: EVAL-011, claude-haiku-5-5 with prompt v2, run of 10/11/2026 (results/eval_results.json).
+    preview: {
+      kind: "record",
+      caption: {
+        en: "One synthetic ticket from the evaluation, and what each layer decided",
+        pt: "Um chamado sintético da avaliação e o que cada camada decidiu",
+      },
+      ticket: {
+        id: "EVAL-011",
+        subject: "Can't get into the finance folder",
+        description: "Since yesterday I can't open the finance folder I used every day.",
+      },
+      rows: [
+        {
+          tone: "guard",
+          label: { en: "Rules", pt: "Regras" },
+          value: {
+            en: "General Support · Low · automation not allowed",
+            pt: "General Support · Low · automação não permitida",
+          },
+        },
+        {
+          tone: "ai",
+          label: { en: "Claude Haiku 5.5, prompt v2", pt: "Claude Haiku 5.5, prompt v2" },
+          value: {
+            en: "Access Support · Medium: reads it as a routine problem with the requester's own access",
+            pt: "Access Support · Medium: lê como um problema rotineiro com o acesso do próprio solicitante",
+          },
+        },
+        {
+          tone: "guard",
+          label: { en: "Guardrail", pt: "Guardrail" },
+          value: {
+            en: "Category and priority disagree, so a person reviews it: no draft, fixed handoff message",
+            pt: "Categoria e prioridade divergem, então uma pessoa revisa: sem rascunho, mensagem fixa de encaminhamento",
+          },
+        },
+        {
+          tone: "human",
+          label: { en: "Label (expected)", pt: "Rótulo (esperado)" },
+          value: {
+            en: "Access Request · Medium · needs a person: any permission change on finance data needs the data owner's approval",
+            pt: "Access Request · Medium · exige uma pessoa: qualquer mudança de permissão em dados financeiros precisa da aprovação do dono dos dados",
+          },
+        },
+      ],
+      note: {
+        en: "The LLM alone would have answered this ticket automatically, on both models. It went to a person because the rules matched no keyword (such tickets always go to a person) and disagree with the LLM, not because anything recognised the risk to finance data. Ticket text in English, as in the evaluation set.",
+        pt: "O LLM sozinho teria respondido este chamado automaticamente, nos dois modelos. Ele foi para uma pessoa porque as regras não reconheceram nenhuma palavra-chave (esses chamados sempre vão para uma pessoa) e divergem do LLM, não porque algo reconheceu o risco aos dados financeiros. Texto do chamado em inglês, como no conjunto de avaliação.",
+      },
+      sourceHref: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype/blob/main/results/eval_results.json",
     },
     // Case page (Part 31, ADR-043). Steps from docs/guardrail.md and docs/architecture.md of the public repository.
     page: {

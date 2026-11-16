@@ -629,3 +629,23 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** Two case studies with their own URLs, sitemap entries and share images. The Support Agent card no longer carries its numbers on the home, only its summary and the links; the numbers and their limitations are on the case page. Open point for Gustavo: the repository now has 102 tests (after its PRs #10 to #18), while the site and the resume say 84 (count of 10/11/2026).
 
+
+## ADR-044 — Quick read and preview at the top of each case study; Support Agent test count 102
+
+**Date:** 2026-11-16
+
+**Context.** Improvement 3 of Gustavo's analysis: a visitor should understand each case in a quick read (problem, role, evidence) and see something of the work before the method. Gustavo approved Claude's suggested "my role" lines and the illustrative before/after for Autoria em Forma on 16/11/2026, and asked to update the Support Agent test count.
+
+**Decision.**
+- Two optional content fields per project: `quickRead` (role, evidence, `evidenceHref` to where the evidence comes from) and `preview` (a discriminated union). The case page shows them right after the header. The quick read reuses `problem`, so the separate Problem section is omitted when there is a quick read.
+- Role lines (approved by Gustavo): Autoria em Forma says it was built with Claude (SOURCES.md rule); the Support Agent line says he "reviewed and approved" the labels, not that he wrote them (the labels were drafted with AI assistance, README limitations).
+- Evidence: Autoria, "2 real jobs delivered and accepted by the clients, and 41/41 regression tests" (links to the deliveries section); Support Agent, "0 of 21 with prompt v2 and the guardrail, 8 of 21 with the rules alone, on 30 synthetic tickets" (links to the README results). Both already on the site with their limitations.
+- Support Agent preview: a **recorded** result, not an illustration: ticket EVAL-011 and what the rules, Claude Haiku 5.5 with prompt v2, the guardrail and the label say, from `results/eval_results.json` (run of 10/11/2026), linked. The ticket text is shown in English, as in the evaluation set. The note says why the ticket went to a person (the rules matched no keyword and disagree with the LLM), and that nothing recognised the actual risk.
+- Autoria preview: an **illustrative** before/after of a long direct quotation, on fictional text written for the page, always labelled "Illustrative". It names no institution and says the exact values come from each institution's manual; it ties the after state to the quotation-integrity check, which is one of the 4 checks already on the page.
+- Both previews are HTML (no image), so they follow the theme and are read by screen readers.
+- Support Agent card: "102 automated tests" (was 84), CI "Python 3.10 and 3.13 on Ubuntu, 3.13 on Windows", checked in the repository on 16/11/2026 at `4706b74`. The resume PDFs still say 84 until Gustavo exports new ones.
+
+**Alternatives considered.** An excerpt of the private timed-test document (needs access to the private repository, and the fictional page excerpt shows the same kind of change); a screenshot or GIF (weight, contrast in two themes, not readable by screen readers); an invented ticket for the Support Agent (rejected: a real record is stronger evidence and is just as short); a short separate problem line (rejected: the existing problem text is already one or two sentences).
+
+**Consequences.** Both cases open with the same three-cell box and a preview, and the Problem heading moves into the box. The site and the resume differ on the Support Agent test count (102 vs 84) until the next export. Lighthouse local, median of 3: Autoria case mobile 93 → 94, Support Agent case 96 → 96.
+

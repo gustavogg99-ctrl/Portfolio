@@ -58,6 +58,7 @@ src/
     projects.tsx       ← featured card, project cards (native <details>), status/stack/links (repository, optional "Evaluation results" link, ADR-036)
     architecture-diagram.tsx ← ordered flow of boxes rendered from content (no image)
     deliveries.tsx     ← counts from real delivered jobs + method note (card and case page, ADR-035)
+    quick-read.tsx     ← quick read (problem, my role, evidence + source) and the case preview: a recorded evaluation result or an illustrative before/after (case page only, ADR-044)
     timed-test.tsx     ← the by-hand × pipeline timed test: table, what went wrong, method, limitations (case page only, ADR-037)
     code-block.tsx     ← code excerpt (+ optional translation) + explanation + fidelity note
     experience.tsx     ← work timeline + education and courses
@@ -157,7 +158,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 ## Projects
 
 - **Home (`#projects`, right after the hero, ADR-042):** every card has `id={slug}` and shows "Read the case study" when the project has a `page`; only cards without a page keep the expandable details (ADR-043). The featured project (one at most) gets a large card with status, status note, summary, scope, up to 4 highlights, stack and a "Read the case study" button. Other projects get cards whose details (problem, what I built, evidence, guardrails, limitations) open with a native `<details>` — no JavaScript.
-- **Case-study page `/[lang]/projects/[slug]`:** only for projects that define `page` in content. The back link returns to the project's own card (`/{lang}#{slug}`). Sections: scope, problem, what I built, architecture diagram, evidence, guardrails, code excerpts, limitations. Prerendered for both languages via `generateStaticParams`.
+- **Case-study page `/[lang]/projects/[slug]`:** only for projects that define `page` in content. The back link returns to the project's own card (`/{lang}#{slug}`). Right after the header, projects with `quickRead` and `preview` show the quick read (which carries the problem, so the separate Problem section is omitted) and the preview (ADR-044). Sections: scope, problem (only without a quick read), what I built, architecture diagram, evidence, guardrails, code excerpts, limitations. Prerendered for both languages via `generateStaticParams`.
 - **Architecture diagram** is data (`page.architecture`): ordered steps with a `kind` (`io`, `ai`, `code`, `guard`, `human`) that sets the visual style; AI steps are inverted so the reader sees where the LLM sits between controls.
 - **Code excerpts** (`snippets.ts`) come from private repositories, sanitized at the source and re-checked here. Each has a `fidelity` note saying how it differs from the real code. A test scans all excerpts (and translations) for secrets and internal terms. A snippet may carry a `translation` (second block under the original) and `kind: "instructions"` (text given to Claude rather than code: only the fidelity label changes), ADR-034.
 - **Shared shell:** `SiteShell` renders the header, profile card and footer for every page. Off the home page, nav and "Contact" link back to `/{lang}#section`.
