@@ -89,10 +89,24 @@ function List({ title, items, locale }: { title: string; items: Project["limitat
   );
 }
 
+/** "Read the case study" button, shown on any card whose project has a page (ADR-042). */
+function ReadCaseLink({ project, locale, dict }: { project: Project; locale: Locale; dict: Dictionary }) {
+  if (!project.page) return null;
+  return (
+    <Link
+      href={`/${locale}/projects/${project.slug}`}
+      className="group flex w-fit items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+    >
+      {dict.labels.readCase}
+      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+    </Link>
+  );
+}
+
 /** Large card for the featured project, linking to its case-study page. */
 function FeaturedCard({ project, locale, dict }: { project: Project; locale: Locale; dict: Dictionary }) {
   return (
-    <article className="flex flex-col gap-6 rounded-3xl border border-border bg-surface p-6 md:p-8">
+    <article id={project.slug} className="flex flex-col gap-6 rounded-3xl border border-border bg-surface p-6 md:p-8">
       <div className="flex flex-col gap-3">
         <StatusBadge project={project} dict={dict} />
         <h3 className="text-3xl font-bold tracking-tight md:text-4xl">{project.name}</h3>
@@ -117,15 +131,7 @@ function FeaturedCard({ project, locale, dict }: { project: Project; locale: Loc
       </ul>
       <StackTags stack={project.stack} />
       <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
-        {project.page && (
-          <Link
-            href={`/${locale}/projects/${project.slug}`}
-            className="group flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
-          >
-            {dict.labels.readCase}
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-          </Link>
-        )}
+        <ReadCaseLink project={project} locale={locale} dict={dict} />
         <ProjectLinks project={project} dict={dict} />
       </div>
     </article>
@@ -135,7 +141,7 @@ function FeaturedCard({ project, locale, dict }: { project: Project; locale: Loc
 /** Regular card; details are expandable with a native <details> (no JavaScript). */
 function ProjectCard({ project, locale, dict }: { project: Project; locale: Locale; dict: Dictionary }) {
   return (
-    <article className="flex flex-col gap-5 rounded-3xl border border-border bg-surface p-6">
+    <article id={project.slug} className="flex flex-col gap-5 rounded-3xl border border-border bg-surface p-6">
       <div className="flex flex-col gap-3">
         <StatusBadge project={project} dict={dict} />
         <h3 className="text-2xl font-bold tracking-tight">{project.name}</h3>
@@ -164,7 +170,10 @@ function ProjectCard({ project, locale, dict }: { project: Project; locale: Loca
         </div>
       </details>
 
-      <ProjectLinks project={project} dict={dict} />
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <ReadCaseLink project={project} locale={locale} dict={dict} />
+        <ProjectLinks project={project} dict={dict} />
+      </div>
     </article>
   );
 }

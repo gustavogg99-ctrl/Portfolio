@@ -593,3 +593,22 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Waiting for Gustavo's next LibreOffice export (rejected: the intensive closes now and the sentence is ambiguous today); a longer PT wording ("com o prompt v2 e o guardrail", rejected: it overflows the right margin and would push a fourth line and move the page).
 
 **Consequences.** If Gustavo exports the resume again from his source file, that export must carry the same wording, or the next replacement will bring the ambiguity back. The skills lists on the site and on the resume now match.
+
+
+## ADR-042 — Projects right after the hero, with a named shortcut to the featured case study
+
+**Date:** 2026-11-16
+
+**Context.** Gustavo analysed another portfolio (16/11/2026, ROADMAP "Next" item 1) and asked for the work to be reachable earlier: the home went Hero → About (with Now and Skills) → Projects, so a visitor who scrolls reads two sub-sections before seeing any work, and the hero only had "See projects", which jumps to the section but not to a case. The site is linked from the iFood application from today, so the first screen matters more.
+
+**Decision.**
+- Home order: Hero → Projects → About → Experience → Certifications → Writing → Contact. `NAV_SECTIONS` follows the page; a test keeps both in the same order.
+- The hero's primary button is a named shortcut to the featured project's case page, "Case study: {name}" (dictionary key `actions.featuredCase`, name from `projects.ts`). Chosen as primary (Gustavo left the choice to Claude) because it reaches a piece of work in one action; "See projects" stays as a secondary button for the full list. The button only renders when the featured project has a `page`; a test requires that it does.
+- Every card gets `id={slug}`, and the "Read the case study" button is a shared component shown on any card whose project has a page, not only the featured one. The case page's back link goes to the project's own card. This prepares the Support Agent case page (next part) without visible change today.
+- The "Now" sub-section stays under About (ADR-031): it now comes after the projects.
+- Mobile header labels (item 4 of the analysis) are not part of this decision: the first phone screen already shows "Case study…" and "See projects" as text buttons; whether the header also needs visible labels is judged on this part's preview.
+
+**Alternatives considered.** Keep About first and only add the shortcut (rejected: scrolling still reaches the work last); "See projects" as primary (rejected: one more step to an actual case); move "Now" above the projects (rejected: the hero already states availability through the Contact button, and the point is to show work first).
+
+**Consequences.** The hero has four buttons; at 390×844 the case button is on the first screen, and at 320×640 it is just below it (the h1 starts at about 416 px there). A visitor learns about Gustavo after seeing his work. If the featured project changes, the shortcut follows it with no code change.
+

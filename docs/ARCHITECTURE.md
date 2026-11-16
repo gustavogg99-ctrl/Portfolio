@@ -128,8 +128,8 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 ┌──────────────── sticky header: icon nav (center) · EN/PT · theme (right) ────────────────┐
 │                                                                                          │
 │  ┌──────────────┐   #home        hero (I BUILD AI / SECURE_)                             │
-│  │ profile card │   #about       ABOUT / ME                                              │
-│  │ (sticky ≥lg) │   #projects    SELECTED / PROJECTS                                     │
+│  │ profile card │   #projects    SELECTED / PROJECTS (right after the hero, ADR-042)     │
+│  │ (sticky ≥lg) │   #about       ABOUT / ME                                              │
 │  │ photo, name  │   #experience  WORK / EXPERIENCE                                       │
 │  │ title, CTA   │   #certifications                                                      │
 │  │ socials      │   #writing                                                             │
@@ -147,7 +147,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 - **Hero title** = static line + rotating word (`profile.hero`). The server renders the first word complete, so the page works without JavaScript and doesn't jump. The `Typewriter` client component then types/erases each word (≈90 ms per letter, 1.8 s hold).
 - **Accessibility:** the visual title is `aria-hidden`; screen readers read one stable sentence ("I BUILD AI: SECURE, TESTED, AUDITABLE."). With `prefers-reduced-motion`, the first word stays still.
-- **CTAs:** See projects (primary), Resume (only when `resumeUrl` is set; `{ en, pt }`, each a PDF under `/resume/`, ADR-032), Contact. The profile card shows the same Resume button.
+- **CTAs:** "Case study: {name}" (primary, links to the featured project's case page, ADR-042), See projects, Resume (only when `resumeUrl` is set; `{ en, pt }`, each a PDF under `/resume/`, ADR-032), Contact. The profile card shows the same Resume button.
 - **Counters** come from `profile.stats`; each has an internal `evidence` note (ADR-007). Today there are two, both from infrastructure operations (ADR-024). The grid follows the number of counters (`STAT_COLUMNS` in `hero.tsx`: 2 → two columns, 3 → three, 4 → 2×2 then four on `xl`).
 - **About:** paragraphs from `profile.about` + facts card (location, where I'm open to work, languages).
 - **Now** (`#now`, sub-section of About, before Skills; not in the nav): three cards from `now.ts`, one per `kind`: `work` (status, link to Contact), `study` (also listed as certifications in progress), `project` (link to its public repository), plus the `updated` month. The schema allows at most one visible item per kind; with none visible the sub-section is not rendered (ADR-031, supersedes ADR-023).
@@ -155,8 +155,8 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 ## Projects
 
-- **Home (`#projects`):** the featured project (one at most) gets a large card with status, status note, summary, scope, up to 4 highlights, stack and a "Read the case study" button. Other projects get cards whose details (problem, what I built, evidence, guardrails, limitations) open with a native `<details>` — no JavaScript.
-- **Case-study page `/[lang]/projects/[slug]`:** only for projects that define `page` in content. Sections: scope, problem, what I built, architecture diagram, evidence, guardrails, code excerpts, limitations. Prerendered for both languages via `generateStaticParams`.
+- **Home (`#projects`, right after the hero, ADR-042):** every card has `id={slug}` and shows "Read the case study" when the project has a `page`. The featured project (one at most) gets a large card with status, status note, summary, scope, up to 4 highlights, stack and a "Read the case study" button. Other projects get cards whose details (problem, what I built, evidence, guardrails, limitations) open with a native `<details>` — no JavaScript.
+- **Case-study page `/[lang]/projects/[slug]`:** only for projects that define `page` in content. The back link returns to the project's own card (`/{lang}#{slug}`). Sections: scope, problem, what I built, architecture diagram, evidence, guardrails, code excerpts, limitations. Prerendered for both languages via `generateStaticParams`.
 - **Architecture diagram** is data (`page.architecture`): ordered steps with a `kind` (`io`, `ai`, `code`, `guard`, `human`) that sets the visual style; AI steps are inverted so the reader sees where the LLM sits between controls.
 - **Code excerpts** (`snippets.ts`) come from private repositories, sanitized at the source and re-checked here. Each has a `fidelity` note saying how it differs from the real code. A test scans all excerpts (and translations) for secrets and internal terms. A snippet may carry a `translation` (second block under the original) and `kind: "instructions"` (text given to Claude rather than code: only the fidelity label changes), ADR-034.
 - **Shared shell:** `SiteShell` renders the header, profile card and footer for every page. Off the home page, nav and "Contact" link back to `/{lang}#section`.

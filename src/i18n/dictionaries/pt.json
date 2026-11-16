@@ -12,6 +12,7 @@
     "contact": "Contato"
   },
   "actions": {
+    "featuredCase": "Estudo de caso: {name}",
     "projects": "Ver projetos",
     "resume": "Currículo",
     "contact": "Contato",

@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 export const NAV_SECTIONS = [
   { id: "home", icon: Home },
-  { id: "about", icon: User },
   { id: "projects", icon: FolderGit2 },
+  { id: "about", icon: User },
   { id: "experience", icon: Briefcase },
   { id: "certifications", icon: Award },
   { id: "writing", icon: PenLine },
