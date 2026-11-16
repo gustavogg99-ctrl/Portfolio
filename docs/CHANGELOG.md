@@ -2,6 +2,21 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 37 — Hired by Aoop (NTT DATA): experience, "Now", skills and resume · 2026-11-16
+
+Gustavo was hired on 16/11/2026 and asked to lift the rule against naming NTT DATA as an employer and to publish the updated resume (ADR-047).
+
+**Changed**
+- `claims.ts`: the employer-name hash removed (the rule is withdrawn in SOURCES.md).
+- Experience: new "Aoop" entry (an NTT DATA company; "Junior, ServiceNow (AI-specialized track)" / "Júnior em ServiceNow (trilha especializada em IA)"), shown as "Starting Dec 2026" through a new optional `upcoming` flag on roles (schema, component, `starting` label in both dictionaries). Freelance now ends Nov 2026.
+- "Now" work line: hired, starts in December 2026 (was "available for work now"; the contact link left the line).
+- Skills: "ServiceNow (learning)" replaced by "ServiceNow (App Engine Studio, Flow Designer, Service Catalog, GlideAjax)".
+- Resume PDFs (EN/PT, site versions, no phone) replaced; differences listed in SOURCES.md.
+- RSS test fixtures: the titles that trip the guard now use a banned generic word; `writing.ts` comment updated.
+
+**Verified**
+- `npm run check` (83 tests), `npm run build`; claims guard over the PDF text: nothing found; no phone number in either PDF.
+
 ## Part 36 — Observatory re-measured on the live site · 2026-11-16
 
 ROADMAP "Optional": re-measure after big changes (docs only, ADR-024). The last Observatory grade was from 08/11, before Parts 30 to 35.

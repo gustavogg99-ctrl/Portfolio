@@ -675,3 +675,15 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** Search Console reads Google's own crawl and search data; it adds nothing to the site and collects nothing from visitors, so the privacy page does not change (ADR-027). The file name is a public identifier by design, not a secret. A test keeps exactly one such file with the exact content.
 
+## ADR-047 — Aoop (NTT DATA) named as employer; "Starting" period for a job not yet started
+
+**Date:** 2026-11-16
+
+**Context.** Gustavo was hired on 16/11/2026 by Aoop, an NTT DATA company, as "Júnior em ServiceNow" on an AI-specialized track (CLT, full-time, remote), starting 01/12/2026. Until now SOURCES.md forbade naming NTT DATA as an employer (he was not one), the term was in the claims guard (ADR-030), the bootcamp's issuer was written without it (ADR-029), and "Now" said "available for work now" (ADR-031). He asked to lift the rule and publish the new resume.
+
+**Decision.** The rule is withdrawn and the term's hash removed from `claims.ts`. Experience gets an "Aoop" entry (context "An NTT DATA company") with the contract title and a new optional `upcoming` flag on the role, rendered as "Starting Dec 2026" / "Início em dez/2026" instead of "Dec 2026 – Present", so the site never claims work that has not begun; the highlights say only what is true today (hired after the bootcamp, what was built there) and what comes next (the AI track). Freelance ends in Nov 2026. "Now" says he is hired and starts in December. Skills replace "ServiceNow (learning)" with the four tools he built with in the bootcamp. The resume PDFs are replaced by his new export (SOURCES.md, Part 37).
+
+**Alternatives considered.** Start date with "Present" (rejected: on 16/11 it would say he works there already); computing "upcoming" from the build date (rejected: a static page would keep the old label until the next deploy, and the switch would happen without a review); keeping the employer unnamed as "a ServiceNow partner" (rejected: Gustavo asked to name it, and it is now true).
+
+**Consequences.** On 01/12/2026 remove `upcoming`, rewrite the "Now" work line and review the Aoop highlights (ROADMAP). The bootcamp posts no longer need the `blog.allowed` exception; the entries stay as a reviewed record. RSS tests now use a banned generic word as the fixture that trips the guard. The plain list of banned terms in Notion `PORTFOLIO-15` must drop this term.
+

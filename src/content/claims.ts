@@ -21,7 +21,6 @@ export const BANNED_TERM_HASHES: readonly HashedTerm[] = [
   { length: 4, sha256: "02632190f562d26c72a5b5ace8526faf8bae1574c1fd9fa6ca158026f4468b8d" },
   { length: 6, sha256: "97f272b6c2ac7cafe0db3faa9d464a5855a27fc3b424d94603dc4ebbac6caf1a" },
   { length: 6, sha256: "b05b4ab7827d4401c7077ecd7d6ccaf45a8a2ae96a2782817374e4b39f8cf78e" },
-  { length: 8, sha256: "6f6f554c35376310b22bf45fc7ae847fa8e8d126d8251250f3930bcca649f2fe" },
   { length: 18, sha256: "e066dd86c95ce0df09716b7678cab1119e6a44afce821689bf3786e84493bdde" },
   { length: 16, sha256: "e96a1511d59b44d71feeff924b1884a4f7f201face15434b72761534f19d3c2c" },
   { length: 4, sha256: "d92d4d0fe9fe4d443ff7257759fc4e048670eb73f6644dd34adcc854eba62d22" },

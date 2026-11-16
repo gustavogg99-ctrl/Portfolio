@@ -169,7 +169,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 
 ## Experience and Certifications
 
-- **Experience (`#experience`):** vertical timeline, newest first; each company (a plain name, or `{ en, pt }` when the heading is a description such as freelance work) lists its roles with periods (`Present` when `end` is null) and highlights. Then **Education & courses** (`#education`, sub-section, in file order): degrees show "Expected", completed courses show "Completed". Certificates of completion (language course, bootcamp) live here, never in Certifications (ADR-018, ADR-029).
+- **Experience (`#experience`):** vertical timeline, newest first; each company (a plain name, or `{ en, pt }` when the heading is a description such as freelance work) lists its roles with periods (`Present` when `end` is null; `Starting <month>` when the role has `upcoming: true`, a job not started yet, ADR-047) and highlights. Then **Education & courses** (`#education`, sub-section, in file order): degrees show "Expected", completed courses show "Completed". Certificates of completion (language course, bootcamp) live here, never in Certifications (ADR-018, ADR-029).
 - **Certifications (`#certifications`):** cards for `verified` items, newest first, each with a way to check it — a link to the credential page, or the issuer's portal plus the certificate number (`lookupId`, ADR-017). `pending_link` items are never rendered. `in_progress` items appear as chips.
 - Certification names are a plain string for official names or `{ en, pt }` for descriptions (same pattern as skills, ADR-014).
 

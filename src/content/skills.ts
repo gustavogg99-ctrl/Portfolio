@@ -36,7 +36,7 @@ export const skills = [
       "SQL",
       "Jira",
       "Microsoft 365",
-      { en: "ServiceNow (learning)", pt: "ServiceNow (em aprendizado)" },
+      "ServiceNow (App Engine Studio, Flow Designer, Service Catalog, GlideAjax)",
     ],
   },
   {

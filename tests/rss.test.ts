@@ -15,8 +15,8 @@ const item = (title: string, link: string, date: string, categories: string[]) =
 
 const FEED = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel>
   <title>GG</title><link>https://ggblog99.wordpress.com</link>
-  ${item("Bootcamp at Aoop and NTT DATA", "https://ggblog99.wordpress.com/2026/11/04/en/", "Wed, 04 Nov 2026 21:27:46 +0000", ["English", "servicenow"])}
-  ${item("Bootcamp da Aoop e da NTT DATA", "https://ggblog99.wordpress.com/2026/11/04/pt/", "Wed, 04 Nov 2026 21:27:56 +0000", ["Português", "servicenow"])}
+  ${item("Bootcamp notes from a senior night owl", "https://ggblog99.wordpress.com/2026/11/04/en/", "Wed, 04 Nov 2026 21:27:46 +0000", ["English", "servicenow"])}
+  ${item("Notas de bootcamp de um sênior da madrugada", "https://ggblog99.wordpress.com/2026/11/04/pt/", "Wed, 04 Nov 2026 21:27:56 +0000", ["Português", "servicenow"])}
   ${item("Autoria em Forma: the side project that almost went open source", "https://ggblog99.wordpress.com/2026/10/26/en/", "Mon, 26 Oct 2026 15:31:21 +0000", ["English"])}
   ${item("Autoria em Forma: o side project que quase virou open source", "https://ggblog99.wordpress.com/2026/10/26/pt/", "Mon, 26 Oct 2026 15:31:30 +0000", ["Português"])}
   ${item("Why I started this blog &#038; how I built it", "https://ggblog99.wordpress.com/2026/10/20/en/", "Tue, 20 Oct 2026 17:58:14 +0000", ["English"])}

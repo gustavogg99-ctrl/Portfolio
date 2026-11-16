@@ -8,8 +8,37 @@ import type { Experience } from "./schema";
  * - MerkurIA: no numbers; none can be checked by a visitor.
  * - Only the employers listed here; no other engagement is named.
  * - Freelance: same entry as the resume (Gustavo, 09/11/2026); no client is named.
+ * - Aoop (an NTT DATA company): hired on 16/11/2026, starts 01/12/2026 (Gustavo; ADR-047).
+ *   Nothing done there yet: the AI track is described as what comes next. Drop `upcoming` on 01/12.
  */
 export const experience = [
+  {
+    id: "aoop",
+    company: "Aoop",
+    context: {
+      en: "An NTT DATA company",
+      pt: "Empresa do grupo NTT DATA",
+    },
+    roles: [
+      {
+        title: { en: "Junior, ServiceNow (AI-specialized track)", pt: "Júnior em ServiceNow (trilha especializada em IA)" },
+        start: "2026-12",
+        end: null,
+        upcoming: true,
+      },
+    ],
+    highlights: [
+      {
+        en: "Hired after the Shark in ServiceNow bootcamp, where I built the scoped app \u201cMentorship Program\u201d (tables extending Task, an approval flow, a Record Producer).",
+        pt: "Contratado após o bootcamp Shark in ServiceNow, em que construí a app escopada \u201cMentorship Program\u201d (tabelas estendendo Task, um flow de aprovação, um Record Producer).",
+      },
+      {
+        en: "Next: the AI track on ServiceNow (Now Assist and agents). Full-time, remote.",
+        pt: "A seguir: a trilha de IA no ServiceNow (Now Assist e agentes). Tempo integral, remoto.",
+      },
+    ],
+    visible: true,
+  },
   {
     id: "freelance",
     company: { en: "Freelance and independent projects", pt: "Freelancer e projetos próprios" },
@@ -17,7 +46,7 @@ export const experience = [
       {
         title: { en: "Freelancer", pt: "Freelancer" },
         start: "2026-03",
-        end: null,
+        end: "2026-11",
       },
     ],
     highlights: [

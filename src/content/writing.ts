@@ -22,7 +22,8 @@ export const blog = {
   hidden: [],
   allowed: [
     // ServiceNow bootcamp posts: the title names the organizers, not an employer.
-    // Reviewed by Gustavo on 05/11/2026.
+    // Reviewed by Gustavo on 05/11/2026. Since ADR-047 (16/11/2026) the employer name is no
+    // longer a banned term, so these titles pass the guard anyway; kept as a reviewed record.
     "https://ggblog99.wordpress.com/2026/11/04/servicenow-bootcamp-all-nighter/",
     "https://ggblog99.wordpress.com/2026/11/04/bootcamp-servicenow-madrugada/",
   ],
