@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-25 (Part 43: resume PDFs with the exact title. Earlier, Part 42: Aoop role with the exact contract title. Earlier, Part 41: resume PDFs with 14/30 and 149 tests. Earlier, Part 40: tool logos in Skills). Nothing is pending until 01/12/2026 (Aoop start date, see Later)._
+_Last updated: 2026-11-25 (Part 44: MerkurIA reduced to the approved line, ADR-052. Earlier, Part 43: resume PDFs with the exact title; Part 42: Aoop role with the exact contract title). **Pending on Gustavo:** resume PDFs (EN/PT) without the old MerkurIA bullets (export from his source file, site versions, no phone number); then a file-swap part. Otherwise nothing until 01/12/2026 (Aoop start date, see Later)._
 
 ## How we work
 
@@ -93,11 +93,12 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 40 | Tool logos next to the skills that are tools, original colors on a light tile; 17 files in `public/icons/` with credits (ADR-050, Notion `PORTFOLIO-39`) | #55 |
 | 41 | Resume PDFs (EN/PT) from Gustavo's 25/11/2026 export: Support Agent line says "rules alone: 14/30" and 149 tests; Aoop still "Starting Dec 2026" | #56 |
 | 42 | Aoop role with the exact contract title "ServiceNow Technical Consultant - JR" in Experience and "Now"; "AI track" removed (ADR-051) | #57 |
-| 43 | Resume PDFs (EN/PT) with the exact contract title and the AI work as planned (no phone number) | (this PR) |
+| 43 | Resume PDFs (EN/PT) with the exact contract title and the AI work as planned (no phone number) | #58 |
+| 44 | MerkurIA reduced to the one line approved in the "Rumo à Microsoft" plan; three unprovable claims removed (ADR-052, Notion `MSFT-01`) | (this PR) |
 
 ## Next (in order)
 
-The site is **live and shared** since the iFood application (16/11/2026). Post-launch review (Parts 9–11), the pre-sharing review (Parts 12–18) and the plan from Gustavo's analysis (Parts 30 to 35) are done. **Nothing is pending on the site until 01/12/2026 (Aoop start date, see Later).** A new chat starts at 0 after this handoff (16/11/2026, after Parts 33 to 35). Start the new chat by asking Gustavo what he wants next; candidates are under "Optional" and "Later".
+The site is **live and shared** since the iFood application (16/11/2026). Post-launch review (Parts 9–11), the pre-sharing review (Parts 12–18) and the plan from Gustavo's analysis (Parts 30 to 35) are done. **Pending on Gustavo: resume PDFs without the old MerkurIA bullets (Part 44, ADR-052).** Otherwise nothing on the site until 01/12/2026 (Aoop start date, see Later). A new chat starts at 0 after this handoff (16/11/2026, after Parts 33 to 35). Start the new chat by asking Gustavo what he wants next; candidates are under "Optional" and "Later".
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
