@@ -23,6 +23,7 @@
   --accent-from: #e5e5e5; /* silver gradient (titles, counters) */
   --accent-to: #9ca3af;
   --accent: #d4d4d4; /* solid silver for icons, focus rings */
+  --logo-tile: #f4f4f5; /* light base behind tool logos, same in both themes (ADR-050) */
 }
 
 [data-theme="light"] {
@@ -47,6 +48,7 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-logo-tile: var(--logo-tile);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

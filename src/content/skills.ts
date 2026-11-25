@@ -3,22 +3,23 @@ import type { SkillGroup } from "./schema";
 /**
  * Skills, grouped. No percentage bars or numeric levels (briefing §7).
  * "(conceptual)" marks frameworks known as frameworks, not certified.
+ * `icons` adds a logo for tools only (ADR-050); standards, concepts and soft skills stay text.
  */
 export const skills = [
   {
     id: "applied-ai",
     name: { en: "Applied AI", pt: "IA aplicada" },
     items: [
-      { en: "Claude (API and connectors)", pt: "Claude (API e conectores)" },
-      { en: "OpenAI API", pt: "API da OpenAI" },
-      "Microsoft Copilot",
+      { label: { en: "Claude (API and connectors)", pt: "Claude (API e conectores)" }, icons: ["claude"] },
+      { label: { en: "OpenAI API", pt: "API da OpenAI" }, icons: ["openai"] },
+      { label: "Microsoft Copilot", icons: ["copilot"] },
       { en: "Prompt engineering", pt: "Engenharia de prompt" },
       { en: "Agents", pt: "Agentes" },
       { en: "LLM evaluation (accuracy and cost)", pt: "Avaliação de LLMs (acurácia e custo)" },
-      "n8n",
-      "Make",
-      "Power Automate",
-      "Copilot Studio",
+      { label: "n8n", icons: ["n8n"] },
+      { label: "Make", icons: ["make"] },
+      { label: "Power Automate", icons: ["power-automate"] },
+      { label: "Copilot Studio", icons: ["copilot-studio"] },
       { en: "AI-assisted development", pt: "Desenvolvimento assistido por IA" },
     ],
   },
@@ -26,17 +27,20 @@ export const skills = [
     id: "engineering",
     name: { en: "Engineering & tools", pt: "Engenharia e ferramentas" },
     items: [
-      "Python",
+      { label: "Python", icons: ["python"] },
       { en: "Regression testing", pt: "Testes de regressão" },
-      "CI",
-      "Supabase",
-      { en: "WhatsApp API", pt: "API do WhatsApp" },
-      "Cloudflare Workers / D1",
-      "Next.js / Vercel",
+      { label: "CI", icons: ["github-actions"] },
+      { label: "Supabase", icons: ["supabase"] },
+      { label: { en: "WhatsApp API", pt: "API do WhatsApp" }, icons: ["whatsapp"] },
+      { label: "Cloudflare Workers / D1", icons: ["cloudflare-workers"] },
+      { label: "Next.js / Vercel", icons: ["nextjs", "vercel"] },
       "SQL",
-      "Jira",
-      "Microsoft 365",
-      "ServiceNow (App Engine Studio, Flow Designer, Service Catalog, GlideAjax)",
+      { label: "Jira", icons: ["jira"] },
+      { label: "Microsoft 365", icons: ["microsoft-365"] },
+      {
+        label: "ServiceNow (App Engine Studio, Flow Designer, Service Catalog, GlideAjax)",
+        icons: ["servicenow"],
+      },
     ],
   },
   {

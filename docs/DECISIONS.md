@@ -710,3 +710,15 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Removing the "private" wording without a link (rejected by Gustavo: it hides the strongest evidence for the card); anonymizing the fictional document in the public repository first (rejected: it changes test fixtures and the regression suite for a risk already accepted there).
 
 **Consequences.** A visitor can reach the fictional test's institution in two clicks. The `privateRepo` label and `repoPrivate` flag stay in the schema for future projects. Any change to the timed test in the Autoria repository must be checked against this card in the same week.
+
+## ADR-050 — Tool logos in the Skills section, in original colors on a light tile
+
+**Date:** 2026-11-25
+
+**Context.** Gustavo asked for the logo of each tool he uses in the Skills section, the same idea as his profile README (Notion `GHREADME`, `PORTFOLIO-39`). The earlier plan was monochrome logos with `currentColor`, and to decide colored-on-hover in the PR. Three of the logos (Copilot Studio, Power Automate, ServiceNow) exist here only as PNGs supplied by Gustavo, and several (Copilot, Copilot Studio, Power Automate) are multi-tone: a single color turns them into a blob.
+
+**Decision.** Logos are shown in their original colors, decorative, on a small light tile (`--logo-tile`, same in both themes) so the dark marks (OpenAI, Next.js, Vercel) stay readable on the dark theme. Skill items gain an optional `{ label, icons }` form; the files live in `public/icons/` (no CDN, the CSP is unchanged), are registered in `src/content/skill-icons.ts` and credited in `docs/ICONS.md`. Only tools get logos: standards (ISO/IEC 27001 and 42001, LGPD, NIST AI RMF, EU AI Act, COBIT, ITIL 4), concepts (prompt engineering, agents, LLM evaluation, SQL) and the operations and communication groups stay text. "CI" shows the GitHub Actions logo; "Next.js / Vercel" shows both. The same set is used in the profile README.
+
+**Alternatives considered.** Monochrome with `currentColor` (rejected: it alters the drawings, which the vendors' brand rules usually forbid, and breaks the three raster logos); colored only on hover (rejected: touch screens have no hover and the page would look unfinished by default); a logo for every item (rejected: it would need invented seals for standards, which SOURCES.md forbids).
+
+**Consequences.** `public/` grows by about 60 KB, loaded lazily by the browser as images. The three PNGs should be replaced by the vendors' SVGs if Gustavo gets them. Gustavo still has to check the ServiceNow brand terms before this merges. A new tool logo needs five small steps (see docs/ICONS.md), and a test blocks any file that is missing, unregistered, unused or uncredited.
