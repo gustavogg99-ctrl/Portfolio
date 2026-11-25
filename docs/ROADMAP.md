@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-25 (Part 41: resume PDFs with 14/30 and 149 tests. Earlier, Part 40: tool logos in Skills). Nothing is pending until 01/12/2026 (Aoop start date, see Later)._
+_Last updated: 2026-11-25 (Part 42: Aoop role with the exact contract title. Earlier, Part 41: resume PDFs with 14/30 and 149 tests. Earlier, Part 40: tool logos in Skills). Nothing is pending until 01/12/2026 (Aoop start date, see Later)._
 
 ## How we work
 
@@ -91,7 +91,8 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 38 | Support Agent card, case page, preview and "Now" republished with the 24/11/2026 run: masking, injection detection, held-out set, 149 tests (ADR-048) | #53 |
 | 39 | Autoria em Forma: card links the public pipeline repository; "private" wording removed from the card, code note and timed test (ADR-049, `GHREADME-07`) | #54 |
 | 40 | Tool logos next to the skills that are tools, original colors on a light tile; 17 files in `public/icons/` with credits (ADR-050, Notion `PORTFOLIO-39`) | #55 |
-| 41 | Resume PDFs (EN/PT) from Gustavo's 25/11/2026 export: Support Agent line says "rules alone: 14/30" and 149 tests; Aoop still "Starting Dec 2026" | (this PR) |
+| 41 | Resume PDFs (EN/PT) from Gustavo's 25/11/2026 export: Support Agent line says "rules alone: 14/30" and 149 tests; Aoop still "Starting Dec 2026" | #56 |
+| 42 | Aoop role with the exact contract title "ServiceNow Technical Consultant - JR" in Experience and "Now"; "AI track" removed (ADR-051) | (this PR) |
 
 ## Next (in order)
 
@@ -148,6 +149,8 @@ Ask Gustavo one item at a time; sharing is his call (ADR-025).
 
 ## Later
 
+- **Resume PDFs with the new title (ADR-051):** `public/resume/` still says "Junior, ServiceNow (AI-specialized track)". Gustavo exports the site versions again (no phone number); then a file-swap part replaces them.
+- **Mid-March 2027, official rename Aoop to NTT DATA (told to Gustavo, 25/11/2026; Notion task):** confirm date and exact name, then change `company` in `experience.ts`, the "Now" line and the docs.
 - **01/12/2026, Aoop start date (ADR-047):** remove `upcoming` from the Aoop role, rewrite the "Now" work line (working at Aoop, AI track), and review the Aoop highlights with Gustavo (only what he has done there). Same day: new resume export without "Starting".
 
 - After the clients' theses are approved by their university (expected end of Nov/2026): ask Gustavo whether he wants a line about it on the Autoria card, with his confirmation and no identifying detail.

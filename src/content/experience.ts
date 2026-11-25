@@ -9,7 +9,8 @@ import type { Experience } from "./schema";
  * - Only the employers listed here; no other engagement is named.
  * - Freelance: same entry as the resume (Gustavo, 09/11/2026); no client is named.
  * - Aoop (an NTT DATA company): hired on 16/11/2026, starts 01/12/2026 (Gustavo; ADR-047).
- *   Nothing done there yet: the AI track is described as what comes next. Drop `upcoming` on 01/12.
+ *   Contract title "ServiceNow Technical Consultant - JR" (Gustavo, 25/11/2026; ADR-051), same in EN and PT.
+ *   Nothing done there yet: AI work is described as planned, not as a track. Drop `upcoming` on 01/12.
  */
 export const experience = [
   {
@@ -21,7 +22,7 @@ export const experience = [
     },
     roles: [
       {
-        title: { en: "Junior, ServiceNow (AI-specialized track)", pt: "Júnior em ServiceNow (trilha especializada em IA)" },
+        title: { en: "ServiceNow Technical Consultant - JR", pt: "ServiceNow Technical Consultant - JR" },
         start: "2026-12",
         end: null,
         upcoming: true,
@@ -33,8 +34,8 @@ export const experience = [
         pt: "Contratado após o bootcamp Shark in ServiceNow, em que construí a app escopada \u201cMentorship Program\u201d (tabelas estendendo Task, um flow de aprovação, um Record Producer).",
       },
       {
-        en: "Next: the AI track on ServiceNow (Now Assist and agents). Full-time, remote.",
-        pt: "A seguir: a trilha de IA no ServiceNow (Now Assist e agentes). Tempo integral, remoto.",
+        en: "Planned: AI work on ServiceNow (Now Assist and agents). Full-time, remote.",
+        pt: "Previsto: trabalho com IA no ServiceNow (Now Assist e agentes). Tempo integral, remoto.",
       },
     ],
     visible: true,
