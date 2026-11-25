@@ -147,8 +147,8 @@ export const projects = [
         },
         { en: "The final check found 2 errors (above).", pt: "A conferência final achou 2 erros (acima)." },
         {
-          en: "Not resolved: the abstract in 2 paragraphs (the engine does not merge paragraphs) and the 2019a/2019b citations.",
-          pt: "Não resolvidos: resumo em 2 parágrafos (o motor não junta parágrafos) e chamadas 2019a/2019b.",
+          en: "Not resolved: the abstract in 2 paragraphs (at the time the engine did not merge paragraphs; it does now) and the 2019a/2019b citations.",
+          pt: "Não resolvidos: resumo em 2 parágrafos (na época o motor não juntava parágrafos; hoje junta) e chamadas 2019a/2019b.",
         },
       ],
       wentWrongByHand: [
@@ -191,8 +191,8 @@ export const projects = [
           pt: "Conferido depois da rodada, nos arquivos entregues, e não refletido na tabela acima: (1) o .docx à mão passa nas verificações de hashes e de versão limpa, mas não tem número de página nenhum, então a verificação de paginação falha; (2) a lista de referências do pipeline saiu nas versões 1 a 3 com uma referência fora da ordem alfabética (erro da minha spec de montagem, não do documento de origem), marcada OK no checklist, e foi corrigida numa versão posterior, fora do tempo medido; (3) abrindo depois no Word e no Google Docs, a versão 3 do pipeline mostrou os mesmos números de página do PDF até a Introdução e uma página a mais nas Referências, então o sumário precisa ser atualizado ali.",
         },
         {
-          en: "The pipeline repository is private, so the method is summarized here.",
-          pt: "O repositório do pipeline é privado, então o método está resumido aqui.",
+          en: "The test generator, the method and the full record are in the public pipeline repository (testes/ifood05 and docs/10); the key to the planted errors is not published.",
+          pt: "O gerador do teste, o método e o registro completo estão no repositório público do pipeline (testes/ifood05 e docs/10); o gabarito dos erros plantados não é publicado.",
         },
       ],
       limitations: [
@@ -287,7 +287,8 @@ export const projects = [
     ],
     links: {
       live: "https://site.autoriaemforma.workers.dev",
-      repoPrivate: true,
+      repo: "https://github.com/gustavogg99-ctrl/autoria-em-forma",
+      repoPrivate: false,
     },
     builtWith: {
       en: "Developed with the help of Claude.",

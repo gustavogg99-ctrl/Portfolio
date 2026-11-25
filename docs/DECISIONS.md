@@ -698,3 +698,15 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Showing both runs on the card (rejected: a reader would compare numbers the repository says cannot be compared); keeping the 10/11 numbers until the demo (rejected: they would contradict the README linked from the card); dropping the held-out numbers because they are weak evidence (rejected: the limitation is stated with them, and hiding a result that came out well for the prompt would be the selective choice).
 
 **Consequences.** The site says 149 tests; the resume PDFs (Gustavo's own export) still say 102 and must be re-exported from his source file (ROADMAP "Waiting on Gustavo"). Any new run changes the card in the same PR as its SOURCES.md entry. A test pins the numbers listed in `tests/content.test.ts`.
+
+## ADR-049 — Autoria em Forma: the pipeline repository is public, and the site links it
+
+**Date:** 2026-11-25
+
+**Context.** On 25/11/2026 Gustavo opened the Autoria em Forma pipeline as `gustavogg99-ctrl/autoria-em-forma` (MIT, one commit of new history). Its README now says the timed test supports no time-saving conclusion, with the limitations next to it (its PR #1, `925a8b6`; Notion `GHREADME-07`, whose criterion is that the README and this site say the same thing). Comparing the two, the conclusion, n=1, the non-blind design, the order of the conditions, the step boundaries and the post-run failures all match, but the site still said in three places that the repository is private: the "Private repository, described here" badge on the card, the note above the code excerpts and the last item of the timed test's method. It also said "the engine does not merge paragraphs", which the repository's test README says changed afterwards. SOURCES.md forbade naming the institution of the fictional test document, and the public repository's generator and example spec name it.
+
+**Decision.** Gustavo chose to link the public repository (25/11/2026). The card's `repoPrivate` becomes a `repo` link; the code note says the full code is public; the method item points to `testes/ifood05` and `docs/10` and says the key to the planted errors is not published; the paragraph-merge item says "at the time". The site text itself still names no institution or course. SOURCES.md records the new rule and the accepted risk, which the Autoria project also records (its 07, decisions 28 and 29). The private repository, which still publishes the service page with the real phone number, is never linked.
+
+**Alternatives considered.** Removing the "private" wording without a link (rejected by Gustavo: it hides the strongest evidence for the card); anonymizing the fictional document in the public repository first (rejected: it changes test fixtures and the regression suite for a risk already accepted there).
+
+**Consequences.** A visitor can reach the fictional test's institution in two clicks. The `privateRepo` label and `repoPrivate` flag stay in the schema for future projects. Any change to the timed test in the Autoria repository must be checked against this card in the same week.

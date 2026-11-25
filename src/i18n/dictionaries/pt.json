@@ -107,7 +107,7 @@
     "timedLimitations": "Limitações deste teste",
     "timedNotConcluded": "O que não concluo",
     "codeExcerpts": "Trechos de código",
-    "codeNote": "O repositório é privado. Estes trechos foram selecionados e higienizados para esta página: sem segredos, referências internas nem conteúdo de TCC real.",
+    "codeNote": "O código completo está no repositório público (MIT, desde 25/11/2026). Estes trechos foram selecionados para esta página: sem segredos, referências internas nem conteúdo de TCC real.",
     "fidelity": "Diferenças em relação ao código real",
     "fidelityInstructions": "Diferenças em relação às instruções reais",
     "snippetOriginal": "Original (português do Brasil)",
