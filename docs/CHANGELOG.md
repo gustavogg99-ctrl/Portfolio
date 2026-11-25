@@ -2,6 +2,17 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 44 — MerkurIA reduced to the approved line · 2026-11-25
+
+Decision in ADR-052 (Notion: MSFT-01; audit ORG-01, item E2).
+
+**Changed**
+- `src/content/experience.ts`: MerkurIA has one highlight, the line approved in the "Rumo à Microsoft" plan (EN and PT). Removed: project management and security/governance of client projects; AI risk and feasibility assessments; training the internal team.
+- SOURCES.md (MerkurIA bullet), DECISIONS.md (ADR-052), ROADMAP.
+
+**Not changed**
+- Resume PDFs in `public/resume/` (still carry the old bullets; waiting on Gustavo's export, see ROADMAP).
+
 ## Part 43 — Resume PDFs with the exact contract title · 2026-11-25
 
 Follows Part 42 (the site text already had the new title; the PDFs did not).

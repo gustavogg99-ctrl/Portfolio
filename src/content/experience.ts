@@ -117,16 +117,8 @@ export const experience = [
     ],
     highlights: [
       {
-        en: "Led project management and the security and governance of client projects.",
-        pt: "Liderei a gestão de projetos e a segurança e governança dos projetos de clientes.",
-      },
-      {
-        en: "Built AI automations and assistants for clients, including WhatsApp customer-service bots: Make and later n8n, OpenAI API, WhatsApp API and Supabase as the database.",
-        pt: "Construí automações e assistentes com IA para clientes, incluindo bots de atendimento no WhatsApp: Make e depois n8n, API da OpenAI, API do WhatsApp e Supabase como base de dados.",
-      },
-      {
-        en: "Ran AI risk and feasibility assessments with attention to LGPD, and trained the internal team.",
-        pt: "Conduzi avaliações de risco e viabilidade de IA com atenção à LGPD e treinei a equipe interna.",
+        en: "Built WhatsApp customer-service bots with Make and later n8n, OpenAI API and Supabase.",
+        pt: "Construí bots de atendimento no WhatsApp com Make e depois n8n, API da OpenAI e Supabase.",
       },
     ],
     visible: true,

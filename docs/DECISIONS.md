@@ -734,3 +734,16 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Translating the title in the PT version (rejected: contract name, Gustavo's choice); renaming the employer to NTT DATA now (rejected: the rename is not official yet and the company page still reads "Aoop, an NTT DATA company").
 
 **Consequences.** The resume PDFs in `public/resume/` still carry the old title; Gustavo exports the site versions again (no phone number) and a file-swap part replaces them (ADR-032). In March 2027 change `company` in `experience.ts`, the "Now" line and the docs after confirming the date and exact name.
+
+## ADR-052 — MerkurIA reduced to the one line approved in the "Rumo à Microsoft" plan
+
+**Date:** 2026-11-25
+
+**Context.** On 19/11/2026 Gustavo approved the plan "Rumo à Microsoft", which stops using MerkurIA as proof: no numbers, and three claims leave every public material because he cannot back them with evidence ("project management and the security and governance of the solutions", "AI risk and feasibility assessments with attention to LGPD", "trained the internal team"). The plan gives the one line to keep. The audit of his Notion on 25/11/2026 (ORG-01, item E2) found the three claims still on the site and in both resume PDFs.
+
+**Decision.** The MerkurIA entry keeps its company, context and dates, and has one highlight, word for word from the plan: "Built WhatsApp customer-service bots with Make and later n8n, OpenAI API and Supabase." / "Construí bots de atendimento no WhatsApp com Make e depois n8n, API da OpenAI e Supabase." SOURCES.md now lists the removed claims as never allowed. This reverses the wording of Part 17 (#25).
+
+**Alternatives considered.** Keeping the tools line with "WhatsApp API" and "as the database" (rejected: the plan's approved line is the reference for every channel, so site, resume and LinkedIn stay identical); removing MerkurIA from Experience (rejected: the plan keeps it as one line, it is real work experience).
+
+**Consequences.** The resume PDFs in `public/resume/` still carry the old MerkurIA bullets; Gustavo updates his source file and exports the site versions (no phone number), and a file-swap part replaces them (ADR-032). LinkedIn gets the same line under Notion task MSFT-01.
+
