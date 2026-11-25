@@ -2,6 +2,17 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 43 — Resume PDFs with the exact contract title · 2026-11-25
+
+Follows Part 42 (the site text already had the new title; the PDFs did not).
+
+**Changed**
+- `public/resume/Gustavo_Rodrigues_Resume.pdf` and `Gustavo_Rodrigues_Curriculo.pdf`: the Aoop line now reads "ServiceNow Technical Consultant - JR" (was "Junior, ServiceNow (AI-specialized track)" / "Júnior em ServiceNow, trilha especializada em IA"), and the bullet below says AI work (Now Assist, agents) is planned instead of "next, an AI track". Edited in place on the Part 41 files (same fonts, layout, one A4 page, no phone number). Nothing else changed.
+- ROADMAP, SOURCES (resume bullet).
+
+**Not changed**
+- "Starting Dec 2026" / "início dez/2026" (changes on 01/12/2026, ADR-047) and the employer name "Aoop (NTT DATA)" (rename expected in March 2027).
+
 ## Part 42 — Aoop role with the exact contract title · 2026-11-25
 
 Decision in ADR-051.
@@ -13,7 +24,7 @@ Decision in ADR-051.
 
 **Not changed**
 - Employer name "Aoop" (official rename to NTT DATA expected in March 2027, see ROADMAP).
-- Resume PDFs in `public/resume/` (still the old title; they need a new export from Gustavo).
+- Resume PDFs in `public/resume/` (replaced in Part 43).
 
 ## Part 41 — Resume PDFs with the 24/11/2026 Support Agent numbers · 2026-11-25
 
