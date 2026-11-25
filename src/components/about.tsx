@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { Globe, Languages, MapPin } from "lucide-react";
 import { content } from "@/content";
+import { skillIconFiles } from "@/content/skill-icons";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { l } from "@/lib/localize";
@@ -53,14 +55,33 @@ export function About({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               <h4 className="font-semibold">{l(group.name, locale)}</h4>
               <ul className="flex flex-wrap gap-2">
                 {group.items.map((item) => {
-                  const text = typeof item === "string" ? item : l(item, locale);
+                  const withIcons = typeof item === "object" && "icons" in item;
+                  const label = withIcons ? item.label : item;
+                  const text = typeof label === "string" ? label : l(label, locale);
                   return (
-                  <li
-                    key={text}
-                    className="rounded-full border border-border bg-surface-2 px-3 py-1 text-xs text-foreground/90"
-                  >
-                    {text}
-                  </li>
+                    <li
+                      key={text}
+                      className="flex items-center gap-2 rounded-full border border-border bg-surface-2 px-3 py-1 text-xs text-foreground/90"
+                    >
+                      {withIcons &&
+                        item.icons.map((id) => (
+                          // Decorative: the name next to it is the accessible content (ADR-050).
+                          <span
+                            key={id}
+                            className="flex size-5 shrink-0 items-center justify-center rounded-md bg-logo-tile"
+                          >
+                            <Image
+                              src={`/icons/${skillIconFiles[id]}`}
+                              alt=""
+                              width={14}
+                              height={14}
+                              unoptimized
+                              className="size-3.5"
+                            />
+                          </span>
+                        ))}
+                      {text}
+                    </li>
                   );
                 })}
               </ul>

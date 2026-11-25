@@ -41,7 +41,7 @@ src/
     validate.ts        ← extra rules (placeholders, duplicates, featured)
     index.ts           ← validated `content` export (the only import for components)
     profile.ts  experience.ts  education.ts  certifications.ts
-    projects.ts  skills.ts  now.ts  writing.ts (blog feed config)
+    projects.ts  skills.ts  skill-icons.ts  now.ts  writing.ts (blog feed config)
     claims.ts          ← claims guard: hashed terms + banned words, shared by tests and the blog filter (ADR-030)
     snippets.ts        ← sanitized code excerpts from private repos
   i18n/
@@ -86,6 +86,7 @@ tests/content.test.ts      ← content rules + claims guard
 tests/locale-path.test.ts  ← language switch path logic
 tests/json-ld.test.ts      ← structured data uses only content facts
 tests/heading-order.test.tsx ← deliveries block renders the heading level each page needs (Vitest runs `.test.ts` and `.test.tsx`)
+public/icons/              ← tool logos shown next to skills (credits in docs/ICONS.md; ADR-050)
 public/resume/             ← resume PDFs (EN, PT), site versions without the phone number (ADR-032)
 public/google4f8e9eef3fd71ea9.html ← Google Search Console ownership file; must stay (ADR-046)
 tests/search-console.test.ts ← exactly one verification file, exact content
@@ -121,6 +122,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 | `--border` | `#2a2a2a` | `#e0e0e0` | borders |
 | `--foreground` | `#ededed` | `#0a0a0a` | text |
 | `--muted` | `#8a8a8a` | `#5c5c5c` | secondary text |
+| `--logo-tile` | `#f4f4f5` | `#f4f4f5` | light base behind tool logos (same in both themes, ADR-050) |
 | `--accent-from → --accent-to` | `#e5e5e5 → #9ca3af` | `#3f3f46 → #71717a` | silver/graphite gradient (`text-silver`) |
 
 - Dark is the default. Light is applied with `<html data-theme="light">` (switcher in Part 2).
@@ -156,7 +158,7 @@ Defined once in `src/app/globals.css` as CSS variables and exposed to Tailwind v
 - **Counters** come from `profile.stats`; each has an internal `evidence` note (ADR-007). Today there are two, both from infrastructure operations (ADR-024). The grid follows the number of counters (`STAT_COLUMNS` in `hero.tsx`: 2 → two columns, 3 → three, 4 → 2×2 then four on `xl`).
 - **About:** paragraphs from `profile.about` + facts card (location, where I'm open to work, languages).
 - **Now** (`#now`, sub-section of About, before Skills; not in the nav): three cards from `now.ts`, one per `kind`: `work` (status, link to Contact), `study` (also listed as certifications in progress), `project` (link to its public repository), plus the `updated` month. The schema allows at most one visible item per kind; with none visible the sub-section is not rendered (ADR-031, supersedes ADR-023).
-- **Skills** (`#skills`, a sub-section of About, not in the nav): groups from `skills.ts` rendered as tags, no levels or percentages. Items are either a plain name (same in both languages, e.g. "ISO/IEC 27001") or `{ en, pt }` for descriptions.
+- **Skills** (`#skills`, a sub-section of About, not in the nav): groups from `skills.ts` rendered as tags, no levels or percentages. Items are a plain name (same in both languages, e.g. "ISO/IEC 27001"), `{ en, pt }` for descriptions, or `{ label, icons }` for tools with a logo (ADR-050). Logos are files in `public/icons/` registered in `skill-icons.ts`, shown on a small `--logo-tile` base in their original colors, decorative (`alt=""`; the name beside them is the accessible content). Standards, laws, concepts and soft skills never get one. `tests/skill-icons.test.ts` fails on a missing, unregistered, unused or uncredited file.
 
 ## Projects
 

@@ -284,8 +284,41 @@ export type Project = z.infer<typeof Project>;
 
 /* ---------- skills ---------- */
 
-/** A tool/standard name (same in both languages) or a localized description. */
-export const SkillItem = z.union([z.string().min(1), Localized]);
+/** Tools that show a logo (file in `public/icons/`, credit in `docs/ICONS.md`; ADR-050). */
+export const skillIconIds = [
+  "claude",
+  "openai",
+  "copilot",
+  "copilot-studio",
+  "n8n",
+  "make",
+  "power-automate",
+  "python",
+  "supabase",
+  "whatsapp",
+  "cloudflare-workers",
+  "nextjs",
+  "vercel",
+  "jira",
+  "microsoft-365",
+  "servicenow",
+  "github-actions",
+] as const;
+export const SkillIconId = z.enum(skillIconIds);
+export type SkillIconId = z.infer<typeof SkillIconId>;
+
+/**
+ * A tool/standard name (same in both languages), a localized description, or one of those
+ * with logos. Standards, concepts and soft skills never get a logo (no invented seals).
+ */
+export const SkillItem = z.union([
+  z.string().min(1),
+  Localized,
+  z.object({
+    label: z.union([z.string().min(1), Localized]),
+    icons: z.array(SkillIconId).min(1),
+  }),
+]);
 
 export const SkillGroup = z.object({
   id: z.string(),

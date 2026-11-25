@@ -2,6 +2,18 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 40 — Tool logos in the Skills section · 2026-11-25
+
+Notion `PORTFOLIO-39` (the Notion title says "Part 39"; the repository already used 39 for the Autoria link). Same idea as the profile README (ADR-050).
+
+**Changed**
+- 17 logos for the tools in the Skills list (Claude, OpenAI, Microsoft Copilot, n8n, Make, Power Automate, Copilot Studio, Python, CI as GitHub Actions, Supabase, WhatsApp, Cloudflare Workers, Next.js and Vercel, Jira, Microsoft 365, ServiceNow). Standards, concepts and soft skills stay text.
+- `SkillItem` gains `{ label, icons }`; `skill-icons.ts` maps ids to files in `public/icons/`; `--logo-tile` token; `about.tsx` renders the logo before the name (decorative, `alt=""`).
+- `docs/ICONS.md` (sources, licenses, how to add one); `tests/skill-icons.test.ts` (files exist, registered, used and credited; no logo on standards); ARCHITECTURE, SOURCES, DECISIONS (ADR-050), ROADMAP.
+
+**Verified**
+- `npm run check` and `npm run build`. Playwright on the production build: desktop 1440×900 and mobile 390×844, dark and light, EN and PT: 17 images per page, none broken, no layout break.
+
 ## Part 39 — Autoria em Forma links its public repository · 2026-11-25
 
 The pipeline went public on 25/11/2026 (`gustavogg99-ctrl/autoria-em-forma`, MIT). The site still called it private in three places, which broke the criterion of Notion `GHREADME-07` (README and site say the same thing about the timed test) (ADR-049).
