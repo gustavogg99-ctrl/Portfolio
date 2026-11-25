@@ -88,7 +88,8 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 35 | Google Search Console: verification file for the URL-prefix property (ADR-046); sitemap submitted after the merge | #49 |
 | 36 | Docs only: Observatory re-measured on the live site after Parts 30 to 35, B+ 80/100, 11/12, only `'unsafe-inline'` (unchanged) | #51 |
 | 37 | Hired by Aoop (NTT DATA): employer rule withdrawn, Experience entry "Starting Dec 2026", "Now", ServiceNow skills, resume PDFs replaced (ADR-047) | #52 |
-| 38 | Support Agent card, case page, preview and "Now" republished with the 24/11/2026 run: masking, injection detection, held-out set, 149 tests (ADR-048) | (this PR) |
+| 38 | Support Agent card, case page, preview and "Now" republished with the 24/11/2026 run: masking, injection detection, held-out set, 149 tests (ADR-048) | #53 |
+| 39 | Autoria em Forma: card links the public pipeline repository; "private" wording removed from the card, code note and timed test (ADR-049, `GHREADME-07`) | (this PR) |
 
 ## Next (in order)
 

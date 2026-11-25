@@ -107,7 +107,7 @@
     "timedLimitations": "Limitations of this test",
     "timedNotConcluded": "What I am not concluding",
     "codeExcerpts": "Code excerpts",
-    "codeNote": "The repository is private. These excerpts were selected and sanitized for this page: no secrets, internal references or real thesis content.",
+    "codeNote": "The full code is in the public repository (MIT, since 25/11/2026). These excerpts were selected for this page: no secrets, internal references or real thesis content.",
     "fidelity": "How this differs from the real code",
     "fidelityInstructions": "How this differs from the real instructions",
     "snippetOriginal": "Original (Brazilian Portuguese)",

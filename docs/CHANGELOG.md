@@ -2,6 +2,19 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 39 — Autoria em Forma links its public repository · 2026-11-25
+
+The pipeline went public on 25/11/2026 (`gustavogg99-ctrl/autoria-em-forma`, MIT). The site still called it private in three places, which broke the criterion of Notion `GHREADME-07` (README and site say the same thing about the timed test) (ADR-049).
+
+**Changed**
+- Card: `repoPrivate` replaced by a link to the public repository.
+- Code excerpts note (EN/PT): the full code is public; excerpts selected for the page.
+- Timed test: the method item points to `testes/ifood05` and `docs/10` (key to the planted errors not published); "the engine does not merge paragraphs" now says "at the time".
+- SOURCES.md: Autoria code rule rewritten (public repository linked, private one never), test record sources updated; DECISIONS.md (ADR-049); ROADMAP.
+
+**Verified**
+- Timed-test text compared with the public README, `testes/ifood05/README.md` and `docs/10` at `925a8b6`. `npm run check`.
+
 ## Part 38 — Support Agent card republished with the 24/11/2026 run · 2026-11-24
 
 The repository merged masking, prompt-injection detection, a held-out injection set and a new evaluation run (its PRs #28 and #29). The card still showed the 10/11 run and listed those as "Next" (ADR-048).
