@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-25 (Part 40: tool logos in Skills. Earlier, Part 38: Support Agent results republished; done from the Support Agent chat at Gustavo's request). Pending: resume PDFs still say "102 tests"; Gustavo re-exports them from his source file._
+_Last updated: 2026-11-25 (Part 41: resume PDFs with 14/30 and 149 tests. Earlier, Part 40: tool logos in Skills). Nothing is pending until 01/12/2026 (Aoop start date, see Later)._
 
 ## How we work
 
@@ -90,11 +90,12 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 37 | Hired by Aoop (NTT DATA): employer rule withdrawn, Experience entry "Starting Dec 2026", "Now", ServiceNow skills, resume PDFs replaced (ADR-047) | #52 |
 | 38 | Support Agent card, case page, preview and "Now" republished with the 24/11/2026 run: masking, injection detection, held-out set, 149 tests (ADR-048) | #53 |
 | 39 | Autoria em Forma: card links the public pipeline repository; "private" wording removed from the card, code note and timed test (ADR-049, `GHREADME-07`) | #54 |
-| 40 | Tool logos next to the skills that are tools, original colors on a light tile; 17 files in `public/icons/` with credits (ADR-050, Notion `PORTFOLIO-39`) | (this PR) |
+| 40 | Tool logos next to the skills that are tools, original colors on a light tile; 17 files in `public/icons/` with credits (ADR-050, Notion `PORTFOLIO-39`) | #55 |
+| 41 | Resume PDFs (EN/PT) from Gustavo's 25/11/2026 export: Support Agent line says "rules alone: 14/30" and 149 tests; Aoop still "Starting Dec 2026" | (this PR) |
 
 ## Next (in order)
 
-The site is **live and shared** since the iFood application (16/11/2026). Post-launch review (Parts 9–11), the pre-sharing review (Parts 12–18) and the plan from Gustavo's analysis (Parts 30 to 35) are done. **Nothing is pending on the site except the resume PDFs: they still say "102 tests in CI" (the site says 149 since Part 38); Gustavo re-exports them from his source file and the new PDFs replace the old ones in a small part.** A new chat starts at 0 after this handoff (16/11/2026, after Parts 33 to 35). Start the new chat by asking Gustavo what he wants next; candidates are under "Optional" and "Later".
+The site is **live and shared** since the iFood application (16/11/2026). Post-launch review (Parts 9–11), the pre-sharing review (Parts 12–18) and the plan from Gustavo's analysis (Parts 30 to 35) are done. **Nothing is pending on the site until 01/12/2026 (Aoop start date, see Later).** A new chat starts at 0 after this handoff (16/11/2026, after Parts 33 to 35). Start the new chat by asking Gustavo what he wants next; candidates are under "Optional" and "Later".
 
 Agreed on 09/11/2026 (this chat): **hero counters stay for now** (may be revisited later); **site text reviewed and approved by Gustavo** (the deferred content review is done); **`gustavorodrigues.vercel.app` is the final domain** (no custom domain).
 
