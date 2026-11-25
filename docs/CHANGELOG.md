@@ -2,6 +2,19 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 42 — Aoop role with the exact contract title · 2026-11-25
+
+Decision in ADR-051.
+
+**Changed**
+- `src/content/experience.ts`: role title "ServiceNow Technical Consultant - JR" in EN and PT (was "Junior, ServiceNow (AI-specialized track)" / "Júnior em ServiceNow (trilha especializada em IA)"); the "Next: the AI track" highlight now says AI work is planned.
+- `src/content/now.ts`: work line uses the new title.
+- SOURCES.md (Aoop bullet), DECISIONS.md (ADR-051), ROADMAP.
+
+**Not changed**
+- Employer name "Aoop" (official rename to NTT DATA expected in March 2027, see ROADMAP).
+- Resume PDFs in `public/resume/` (still the old title; they need a new export from Gustavo).
+
 ## Part 41 — Resume PDFs with the 24/11/2026 Support Agent numbers · 2026-11-25
 
 A file swap under ADR-032, like Parts 28, 33 and 37; no new decision, so no ADR. The PDFs still carried numbers from before Part 38.

@@ -722,3 +722,15 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 **Alternatives considered.** Monochrome with `currentColor` (rejected: it alters the drawings, which the vendors' brand rules usually forbid, and breaks the three raster logos); colored only on hover (rejected: touch screens have no hover and the page would look unfinished by default); a logo for every item (rejected: it would need invented seals for standards, which SOURCES.md forbids).
 
 **Consequences.** `public/` grows by about 60 KB, loaded lazily by the browser as images. The three PNGs should be replaced by the vendors' SVGs if Gustavo gets them. Gustavo still has to check the ServiceNow brand terms before this merges. A new tool logo needs five small steps (see docs/ICONS.md), and a test blocks any file that is missing, unregistered, unused or uncredited.
+
+## ADR-051 — Aoop role shown with its exact contract title; "AI track" removed
+
+**Date:** 2026-11-25
+
+**Context.** ADR-047 published the role as "Junior, ServiceNow (AI-specialized track)". On 25/11/2026 Gustavo learned the exact title in his contract: "ServiceNow Technical Consultant - JR". There is no AI track in the title; AI is work he expects to do, not the role.
+
+**Decision.** The Experience title and the "Now" line use "ServiceNow Technical Consultant - JR", the same string in English and Portuguese (it is the contract name; Gustavo asked to keep it in English). The highlight that mentioned the AI track now says AI work (Now Assist and agents) is planned. The employer stays "Aoop" with context "An NTT DATA company" until the official rename to NTT DATA that Gustavo was told will happen in March 2027; the swap is tracked in Notion and in the ROADMAP.
+
+**Alternatives considered.** Translating the title in the PT version (rejected: contract name, Gustavo's choice); renaming the employer to NTT DATA now (rejected: the rename is not official yet and the company page still reads "Aoop, an NTT DATA company").
+
+**Consequences.** The resume PDFs in `public/resume/` still carry the old title; Gustavo exports the site versions again (no phone number) and a file-swap part replaces them (ADR-032). In March 2027 change `company` in `experience.ts`, the "Now" line and the docs after confirming the date and exact name.
