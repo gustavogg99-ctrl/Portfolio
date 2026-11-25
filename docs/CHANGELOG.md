@@ -2,6 +2,20 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 41 — Resume PDFs with the 24/11/2026 Support Agent numbers · 2026-11-25
+
+A file swap under ADR-032, like Parts 28, 33 and 37; no new decision, so no ADR. The PDFs still carried numbers from before Part 38.
+
+**Changed**
+- `public/resume/Gustavo_Rodrigues_Resume.pdf` and `Gustavo_Rodrigues_Curriculo.pdf` replaced, unchanged, by Gustavo's export of 25/11/2026 (site versions, no phone number). Two text changes in the Support Agent line, in both languages: "rules alone: 9/30" to 14/30, and "102 tests in CI" to 149 (the 9/30 was from the 10/11 run, before injection detection; the 102 was missed by the Part 38 handoff note, which only listed the tests).
+- SOURCES.md (resume bullet), ROADMAP (pending item closed).
+
+**Verified**
+- Text extracted and compared with the Part 37 PDFs: only those two numbers differ. Links, metadata and page size identical; one A4 page each; no phone number in either file. The version with a phone number differs from the site version only in that line. Claims guard over the extracted text: nothing found. `npm run check`.
+
+**Not changed**
+- The Aoop line ("Starting Dec 2026"), which changes on 01/12/2026 together with the site (ADR-047). Site content.
+
 ## Part 40 — Tool logos in the Skills section · 2026-11-25
 
 Notion `PORTFOLIO-39` (the Notion title says "Part 39"; the repository already used 39 for the Autoria link). Same idea as the profile README (ADR-050).
