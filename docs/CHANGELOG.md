@@ -2,6 +2,23 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 38 — Support Agent card republished with the 24/11/2026 run · 2026-11-24
+
+The repository merged masking, prompt-injection detection, a held-out injection set and a new evaluation run (its PRs #28 and #29). The card still showed the 10/11 run and listed those as "Next" (ADR-048).
+
+**Changed**
+- Card, case page, quick read and "Now" line: numbers from the new `results/eval_results.json` (category 21/30 to 28/30 against 14/30 for the rules; unsafe automation 4/21 rules only, 0/21 with the guardrail in all four combinations; held-out injection 1/10 with v1, 10/10 with v2; US$ 0.00017 and 0.00348 per ticket with v2; 149 tests).
+- Limitations rewritten: masking exists but has blind spots; injection detection is pattern-based; held-out set is weak evidence; two runs exist and 12 of 120 answers differ.
+- Preview: EVAL-011, same model and prompt, new answer ("Technical Incident · Medium").
+- "Now": measured on 30 + 10 synthetic tickets; "Next" is the recorded demo.
+- SOURCES.md, DECISIONS.md (ADR-048) and ROADMAP updated; content test pins the new numbers.
+
+**Not changed**
+- Resume PDFs still say "102 tests" (Gustavo's export; to be re-exported).
+
+**Verified**
+- Every number checked against `results/eval_results.json` and the README of the repository at `848b8ce`; 149 tests run on that commit. `npm run check` (83 tests).
+
 ## Part 37 — Hired by Aoop (NTT DATA): experience, "Now", skills and resume · 2026-11-16
 
 Gustavo was hired on 16/11/2026 and asked to lift the rule against naming NTT DATA as an employer and to publish the updated resume (ADR-047).

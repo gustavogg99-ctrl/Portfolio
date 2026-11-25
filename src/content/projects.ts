@@ -419,8 +419,8 @@ export const projects = [
     featured: false,
     status: "prototype",
     statusNote: {
-      en: "Prototype · LLM triage with a rules guardrail, evaluated on 30 synthetic tickets",
-      pt: "Protótipo · triagem com LLM e guardrail de regras, avaliada em 30 chamados sintéticos",
+      en: "Prototype · LLM triage with a rules guardrail, evaluated on 30 synthetic tickets and 10 held-out injection tickets",
+      pt: "Protótipo · triagem com LLM e guardrail de regras, avaliada em 30 chamados sintéticos e 10 chamados de injection separados",
     },
     summary: {
       en: "Prototype of an IT ticket triage agent with governance: an LLM (Claude) classifies and drafts a reply, deterministic rules act as a guardrail the LLM can only make stricter, and a person approves before anything is sent.",
@@ -431,26 +431,30 @@ export const projects = [
       pt: "Times de suporte querem automatizar chamados, mas automatizar pedidos de acesso, incidentes críticos ou chamados com dados pessoais sem limites claros gera risco. Inspirado na experiência com ~1.000 incidentes por mês.",
     },
     built: {
-      en: "A local Python prototype. The rules of the first version (standard library only) stay as the guardrail, and an LLM classifier (Claude through the Anthropic API, JSON output validated against closed lists, invalid output goes to a person) is combined with them: the stricter decision wins and any disagreement goes to a person. A reply is drafted only when both allow automation, is checked (sensitive data, claims of actions performed, length) and is sent, in simulation, only after explicit approval. An evaluation harness compares 2 prompt versions and 2 models on 30 labelled synthetic tickets. The audit log records both decisions with sensitive values redacted.",
-      pt: "Um protótipo local em Python. As regras da primeira versão (só biblioteca padrão) continuam como guardrail, e um classificador com LLM (Claude pela API da Anthropic, saída JSON validada contra listas fechadas, saída inválida vai para uma pessoa) é combinado com elas: vale a decisão mais restritiva e qualquer divergência vai para uma pessoa. A resposta só é redigida quando os dois permitem automação, é verificada (dados sensíveis, afirmação de ação realizada, tamanho) e é enviada, em simulação, só com aprovação explícita. Um avaliador compara 2 versões de prompt e 2 modelos em 30 chamados sintéticos rotulados. O log de auditoria registra as duas decisões com valores sensíveis mascarados.",
+      en: "A local Python prototype. The rules of the first version (standard library only) stay as the guardrail, and an LLM classifier (Claude through the Anthropic API, JSON output validated against closed lists, invalid output goes to a person) is combined with them: the stricter decision wins and any disagreement goes to a person. A reply is drafted only when both allow automation, is checked (sensitive data, claims of actions performed, length) and is sent, in simulation, only after explicit approval. The ticket text is masked before it reaches the API, and the rules detect prompt-injection attempts and treat them as security incidents. An evaluation harness compares 2 prompt versions and 2 models on 30 labelled synthetic tickets, plus 10 held-out injection tickets reported apart. The audit log records both decisions with sensitive values redacted.",
+      pt: "Um protótipo local em Python. As regras da primeira versão (só biblioteca padrão) continuam como guardrail, e um classificador com LLM (Claude pela API da Anthropic, saída JSON validada contra listas fechadas, saída inválida vai para uma pessoa) é combinado com elas: vale a decisão mais restritiva e qualquer divergência vai para uma pessoa. A resposta só é redigida quando os dois permitem automação, é verificada (dados sensíveis, afirmação de ação realizada, tamanho) e é enviada, em simulação, só com aprovação explícita. O texto do chamado é mascarado antes de chegar à API, e as regras detectam tentativas de prompt injection e as tratam como incidente de segurança. Um avaliador compara 2 versões de prompt e 2 modelos em 30 chamados sintéticos rotulados, mais 10 chamados de injection separados, relatados à parte. O log de auditoria registra as duas decisões com valores sensíveis mascarados.",
     },
     stack: ["Python", "Claude API"],
     highlights: [
       {
-        en: "Evaluation on 30 labelled synthetic tickets, 2 Claude models × 2 prompt versions. With the written policy in the prompt (v2), both models got the category right on 28/30 tickets, against 9/30 for the rules alone.",
-        pt: "Avaliação em 30 chamados sintéticos rotulados, 2 modelos Claude × 2 versões de prompt. Com a política escrita no prompt (v2), os dois modelos acertaram a categoria em 28/30 chamados, contra 9/30 das regras sozinhas.",
+        en: "Evaluation on 30 labelled synthetic tickets, 2 Claude models × 2 prompt versions. Writing the policy into the prompt (v2) raised the category from 21/30 to 28/30 on both models; the rules alone get 14/30.",
+        pt: "Avaliação em 30 chamados sintéticos rotulados, 2 modelos Claude × 2 versões de prompt. Escrever a política no prompt (v2) subiu a categoria de 21/30 para 28/30 nos dois modelos; as regras sozinhas acertam 14/30.",
       },
       {
-        en: "Unsafe automation (a ticket that needs a person but would get an automated answer, 21 of the 30): 8/21 with the rules alone; with the guardrail, 1/21 on prompt v1 and 0/21 on v2. The LLM alone would have automated 3/21 (v1) and 1/21 (v2).",
-        pt: "Automação indevida (chamado que exige uma pessoa mas receberia resposta automática, 21 dos 30): 8/21 só com as regras; com o guardrail, 1/21 no prompt v1 e 0/21 no v2. O LLM sozinho teria automatizado 3/21 (v1) e 1/21 (v2).",
+        en: "Unsafe automation (a ticket that needs a person but would get an automated answer, 21 of the 30): 4/21 with the rules alone; 0/21 with the guardrail in all four combinations. The LLM alone would have automated 3/21 (v1) and 1/21 (v2).",
+        pt: "Automação indevida (chamado que exige uma pessoa mas receberia resposta automática, 21 dos 30): 4/21 só com as regras; 0/21 com o guardrail nas quatro combinações. O LLM sozinho teria automatizado 3/21 (v1) e 1/21 (v2).",
       },
       {
-        en: "The cost of caution: with v2, 4 of the 9 tickets that could be automated still went to a person. Cost per ticket with v2: US$ 0.00016 (Haiku 5.5) against US$ 0.0032 (Sonnet 5.5), at prices checked on 10/11/2026.",
-        pt: "O custo da cautela: com o v2, 4 dos 9 chamados que poderiam ser automatizados foram para uma pessoa mesmo assim. Custo por chamado com o v2: US$ 0,00016 (Haiku 5.5) contra US$ 0,0032 (Sonnet 5.5), com preços conferidos em 10/11/2026.",
+        en: "10 held-out injection tickets, all labelled Security Incident: prompt v1 recognised 1/10 on both models, v2 recognised 10/10. Without the rules, v1 would have automated 5/10; with the guardrail, 0/10. The tickets, the policy and the detection patterns share an author, so this is weak evidence.",
+        pt: "10 chamados de injection separados, todos rotulados Security Incident: o prompt v1 reconheceu 1/10 nos dois modelos, o v2 reconheceu 10/10. Sem as regras, o v1 teria automatizado 5/10; com o guardrail, 0/10. Os chamados, a política e os padrões de detecção têm o mesmo autor, então a evidência é fraca.",
       },
       {
-        en: "102 automated tests (standard library; none calls the API) run in CI on each push (Python 3.10 and 3.13 on Ubuntu, 3.13 on Windows). The results table is generated from a committed results file, and a test checks that the README matches it.",
-        pt: "102 testes automatizados (biblioteca padrão; nenhum chama a API) rodam no CI a cada push (Python 3.10 e 3.13 no Ubuntu, 3.13 no Windows). A tabela de resultados é gerada de um arquivo de resultados versionado, e um teste confere que o README bate com ele.",
+        en: "The cost of caution: with v2, 4 of the 9 tickets that could be automated still went to a person, because of the rules' errors. Cost per ticket with v2: US$ 0.00017 (Haiku 5.5) against US$ 0.00348 (Sonnet 5.5), about 20 times more, at prices checked on 10/11/2026 and again on 24/11/2026, unchanged.",
+        pt: "O custo da cautela: com o v2, 4 dos 9 chamados que poderiam ser automatizados foram para uma pessoa mesmo assim, por erros das regras. Custo por chamado com o v2: US$ 0,00017 (Haiku 5.5) contra US$ 0,00348 (Sonnet 5.5), cerca de 20 vezes mais, com preços conferidos em 10/11/2026 e de novo em 24/11/2026, sem mudança.",
+      },
+      {
+        en: "149 automated tests (standard library; none calls the API) run in CI on each push (Python 3.10 and 3.13 on Ubuntu, 3.13 on Windows). The results tables are generated from a committed results file, and a test checks that the README matches it.",
+        pt: "149 testes automatizados (biblioteca padrão; nenhum chama a API) rodam no CI a cada push (Python 3.10 e 3.13 no Ubuntu, 3.13 no Windows). As tabelas de resultados são geradas de um arquivo de resultados versionado, e um teste confere que o README bate com ele.",
       },
     ],
     guardrails: [
@@ -467,14 +471,26 @@ export const projects = [
         pt: "O rascunho de resposta é verificado quanto a dados sensíveis, afirmação de ação realizada e tamanho, e nada é enviado sem aprovação humana explícita.",
       },
       {
+        en: "The rules detect prompt-injection attempts (7 techniques) and make them a Security Incident that goes to a person, whatever the LLM says.",
+        pt: "As regras detectam tentativas de prompt injection (7 técnicas) e as transformam em Security Incident, que vai para uma pessoa, seja qual for a resposta do LLM.",
+      },
+      {
+        en: "Ticket text is masked (emails, CPF, phone numbers, long numbers, secrets) before the API call, and the requester's name is not sent.",
+        pt: "O texto do chamado é mascarado (e-mails, CPF, telefones, números longos, segredos) antes da chamada à API, e o nome do solicitante não é enviado.",
+      },
+      {
         en: "Sensitive data is redacted before it reaches the audit log.",
         pt: "Dados sensíveis são mascarados antes de chegar ao log de auditoria.",
       },
     ],
     limitations: [
       {
-        en: "30 synthetic tickets, labels drafted with AI assistance and approved by one reviewer (me): one ticket is 3.3 percentage points. One run per combination, variance not measured.",
-        pt: "30 chamados sintéticos, com rótulos redigidos com apoio de IA e aprovados por um revisor (eu): um chamado vale 3,3 pontos percentuais. Uma execução por combinação, variância não medida.",
+        en: "30 synthetic tickets, labels drafted with AI assistance and approved by one reviewer (me): one ticket is 3.3 percentage points. The 10 held-out injection tickets are a separate, small set.",
+        pt: "30 chamados sintéticos, com rótulos redigidos com apoio de IA e aprovados por um revisor (eu): um chamado vale 3,3 pontos percentuais. Os 10 chamados de injection separados formam um conjunto à parte, pequeno.",
+      },
+      {
+        en: "One run per combination; variance within one setup was not measured. Two runs exist (before and after masking and injection detection): the category totals are the same, and 12 of the 120 LLM answers differ in category or priority, without separating the effect of masking from chance.",
+        pt: "Uma execução por combinação; a variância dentro de uma mesma configuração não foi medida. Existem duas execuções (antes e depois do mascaramento e da detecção de injection): os totais de categoria são iguais, e 12 das 120 respostas do LLM diferem em categoria ou prioridade, sem separar o efeito do mascaramento do acaso.",
       },
       {
         en: "Prompt v2 was written from the same policy that produced the labels. The result shows that the model follows a stated policy, not how it would perform on real tickets.",
@@ -485,8 +501,12 @@ export const projects = [
         pt: "Só a classificação foi avaliada; os rascunhos de resposta e a latência não.",
       },
       {
-        en: "No full prompt-injection defence (5 injection tickets are a sample, not a security assessment), and no masking before the API call: the ticket text is sent as written, only the requester's name is left out.",
-        pt: "Sem defesa completa contra prompt injection (5 chamados de injection são uma amostra, não uma avaliação de segurança) e sem mascaramento antes da chamada à API: o texto do chamado é enviado como está, só o nome do solicitante fica de fora.",
+        en: "No full prompt-injection defence: the pattern detection catches all 15 injection tickets of the two sets, which share an author with the patterns, and misses spaced, encoded, look-alike and non-English evasions. 15 tickets are a sample, not a security assessment.",
+        pt: "Sem defesa completa contra prompt injection: a detecção por padrões pega os 15 chamados de injection dos dois conjuntos, que têm o mesmo autor dos padrões, e deixa passar evasões com espaços, codificadas, com caracteres parecidos e em outros idiomas. 15 chamados são uma amostra, não uma avaliação de segurança.",
+      },
+      {
+        en: "Masking uses the same patterns as the detection: a value they do not recognise (for example a password written without a disclosure phrase) is still sent to the API.",
+        pt: "O mascaramento usa os mesmos padrões da detecção: um valor que eles não reconhecem (por exemplo, uma senha escrita sem uma frase de divulgação) ainda é enviado à API.",
       },
       {
         en: "Human approval is a console prompt and sending is simulated; no real ticketing-system integration.",
@@ -506,12 +526,12 @@ export const projects = [
         pt: "Projetei as regras e o guardrail, construí o protótipo com o Claude, revisei e aprovei os rótulos dos 30 chamados e rodei a avaliação.",
       },
       evidence: {
-        en: "With prompt v2 and the guardrail, none of the 21 tickets that need a person got an automated reply (8 of 21 with the rules alone), on 30 synthetic tickets.",
-        pt: "Com o prompt v2 e o guardrail, nenhum dos 21 chamados que exigem uma pessoa recebeu resposta automática (8 de 21 só com as regras), em 30 chamados sintéticos.",
+        en: "With the guardrail, none of the 21 tickets that need a person got an automated reply in any of the four model and prompt combinations (4 of 21 with the rules alone), on 30 synthetic tickets.",
+        pt: "Com o guardrail, nenhum dos 21 chamados que exigem uma pessoa recebeu resposta automática em nenhuma das quatro combinações de modelo e prompt (4 de 21 só com as regras), em 30 chamados sintéticos.",
       },
       evidenceHref: "https://github.com/gustavogg99-ctrl/support-agent-governance-prototype#results",
     },
-    // A real record: EVAL-011, claude-haiku-5-5 with prompt v2, run of 10/11/2026 (results/eval_results.json).
+    // A real record: EVAL-011, claude-haiku-5-5 with prompt v2, run of 24/11/2026 (results/eval_results.json; Part 38).
     preview: {
       kind: "record",
       caption: {
@@ -536,8 +556,8 @@ export const projects = [
           tone: "ai",
           label: { en: "Claude Haiku 5.5, prompt v2", pt: "Claude Haiku 5.5, prompt v2" },
           value: {
-            en: "Access Support · Medium: reads it as a routine problem with the requester's own access",
-            pt: "Access Support · Medium: lê como um problema rotineiro com o acesso do próprio solicitante",
+            en: "Technical Incident · Medium: reads it as a faulty or unavailable folder, not as a permission request",
+            pt: "Technical Incident · Medium: lê como uma pasta com falha ou indisponível, não como um pedido de permissão",
           },
         },
         {
@@ -579,16 +599,16 @@ export const projects = [
             kind: "guard",
             title: { en: "Rules classify", pt: "Regras classificam" },
             detail: {
-              en: "Deterministic Python, standard library, no network: sensitive data and security are checked first, then category, priority, escalation and automation.",
-              pt: "Python determinístico, só biblioteca padrão, sem rede: dados sensíveis e segurança são verificados primeiro, depois categoria, prioridade, escalonamento e automação.",
+              en: "Deterministic Python, standard library, no network: sensitive data, security and prompt-injection attempts are checked first, then category, priority, escalation and automation.",
+              pt: "Python determinístico, só biblioteca padrão, sem rede: dados sensíveis, segurança e tentativas de prompt injection são verificados primeiro, depois categoria, prioridade, escalonamento e automação.",
             },
           },
           {
             kind: "ai",
             title: { en: "Claude classifies", pt: "Claude classifica" },
             detail: {
-              en: "Category, priority and a sensitive-data flag as JSON, validated against closed lists. Anything invalid counts as a failure. The ticket text is sent as data, without the requester's name.",
-              pt: "Categoria, prioridade e um indicador de dados sensíveis em JSON, validados contra listas fechadas. Qualquer saída inválida conta como falha. O texto do chamado vai como dado, sem o nome do solicitante.",
+              en: "Category, priority and a sensitive-data flag as JSON, validated against closed lists. Anything invalid counts as a failure. The ticket text is masked first and sent as data, without the requester's name.",
+              pt: "Categoria, prioridade e um indicador de dados sensíveis em JSON, validados contra listas fechadas. Qualquer saída inválida conta como falha. O texto do chamado é mascarado antes e vai como dado, sem o nome do solicitante.",
             },
           },
           {
@@ -630,8 +650,8 @@ export const projects = [
           { en: "Audit log with both decisions and the reasons, sensitive values redacted", pt: "Log de auditoria com as duas decisões e os motivos, valores sensíveis mascarados" },
         ],
         parallel: {
-          en: "In parallel: an evaluation harness runs 2 prompt versions and 2 models through the same guardrail on the 30 labelled tickets. The results file is committed, and a test checks that the README table matches it.",
-          pt: "Em paralelo: um avaliador passa 2 versões de prompt e 2 modelos pelo mesmo guardrail nos 30 chamados rotulados. O arquivo de resultados é versionado, e um teste confere que a tabela do README bate com ele.",
+          en: "In parallel: an evaluation harness runs 2 prompt versions and 2 models through the same guardrail on the 30 labelled tickets, and on 10 held-out injection tickets reported apart. The results file is committed, and a test checks that the README tables match it.",
+          pt: "Em paralelo: um avaliador passa 2 versões de prompt e 2 modelos pelo mesmo guardrail nos 30 chamados rotulados e em 10 chamados de injection separados, relatados à parte. O arquivo de resultados é versionado, e um teste confere que as tabelas do README batem com ele.",
         },
       },
       // No code excerpts: the repository is public and linked from the page.

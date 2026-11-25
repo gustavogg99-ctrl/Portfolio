@@ -687,3 +687,14 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** On 01/12/2026 remove `upcoming`, rewrite the "Now" work line and review the Aoop highlights (ROADMAP). The bootcamp posts no longer need the `blog.allowed` exception; the entries stay as a reviewed record. RSS tests now use a banned generic word as the fixture that trips the guard. The plain list of banned terms in Notion `PORTFOLIO-15` must drop this term.
 
+## ADR-048 — Support Agent card republished with the 24/11/2026 run, and why the old numbers left
+
+**Date:** 2026-11-24
+
+**Context.** The Support Agent repository merged PRs #28 and #29 on 24/11/2026: masking before the API call, prompt-injection detection in the rules, 10 held-out injection tickets and a new run of the evaluation (160 calls, `results/eval_results.json`; the 10/11 run is archived in `results/run-2026-11-10/`). The card said "no masking" and "no full injection defence", listed both as "Next", and published numbers that the new file no longer carries (rules alone 9/30 and 8/21, guardrail 1/21 on v1, 102 tests, EVAL-011 answered "Access Support").
+
+**Decision.** Replace every number on the card, the case page, the quick read, the preview and the "Now" line with the ones in the new file and README, and keep all limitations, now including the held-out set's weak evidence (same author for tickets, policy and patterns), masking's blind spots and the 12 of 120 answers that differ between the two runs. The preview stays a real record, now the EVAL-011 result of the same model and prompt in the new run ("Technical Incident"). The 10/11 numbers are not shown next to the new ones: two runs differ in masking and in chance, and the repository itself says the data do not separate the two effects. The "Now" line moves from "Next: injection defence and masking" to "Next: a recorded demo" (the repository ROADMAP).
+
+**Alternatives considered.** Showing both runs on the card (rejected: a reader would compare numbers the repository says cannot be compared); keeping the 10/11 numbers until the demo (rejected: they would contradict the README linked from the card); dropping the held-out numbers because they are weak evidence (rejected: the limitation is stated with them, and hiding a result that came out well for the prompt would be the selective choice).
+
+**Consequences.** The site says 149 tests; the resume PDFs (Gustavo's own export) still say 102 and must be re-exported from his source file (ROADMAP "Waiting on Gustavo"). Any new run changes the card in the same PR as its SOURCES.md entry. A test pins the numbers listed in `tests/content.test.ts`.
