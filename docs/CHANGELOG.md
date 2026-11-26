@@ -2,6 +2,18 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 45 — Resume PDFs with the approved MerkurIA line · 2026-11-25
+
+A file swap under ADR-032, closing the PDF side of ADR-052. No new decision, so no ADR.
+
+**Changed**
+- `public/resume/Gustavo_Rodrigues_Resume.pdf` and `Gustavo_Rodrigues_Curriculo.pdf` replaced by Gustavo's export of 25/11/2026 (site versions, no phone number). MerkurIA has one bullet, the approved line (EN and PT); removed: AI automations/assistants wording, WhatsApp API, project management and security/governance, risk and feasibility assessments, training the internal team.
+- SOURCES.md (resume bullet; stale "102 tests" note on the Support Agent bullet), ROADMAP.
+
+**Verified**
+- Text extracted and compared line by line with the Part 43 PDFs: only the MerkurIA entry differs (the Aoop lines read the same; they now come from the source file, so the text order changed in extraction). Links (LinkedIn, GitHub, this site), one A4 page each, no phone number. Claims guard terms checked over the extracted text: nothing found.
+- A first export the same evening still had the old Aoop title ("AI track"); rejected and fixed in the source file.
+
 ## Part 44 — MerkurIA reduced to the approved line · 2026-11-25
 
 Decision in ADR-052 (Notion: MSFT-01; audit ORG-01, item E2).
