@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-26 (Part 46: SQL out of skills, blog English link fixed; waiting on Gustavo: resume PDFs without SQL and with "prototype" for the Support Agent). Earlier, 2026-11-25 (Part 45: resume PDFs with the approved MerkurIA line. Earlier, Part 44: MerkurIA reduced to the approved line, ADR-052; Part 43: resume PDFs with the exact title). Nothing is pending until 01/12/2026 (Aoop start date, see Later). Gustavo's source file now has the exact Aoop title and the MerkurIA line, so later exports keep them._
+_Last updated: 2026-11-26 (Part 47: resume PDFs without SQL and with "prototype" for the Support Agent). Earlier, 2026-11-26 (Part 46: SQL out of skills, blog English link fixed). Earlier, 2026-11-25 (Part 45: resume PDFs with the approved MerkurIA line. Earlier, Part 44: MerkurIA reduced to the approved line, ADR-052; Part 43: resume PDFs with the exact title). Nothing is pending until 01/12/2026 (Aoop start date, see Later). Gustavo's source file now has the exact Aoop title and the MerkurIA line, so later exports keep them._
 
 ## How we work
 
@@ -95,7 +95,9 @@ Count the parts finished in the current chat. When the **3rd** one is merged (or
 | 42 | Aoop role with the exact contract title "ServiceNow Technical Consultant - JR" in Experience and "Now"; "AI track" removed (ADR-051) | #57 |
 | 43 | Resume PDFs (EN/PT) with the exact contract title and the AI work as planned (no phone number) | #58 |
 | 44 | MerkurIA reduced to the one line approved in the "Rumo à Microsoft" plan; three unprovable claims removed (ADR-052, Notion `MSFT-01`) | #59 |
-| 45 | Resume PDFs (EN/PT) from Gustavo's 25/11/2026 export with the approved MerkurIA line; Aoop title now in his source file (Notion `PORTFOLIO-42`) | (this PR) |
+| 45 | Resume PDFs (EN/PT) from Gustavo's 25/11/2026 export with the approved MerkurIA line; Aoop title now in his source file (Notion `PORTFOLIO-42`) | #60 |
+| 46 | SQL out of the skills list; blog English link `/category/en/` (ADR-053, Notion `PORTFOLIO-43`) | #61 |
+| 47 | Resume PDFs (EN/PT) from Gustavo's 26/11/2026 export: no SQL, Support Agent labelled prototype | (this PR) |
 
 ## Next (in order)
 

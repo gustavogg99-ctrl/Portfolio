@@ -2,6 +2,17 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 47 — Resume PDFs without SQL and with "prototype" for the Support Agent · 2026-11-26
+
+A file swap under ADR-032, closing the PDF side of ADR-053. No new decision, so no ADR. Notion task PORTFOLIO-43.
+
+**Changed**
+- `public/resume/Gustavo_Rodrigues_Resume.pdf` and `Gustavo_Rodrigues_Curriculo.pdf` replaced by Gustavo's export of 26/11/2026 (site versions, no phone number). Two text changes in each, in both languages: "SQL" removed from the engineering and tools skills line, and the Support Agent label "GitHub · in development" / "GitHub · em desenvolvimento" is now "GitHub · prototype" / "GitHub · protótipo".
+- SOURCES.md (SQL line, new resume bullet), ROADMAP.
+
+**Verified**
+- Text extracted and compared with the Part 45 PDFs: only those two lines differ in each file. Links (LinkedIn, GitHub, this site), one A4 page each, no phone number in either file. Claims guard terms checked over the extracted text: nothing found. The version with a phone number that Gustavo also sent was not used.
+
 ## Part 46 — SQL out of the skills list; blog English link fixed · 2026-11-26
 
 ADR-053. Notion task PORTFOLIO-43.
@@ -12,7 +23,7 @@ ADR-053. Notion task PORTFOLIO-43.
 - SOURCES.md, ROADMAP, ADR-053.
 
 **Not done here**
-- The resume PDFs still list SQL and "in development" for the Support Agent; they change only with Gustavo's new export (file swap, ADR-032).
+- The resume PDFs still list SQL and "in development" for the Support Agent; they change only with Gustavo's new export (file swap, ADR-032). Done in Part 47.
 
 ## Part 45 — Resume PDFs with the approved MerkurIA line · 2026-11-25
 
