@@ -4,7 +4,7 @@ What's done, what's next, and what is waiting on Gustavo. **Read this first when
 
 Update this file in the same PR whenever an item changes status.
 
-_Last updated: 2026-11-25 (Part 45: resume PDFs with the approved MerkurIA line. Earlier, Part 44: MerkurIA reduced to the approved line, ADR-052; Part 43: resume PDFs with the exact title). Nothing is pending until 01/12/2026 (Aoop start date, see Later). Gustavo's source file now has the exact Aoop title and the MerkurIA line, so later exports keep them._
+_Last updated: 2026-11-26 (Part 46: SQL out of skills, blog English link fixed; waiting on Gustavo: resume PDFs without SQL and with "prototype" for the Support Agent). Earlier, 2026-11-25 (Part 45: resume PDFs with the approved MerkurIA line. Earlier, Part 44: MerkurIA reduced to the approved line, ADR-052; Part 43: resume PDFs with the exact title). Nothing is pending until 01/12/2026 (Aoop start date, see Later). Gustavo's source file now has the exact Aoop title and the MerkurIA line, so later exports keep them._
 
 ## How we work
 

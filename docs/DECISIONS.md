@@ -747,3 +747,15 @@ The same PDFs also carry tools Gustavo confirmed on 09/11/2026 (Microsoft Copilo
 
 **Consequences.** The resume PDFs in `public/resume/` still carry the old MerkurIA bullets; Gustavo updates his source file and exports the site versions (no phone number), and a file-swap part replaces them (ADR-032). LinkedIn gets the same line under Notion task MSFT-01.
 
+## ADR-053 — SQL leaves the skills list until there is public proof; blog English link uses /category/en/
+
+**Date:** 2026-11-26
+
+**Context.** The "Rumo à Microsoft" plan lists SQL as having nothing ready, and SOURCES.md had no source for SQL as a skill. The ORG-01 audit (decision D2, 26/11/2026) found it still listed on the site, the profile README and the resume PDFs. Separately, the blog menu and the Writing section pointed to `/category/english/`, which WordPress.com answers with 404 (it serves the English category at `/category/en/`, Portuguese at `/category/pt/`; checked on 26/11/2026 without login).
+
+**Decision.** Remove "SQL" from the Engineering & tools list. Point `blog.home.en` to `https://ggblog99.wordpress.com/category/en/`. SQL returns only when an exercise or project is published and SOURCES.md names it (Notion task MSFT-19).
+
+**Alternatives considered.** Keeping SQL as "in study" (rejected: no study evidence on record); keeping the old blog link (rejected: it is a visible 404).
+
+**Consequences.** The resume PDFs in `public/resume/` still list SQL and show "GitHub · in development" for the Support Agent; Gustavo edits his source file and exports the site versions, and a file-swap part replaces them (ADR-032). The site already labels the Support Agent as a prototype (decision D3).
+

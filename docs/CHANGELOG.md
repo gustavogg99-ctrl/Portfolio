@@ -2,6 +2,18 @@
 
 What changed in each part of the build. Newest first.
 
+## Part 46 — SQL out of the skills list; blog English link fixed · 2026-11-26
+
+ADR-053. Notion task PORTFOLIO-43.
+
+**Changed**
+- `src/content/skills.ts`: "SQL" removed (no public proof; returns with MSFT-19).
+- `src/content/writing.ts`: English blog link is now `/category/en/` (the old `/category/english/` returns 404).
+- SOURCES.md, ROADMAP, ADR-053.
+
+**Not done here**
+- The resume PDFs still list SQL and "in development" for the Support Agent; they change only with Gustavo's new export (file swap, ADR-032).
+
 ## Part 45 — Resume PDFs with the approved MerkurIA line · 2026-11-25
 
 A file swap under ADR-032, closing the PDF side of ADR-052. No new decision, so no ADR.

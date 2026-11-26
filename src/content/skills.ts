@@ -34,7 +34,6 @@ export const skills = [
       { label: { en: "WhatsApp API", pt: "API do WhatsApp" }, icons: ["whatsapp"] },
       { label: "Cloudflare Workers / D1", icons: ["cloudflare-workers"] },
       { label: "Next.js / Vercel", icons: ["nextjs", "vercel"] },
-      "SQL",
       { label: "Jira", icons: ["jira"] },
       { label: "Microsoft 365", icons: ["microsoft-365"] },
       {

@@ -14,7 +14,7 @@ import type { Blog } from "./schema";
 export const blog = {
   feedUrl: "https://ggblog99.wordpress.com/feed/",
   home: {
-    en: "https://ggblog99.wordpress.com/category/english/",
+    en: "https://ggblog99.wordpress.com/category/en/",
     pt: "https://ggblog99.wordpress.com/",
   },
   category: { en: "English", pt: "Português" },
